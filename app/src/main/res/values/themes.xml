@@ -1,0 +1,15 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.TheRiceCompany" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    </style>
+
+    <style name="Theme.TheRiceCompany" parent="Base.Theme.TheRiceCompany" />
+
+    <style name="BottomNavTextAppearance" parent="TextAppearance.AppCompat.Medium">
+        <item name="android:textSize">16sp</item> <!-- Adjust the text size here -->
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+</resources>

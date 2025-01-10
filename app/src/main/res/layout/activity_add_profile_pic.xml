@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Logins.AddYourProfilePicActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorPrimary">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25sp"
+                android:text="Back"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:fontFamily="@font/teachers_medium" />
+            <LinearLayout
+                android:layout_width="130dp"
+                android:layout_height="4dp"
+                android:background="#323b43"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/white"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25sp"
+                android:layout_alignParentEnd="true"
+                android:text="Skip"
+                android:textColor="@color/white"
+                android:textSize="19sp"
+                android:fontFamily="@font/teachers_medium" />
+
+        </RelativeLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25sp"
+            android:layout_marginEnd="25sp"
+            android:layout_marginTop="25sp"
+            android:text="Add your profile pic"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:fontFamily="@font/teachers_semibold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25sp"
+            android:layout_marginEnd="25sp"
+            android:layout_marginTop="5dp"
+            android:text="Select avatar or choose your pic from gallery"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:fontFamily="@font/teachers_regular" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25sp"
+            android:padding="25dp"
+            android:orientation="vertical"
+            android:background="@drawable/login_white_round">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/linearVerify">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
+            </ScrollView>
+
+            <LinearLayout
+                android:id="@+id/linearVerify"
+                android:layout_width="120dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/round_button">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="Continue"
+                    android:textColor="@color/white"
+                    android:textSize="17sp"
+                    android:fontFamily="@font/teachers_medium" />
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/right_arrow"
+                    app:tint="@color/white"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"/>
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</layout>
