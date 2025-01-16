@@ -6,13 +6,11 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.inputmethod.InputMethodManager
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.widget.addTextChangedListener
+import com.shambavi.thericecompany.Activitys.DashBoardActivity
 import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityOtpactivityBinding

@@ -13,13 +13,49 @@
         android:theme="@style/Theme.TheRiceCompany"
         tools:targetApi="31">
         <activity
+            android:name=".Activitys.EnquiryFormActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.FAQSActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.ContactUsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.HelpAndSupportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.TermsAndConditionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.PrivacyPolicyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.AboutUsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.ProductCancelationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.SavedAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.MyAccountActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.SearchActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activitys.NotificationsActivity"
+            android:exported="false" />
+        <activity
             android:name=".Logins.AddProfilePicActivity"
             android:exported="false" />
         <activity
             android:name=".Logins.AddAddressActivity"
             android:exported="false" />
         <activity
-            android:name=".Logins.DashBoardActivity"
+            android:name=".Activitys.DashBoardActivity"
             android:exported="false" />
         <activity
             android:name=".Logins.RegisterActivity"

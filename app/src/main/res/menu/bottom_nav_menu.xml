@@ -5,14 +5,18 @@
         android:icon="@drawable/home_ic"
         android:title="Home" />
     <item
-        android:id="@+id/navigationDeliveries"
+        android:id="@+id/navigationProducts"
         android:icon="@drawable/delivery_ic"
-        android:title="Deliveries"
+        android:title="Products"
         />
     <item
-        android:id="@+id/navigationSupport"
+        android:id="@+id/navigationOrders"
         android:icon="@drawable/support_ic"
-        android:title="Support"/>
+        android:title="Orders"/>
+    <item
+        android:id="@+id/navigationCart"
+        android:icon="@drawable/profile_ic"
+        android:title="Cart"/>
     <item
         android:id="@+id/navigationProfile"
         android:icon="@drawable/profile_ic"

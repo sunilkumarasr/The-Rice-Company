@@ -3,6 +3,7 @@
     <color name="colorPrimary">#31705a</color>
     <color name="darkcolorPrimary">#31705a</color>
     <color name="black">#000000</color>
+    <color name="unselect">#6e7684</color>
     <color name="txtHeader">#707070</color>
     <color name="text">#333333</color>
     <color name="txtdes">#707070</color>

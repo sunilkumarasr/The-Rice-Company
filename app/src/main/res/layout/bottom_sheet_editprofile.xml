@@ -1,0 +1,142 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_bottom_sheet"
+    android:padding="16dp">
+
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Your full name"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:fontFamily="@font/teachers_medium" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:background="@drawable/round_edit_gray_light_edge">
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:layout_marginStart="10sp"
+            android:layout_marginEnd="10sp"
+            android:hint="Enter full name"
+            android:textSize="15sp"
+            android:singleLine="true"
+            android:textColorHint="@color/hintcolor"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Phone Number"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:fontFamily="@font/teachers_medium" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:background="@drawable/round_edit_gray_light_edge">
+        <com.hbb20.CountryCodePicker
+            android:id="@+id/ccp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            app:ccp_showArrow="true"
+            app:ccp_showFlag="true"
+            app:ccp_showNameCode="false"
+            app:ccp_autoFormatNumber="true"
+            app:ccp_showPhoneCode="true"
+            app:ccp_showFullName="false"
+            app:ccp_textSize="13sp"
+            app:ccp_arrowSize="13sp"
+            app:ccpDialog_keyboardAutoPopup="false"/>
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/lightGray"/>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:layout_marginStart="10sp"
+            android:layout_marginEnd="10sp"
+            android:hint="Enter phone number"
+            android:textSize="15sp"
+            android:singleLine="true"
+            android:inputType="phone"
+            android:textColorHint="@color/hintcolor"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Email ID"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:fontFamily="@font/teachers_medium" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:background="@drawable/round_edit_gray_light_edge">
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:layout_marginStart="10sp"
+            android:layout_marginEnd="10sp"
+            android:hint="Enter email id"
+            android:textSize="15sp"
+            android:singleLine="true"
+            android:textColorHint="@color/hintcolor"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearBottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/linearCancel"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_edit_gray_light_edge"
+            android:text="Cancle"
+            android:textSize="18sp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/teachers_regular"
+            android:layout_marginEnd="5dp"
+            android:gravity="center"/>
+        <TextView
+            android:id="@+id/linearUpload"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:background="@drawable/round_button"
+            android:layout_marginStart="5dp"
+            android:text="save"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/teachers_regular"
+            android:gravity="center"/>
+    </LinearLayout>
+
+</LinearLayout>
