@@ -35,20 +35,20 @@
                 android:layout_marginStart="25sp"
                 android:layout_marginEnd="25sp"
                 android:layout_marginTop="25sp"
-                android:text="OTP Verification"
-                android:textColor="@color/black"
-                android:textSize="17sp"
-                android:fontFamily="@font/teachers_semibold" />
+                android:text="@string/otp_verification"
+                android:textColor="@color/otp_header_color"
+                android:textSize="@dimen/_16sdp"
+                android:fontFamily="@font/poppins_semibold" />
             <TextView
-                android:layout_width="250dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25sp"
                 android:layout_marginEnd="25sp"
                 android:layout_marginTop="5dp"
-                android:text="Enter email and phone number to send one time Password"
-                android:textColor="@color/black"
-                android:textSize="15sp"
-                android:fontFamily="@font/teachers_regular" />
+                android:text="@string/enter_email_or_phone"
+                android:textColor="@color/otp_header_color"
+                android:textSize="@dimen/_14sdp"
+                android:fontFamily="@font/poppins" />
             <TextView
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
@@ -56,9 +56,9 @@
                 android:layout_marginStart="25sp"
                 android:layout_marginEnd="25sp"
                 android:text="Phone Number"
-                android:textColor="@color/black"
-                android:textSize="17sp"
-                android:fontFamily="@font/teachers_medium" />
+                android:textColor="@color/otp_header_color"
+                android:textSize="@dimen/_16sdp"
+                android:fontFamily="@font/poppins_semibold" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -120,23 +120,24 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="if you have have an account?"
+                            android:text="@string/if_you_dont_have_account"
                             android:textColor="@color/black"
                             android:textSize="13sp"
-                            android:fontFamily="@font/teachers_medium"/>
+                            android:fontFamily="@font/poppins_semibold"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="3dp"
-                            android:text="Login"
+                            android:text="@string/login"
                             android:textColor="@color/colorPrimary"
                             android:textSize="17sp"
-                            android:fontFamily="@font/teachers_semibold" />
+                            android:fontFamily="@font/poppins_semibold" />
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/linearVerify"
-                        android:layout_width="90dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="50dp"
+                        android:minWidth="@dimen/_100sdp"
                         android:gravity="center_horizontal"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/round_button">
@@ -144,13 +145,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
-                            android:text="Verify"
+                            android:text="@string/verify"
                             android:textColor="@color/white"
                             android:textSize="17sp"
-                            android:fontFamily="@font/teachers_medium" />
+                            android:fontFamily="@font/poppins_semibold" />
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
+                            android:layout_width="@dimen/_22sdp"
+                            android:layout_height="wrap_content"
                             android:src="@drawable/right_arrow"
                             app:tint="@color/white"
                             android:layout_gravity="center_vertical"

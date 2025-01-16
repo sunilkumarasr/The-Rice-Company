@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#31705a</color>
+    <color name="colorPrimary_light">#BA31705A</color>
     <color name="darkcolorPrimary">#31705a</color>
     <color name="black">#000000</color>
     <color name="unselect">#6e7684</color>
@@ -27,4 +28,5 @@
     <color name="bottom_selector">#d6e2de</color>
     <color name="loginBg">#1d272f</color>
     <color name="buttonBg">#d89f5d</color>
+    <color name="otp_header_color">#344054</color>
 </resources>

@@ -70,5 +70,6 @@ dependencies {
     // Firebase Messaging
     implementation("com.google.firebase:firebase-messaging")
     implementation("com.google.firebase:firebase-analytics")
+    implementation ("com.intuit.sdp:sdp-android:1.1.0")
 
 }

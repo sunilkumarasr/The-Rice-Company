@@ -59,8 +59,9 @@ class SplashActivity : AppCompatActivity() {
                 Manifest.permission.POST_NOTIFICATIONS
             ) == PackageManager.PERMISSION_GRANTED
         ) {
-            Handler(Looper.getMainLooper()).postDelayed({
-            }, 1500)
+            methodRun()
+           /* Handler(Looper.getMainLooper()).postDelayed({
+            }, 1500)*/
         } else {
             requestPermissionLauncher.launch(
                 arrayOf(
@@ -68,9 +69,6 @@ class SplashActivity : AppCompatActivity() {
                 )
             )
         }
-
-
-        methodRun()
 
     }
 
@@ -98,8 +96,9 @@ class SplashActivity : AppCompatActivity() {
             ActivityResultContracts.RequestMultiplePermissions()
         ) { permissions ->
             if (permissions.isNotEmpty()) {
-                Handler(Looper.getMainLooper()).postDelayed({
-                }, 1500)
+                /*Handler(Looper.getMainLooper()).postDelayed({
+                }, 1500)*/
+                methodRun()
             }
         }
 
@@ -111,9 +110,7 @@ class SplashActivity : AppCompatActivity() {
                 ) ==
                 PackageManager.PERMISSION_GRANTED
             ) {
-                Handler(Looper.getMainLooper()).postDelayed({
-
-                }, 1500)
+                methodRun()
             } else if (shouldShowRequestPermissionRationale(android.Manifest.permission.POST_NOTIFICATIONS)) {
                 ActivityCompat.requestPermissions(
                     this@SplashActivity,

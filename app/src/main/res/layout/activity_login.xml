@@ -8,22 +8,43 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/login_banner">
+      >
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/colorPrimary_light"
             android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                >
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/login_banner"
+                    />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
+
+
                 android:padding="25dp"
-                android:layout_weight="0.8"
+                android:gravity="bottom"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/login_title"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    />
+               <!-- <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="200dp">
@@ -49,14 +70,15 @@
                     android:text="Your fresh rice, delivered with ease."
                     android:textColor="@color/white"
                     android:textSize="15sp"
-                    android:fontFamily="@font/teachers_regular" />
+                    android:fontFamily="@font/teachers_regular" />-->
             </LinearLayout>
-
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="25dp"
+                android:paddingHorizontal="@dimen/_25sdp"
+                android:paddingTop="@dimen/_25sdp"
                 android:layout_weight="1"
                 android:orientation="vertical"
                 android:background="@drawable/login_white_round">
@@ -67,10 +89,10 @@
                     android:layout_marginStart="25sp"
                     android:layout_marginEnd="25sp"
                     android:textAlignment="center"
-                    android:text="Log in to access best rice varieties, track your orders"
+                    android:text="@string/login_to_track_your"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:fontFamily="@font/teachers_semibold" />
+                    android:fontFamily="@font/poppins_semibold" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -104,10 +126,11 @@
                         android:background="@null"
                         android:layout_marginStart="10sp"
                         android:layout_marginEnd="10sp"
-                        android:hint="Enter phone number"
-                        android:textSize="15sp"
+                        android:hint="@string/enter_phone_number"
+                        android:textSize="@dimen/_15sdp"
                         android:singleLine="true"
                         android:inputType="phone"
+                        android:fontFamily="@font/poppins"
                         android:textColorHint="@color/hintcolor"/>
                 </LinearLayout>
 
@@ -124,9 +147,14 @@
                         android:gravity="center"
                         android:text="Continue"
                         android:textColor="@color/white"
-                        android:textSize="17sp"
-                        android:fontFamily="@font/teachers_medium" />
+                        android:textSize="@dimen/_16sdp"
+                        android:fontFamily="@font/poppins_semibold" />
                 </LinearLayout>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    />
 
                 <LinearLayout
                     android:id="@+id/linearRegister"
@@ -136,21 +164,23 @@
                     android:layout_marginBottom="25dp"
                     android:gravity="center_vertical"
                     android:layout_gravity="center_horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
                         android:text="Don't have an account?"
                         android:textColor="@color/black"
-                        android:textSize="15sp"
-                        android:fontFamily="@font/teachers_regular"/>
+                        android:textSize="15sp" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
+                        android:fontFamily="@font/poppins_semibold"
                         android:text="Register Now"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="17sp"
-                        android:fontFamily="@font/teachers_medium" />
+                        android:textSize="17sp" />
                 </LinearLayout>
 
 
