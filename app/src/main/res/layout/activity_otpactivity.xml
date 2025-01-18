@@ -36,9 +36,9 @@
                 android:layout_marginEnd="25sp"
                 android:layout_marginTop="25sp"
                 android:text="Verification Code"
-                android:textColor="@color/black"
+                android:textColor="@color/otp_header_color"
                 android:textSize="17sp"
-                android:fontFamily="@font/teachers_semibold" />
+                android:fontFamily="@font/poppins_semibold" />
             <TextView
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 android:text="We have sent the verification code to your phone number"
                 android:textColor="@color/black"
                 android:textSize="15sp"
-                android:fontFamily="@font/teachers_regular" />
+                android:fontFamily="@font/poppins" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,7 +63,7 @@
                     android:text="+91 9441085061"
                     android:textColor="@color/black"
                     android:textSize="15sp"
-                    android:fontFamily="@font/teachers_regular" />
+                    android:fontFamily="@font/poppins" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:layout_width="20dp"
@@ -83,11 +83,11 @@
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
                         android:background="@null"
                         android:id="@+id/pinEdit1"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/poppins"
                         android:ems="1"
                         android:gravity="center"
                         android:inputType="phone"
@@ -103,11 +103,11 @@
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
                         android:background="@null"
                         android:id="@+id/pinEdit2"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/poppins"
                         android:ems="1"
                         android:gravity="center"
                         android:inputType="phone"
@@ -126,11 +126,11 @@
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/pinEdit3"
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
                         android:background="@null"
                         android:ems="1"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/poppins"
                         android:gravity="center"
                         android:hint="0"
                         android:inputType="phone"
@@ -145,11 +145,11 @@
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="45dp"
-                        android:layout_height="45dp"
+                        android:layout_width="@dimen/_45sdp"
+                        android:layout_height="@dimen/_45sdp"
                         android:background="@null"
                         android:id="@+id/pinEdit4"
-                        android:fontFamily="sans-serif"
+                        android:fontFamily="@font/poppins"
                         android:ems="1"
                         android:gravity="center"
                         android:inputType="phone"
@@ -162,14 +162,15 @@
             </LinearLayout>
 
             <TextView
+                android:id="@+id/txt_resend"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="15dp"
                 android:text="Resend Code"
                 android:textColor="@color/colorPrimary"
-                android:textSize="17sp"
-                android:fontFamily="@font/teachers_medium" />
+                android:textSize="@dimen/_15sdp"
+                android:fontFamily="@font/poppins_semibold" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -183,8 +184,9 @@
                     android:layout_alignParentBottom="true">
                     <LinearLayout
                         android:id="@+id/linearVerify"
-                        android:layout_width="120dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="50dp"
+                        android:minWidth="@dimen/_120sdp"
                         android:gravity="center_horizontal"
                         android:layout_alignParentEnd="true"
                         android:background="@drawable/round_button">
@@ -194,11 +196,11 @@
                             android:layout_gravity="center_vertical"
                             android:text="Continue"
                             android:textColor="@color/white"
-                            android:textSize="17sp"
-                            android:fontFamily="@font/teachers_medium" />
+                            android:textSize="@dimen/_14sdp"
+                            android:fontFamily="@font/poppins_semibold" />
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="15dp"
-                            android:layout_height="15dp"
+                            android:layout_width="@dimen/_22sdp"
+                            android:layout_height="@dimen/_22sdp"
                             android:src="@drawable/right_arrow"
                             app:tint="@color/white"
                             android:layout_gravity="center_vertical"

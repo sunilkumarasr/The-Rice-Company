@@ -29,4 +29,6 @@
     <color name="loginBg">#1d272f</color>
     <color name="buttonBg">#d89f5d</color>
     <color name="otp_header_color">#344054</color>
+    <color name="product_name_color">#878787</color>
+    <color name="search_hint_color">#98A2B3</color>
 </resources>

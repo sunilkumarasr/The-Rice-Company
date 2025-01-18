@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Fragments.HomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".home.HomeFragment">
 
     
     <RelativeLayout
@@ -50,7 +50,7 @@
                             android:text="Hi"
                             android:layout_marginEnd="5dp"
                             android:textSize="19sp"
-                            android:fontFamily="@font/teachers_regular"
+                            android:fontFamily="@font/poppins"
                             android:textColor="@color/white"/>
                         <TextView
                             android:layout_width="wrap_content"
@@ -91,7 +91,7 @@
                     android:text="Search here"
                     android:textColor="@color/txtHeader"
                     android:layout_marginStart="15sp"
-                    android:fontFamily="@font/teachers_regular"
+                    android:fontFamily="@font/poppins"
                     android:textSize="18dp"/>
             </LinearLayout>
 
@@ -119,21 +119,22 @@
                             android:layout_height="wrap_content"
                             android:text="Top Categories"
                             android:textSize="19sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/teachers_medium"/>
+                            android:textColor="@color/otp_header_color"
+                            android:fontFamily="@font/poppins"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
                         <TextView
+                            android:id="@+id/txt_see_categories"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
                             android:text="See all"
                             android:textSize="19sp"
                             android:textColor="@color/colorPrimary"
-                            android:fontFamily="@font/teachers_medium"/>
+                            android:fontFamily="@font/poppins"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -143,108 +144,15 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="10dp">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <LinearLayout
-                            android:layout_width="80dp"
-                            android:layout_height="100dp"
-                            android:padding="15dp"
-                            android:background="@drawable/round_light_gray">
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/item1"/>
-                        </LinearLayout>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:gravity="center_horizontal"
-                            android:text="Basmsati"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/teachers_regular"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:orientation="vertical">
-                        <LinearLayout
-                            android:layout_width="80dp"
-                            android:layout_height="100dp"
-                            android:padding="15dp"
-                            android:background="@drawable/round_light_gray">
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/item1"/>
-                        </LinearLayout>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:gravity="center_horizontal"
-                            android:text="OATS"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/teachers_regular"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:orientation="vertical">
-                        <LinearLayout
-                            android:layout_width="80dp"
-                            android:layout_height="100dp"
-                            android:padding="15dp"
-                            android:background="@drawable/round_light_gray">
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/item1"/>
-                        </LinearLayout>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:gravity="center_horizontal"
-                            android:text="Protein"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/teachers_regular"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="10dp"
-                        android:orientation="vertical">
-                        <LinearLayout
-                            android:layout_width="80dp"
-                            android:layout_height="100dp"
-                            android:padding="15dp"
-                            android:background="@drawable/round_light_gray">
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:src="@drawable/item1"/>
-                        </LinearLayout>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:gravity="center_horizontal"
-                            android:text="Protein"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/teachers_regular"/>
-                    </LinearLayout>
+                   <androidx.recyclerview.widget.RecyclerView
+                       android:id="@+id/recycler_top_catgories"
+                       android:layout_width="match_parent"
+                       android:layout_height="wrap_content"
+                       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                       android:orientation="horizontal"
+                       tools:listitem="@layout/layout_home_top_categories"
+                       />
+                    
                 </LinearLayout>
 
                 <LinearLayout
@@ -262,21 +170,22 @@
                             android:layout_height="wrap_content"
                             android:text="Products"
                             android:textSize="19sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/teachers_medium"/>
+                            android:textColor="@color/otp_header_color"
+                            android:fontFamily="@font/poppins"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
                         <TextView
+                            android:id="@+id/txt_see_all_products"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
                             android:text="See all"
                             android:textSize="19sp"
                             android:textColor="@color/colorPrimary"
-                            android:fontFamily="@font/teachers_medium"/>
+                            android:fontFamily="@font/poppins"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -286,317 +195,19 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginTop="10dp"
+                    android:visibility="visible"
                     android:orientation="horizontal">
-                    <LinearLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_products"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="8dp"
-                        android:orientation="vertical">
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="100dp"
-                            android:background="@drawable/round_light_gray">
-                            <LinearLayout
-                                android:layout_width="75dp"
-                                android:layout_height="25dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginTop="10dp"
-                                android:gravity="center"
-                                android:background="@drawable/round_left_edge_only">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center_horizontal"
-                                    android:text="30% Off"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/white"
-                                    android:fontFamily="@font/teachers_regular"/>
-                            </LinearLayout>
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="12dp"
-                                android:src="@drawable/item1"/>
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="40dp"
-                                android:layout_alignParentBottom="true"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:padding="8dp"
-                                android:background="@drawable/round_white">
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="15sp"
-                                    android:layout_height="15sp"
-                                    android:src="@drawable/ic_launcher_background"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:text="4.0"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/black"
-                                    android:fontFamily="@font/teachers_regular"/>
-                            </LinearLayout>
-                        </RelativeLayout>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="Basmsati ( 1Kg: ₹54 )"
-                            android:textSize="16sp"
-                            android:textColor="@color/txtHeader"
-                            android:fontFamily="@font/teachers_regular"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="Daawat super Basmati"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/teachers_regular"/>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="MRP:"
-                                android:textSize="16sp"
-                                android:textColor="@color/txtHeader"
-                                android:fontFamily="@font/teachers_regular"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:text="₹64"
-                                android:textSize="16sp"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:orientation="horizontal"
+                        android:visibility="visible"
+                        tools:listitem="@layout/layout_home_product_item"
+                        />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Our Price:"
-                                android:textSize="16sp"
-                                android:textColor="@color/txtHeader"
-                                android:fontFamily="@font/teachers_regular"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:text="₹54"
-                                android:textSize="16sp"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Market Price:"
-                                android:textSize="16sp"
-                                android:textColor="@color/txtHeader"
-                                android:fontFamily="@font/teachers_regular"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:text="₹69"
-                                android:textSize="16sp"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/round_edge_colorprimary">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:text="Add"
-                                android:textSize="16sp"
-                                android:textColor="@color/colorPrimary"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="8dp"
-                        android:orientation="vertical">
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="100dp"
-                            android:background="@drawable/round_light_gray">
-                            <LinearLayout
-                                android:layout_width="75dp"
-                                android:layout_height="25dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginTop="10dp"
-                                android:gravity="center"
-                                android:background="@drawable/round_left_edge_only">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center_horizontal"
-                                    android:text="30% Off"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/white"
-                                    android:fontFamily="@font/teachers_regular"/>
-                            </LinearLayout>
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="12dp"
-                                android:src="@drawable/item1"/>
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="40dp"
-                                android:layout_alignParentBottom="true"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:padding="8dp"
-                                android:background="@drawable/round_white">
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="15sp"
-                                    android:layout_height="15sp"
-                                    android:src="@drawable/ic_launcher_background"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:text="4.0"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/black"
-                                    android:fontFamily="@font/teachers_regular"/>
-                            </LinearLayout>
-                        </RelativeLayout>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="Basmsati ( 1Kg: ₹54 )"
-                            android:textSize="16sp"
-                            android:textColor="@color/txtHeader"
-                            android:fontFamily="@font/teachers_regular"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="Daawat super Basmati"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/teachers_regular"/>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="MRP:"
-                                android:textSize="16sp"
-                                android:textColor="@color/txtHeader"
-                                android:fontFamily="@font/teachers_regular"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:text="₹64"
-                                android:textSize="16sp"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Our Price:"
-                                android:textSize="16sp"
-                                android:textColor="@color/txtHeader"
-                                android:fontFamily="@font/teachers_regular"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:text="₹54"
-                                android:textSize="16sp"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Market Price:"
-                                android:textSize="16sp"
-                                android:textColor="@color/txtHeader"
-                                android:fontFamily="@font/teachers_regular"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:text="₹69"
-                                android:textSize="16sp"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/round_edge_colorprimary">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:text="Add"
-                                android:textSize="16sp"
-                                android:textColor="@color/colorPrimary"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
-
-                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -614,21 +225,22 @@
                             android:layout_height="wrap_content"
                             android:text="Top Selling"
                             android:textSize="19sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/teachers_medium"/>
+                            android:textColor="@color/otp_header_color"
+                            android:fontFamily="@font/poppins"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1">
                         <TextView
+                            android:id="@+id/txt_see_all_top_selling"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
                             android:text="See all"
                             android:textSize="19sp"
                             android:textColor="@color/colorPrimary"
-                            android:fontFamily="@font/teachers_medium"/>
+                            android:fontFamily="@font/poppins"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -639,316 +251,16 @@
                     android:layout_marginEnd="20dp"
                     android:layout_marginTop="10dp"
                     android:orientation="horizontal">
-                    <LinearLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler_products_top_selling"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="8dp"
-                        android:orientation="vertical">
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="100dp"
-                            android:background="@drawable/round_light_gray">
-                            <LinearLayout
-                                android:layout_width="75dp"
-                                android:layout_height="25dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginTop="10dp"
-                                android:gravity="center"
-                                android:background="@drawable/round_left_edge_only">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center_horizontal"
-                                    android:text="30% Off"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/white"
-                                    android:fontFamily="@font/teachers_regular"/>
-                            </LinearLayout>
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="12dp"
-                                android:src="@drawable/item1"/>
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="40dp"
-                                android:layout_alignParentBottom="true"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:padding="8dp"
-                                android:background="@drawable/round_white">
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="15sp"
-                                    android:layout_height="15sp"
-                                    android:src="@drawable/ic_launcher_background"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:text="4.0"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/black"
-                                    android:fontFamily="@font/teachers_regular"/>
-                            </LinearLayout>
-                        </RelativeLayout>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="Basmsati ( 1Kg: ₹54 )"
-                            android:textSize="16sp"
-                            android:textColor="@color/txtHeader"
-                            android:fontFamily="@font/teachers_regular"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="Daawat super Basmati"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/teachers_regular"/>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="MRP:"
-                                android:textSize="16sp"
-                                android:textColor="@color/txtHeader"
-                                android:fontFamily="@font/teachers_regular"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:text="₹64"
-                                android:textSize="16sp"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        android:orientation="horizontal"
+                        android:visibility="visible"
+                        tools:listitem="@layout/layout_home_product_item"
+                        />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Our Price:"
-                                android:textSize="16sp"
-                                android:textColor="@color/txtHeader"
-                                android:fontFamily="@font/teachers_regular"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:text="₹54"
-                                android:textSize="16sp"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Market Price:"
-                                android:textSize="16sp"
-                                android:textColor="@color/txtHeader"
-                                android:fontFamily="@font/teachers_regular"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:text="₹69"
-                                android:textSize="16sp"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/round_edge_colorprimary">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:text="Add"
-                                android:textSize="16sp"
-                                android:textColor="@color/colorPrimary"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="8dp"
-                        android:orientation="vertical">
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="100dp"
-                            android:background="@drawable/round_light_gray">
-                            <LinearLayout
-                                android:layout_width="75dp"
-                                android:layout_height="25dp"
-                                android:layout_alignParentEnd="true"
-                                android:layout_marginTop="10dp"
-                                android:gravity="center"
-                                android:background="@drawable/round_left_edge_only">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:gravity="center_horizontal"
-                                    android:text="30% Off"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/white"
-                                    android:fontFamily="@font/teachers_regular"/>
-                            </LinearLayout>
-                            <androidx.appcompat.widget.AppCompatImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:padding="12dp"
-                                android:src="@drawable/item1"/>
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="40dp"
-                                android:layout_alignParentBottom="true"
-                                android:gravity="center_vertical"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginBottom="10dp"
-                                android:padding="8dp"
-                                android:background="@drawable/round_white">
-                                <androidx.appcompat.widget.AppCompatImageView
-                                    android:layout_width="15sp"
-                                    android:layout_height="15sp"
-                                    android:src="@drawable/ic_launcher_background"/>
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginStart="8dp"
-                                    android:text="4.0"
-                                    android:textSize="16sp"
-                                    android:textColor="@color/black"
-                                    android:fontFamily="@font/teachers_regular"/>
-                            </LinearLayout>
-                        </RelativeLayout>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="Basmsati ( 1Kg: ₹54 )"
-                            android:textSize="16sp"
-                            android:textColor="@color/txtHeader"
-                            android:fontFamily="@font/teachers_regular"/>
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="3dp"
-                            android:text="Daawat super Basmati"
-                            android:textSize="16sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="@font/teachers_regular"/>
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="MRP:"
-                                android:textSize="16sp"
-                                android:textColor="@color/txtHeader"
-                                android:fontFamily="@font/teachers_regular"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:text="₹64"
-                                android:textSize="16sp"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Our Price:"
-                                android:textSize="16sp"
-                                android:textColor="@color/txtHeader"
-                                android:fontFamily="@font/teachers_regular"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:text="₹54"
-                                android:textSize="16sp"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="Market Price:"
-                                android:textSize="16sp"
-                                android:textColor="@color/txtHeader"
-                                android:fontFamily="@font/teachers_regular"/>
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:gravity="end"
-                                android:text="₹69"
-                                android:textSize="16sp"
-                                android:textColor="@color/black"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="45dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/round_edge_colorprimary">
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:gravity="center"
-                                android:text="Add"
-                                android:textSize="16sp"
-                                android:textColor="@color/colorPrimary"
-                                android:fontFamily="@font/teachers_regular"/>
-                        </LinearLayout>
-
-                    </LinearLayout>
                 </LinearLayout>
 
             </LinearLayout>

@@ -133,8 +133,7 @@ class SplashActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        Handler(Looper.getMainLooper()).postDelayed({
-        }, 1500)
+        methodRun()
     }
 
 }

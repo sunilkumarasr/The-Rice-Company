@@ -1,27 +1,20 @@
 package com.shambavi.thericecompany.Activitys
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.shambavi.thericecompany.Config.Preferences
 import com.shambavi.thericecompany.Config.ViewController
-import com.shambavi.thericecompany.Fragments.HomeFragment
+import com.shambavi.thericecompany.home.HomeFragment
 import com.shambavi.thericecompany.Fragments.CartFragment
 import com.shambavi.thericecompany.Fragments.OrdersFragment
 import com.shambavi.thericecompany.Fragments.ProfileFragment
-import com.shambavi.thericecompany.Fragments.ProductsFragment
-import com.shambavi.thericecompany.Logins.OTPActivity
-import com.shambavi.thericecompany.Logins.RegisterActivity
+import com.shambavi.thericecompany.categories.CategoriesFragment
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityDashBoardBinding
-import com.shambavi.thericecompany.databinding.ActivityLoginBinding
 
 class DashBoardActivity : AppCompatActivity() {
 
@@ -57,7 +50,7 @@ class DashBoardActivity : AppCompatActivity() {
                 R.id. navigationProducts-> {
                     binding.txtTitle.visibility = View.VISIBLE
                     binding.txtTitle.setText("All Categories")
-                    loadFragment(ProductsFragment())
+                    loadFragment(CategoriesFragment())
                     true
                 }
                 R.id. navigationOrders-> {

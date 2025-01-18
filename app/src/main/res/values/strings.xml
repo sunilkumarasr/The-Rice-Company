@@ -16,6 +16,8 @@
     <string name="verify">Verify</string>
     <string name="otp_verification">OTP Verification</string>
     <string name="enter_email_or_phone">Enter email or phone number to send one time Password</string>
+    <string name="filters_applied">Filters Applied</string>
+    <string name="clear_filter">Clear Filter</string>
 
 
 </resources>

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".Fragments.ProductsFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".categories.CategoriesFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -10,15 +10,6 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:text="All Categories"
-            android:textSize="19sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/teachers_medium"/>
 
         <LinearLayout
             android:id="@+id/linearSearch"
@@ -39,251 +30,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Search here"
-                android:textColor="@color/txtHeader"
+                android:textColor="@color/search_hint_color"
                 android:layout_marginStart="15sp"
-                android:fontFamily="@font/teachers_regular"
+                android:fontFamily="@font/poppins"
                 android:textSize="18dp"/>
         </LinearLayout>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:text="Grocery"
-            android:textSize="22sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/teachers_semibold"/>
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/recycler_all_categories"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+           tools:listitem="@layout/layout_category_list_item_with_header"
+           />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="100dp"
-                    android:padding="15dp"
-                    android:background="@drawable/round_light_gray">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/item1"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:gravity="center_horizontal"
-                    android:text="Basmsati"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/teachers_regular"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="100dp"
-                    android:padding="15dp"
-                    android:background="@drawable/round_light_gray">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/item1"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:gravity="center_horizontal"
-                    android:text="OATS"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/teachers_regular"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="100dp"
-                    android:padding="15dp"
-                    android:background="@drawable/round_light_gray">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/item1"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:gravity="center_horizontal"
-                    android:text="Protein"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/teachers_regular"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="100dp"
-                    android:padding="15dp"
-                    android:background="@drawable/round_light_gray">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/item1"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:gravity="center_horizontal"
-                    android:text="Protein"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/teachers_regular"/>
-            </LinearLayout>
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="15dp"
-            android:text="Rice"
-            android:textSize="22sp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/teachers_semibold"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="100dp"
-                    android:padding="15dp"
-                    android:background="@drawable/round_light_gray">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/item1"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:gravity="center_horizontal"
-                    android:text="Basmsati"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/teachers_regular"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="100dp"
-                    android:padding="15dp"
-                    android:background="@drawable/round_light_gray">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/item1"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:gravity="center_horizontal"
-                    android:text="OATS"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/teachers_regular"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="100dp"
-                    android:padding="15dp"
-                    android:background="@drawable/round_light_gray">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/item1"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:gravity="center_horizontal"
-                    android:text="Protein"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/teachers_regular"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="100dp"
-                    android:padding="15dp"
-                    android:background="@drawable/round_light_gray">
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/item1"/>
-                </LinearLayout>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:gravity="center_horizontal"
-                    android:text="Protein"
-                    android:textSize="16sp"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/teachers_regular"/>
-            </LinearLayout>
-        </LinearLayout>
 
     </LinearLayout>
 
