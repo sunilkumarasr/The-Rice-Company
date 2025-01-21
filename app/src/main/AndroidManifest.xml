@@ -13,7 +13,16 @@
         android:theme="@style/Theme.TheRiceCompany"
         tools:targetApi="31">
         <activity
+            android:name=".orders.OrderDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".products.ProductDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name=".cart.CheckOutActivity"
+            android:exported="false" />
+        <activity
+            android:name=".cart.ActivityCheckout"
             android:exported="false" />
         <activity
             android:name=".products.AllProductsActivity"

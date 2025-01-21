@@ -11,5 +11,26 @@
         <item name="android:textSize">16sp</item> <!-- Adjust the text size here -->
         <item name="android:textColor">?attr/colorOnSurface</item>
     </style>
+    <!-- Custom outlined button style -->
+    <style name="OutlinedButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="strokeColor">@color/green</item>
+
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="tint">@color/green</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+    <style name="textview" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/otp_header_color</item>
+
+
+    </style>
 
 </resources>

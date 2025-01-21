@@ -10,7 +10,7 @@ import com.shambavi.thericecompany.Config.Preferences
 import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.home.HomeFragment
 import com.shambavi.thericecompany.Fragments.CartFragment
-import com.shambavi.thericecompany.Fragments.OrdersFragment
+import com.shambavi.thericecompany.orders.OrdersFragment
 import com.shambavi.thericecompany.Fragments.ProfileFragment
 import com.shambavi.thericecompany.categories.CategoriesFragment
 import com.shambavi.thericecompany.R

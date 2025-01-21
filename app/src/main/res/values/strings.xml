@@ -18,6 +18,16 @@
     <string name="enter_email_or_phone">Enter email or phone number to send one time Password</string>
     <string name="filters_applied">Filters Applied</string>
     <string name="clear_filter">Clear Filter</string>
+    <string name="saved_text">Saved ₹5</string>
+    <string name="free_delivery_msg">Shop for ₹80 more to get free delivery</string>
+    <string name="select_payment">Select Payment Option</string>
+    <string name="change_slot">Change slot</string>
+    <string name="delivery_date_msg">If you want choose delivery date</string>
+    <string name="grand_total">Grand Total</string>
+    <string name="remove">Remove</string>
+    <string name="buy_now">Buy Now</string>
+    <string name="checkout">Checkout</string>
+    <string name="all_orders">All Orders</string>
 
 
 </resources>

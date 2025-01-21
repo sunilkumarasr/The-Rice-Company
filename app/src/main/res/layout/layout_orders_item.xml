@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_60sdp"
+            android:src="@drawable/item1"
+            android:scaleType="centerCrop"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/orderStatusText"
+                style="@style/textview"
+                android:textSize="@dimen/_12sdp"
+                android:text="Delivery expected by tommorrow"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/productNameText"
+                style="@style/textview"
+                android:text="Daawat Super Basmati Rice..."
+                android:layout_marginTop="@dimen/_2sdp"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_11sdp"/>
+
+            <RatingBar
+                android:id="@+id/ratingBar"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/rateProductText"
+                style="@style/textview"
+                android:layout_marginTop="4dp"
+                android:text="Rate this product now"
+                android:textSize="@dimen/_10sdp"
+                />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_arrow_farward"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
