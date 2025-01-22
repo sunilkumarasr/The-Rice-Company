@@ -13,16 +13,18 @@
         android:theme="@style/Theme.TheRiceCompany"
         tools:targetApi="31">
         <activity
+            android:name=".products.CategoryProductsActivity"
+            android:exported="false" />
+        <activity
             android:name=".orders.OrderDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".products.ProductDetailsActivity"
-            android:exported="false" />
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".cart.CheckOutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".cart.ActivityCheckout"
             android:exported="false" />
         <activity
             android:name=".products.AllProductsActivity"
@@ -71,7 +73,13 @@
             android:exported="false" />
         <activity
             android:name=".Activitys.DashBoardActivity"
-            android:exported="false" />
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".Logins.RegisterActivity"
             android:exported="false" />
@@ -80,7 +88,8 @@
             android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="false" />
+            android:exported="true" >
+        </activity>
         <activity
             android:name=".Logins.LoginActivity"
             android:exported="false" />

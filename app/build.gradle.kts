@@ -72,5 +72,7 @@ dependencies {
     implementation("com.google.firebase:firebase-messaging")
     implementation("com.google.firebase:firebase-analytics")
     implementation ("com.intuit.sdp:sdp-android:1.1.0")
+    implementation ("com.google.android.flexbox:flexbox:3.0.0")
+    implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
 
 }

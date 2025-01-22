@@ -28,6 +28,9 @@
     <string name="buy_now">Buy Now</string>
     <string name="checkout">Checkout</string>
     <string name="all_orders">All Orders</string>
+    <string name="product_details">Product Details</string>
+    <string name="view_details">View Details</string>
+    <string name="add_to_cart">Add to Cart</string>
 
 
 </resources>

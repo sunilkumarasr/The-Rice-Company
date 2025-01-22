@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFFFFF">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btnAddToCart"
+        >
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:background="#FFFFFF"
+            android:elevation="4dp">
+
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_back"/>
+
+            <TextView
+                style="@style/textview"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="56dp"
+                android:text="@string/product_details"
+
+                android:textSize="@dimen/_16sdp"/>
+        </RelativeLayout>
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_slider"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_120sdp"
+            app:iss_auto_cycle="true"
+            app:iss_period="1000"
+            app:iss_delay="1000"
+            app:iss_selected_dot="@color/red"
+            android:layout_marginBottom="@dimen/_16sdp"
+            app:iss_text_align="CENTER"/>
 
         <!-- Rating Section -->
         <LinearLayout
@@ -67,6 +108,7 @@
                     style="@style/textview"
                     android:textSize="@dimen/_11sdp"
                     android:textColor="@color/gray"
+                    android:minWidth="@dimen/_80sdp"
                     android:text="MRP: "
                     />
 
@@ -89,6 +131,7 @@
                     android:textSize="@dimen/_11sdp"
                     android:text="Our Price: "
                     android:textColor="@color/gray"
+                    android:minWidth="@dimen/_80sdp"
                     />
 
                 <TextView
@@ -105,78 +148,51 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/textview"
                     android:text="Market Price: "
-                    android:textColor="#666666"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/gray"
+                    android:minWidth="@dimen/_80sdp"
+                    android:textSize="@dimen/_12sdp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/textview"
                     android:text="₹69"
-                    android:textColor="#000000"
-                    android:textSize="14sp"/>
+
+                    android:textSize="@dimen/_12sdp"/>
             </LinearLayout>
         </LinearLayout>
 
         <!-- Variant Selection -->
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/textview"
             android:text="Select Variant"
-            android:textColor="#000000"
-            android:textSize="14sp"
+
+            android:textSize="@dimen/_12sdp"
             android:layout_marginBottom="8dp"/>
 
-        <HorizontalScrollView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp">
 
-            <com.google.android.material.chip.ChipGroup
-                android:layout_width="wrap_content"
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/flexboxLayout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                app:flexWrap="wrap"
+                app:flexDirection="row"
+                app:justifyContent="space_around"
+                >
+            </com.google.android.flexbox.FlexboxLayout>
 
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="1 Kg"/>
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="5 Kg"/>
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="10 Kg"/>
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="20 Kg"/>
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="25 Kg"/>
-
-                <com.google.android.material.chip.Chip
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="30 Kg"/>
-            </com.google.android.material.chip.ChipGroup>
-        </HorizontalScrollView>
+        </LinearLayout>
 
         <!-- Delivery Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:background="#F5F5F5"
+
             android:padding="16dp"
             android:layout_marginBottom="16dp">
 
@@ -187,42 +203,48 @@
                 android:layout_marginBottom="8dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/textview"
                     android:text="Delivery to: "
-                    android:textColor="#666666"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"/>
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Sai Kumar, 500008"
-                    android:textColor="#000000"
-                    android:textSize="14sp"/>
+
+                    android:textSize="@dimen/_12sdp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Change"
-                    android:textColor="#4CAF50"
-                    android:textSize="14sp"/>
+                    style="@style/textview"
+                    android:text="Home"
+                    android:paddingVertical="@dimen/_2sdp"
+                    android:paddingHorizontal="@dimen/_4sdp"
+                    android:background="@drawable/drawable_home_text_bg"
+                    android:textSize="@dimen/_10sdp"/>
             </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/textview"
                 android:text="Ho.No. 9-1-34/30/40D, Bapunagar"
-                android:textColor="#666666"
-                android:textSize="14sp"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_12sdp"
                 android:layout_marginBottom="8dp"/>
+            <Button
+                android:id="@+id/btnChangeAddress"
+                style="@style/OutlinedButtonStyle"
 
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="Change"
+                android:textColor="@color/green" />
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/textview"
                 android:text="if ordered before 2:10 PM"
-                android:textColor="#666666"
-                android:textSize="12sp"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_11sdp"
+                android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginBottom="8dp"/>
 
             <LinearLayout
@@ -231,27 +253,32 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/textview"
                     android:text="• Schedule Your Delivery"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
+
+                    android:textSize="@dimen/_12sdp"
                     android:layout_marginBottom="4dp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/textview"
                     android:text="• Cash on Delivery"
-                    android:textColor="#000000"
-                    android:textSize="14sp"
+
+                    android:textSize="@dimen/_12sdp"
                     android:layout_marginBottom="4dp"/>
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/textview"
                     android:text="• Easy doorstep Returns"
-                    android:textColor="#000000"
-                    android:textSize="14sp"/>
+
+                    android:textSize="@dimen/_12sdp"/>
+
+                <TextView
+                    android:id="@+id/txt_view_details"
+                    style="@style/textview"
+                    android:text="@string/view_details"
+                    android:textColor="#367CFF"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:textSize="@dimen/_12sdp"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -263,12 +290,11 @@
            >
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/textview"
                 android:text="Product Details"
-                android:textSize="20sp"
+                android:textSize="@dimen/_16sdp"
                 android:textStyle="bold"
-                android:textColor="#000000"
+
                 android:layout_marginBottom="16dp"/>
 
             <!-- Sales Package -->
@@ -279,20 +305,22 @@
                 android:layout_marginBottom="8dp">
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Sales Package"
-                    android:textColor="#666666"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"/>
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="1 pack of Daawat Super Basmati Rice"
-                    android:textColor="#000000"
-                    android:textSize="14sp"/>
+
+                    android:textSize="@dimen/_12sdp"/>
             </LinearLayout>
 
             <!-- Brand -->
@@ -303,20 +331,22 @@
                 android:layout_marginBottom="8dp">
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Brand"
-                    android:textColor="#666666"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"/>
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Daawat"
-                    android:textColor="#000000"
-                    android:textSize="14sp"/>
+
+                    android:textSize="@dimen/_12sdp"/>
             </LinearLayout>
 
             <!-- Model Name -->
@@ -327,20 +357,22 @@
                 android:layout_marginBottom="8dp">
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Model Name"
-                    android:textColor="#666666"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"/>
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Super"
-                    android:textColor="#000000"
-                    android:textSize="14sp"/>
+
+                    android:textSize="@dimen/_12sdp"/>
             </LinearLayout>
 
             <!-- Rice Type -->
@@ -351,20 +383,22 @@
                 android:layout_marginBottom="8dp">
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Rice Type"
-                    android:textColor="#666666"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"/>
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Basmati Rice"
-                    android:textColor="#000000"
-                    android:textSize="14sp"/>
+
+                    android:textSize="@dimen/_12sdp"/>
             </LinearLayout>
 
             <!-- Color -->
@@ -375,20 +409,22 @@
                 android:layout_marginBottom="8dp">
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Color"
-                    android:textColor="#666666"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"/>
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="White"
-                    android:textColor="#000000"
-                    android:textSize="14sp"/>
+
+                    android:textSize="@dimen/_12sdp"/>
             </LinearLayout>
 
             <!-- Maximum Shelf Life -->
@@ -399,20 +435,22 @@
                 android:layout_marginBottom="8dp">
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Maximum Shelf Life"
-                    android:textColor="#666666"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"/>
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="24 Months"
-                    android:textColor="#000000"
-                    android:textSize="14sp"/>
+
+                    android:textSize="@dimen/_12sdp"/>
             </LinearLayout>
 
             <!-- Nutrient Content -->
@@ -423,20 +461,22 @@
                 android:layout_marginBottom="8dp">
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Nutrient Content"
-                    android:textColor="#666666"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"/>
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="NA"
-                    android:textColor="#000000"
-                    android:textSize="14sp"/>
+
+                    android:textSize="@dimen/_12sdp"/>
             </LinearLayout>
 
             <!-- Container Type -->
@@ -447,20 +487,22 @@
                 android:layout_marginBottom="8dp">
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Container Type"
-                    android:textColor="#666666"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"/>
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Pouch"
-                    android:textColor="#000000"
-                    android:textSize="14sp"/>
+
+                    android:textSize="@dimen/_12sdp"/>
             </LinearLayout>
 
             <!-- Country of Origin -->
@@ -471,20 +513,22 @@
                 android:layout_marginBottom="8dp">
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Country of Origin"
-                    android:textColor="#666666"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"/>
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="India"
-                    android:textColor="#000000"
-                    android:textSize="14sp"/>
+
+                    android:textSize="@dimen/_12sdp"/>
             </LinearLayout>
 
             <!-- Net Quantity -->
@@ -495,29 +539,31 @@
                 android:layout_marginBottom="16dp">
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Net Quantity"
-                    android:textColor="#666666"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"/>
 
                 <TextView
+                    style="@style/textview"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="5 kg"
-                    android:textColor="#000000"
-                    android:textSize="14sp"/>
+
+                    android:textSize="@dimen/_12sdp"/>
             </LinearLayout>
 
             <!-- Disclaimer Text -->
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/textview"
+
                 android:text="It is pertinent to note that, actual product packaging and materials may contain more and different information, which may include nutritional information/allergen declaration/ special ingredient details/ storage condition/ usage warning/ directions, health &amp; nutritional claims, etc. We recommend that consumers read all labels."
-                android:textColor="#666666"
-                android:textSize="12sp"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/_10sdp"
                 android:lineSpacingExtra="4dp"/>
 
         </LinearLayout>
@@ -528,4 +574,18 @@
         <!-- [Previous product details sections remain the same] -->
 
     </LinearLayout>
-</ScrollView>
+
+    </ScrollView>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAddToCart"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/gold"
+        android:text="@string/add_to_cart"
+        android:textAllCaps="false"
+        app:cornerRadius="8dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:layout_alignParentBottom="true"
+        />
+</RelativeLayout>

@@ -27,13 +27,12 @@
                 android:src="@drawable/ic_back"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/textview"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="56dp"
                 android:text="Order Details"
-                android:textColor="#000000"
-                android:textSize="18sp"/>
+
+                android:textSize="@dimen/_16sdp"/>
         </RelativeLayout>
 
         <!-- Order Info Card -->
@@ -52,11 +51,10 @@
                 <!-- Order ID -->
                 <TextView
                     android:id="@+id/orderIdText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/textview"
                     android:text="Order ID: OD123456"
-                    android:textColor="#666666"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"/>
 
                 <!-- Product Info -->
                 <LinearLayout
@@ -80,38 +78,33 @@
 
                         <TextView
                             android:id="@+id/productWeightText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/textview"
                             android:text="Basmati (1 Kg)"
-                            android:textColor="#666666"
-                            android:textSize="14sp"/>
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/_12sdp"/>
 
                         <TextView
                             android:id="@+id/productNameText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/textview"
                             android:layout_marginTop="4dp"
                             android:text="Daawat Super Basmati Rice"
-                            android:textColor="#000000"
-                            android:textSize="16sp"/>
+                            android:textSize="@dimen/_12sdp"/>
 
                         <TextView
                             android:id="@+id/productDescriptionText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/textview"
                             android:layout_marginTop="4dp"
                             android:text="(Fluffy Long Grains)"
-                            android:textColor="#666666"
-                            android:textSize="14sp"/>
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/_12sdp"/>
 
                         <TextView
                             android:id="@+id/priceText"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/textview"
                             android:layout_marginTop="8dp"
                             android:text="₹62"
-                            android:textColor="#000000"
-                            android:textSize="16sp"
+
+                            android:textSize="@dimen/_12sdp"
                             android:textStyle="bold"/>
                     </LinearLayout>
                 </LinearLayout>
@@ -136,12 +129,11 @@
                            />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/textview"
                             android:layout_marginStart="16dp"
                             android:text="Order Confirmed, 25 Oct 2024"
-                            android:textColor="#000000"
-                            android:textSize="14sp"/>
+
+                            android:textSize="@dimen/_12sdp"/>
                     </LinearLayout>
 
                     <View
@@ -161,12 +153,11 @@
                             />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/textview"
                             android:layout_marginStart="16dp"
                             android:text="Delivered, 28 Oct 2024"
-                            android:textColor="#000000"
-                            android:textSize="14sp"/>
+
+                            android:textSize="@dimen/_12sdp"/>
                     </LinearLayout>
 
                     <View
@@ -188,12 +179,11 @@
                            />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/textview"
                             android:layout_marginStart="16dp"
                             android:text="Return, 29 Oct 2024"
-                            android:textColor="#000000"
-                            android:textSize="14sp"/>
+
+                            android:textSize="@dimen/_12sdp"/>
                     </LinearLayout>
 
                     <View
@@ -215,12 +205,11 @@
                            />
 
                         <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            style="@style/textview"
                             android:layout_marginStart="16dp"
                             android:text="Refund, 29 Oct 2024"
-                            android:textColor="#000000"
-                            android:textSize="14sp"/>
+
+                            android:textSize="@dimen/_12sdp"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -241,39 +230,35 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/textview"
                     android:text="Shipping Details"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
+
+                    android:textSize="@dimen/_14sdp"
                     android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/customerNameText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/textview"
                     android:layout_marginTop="16dp"
                     android:text="Sai Kumar"
-                    android:textColor="#000000"
-                    android:textSize="14sp"/>
+
+                    android:textSize="@dimen/_12sdp"/>
 
                 <TextView
                     android:id="@+id/addressText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/textview"
                     android:layout_marginTop="8dp"
                     android:text="Ho.No. 9-1-34/30/40D, Bapunagar,\nLonger House, Hyderabad,\nTelangana- 500008"
-                    android:textColor="#666666"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"/>
 
                 <TextView
                     android:id="@+id/phoneText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/textview"
                     android:layout_marginTop="8dp"
                     android:text="Phone Number: 9123456789, 9876543210"
-                    android:textColor="#666666"
-                    android:textSize="14sp"/>
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -293,11 +278,10 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/textview"
                     android:text="Rate the Product"
-                    android:textColor="#000000"
-                    android:textSize="16sp"/>
+
+                    android:textSize="@dimen/_14sdp"/>
 
                 <RatingBar
                     android:id="@+id/ratingBar"
@@ -325,11 +309,10 @@
                 android:padding="16dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/textview"
                     android:text="Bill Details"
                     android:textColor="#000000"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/_14sdp"
                     android:textStyle="bold"/>
 
                 <!-- Bill Amount -->
@@ -340,27 +323,26 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        style="@style/textview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Bill Details"
-                        android:textColor="#666666"
-                        android:textSize="14sp"/>
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_12sdp"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textview"
                         android:text="Saved ₹5"
                         android:textColor="#4CAF50"
-                        android:textSize="12sp"
+                        android:textSize="@dimen/_11sdp"
                         android:layout_marginEnd="8dp"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textview"
                         android:text="₹62"
-                        android:textColor="#000000"
-                        android:textSize="14sp"/>
+
+                        android:textSize="@dimen/_12sdp"/>
                 </LinearLayout>
 
                 <!-- Delivery Charges -->
@@ -371,29 +353,28 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        style="@style/textview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Delivery Charges"
-                        android:textColor="#666666"
-                        android:textSize="14sp"/>
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_12sdp"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textview"
                         android:text="₹30"
-                        android:textColor="#000000"
-                        android:textSize="14sp"/>
+
+                        android:textSize="@dimen/_12sdp"/>
                 </LinearLayout>
 
                 <!-- Free Delivery Note -->
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/textview"
                     android:layout_marginTop="4dp"
                     android:text="Shop for ₹69 more to get free delivery"
                     android:textColor="#FF4444"
-                    android:textSize="12sp"/>
+                    android:textSize="@dimen/_11sdp"/>
 
                 <!-- Divider -->
                 <View
@@ -410,20 +391,20 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        style="@style/textview"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="Grand Total"
-                        android:textColor="#000000"
-                        android:textSize="16sp"
+
+                        android:textSize="@dimen/_14sdp"
                         android:textStyle="bold"/>
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/textview"
                         android:text="₹92"
-                        android:textColor="#000000"
-                        android:textSize="16sp"
+
+                        android:textSize="@dimen/_14sdp"
                         android:textStyle="bold"/>
                 </LinearLayout>
             </LinearLayout>
