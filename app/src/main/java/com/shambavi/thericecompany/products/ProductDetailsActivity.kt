@@ -1,7 +1,9 @@
 package com.shambavi.thericecompany.products
 
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.view.View
 import android.view.ViewGroup
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +15,7 @@ import com.denzcoskun.imageslider.models.SlideModel
 import com.google.android.flexbox.FlexboxLayout
 import com.google.android.material.chip.Chip
 import com.shambavi.thericecompany.R
+import com.shambavi.thericecompany.cart.CheckOutActivity
 import com.shambavi.thericecompany.databinding.ActivityProductDetailsBinding
 
 class ProductDetailsActivity : AppCompatActivity() {
@@ -48,6 +51,19 @@ class ProductDetailsActivity : AppCompatActivity() {
             }
             binding.backButton.setOnClickListener {
                 finish()
+            }
+
+            binding.btnAddToCart.setOnClickListener {
+                binding.btnAddToCart.visibility= View.GONE
+                binding.lnrViewcart.visibility= View.VISIBLE
+            }
+            binding.btnMinus.setOnClickListener {
+                binding.btnAddToCart.visibility= View.VISIBLE
+                binding.lnrViewcart.visibility= View.GONE
+            }
+
+            binding.btnViewCart.setOnClickListener {
+                startActivity(Intent(applicationContext,CheckOutActivity::class.java))
             }
 
         }

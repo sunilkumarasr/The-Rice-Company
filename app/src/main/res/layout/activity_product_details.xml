@@ -8,7 +8,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/btnAddToCart"
+        android:layout_above="@+id/lnr_bottom"
         >
 
 
@@ -576,16 +576,96 @@
     </LinearLayout>
 
     </ScrollView>
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btnAddToCart"
+
+    <LinearLayout
+        android:id="@+id/lnr_bottom"
         android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_margin="16dp"
-        android:backgroundTint="@color/gold"
-        android:text="@string/add_to_cart"
-        android:textAllCaps="false"
-        app:cornerRadius="8dp"
-        android:fontFamily="@font/poppins_semibold"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:layout_alignParentBottom="true"
-        />
+        >
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddToCart"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_margin="16dp"
+            android:backgroundTint="@color/gold"
+            android:text="@string/add_to_cart"
+            android:textAllCaps="false"
+            app:cornerRadius="8dp"
+            android:fontFamily="@font/poppins_semibold"
+
+            />
+        <LinearLayout
+            android:id="@+id/lnr_viewcart"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            >
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnViewCart"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/_48sdp"
+                android:backgroundTint="@color/white"
+                android:text="@string/view_cart"
+                android:textAllCaps="false"
+                app:cornerRadius="8dp"
+                app:strokeColor="@color/gold"
+                app:strokeWidth="1dp"
+                android:textColor="@color/gold"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:fontFamily="@font/poppins_semibold"
+
+                />
+            <LinearLayout
+                android:id="@+id/quantityLayout"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/_48sdp"
+                android:background="@drawable/quantity_background"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:backgroundTint="@color/gold"
+                android:gravity="center"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageButton
+                    android:id="@+id/btnMinus"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="@dimen/_8sdp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_minus"
+                    />
+
+                <TextView
+                    android:id="@+id/tvQuantity"
+                    style="@style/textview"
+                    android:minWidth="@dimen/_50sdp"
+                    android:gravity="center"
+                    android:text="1"
+
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/btnPlus"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:layout_marginRight="@dimen/_8sdp"
+
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_plus"
+                    />
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
 </RelativeLayout>

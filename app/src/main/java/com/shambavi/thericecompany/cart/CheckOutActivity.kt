@@ -13,7 +13,7 @@ class CheckOutActivity : AppCompatActivity() {
     lateinit var binding: ActivityCheckOutBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        binding=ActivityCheckOutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.btnBack.setOnClickListener {
