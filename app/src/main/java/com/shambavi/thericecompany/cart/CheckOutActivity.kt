@@ -1,7 +1,9 @@
 package com.shambavi.thericecompany.cart
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -23,6 +25,7 @@ class CheckOutActivity : AppCompatActivity() {
 
         }
 
+
         binding.btnPlus.setOnClickListener {
 
         }
@@ -34,7 +37,13 @@ class CheckOutActivity : AppCompatActivity() {
         }
         binding.btnChangeAddress.setOnClickListener {
 
+            addressLauncher.launch(Intent(applicationContext,AddressListActivity::class.java))
         }
 
     }
+
+    private val addressLauncher = registerForActivityResult( ActivityResultContracts.StartActivityForResult() ) {
+            result -> if (result.resultCode == RESULT_OK) {
+        val filters = result.data?.getSerializableExtra("filters") as? String // Apply filters to your data
+    } }
 }

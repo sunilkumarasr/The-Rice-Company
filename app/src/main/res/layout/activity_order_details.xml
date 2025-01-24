@@ -24,7 +24,7 @@
                 android:layout_height="48dp"
                 android:layout_centerVertical="true"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/ic_back"/>
+                android:src="@drawable/icon_left_arrow"/>
 
             <TextView
                 style="@style/textview"

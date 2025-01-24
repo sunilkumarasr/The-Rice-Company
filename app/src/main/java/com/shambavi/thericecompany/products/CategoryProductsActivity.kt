@@ -6,12 +6,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.shambavi.thericecompany.R
+import com.shambavi.thericecompany.databinding.ActivityCategoryProductsBinding
 
 class CategoryProductsActivity : AppCompatActivity() {
+    lateinit var binding:ActivityCategoryProductsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //enableEdgeToEdge()
-        setContentView(R.layout.activity_category_products)
-
+        binding=ActivityCategoryProductsBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        binding.backButton.setOnClickListener {
+            finish()
+        }
     }
 }

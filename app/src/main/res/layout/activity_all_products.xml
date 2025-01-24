@@ -10,31 +10,70 @@
         android:background="@color/white"
         android:orientation="vertical">
 
-
-        <LinearLayout
-            android:id="@+id/linearSearch"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal"
-            android:layout_marginTop="10dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:gravity="center_vertical"
-            android:background="@drawable/round_edit_gray_light_edge">
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="15sp"
-                android:src="@drawable/search"/>
+            android:layout_height="56dp"
+            android:background="#FFFFFF"
+            android:elevation="4dp">
+
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="@dimen/_32sdp"
+                android:layout_height="@dimen/_32sdp"
+                android:layout_centerVertical="true"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/icon_left_arrow"/>
+
             <TextView
+                android:id="@+id/txt_header"
+                style="@style/textview"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_45sdp"
+                android:text="@string/products"
+
+                android:textSize="@dimen/_16sdp"/>
+        </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            >
+            <LinearLayout
+                android:id="@+id/linearSearch"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Search here"
-                android:textColor="@color/search_hint_color"
-                android:layout_marginStart="15sp"
-                android:fontFamily="@font/poppins"
-                android:textSize="18dp"/>
+                android:layout_height="@dimen/_35sdp"
+                android:orientation="horizontal"
+
+                android:gravity="center_vertical"
+                android:layout_weight="1"
+                android:background="@drawable/round_edit_gray_light_edge">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="15sp"
+                    android:src="@drawable/search"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Search here"
+                    android:textColor="@color/search_hint_color"
+                    android:layout_marginStart="15sp"
+                    android:fontFamily="@font/poppins"
+                    android:textSize="18dp"/>
+            </LinearLayout>
+            <ImageButton
+                android:id="@+id/filterButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="8dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_filter"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
