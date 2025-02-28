@@ -54,13 +54,53 @@
             android:layout_height="1dp"
             android:background="@color/otp_header_color"
             />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RadioGroup
+                android:id="@+id/radioGrp"
+                android:layout_width="wrap_content"
+                android:minWidth="@dimen/_80sdp"
+                android:layout_marginLeft="@dimen/_12sdp"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:id="@+id/radio_price"
+                    style="@style/radiobutton"
+                    android:text="@string/price"
+                    />
+                <RadioButton
+                    android:id="@+id/radio_brand"
+                    style="@style/radiobutton"
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvFilters"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:maxHeight="400dp"
-        android:padding="16dp"/>
+                    android:text="@string/brand"
+                    />
+                <RadioButton
+                    android:id="@+id/radio_type"
+                    style="@style/radiobutton"
+
+                    android:text="@string/type"
+                    />
+                <RadioButton
+                    android:id="@+id/radio_tags"
+                    style="@style/radiobutton"
+
+                    android:text="@string/rags"
+                    />
+                <RadioButton
+                    android:id="@+id/radio_kgss"
+                    style="@style/radiobutton"
+
+                    android:text="@string/kgs"
+                    />
+            </RadioGroup>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFilters"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxHeight="400dp"
+                android:padding="16dp"/>
+        </LinearLayout>
+
 
    <LinearLayout
        android:layout_width="match_parent"

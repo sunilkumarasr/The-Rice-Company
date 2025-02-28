@@ -33,4 +33,15 @@
 
     </style>
 
+
+    <style name="radiobutton" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:button">@null</item>
+        <item name="android:textColor">@drawable/filter_color_selector</item>
+
+
+    </style>
+
 </resources>

@@ -31,6 +31,11 @@ class OrdersFragment : Fragment() {
         setupRecyclerView()
         setupSearch()
 
+        binding.filterButton.setOnClickListener {
+            val bottomSheet = DeliverySlotBottomSheet.newInstance()
+            bottomSheet.show(childFragmentManager, DeliverySlotBottomSheet.TAG)
+
+        }
 
     }
 

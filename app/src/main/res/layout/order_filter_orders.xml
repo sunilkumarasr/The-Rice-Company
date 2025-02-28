@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:gravity="right"
+    android:layout_height="wrap_content">
+    <ImageButton
+        android:id="@+id/close_button"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:src="@drawable/ic_close"
+        android:contentDescription="Close" />
+    <FrameLayout
+        android:id="@+id/bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_sheet_background"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Header with close button -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Filters"
+                    android:layout_weight="1"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/poppins"
+                    android:textStyle="bold" />
+
+<TextView
+    android:layout_weight="1"
+    android:gravity="right"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/clear_all"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="18sp"
+    android:fontFamily="@font/poppins"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <!-- Date selector using RecyclerView -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RadioGroup
+                    android:id="@+id/radioGrp"
+                    android:layout_width="wrap_content"
+                    android:minWidth="@dimen/_100sdp"
+                    android:layout_height="wrap_content">
+<RadioButton
+    android:id="@+id/radio_order_status"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:fontFamily="@font/poppins"
+    android:button="@null"
+    android:text="@string/order_status"
+    />
+                    <RadioButton
+                        android:id="@+id/radio_order_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins"
+                        android:button="@null"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="@string/order_status"
+                        />
+                </RadioGroup>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    >
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/date_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                    <!-- Time slots using RecyclerView -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/time_slot_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="vertical"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Apply button -->
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/apply_button"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_margin="16dp"
+                android:backgroundTint="@color/gold"
+                android:layout_marginTop="16dp"
+                app:cornerRadius="8dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:layout_gravity="right"
+                android:text="Apply"
+                android:textColor="#FFFFFF"
+                android:textSize="@dimen/_12sdp" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>
+
