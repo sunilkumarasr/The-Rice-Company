@@ -10,17 +10,27 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
+import com.bookiron.itpark.utils.MyPref
+import com.gadiwalaUser.Models.LoginResponse
+import com.gadiwalaUser.Models.OTPResponse
+import com.gadiwalaUser.services.DataManager
+import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.DashBoardActivity
 import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityOtpactivityBinding
+import com.shambavi.thericecompany.utils.Utils
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class OTPActivity : AppCompatActivity() {
 
     val binding: ActivityOtpactivityBinding by lazy {
         ActivityOtpactivityBinding.inflate(layoutInflater)
     }
-
+var mobileNumber=""
+var otp=""
     fun AppCompatEditText.showKeyboard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         this.requestFocus()
@@ -35,7 +45,7 @@ class OTPActivity : AppCompatActivity() {
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
 
         type = intent.getStringExtra("type").toString()
-
+        mobileNumber=intent.getStringExtra("mobileNumber").toString()
         inits()
 
     }
@@ -114,16 +124,69 @@ class OTPActivity : AppCompatActivity() {
             val pin4 = binding.pinEdit4.editableText.trim().toString()
 
             var otp: String = "$pin1$pin2$pin3$pin4"
-
-            if (type.equals("Login")){
-                startActivity(Intent(this@OTPActivity, DashBoardActivity::class.java))
-            }else{
-                startActivity(Intent(this@OTPActivity, AddAddressActivity::class.java))
-                overridePendingTransition(0, 0)
+            if(otp.isEmpty()||otp.length<4)
+            {
+                Utils.showMessage("Please enter OTP",applicationContext)
+                return@setOnClickListener
             }
+            submitOPT(otp)
+
 
 
         }
 
+    }
+    fun submitOPT(otp:String) {
+        val dialog= CustomDialog(applicationContext)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@OTPActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<OTPResponse> {
+            override fun onResponse(call: Call<OTPResponse>, response: Response<OTPResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: OTPResponse? = response.body()
+
+                    // Handle the response
+
+                    model?.message?.let { Utils.showMessage(it,applicationContext) }
+
+                    if(model?.status == true)
+                    {
+                        val user=model.data
+                        user!!?.let {
+                            MyPref.setUser(applicationContext,
+                                it.usersId!!,it.phone!!,it.fullName!!,it.email!!)
+                        }
+                        if(model.data!!.profile_status==1){
+
+                            startActivity(Intent(this@OTPActivity, DashBoardActivity::class.java))
+                        }else{
+                            val intent = Intent(this@OTPActivity, AddAddressActivity::class.java)
+                            startActivity(intent)
+
+
+                        }
+                        finish()
+
+                    }
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<OTPResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.verifyOtp(otpCallback,mobileNumber,otp)
     }
 }

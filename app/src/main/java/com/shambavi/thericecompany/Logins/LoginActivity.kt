@@ -98,6 +98,7 @@ class LoginActivity : AppCompatActivity() {
         val intent = Intent(this, OTPActivity::class.java)
         intent.putExtra("mobileNumber",mobile)
         intent.putExtra("otp",otp)
+        intent.putExtra("type","Login")
         startActivity(intent)
         finish()
     }
