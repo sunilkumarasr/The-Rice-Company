@@ -37,7 +37,7 @@ interface ApiService {
 
 
     @FormUrlEncoded
-    @POST("api/otp_verify")
+    @POST("api/save_address")
     fun addAddress(@Field("api_key") api_key: String,
                    @Field("mobile") mobile_number: String,
                    @Field("user_id") user_id: String,
@@ -53,7 +53,7 @@ interface ApiService {
     ): Call<OTPResponse>
 
     @FormUrlEncoded
-    @POST("api/categoty_list")
+    @POST("api/category_list")
     fun getcategory(@Field("api_key") api_key: String
     ): Call<CategoryMainRes>
 
@@ -123,13 +123,13 @@ interface ApiService {
     ): Call<ProductMainRes>
 
 
-    @FormUrlEncoded
+   /* @FormUrlEncoded
     @POST("api/save_address")
     fun saveAddress(
         @Field("api_key") api_key: String,
         @Field("sub_category_id") sub_cat_id: String,
     ): Call<MainResponse>
-
+*/
 
     @FormUrlEncoded
     @POST("api/user_address_details")

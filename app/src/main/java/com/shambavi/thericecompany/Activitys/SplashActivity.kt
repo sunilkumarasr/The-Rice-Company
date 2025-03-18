@@ -15,10 +15,12 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bookiron.itpark.utils.MyPref
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.shambavi.thericecompany.Config.Preferences
 import com.shambavi.thericecompany.Config.ViewController
+import com.shambavi.thericecompany.Logins.AddAddressActivity
 import com.shambavi.thericecompany.Logins.LoginActivity
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivitySplashBinding
@@ -75,11 +77,15 @@ class SplashActivity : AppCompatActivity() {
 
     private fun methodRun() {
         handler.postDelayed({
-            val loginCheck = Preferences.loadStringValue(applicationContext, Preferences.LOGINCHECK, "")
-            if (loginCheck.equals("Login")) {
+            val loginCheck = MyPref.getUser(applicationContext)
+            if (loginCheck!!.isEmpty()) {
                 startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
             }else{
-                startActivity(Intent(this@SplashActivity, LoginActivity::class.java))
+                val profileStatus = MyPref.getProfileStatus(applicationContext)
+                if(profileStatus==0)
+                startActivity(Intent(this@SplashActivity, AddAddressActivity::class.java))
+                else
+                startActivity(Intent(this@SplashActivity, DashBoardActivity::class.java))
             }
         }, 3000)
     }

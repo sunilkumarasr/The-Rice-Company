@@ -7,54 +7,75 @@ class MyPref() {
     companion object{
 
 
-        fun setUser(ctx:Context,user:String,mobile_number:String,full_name:String,email_id:String)
+        fun setUser(
+            ctx: Context,
+            user: String,
+            mobile_number: String,
+            full_name: String,
+            email_id: String,
+            profileStatus: Int
+        )
         {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
         var editor = sharedPreference.edit()
             editor.putString("user_id",user)
             editor.putString("mobile_number",mobile_number)
             editor.putString("full_name",full_name)
             editor.putString("email_id",email_id)
+            editor.putInt("ps",profileStatus)
             editor.commit()
 
         }
-
-        fun setProfileData(ctx:Context,profile:String)
+ fun setProfileStatus(
+            ctx: Context,
+            profileStatus: Int
+        )
         {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
-            var editor = sharedPreference.edit()
-            editor.putString("profile",profile)
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
+        var editor = sharedPreference.edit()
+          
+            editor.putInt("ps",profileStatus)
             editor.commit()
+
         }
+
+        
 
         fun getProfileData(ctx:Context): String?
         {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             return sharedPreference.getString("profile","")
         }
 
-        fun getUser(ctx:Context): String?
+        fun getUser(ctx:Context): String
         {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
-            return sharedPreference.getString("user_id","")
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
+            return sharedPreference.getString("user_id","").toString()
         }
         fun getMobile(ctx:Context): String?
         {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             return sharedPreference.getString("mobile_number","")
-        } fun getEmail(ctx:Context): String?
+        } 
+        
+        fun getEmail(ctx:Context): String?
         {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             return sharedPreference.getString("email_id","")
+        }
+        fun getProfileStatus(ctx:Context): Int?
+        {
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
+            return sharedPreference.getInt("ps",0)
         }
         fun getName(ctx:Context): String?
         {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             return sharedPreference.getString("full_name","")
         }
         fun setName(ctx:Context,full_name:String)
         {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             var editor = sharedPreference.edit()
 
             editor.putString("full_name",full_name)
@@ -63,12 +84,12 @@ class MyPref() {
 
         fun getOccupation(ctx:Context): String?
         {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             return sharedPreference.getString("occupation","")
         }
         fun setOccupation(ctx:Context,occupation:String)
         {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             var editor = sharedPreference.edit()
 
             editor.putString("occupation",occupation)
@@ -77,12 +98,12 @@ class MyPref() {
 
         fun getAddress(ctx:Context): String?
         {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             return sharedPreference.getString("address","")
         }
         fun setAddress(ctx:Context,address:String)
         {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             var editor = sharedPreference.edit()
 
             editor.putString("address",address)
@@ -92,7 +113,7 @@ class MyPref() {
 
         fun setEmail(ctx:Context,email_id:String)
         {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             var editor = sharedPreference.edit()
             editor.putString("email_id",email_id)
             editor.commit()
@@ -101,7 +122,7 @@ class MyPref() {
 
         fun setUserActiveStatus(ctx:Context,status:Int)
         {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             var editor = sharedPreference.edit()
             editor.putInt("active_status",status)
 
@@ -110,12 +131,12 @@ class MyPref() {
         }
         fun getUserActiveStatus(ctx:Context): Int
         {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             return sharedPreference.getInt("active_status",1)
         }
 
         fun clear(ctx: Context) {
-            val sharedPreference =  ctx.getSharedPreferences("Gaadiwala_Driver", Context.MODE_PRIVATE)
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             sharedPreference.edit().clear().commit()
 
         }

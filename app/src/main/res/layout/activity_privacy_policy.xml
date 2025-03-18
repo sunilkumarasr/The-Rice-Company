@@ -45,7 +45,7 @@
             android:layout_marginTop="15dp">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/imgBanner"
@@ -54,13 +54,12 @@
                     android:src="@drawable/privacy_banner"
                     />
 
-                <TextView
-                    android:id="@+id/txtNote"
+                <WebView
+                    android:id="@+id/webview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
                     android:layout_gravity="center"
-                    android:text="@string/note"
                     android:fontFamily="@font/teachers_regular"
                     android:textColor="@color/text"
                     android:textSize="15sp"

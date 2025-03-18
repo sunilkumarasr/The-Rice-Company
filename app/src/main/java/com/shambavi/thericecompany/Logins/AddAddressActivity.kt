@@ -94,9 +94,21 @@ class AddAddressActivity : AppCompatActivity() {
                     if(model?.status == true)
                     {
 
+                       /* val user=model.data
+                        user!!?.let {
+                            MyPref.setUser(applicationContext,
+                                it.usersId!!,it.phone!!,it.fullName!!,it.email!!,it.profile_status!!)
+                        }*/
+                        MyPref.setProfileStatus(applicationContext,1)
+                       // if(model.data!!.profile_status==1){
 
                             startActivity(Intent(this@AddAddressActivity, DashBoardActivity::class.java))
+                      /*  }else{
+                            val intent = Intent(this@AddAddressActivity, AddAddressActivity::class.java)
+                            startActivity(intent)
 
+
+                        }*/
 
                         finish()
 

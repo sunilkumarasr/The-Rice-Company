@@ -11,7 +11,6 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import com.bookiron.itpark.utils.MyPref
-import com.gadiwalaUser.Models.LoginResponse
 import com.gadiwalaUser.Models.OTPResponse
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
@@ -158,7 +157,7 @@ var otp=""
                         val user=model.data
                         user!!?.let {
                             MyPref.setUser(applicationContext,
-                                it.usersId!!,it.phone!!,it.fullName!!,it.email!!)
+                                it.usersId!!,it.phone!!,it.fullName!!,it.email!!,it.profile_status!!)
                         }
                         if(model.data!!.profile_status==1){
 

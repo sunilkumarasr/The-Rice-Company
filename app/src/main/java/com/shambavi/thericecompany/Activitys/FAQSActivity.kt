@@ -5,17 +5,71 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.gadiwalaUser.Models.FAQsMainRes
+import com.gadiwalaUser.services.DataManager
+import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.R
+import com.shambavi.thericecompany.databinding.ActivityFaqsactivityBinding
+import com.shambavi.thericecompany.utils.Utils
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class FAQSActivity : AppCompatActivity() {
+    lateinit var binding:ActivityFaqsactivityBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_faqsactivity)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        binding=ActivityFaqsactivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        callData()
+    }
+
+    fun callData()
+    {
+
+        val dialog= CustomDialog(applicationContext)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@FAQSActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<FAQsMainRes> {
+            override fun onResponse(call: Call<FAQsMainRes>, response: Response<FAQsMainRes>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: FAQsMainRes? = response.body()
+
+                    // Handle the response
+
+                    model?.message?.let { Utils.showMessage(it,applicationContext) }
+
+                    if(model?.status == true)
+                    {
+                        if(model.data.size>0) {
+
+
+                            return
+                        }
+                        finish()
+                    }
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+                    finish()
+                }
+            }
+
+            override fun onFailure(call: Call<FAQsMainRes>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
         }
+
+        // Call the sendOtp function in DataManager
+        dataManager.faqs(otpCallback)
     }
 }

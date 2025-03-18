@@ -7,10 +7,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.gadiwalaUser.Models.CategoryMainRes
+import com.gadiwalaUser.Models.FAQsMainRes
+import com.gadiwalaUser.services.DataManager
+import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.NotificationsActivity
 import com.shambavi.thericecompany.Activitys.SearchActivity
 import com.shambavi.thericecompany.databinding.FragmentHomeBinding
 import com.shambavi.thericecompany.products.AllProductsActivity
+import com.shambavi.thericecompany.utils.Utils
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class HomeFragment : Fragment() {
 
@@ -56,7 +64,55 @@ lateinit var topSellingAdapter: ProductsAdapter
         binding.txtSeeAllProducts.setOnClickListener {
             startActivity(Intent(context,AllProductsActivity::class.java))
         }
+        getCategories()
+    }
 
+    fun getCategories()
+    {
+
+        val dialog= CustomDialog(requireActivity())
+        // Obtain the DataManager instance
+        dialog.showDialog(activity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<CategoryMainRes> {
+            override fun onResponse(call: Call<CategoryMainRes>, response: Response<CategoryMainRes>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: CategoryMainRes? = response.body()
+
+                    // Handle the response
+
+                    model?.message?.let { Utils.showMessage(it,requireActivity()) }
+
+                    if(model?.status == true)
+                    {
+                        if(model.categories.size>0) {
+                            categoryAdapter.categoryList.clear()
+                            categoryAdapter.categoryList.addAll(model.categories)
+                            categoryAdapter.notifyDataSetChanged()
+                            return
+                        }
+
+                    }
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<CategoryMainRes>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.getcategory(otpCallback)
     }
 
 }

@@ -162,11 +162,11 @@ class DataManager private constructor() {
         call.enqueue(cb)
     }
 
-    fun saveAddress(cb: Callback<MainResponse>, sub_cat_id:String ) {
+   /* fun saveAddress(cb: Callback<MainResponse>, sub_cat_id:String ) {
         val apiService = retrofit.create(ApiService::class.java)
         val call = apiService.saveAddress(APIKEY,sub_cat_id)
         call.enqueue(cb)
-    }
+    }*/
     fun getAddressDetails(cb: Callback<AddressDataMainRes>, user_id:String ) {
         val apiService = retrofit.create(ApiService::class.java)
         val call = apiService.getAddressDetails(APIKEY,user_id)
