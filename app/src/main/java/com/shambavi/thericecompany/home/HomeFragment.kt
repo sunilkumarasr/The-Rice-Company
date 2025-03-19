@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gadiwalaUser.Models.CategoryMainRes
 import com.gadiwalaUser.Models.FAQsMainRes
+import com.gadiwalaUser.Models.ProductMainRes
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.NotificationsActivity
@@ -65,6 +66,8 @@ lateinit var topSellingAdapter: ProductsAdapter
             startActivity(Intent(context,AllProductsActivity::class.java))
         }
         getCategories()
+        getProducts()
+        getTopSellProducts()
     }
 
     fun getCategories()
@@ -113,6 +116,100 @@ lateinit var topSellingAdapter: ProductsAdapter
 
         // Call the sendOtp function in DataManager
         dataManager.getcategory(otpCallback)
+    }
+    fun getProducts()
+    {
+
+        val dialog= CustomDialog(requireActivity())
+        // Obtain the DataManager instance
+        dialog.showDialog(activity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<ProductMainRes> {
+            override fun onResponse(call: Call<ProductMainRes>, response: Response<ProductMainRes>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: ProductMainRes? = response.body()
+
+                    // Handle the response
+
+                    model?.message?.let { Utils.showMessage(it,requireActivity()) }
+
+                    if(model?.status == true)
+                    {
+                        if(model.products.size>0) {
+                            productsAdapter.productList.clear()
+                            productsAdapter.productList.addAll(model.products)
+                            productsAdapter.notifyDataSetChanged()
+                            return
+                        }
+
+                    }
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<ProductMainRes>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.getProducts(otpCallback)
+    }
+    fun getTopSellProducts()
+    {
+
+        val dialog= CustomDialog(requireActivity())
+        // Obtain the DataManager instance
+        dialog.showDialog(activity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<ProductMainRes> {
+            override fun onResponse(call: Call<ProductMainRes>, response: Response<ProductMainRes>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: ProductMainRes? = response.body()
+
+                    // Handle the response
+
+                    model?.message?.let { Utils.showMessage(it,requireActivity()) }
+
+                    if(model?.status == true)
+                    {
+                        if(model.products.size>0) {
+                            topSellingAdapter.productList.clear()
+                            topSellingAdapter.productList.addAll(model.products)
+                            topSellingAdapter.notifyDataSetChanged()
+                            return
+                        }
+
+                    }
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<ProductMainRes>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.getTopSellProducts(otpCallback)
     }
 
 }

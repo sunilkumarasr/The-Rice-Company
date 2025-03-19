@@ -57,6 +57,11 @@ interface ApiService {
     fun getcategory(@Field("api_key") api_key: String
     ): Call<CategoryMainRes>
 
+ @FormUrlEncoded
+    @POST("api/all_category_list")
+    fun getcategorySubCat(@Field("api_key") api_key: String
+    ): Call<CategoryMainRes>
+
     @FormUrlEncoded
     @POST("api/product_list")
     fun getProducts(@Field("api_key") api_key: String

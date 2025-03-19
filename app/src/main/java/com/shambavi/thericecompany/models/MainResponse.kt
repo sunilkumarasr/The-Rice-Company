@@ -72,7 +72,9 @@ data class Category (
 
     @SerializedName("id"             ) var id            : String? = null,
     @SerializedName("category"       ) var category      : String? = null,
-    @SerializedName("category_image" ) var categoryImage : String? = null
+    @SerializedName("category_image" ) var categoryImage : String? = null,
+    @SerializedName("sub_category_list" ) var subCategoryList : ArrayList<SubCategory> = arrayListOf()
+
 
 )
 
@@ -325,5 +327,13 @@ data class Slots (
     @SerializedName("date"       ) var date      : String? = null,
     @SerializedName("start_time" ) var startTime : String? = null,
     @SerializedName("end_time"   ) var endTime   : String? = null
+
+)
+
+data class AllCategoryResMain (
+
+    @SerializedName("status"  ) var status  : Boolean?        = null,
+    @SerializedName("message" ) var message : String?         = null,
+    @SerializedName("data"    ) var data    : ArrayList<Category> = arrayListOf()
 
 )

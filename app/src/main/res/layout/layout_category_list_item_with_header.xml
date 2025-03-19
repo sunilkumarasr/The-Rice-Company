@@ -20,8 +20,9 @@
         android:id="@+id/recycler_top_catgories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         android:orientation="horizontal"
+        app:spanCount="3"
         tools:listitem="@layout/layout_home_top_categories"
         />
 

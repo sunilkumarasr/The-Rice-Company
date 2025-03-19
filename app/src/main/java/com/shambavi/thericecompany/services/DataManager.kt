@@ -110,6 +110,11 @@ class DataManager private constructor() {
         val call = apiService.getcategory(APIKEY)
         call.enqueue(cb)
     }
+    fun getcategorySubCat(cb: Callback<CategoryMainRes>) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.getcategorySubCat(APIKEY)
+        call.enqueue(cb)
+    }
 
     fun getProducts(cb: Callback<ProductMainRes>) {
         val apiService = retrofit.create(ApiService::class.java)
