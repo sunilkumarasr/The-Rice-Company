@@ -40,6 +40,11 @@
     <string name="type">Type</string>
     <string name="rags">Tags</string>
     <string name="kgs">Kgs</string>
+    <string name="enquiry_now">Enquiry Form</string>
+    <string name="subject">Subject</string>
+    <string name="message">Message</string>
+    <string name="send">Send</string>
+    <string name="cancel">Cancel</string>
 
 
 </resources>

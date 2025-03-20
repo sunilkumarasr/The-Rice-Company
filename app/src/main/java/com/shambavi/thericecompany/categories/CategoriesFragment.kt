@@ -58,7 +58,7 @@ class CategoriesFragment : Fragment() {
 
                     // Handle the response
 
-                    model?.message?.let { Utils.showMessage(it, activity!!) }
+                  //  model?.message?.let { Utils.showMessage(it, activity!!) }
 
                     if(model?.status == true)
                     {

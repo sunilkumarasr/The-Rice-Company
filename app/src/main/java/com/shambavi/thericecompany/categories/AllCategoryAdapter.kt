@@ -13,6 +13,7 @@ import com.gadiwalaUser.Models.Category
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.LayoutCategoryListItemWithHeaderBinding
 import com.shambavi.thericecompany.home.CategoryAdapter
+import com.shambavi.thericecompany.products.AllProductsActivity
 import com.shambavi.thericecompany.products.CategoryProductsActivity
 import com.shambavi.thericecompany.products.ProductDetailsActivity
 
@@ -48,8 +49,9 @@ val cateObj=categoryList.get(position)
         catAdapter.categoryList=cateObj.subCategoryList
         holder.binding.txtCategoryHeader.text="${cateObj.category}"
         holder.itemView.setOnClickListener {
-            val ctx=holder.binding.recyclerTopCatgories.context
-            ctx.startActivity(Intent(ctx, CategoryProductsActivity::class.java))
+
+           // val ctx=holder.binding.recyclerTopCatgories.context
+           // ctx.startActivity(Intent(ctx, CategoryProductsActivity::class.java))
         }
 
 

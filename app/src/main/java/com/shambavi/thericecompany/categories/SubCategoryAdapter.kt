@@ -13,6 +13,7 @@ import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivitySplashBinding
 import com.shambavi.thericecompany.databinding.LayoutCategoryListItemWithHeaderBinding
 import com.shambavi.thericecompany.databinding.LayoutHomeTopCategoriesBinding
+import com.shambavi.thericecompany.products.AllProductsActivity
 import com.shambavi.thericecompany.products.CategoryProductsActivity
 
 class SubCategoryAdapter: RecyclerView.Adapter<SubCategoryAdapter.CategoryViewHolder>() {
@@ -34,14 +35,19 @@ class SubCategoryAdapter: RecyclerView.Adapter<SubCategoryAdapter.CategoryViewHo
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
+         val ctx=holder.binding.txtProductName.context
+
         holder.binding.imgProduct.setOnClickListener {
             holder.binding.txtProductName.performClick()
         }
         holder.binding.txtProductName.setText("${categoryList.get(position).subCategory}")
         Glide.with(holder.binding.imgProduct.context).load(ROOT_URL+categoryList.get(position).subCategoryImage).into(holder.binding.imgProduct)
         holder.binding.txtProductName.setOnClickListener {
-            val ctx=holder.binding.txtProductName.context
-            ctx.startActivity(Intent(ctx, CategoryProductsActivity::class.java))
+            val intent=Intent(ctx, AllProductsActivity::class.java)
+            intent.putExtra("sid",categoryList.get(position).id)
+            ctx.startActivity(intent)
+           // val ctx=holder.binding.txtProductName.context
+            //ctx.startActivity(Intent(ctx, CategoryProductsActivity::class.java))
         }
 
     }

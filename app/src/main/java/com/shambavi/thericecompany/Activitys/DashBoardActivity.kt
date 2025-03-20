@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.shambavi.thericecompany.Config.Preferences
@@ -79,6 +80,16 @@ class DashBoardActivity : AppCompatActivity() {
     private fun loadFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.contentFrame, fragment)
+        transaction.commit()
+    }
+    fun loadFragment() {
+        bottomNavigationView.setSelectedItemId(R.id.navigationProducts);
+
+        binding.txtTitle.visibility = View.VISIBLE
+        binding.txtTitle.setText("All Categories")
+
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.contentFrame, CategoriesFragment())
         transaction.commit()
     }
 

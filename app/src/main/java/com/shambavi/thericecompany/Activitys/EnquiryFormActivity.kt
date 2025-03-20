@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
@@ -28,9 +29,30 @@ class EnquiryFormActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //enableEdgeToEdge()
-       
+
         setContentView(binding.root)
-        callData()
+        binding.header.txtTitle.setText("Enquiry Form")
+        binding.lnrCancel.setOnClickListener {
+            finish()
+        }
+
+        binding.header.imgBack.setOnClickListener {
+            finish()
+        }
+        binding.lnrSend.setOnClickListener {
+            subject=binding.editSubject.text.toString()
+            message=binding.editMessage.text.toString()
+            if(subject.isEmpty()||message.isEmpty())
+            {
+                Utils.showMessage("Please fill details",applicationContext)
+                return@setOnClickListener
+            }
+            name= MyPref.getName(applicationContext).toString()
+            phone= MyPref.getMobile(applicationContext).toString()
+            name= MyPref.getName(applicationContext).toString()
+            callData()
+        }
+
     }
     fun callData()
     {
@@ -45,8 +67,10 @@ class EnquiryFormActivity : AppCompatActivity() {
             override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
                 dialog.closeDialog()
                 if (response.isSuccessful) {
-                    val model: MainResponse? = response.body()
 
+                    val model: MainResponse? = response.body()
+                    model!!.Message?.let { Utils.showMessage(it,applicationContext) }
+                    finish()
                     // Handle the response
 
                    /* model?.message?.let { Utils.showMessage(it,applicationContext) }

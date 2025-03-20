@@ -221,5 +221,15 @@ class DataManager private constructor() {
         val call = apiService.getSlots(APIKEY)
         call.enqueue(cb)
     }
+    fun addCart(cb: Callback<MainResponse>,user_id:String,pid:String,attribut_id:String) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.addCart(APIKEY,user_id,pid,attribut_id)
+        call.enqueue(cb)
+    }
+    fun getCart(cb: Callback<MainResponse>,user_id:String,pid:String,attribut_id:String) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.getCart(APIKEY,user_id)
+        call.enqueue(cb)
+    }
 
 }

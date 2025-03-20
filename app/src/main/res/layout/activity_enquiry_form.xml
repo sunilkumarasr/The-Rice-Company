@@ -1,10 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activitys.EnquiryFormActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/header"
+        layout="@layout/top_layout"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:orientation="vertical">
+
+
+
+
+                    <ProgressBar
+                        android:id="@+id/progressBarlogin"
+                        android:layout_width="@dimen/_55sdp"
+                        android:layout_height="@dimen/_55sdp"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/colorPrimary"
+                        android:scaleType="fitXY"
+                        android:visibility="gone" />
+
+
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/subject"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/round_edit_gray_light_edge">
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edit_subject"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:layout_marginStart="10sp"
+                            android:layout_marginEnd="10sp"
+                            android:hint="@string/subject"
+                            android:textSize="15sp"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textColorHint="@color/hintcolor"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="@string/message"
+                        android:textColor="@color/black"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:orientation="horizontal"
+                        android:background="@drawable/round_edit_gray_light_edge">
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/edit_message"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:minHeight="@dimen/_100sdp"
+                            android:background="@null"
+                            android:layout_marginStart="10sp"
+                            android:layout_marginEnd="10sp"
+                            android:text="@string/message"
+                            android:minLines="3"
+                            android:gravity="top"
+                            android:padding="@dimen/_5sdp"
+                            android:textSize="15sp"
+                            android:singleLine="true"
+                            android:inputType="textEmailAddress"
+                            android:imeOptions="actionDone"
+                            android:textColorHint="@color/hintcolor"/>
+                    </LinearLayout>
+
+
+
+
+
+
+
+
+
+                </LinearLayout>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+
+                  android:layout_marginTop="10dp"
+                  >
+                  <LinearLayout
+                      android:id="@+id/lnr_cancel"
+                      android:layout_width="match_parent"
+                      android:layout_weight="1"
+                      android:layout_height="50dp"
+                      android:layout_marginHorizontal="@dimen/_12sdp"
+                      android:gravity="center_horizontal"
+                      android:layout_alignParentBottom="true"
+                      android:layout_alignParentEnd="true"
+                      android:background="@drawable/round_edge_colorprimary">
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center_vertical"
+                          android:text="@string/cancel"
+                          android:textColor="@color/black"
+                          android:textSize="17sp"
+                          android:fontFamily="@font/poppins" />
+
+                  </LinearLayout>
+                  <LinearLayout
+                      android:id="@+id/lnr_send"
+                      android:layout_width="match_parent"
+                      android:layout_weight="1"
+
+                      android:layout_height="50dp"
+                      android:layout_marginHorizontal="@dimen/_12sdp"
+
+                      android:gravity="center_horizontal"
+
+                      android:background="@drawable/round_button">
+                      <TextView
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_gravity="center_vertical"
+                          android:text="@string/send"
+                          android:textColor="@color/white"
+                          android:textSize="17sp"
+                          android:fontFamily="@font/poppins" />
+
+                  </LinearLayout>
+              </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_gravity="center"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </FrameLayout>
+</LinearLayout>

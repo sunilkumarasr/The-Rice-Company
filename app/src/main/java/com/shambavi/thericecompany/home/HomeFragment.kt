@@ -7,11 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.denzcoskun.imageslider.models.SlideModel
+import com.gadiwalaUser.Models.BannersMainRes
 import com.gadiwalaUser.Models.CategoryMainRes
 import com.gadiwalaUser.Models.FAQsMainRes
 import com.gadiwalaUser.Models.ProductMainRes
 import com.gadiwalaUser.services.DataManager
+import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
 import com.royalpark.gaadiwala_admin.views.CustomDialog
+import com.shambavi.thericecompany.Activitys.DashBoardActivity
 import com.shambavi.thericecompany.Activitys.NotificationsActivity
 import com.shambavi.thericecompany.Activitys.SearchActivity
 import com.shambavi.thericecompany.databinding.FragmentHomeBinding
@@ -27,6 +31,8 @@ class HomeFragment : Fragment() {
 lateinit var categoryAdapter: CategoryAdapter
 lateinit var productsAdapter: ProductsAdapter
 lateinit var topSellingAdapter: ProductsAdapter
+    val imageList = ArrayList<SlideModel>() // Create image list
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,13 +69,77 @@ lateinit var topSellingAdapter: ProductsAdapter
             startActivity(Intent(requireActivity(), SearchActivity::class.java))
         }
         binding.txtSeeAllProducts.setOnClickListener {
-            startActivity(Intent(context,AllProductsActivity::class.java))
+            val intent=Intent(context,AllProductsActivity::class.java)
+            intent.putExtra("pid","")
+            intent.putExtra("sid","")
+            startActivity(intent)
+        }
+        binding.txtSeeAllTopSelling.setOnClickListener {
+            val intent=Intent(context,AllProductsActivity::class.java)
+            intent.putExtra("pid","")
+            intent.putExtra("sid","")
+            startActivity(intent)
+        }
+        binding.lnrSeeCategories.setOnClickListener {
+            (activity as DashBoardActivity).loadFragment()
+
+           /* val intent=Intent(context,AllProductsActivity::class.java)
+            intent.putExtra("pid","")
+            intent.putExtra("sid","")
+            startActivity(intent)*/
         }
         getCategories()
         getProducts()
         getTopSellProducts()
+        getBanners()
     }
 
+    fun getBanners()
+    {
+
+        val dialog= CustomDialog(requireActivity())
+        // Obtain the DataManager instance
+        dialog.showDialog(activity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<BannersMainRes> {
+            override fun onResponse(call: Call<BannersMainRes>, response: Response<BannersMainRes>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: BannersMainRes? = response.body()
+
+                    // Handle the response
+
+                    model?.message?.let { Utils.showMessage(it,requireActivity()) }
+
+                    if(model?.status == true)
+                    {
+                        imageList.clear()
+                        model.data.forEach {
+                            imageList.add(SlideModel("${ROOT_URL}/${it.image}"))
+                        }
+                        binding.imageSlider.setImageList(imageList)
+
+                    }
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<BannersMainRes>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.bannerList(otpCallback)
+    }
     fun getCategories()
     {
 

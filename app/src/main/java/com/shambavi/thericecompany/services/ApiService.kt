@@ -209,4 +209,22 @@ interface ApiService {
         @Field("api_key") api_key: String,
 
     ): Call<SlotsMainRes>
+
+    @FormUrlEncoded
+    @POST("api/add_to_cart")
+    fun addCart(
+        @Field("api_key") api_key: String,
+        @Field("user_id") user_id: String,
+        @Field("product_id") productId: String,
+        @Field("attribute_id") attributeId: String,
+
+    ): Call<MainResponse>
+
+    @FormUrlEncoded
+    @POST("api/get_cart_details")
+    fun getCart(
+        @Field("api_key") api_key: String,
+        @Field("user_id") user_id: String,
+
+    ): Call<MainResponse>
 }
