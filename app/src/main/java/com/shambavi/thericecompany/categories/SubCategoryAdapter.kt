@@ -45,6 +45,8 @@ class SubCategoryAdapter: RecyclerView.Adapter<SubCategoryAdapter.CategoryViewHo
         holder.binding.txtProductName.setOnClickListener {
             val intent=Intent(ctx, AllProductsActivity::class.java)
             intent.putExtra("sid",categoryList.get(position).id)
+            intent.putExtra("sales","")
+
             ctx.startActivity(intent)
            // val ctx=holder.binding.txtProductName.context
             //ctx.startActivity(Intent(ctx, CategoryProductsActivity::class.java))

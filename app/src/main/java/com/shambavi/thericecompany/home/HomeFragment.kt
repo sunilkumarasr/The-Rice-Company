@@ -72,12 +72,15 @@ lateinit var topSellingAdapter: ProductsAdapter
             val intent=Intent(context,AllProductsActivity::class.java)
             intent.putExtra("pid","")
             intent.putExtra("sid","")
+            intent.putExtra("sales","")
+
             startActivity(intent)
         }
         binding.txtSeeAllTopSelling.setOnClickListener {
             val intent=Intent(context,AllProductsActivity::class.java)
             intent.putExtra("pid","")
             intent.putExtra("sid","")
+            intent.putExtra("sales","sales")
             startActivity(intent)
         }
         binding.lnrSeeCategories.setOnClickListener {

@@ -75,7 +75,10 @@ class ProfileFragment : Fragment() ,View.OnClickListener {
                 startActivity(Intent(requireActivity(), AboutUsActivity::class.java))
             }
             R.id.relativePrivacyPolicy -> {
-                startActivity(Intent(requireActivity(), PrivacyPolicyActivity::class.java))
+                val intent=Intent(requireActivity(), PrivacyPolicyActivity::class.java)
+                intent.putExtra("isOtherDetails","")
+
+                startActivity(intent)
             }
             R.id.relativeTermsAndConditions -> {
                 startActivity(Intent(requireActivity(), TermsAndConditionsActivity::class.java))

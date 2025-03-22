@@ -93,6 +93,7 @@ data class Product (
     @SerializedName("category_id"        ) var categoryId        : String? = null,
     @SerializedName("sub_category_id"    ) var subCategoryId     : String? = null,
     @SerializedName("title"              ) var title             : String? = null,
+    @SerializedName("category_id_name"              ) var category_id_name             : String? = null,
     @SerializedName("mrp_price"          ) var mrpPrice          : String? = null,
     @SerializedName("market_price"       ) var marketPrice       : String? = null,
     @SerializedName("our_price"          ) var ourPrice          : String? = null,

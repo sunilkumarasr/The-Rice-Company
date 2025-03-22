@@ -21,6 +21,7 @@ import retrofit2.Response
 
 class PrivacyPolicyActivity : AppCompatActivity() {
 
+    var isOtherDetails=""
     val binding: ActivityPrivacyPolicyBinding by lazy {
         ActivityPrivacyPolicyBinding.inflate(layoutInflater)
     }
@@ -31,11 +32,16 @@ class PrivacyPolicyActivity : AppCompatActivity() {
         setContentView(binding.root)
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
 
+        isOtherDetails=  intent.getStringExtra("isOtherDetails").toString()
+
         inits()
 
     }
 
     private fun inits() {
+        if(isOtherDetails.isNotEmpty())
+            binding.header.txtTitle.setText("")
+        else
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "Privacy Policy"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
 
@@ -94,7 +100,9 @@ class PrivacyPolicyActivity : AppCompatActivity() {
             }
         }
 
-        // Call the sendOtp function in DataManager
+        if(isOtherDetails.isEmpty())
         dataManager.privacyTermsData(otpCallback,"privacy-policy")
+        else
+        dataManager.privacyTermsData(otpCallback,"shipping-policy")
     }
 }

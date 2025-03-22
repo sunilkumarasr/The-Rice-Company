@@ -48,7 +48,7 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>()
         holder.binding.txtOff.text="${Utils.RUPEE_SYMBOL} ${obj.marketPrice}"
         holder.binding.txtOurPrice.text="${Utils.RUPEE_SYMBOL} ${obj.ourPrice}"
         holder.binding.txtMarketPrice.text="${Utils.RUPEE_SYMBOL} ${obj.marketPrice}"
-        holder.binding.txtProductCategory.text="${obj.categoryId}"
+        holder.binding.txtProductCategory.text="${obj.category_id_name}"
         holder.binding.txtProductName.setOnClickListener {
             val ctx=holder.binding.txtProductName.context
             val intent=Intent(ctx,ProductDetailsActivity::class.java)

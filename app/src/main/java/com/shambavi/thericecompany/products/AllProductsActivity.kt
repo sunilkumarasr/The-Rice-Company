@@ -24,6 +24,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
     lateinit var productsAdapter: ProductsAdapter
     lateinit var recycler_all_products:RecyclerView
     var sid=""
+    var sales=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +32,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         binding=ActivityAllProductsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         sid=intent.getStringExtra("sid").toString()
+        sales=intent.getStringExtra("sales").toString()
         recycler_all_products=findViewById(R.id.recycler_all_products)
         productsAdapter=ProductsAdapter()
         recycler_all_products.adapter=productsAdapter
@@ -101,7 +103,10 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
 
         // Call the sendOtp function in DataManager
         if(sid.isEmpty())
-        dataManager.getProducts(otpCallback)
+            if(sales.isEmpty())
+                dataManager.getProducts(otpCallback)
+            else
+                dataManager.getTopSellProducts(otpCallback)
         else
         dataManager.getProductsBySubCat(otpCallback,sid)
     }

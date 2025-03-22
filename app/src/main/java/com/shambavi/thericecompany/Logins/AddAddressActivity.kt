@@ -54,6 +54,23 @@ class AddAddressActivity : AppCompatActivity() {
     }
 
     private fun inits() {
+
+        binding.radioType.setOnCheckedChangeListener { group, checkedId ->
+
+                if(checkedId==R.id.radio_home)
+                {
+                    type="Home"
+                }
+                else  if(checkedId==R.id.radio_shop)
+                {
+                    type="Shop"
+                }else  if(checkedId==R.id.radio_other)
+                {
+                    type="Other"
+                }
+
+
+        }
         binding.linearVerify.setOnClickListener {
             full_name=binding.editFullName.text.toString()
             email=binding.editEmail.text.toString()
@@ -66,7 +83,7 @@ class AddAddressActivity : AppCompatActivity() {
             country=binding.editCountry.text.toString()
             zipcode=binding.editZipcode.text.toString()
 
-            if(full_name.isEmpty()||email.isEmpty()||flat.isEmpty()||area.isEmpty()||city.isEmpty()||state.isEmpty()||country.isEmpty()||zipcode.isEmpty())
+            if(full_name.isEmpty()||email.isEmpty()||flat.isEmpty()||area.isEmpty()||city.isEmpty()||state.isEmpty()||country.isEmpty()||zipcode.isEmpty()||type.isEmpty())
             {
                 Utils.showMessage("Please fill all details",applicationContext)
                 return@setOnClickListener

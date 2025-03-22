@@ -15,9 +15,11 @@ import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.gadiwalaUser.Models.ProductDetailsDataMinRes
 import com.gadiwalaUser.services.DataManager
+import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
 import com.google.android.flexbox.FlexboxLayout
 import com.google.android.material.chip.Chip
 import com.royalpark.gaadiwala_admin.views.CustomDialog
+import com.shambavi.thericecompany.Activitys.PrivacyPolicyActivity
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.cart.CheckOutActivity
 import com.shambavi.thericecompany.databinding.ActivityProductDetailsBinding
@@ -29,7 +31,8 @@ import retrofit2.Response
 class ProductDetailsActivity : AppCompatActivity() {
     lateinit var binding:ActivityProductDetailsBinding
     var product_id=""
-    var  chipList:List<ChipPrices>? =null
+    val imageList = ArrayList<SlideModel>()
+    var  chipList:ArrayList<ChipPrices>? =ArrayList()
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityProductDetailsBinding.inflate(layoutInflater)
@@ -37,27 +40,13 @@ class ProductDetailsActivity : AppCompatActivity() {
             product_id=intent.getStringExtra("product_id").toString()
             Log.e("product_id","product_id $product_id")
             getProductDetails()
-         chipList = listOf(ChipPrices("1kg","1",false),
-            ChipPrices("2kg","2",false),
-            ChipPrices("3kg","3",false),
-            ChipPrices("4kg","4",false),
-            ChipPrices("5kg","5",false),
-            ChipPrices("6kg","6",false),
-            ChipPrices("6kg","7",false),
-            ChipPrices("6kg","8",false),
-            ChipPrices("6kg","9",false),
-            ChipPrices("6kg","10",false),
-            ChipPrices("6kg","11",false),
-            )
 
-            setData()
-            val imageList = ArrayList<SlideModel>() // Create image list
+            binding.txtViewDetails.setOnClickListener {
+                val intent=Intent(applicationContext, PrivacyPolicyActivity::class.java)
+                intent.putExtra("isOtherDetails","isOtherDetails")
 
-            imageList.add(SlideModel( R.drawable.item1, ScaleTypes.CENTER_CROP) )// for one image
-            imageList.add(SlideModel( R.drawable.item2, ScaleTypes.CENTER_CROP) )// for one image
-          binding. imageSlider.setImageList(imageList)
-
-
+                startActivity(intent)
+            }
             binding.btnAddToCart.setOnClickListener {
                 finish()
             }
@@ -171,8 +160,28 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                     if(model?.status == true)
                     {
+                       val productDetails= model.data?.productDetails
+                        binding.txtProductName.text="${productDetails!!.title}"
+                        binding.txtMrpPrice.text="${Utils.RUPEE_SYMBOL}${productDetails!!.mrpPrice}"
+                        binding.txtOurPrice.text="${Utils.RUPEE_SYMBOL}${productDetails!!.ourPrice}"
+                        binding.txtMarketPrice.text="${Utils.RUPEE_SYMBOL}${productDetails!!.marketPrice}"
+                        binding.webviewDescription.loadData("${productDetails!!.descriptions}","text/html","utf-8")
+                        binding.txtProductDescription.text="${productDetails!!.descriptions}"
 
+                        model.data!!.productAttribute.forEach {
+                           chipList!!.add(ChipPrices(it.weight.toString(),it.id.toString(),false))
+                        }
 
+                        imageList.clear()
+                        imageList.add(SlideModel(ROOT_URL+""+ productDetails.image, ScaleTypes.FIT) )// for one image
+
+                        model.data!!.productImages.forEach {
+                            imageList.add(SlideModel(ROOT_URL+""+ it.additionalImage, ScaleTypes.FIT) )// for one image
+
+                        }
+
+                        binding. imageSlider.setImageList(imageList)
+                        setData()
 
                     }
                     println("OTP Sent successfully: ${model?.message}")
