@@ -4,6 +4,7 @@ package com.gadiwalaUser.services
 import android.util.Log
 import com.gadiwalaUser.Models.AddressDataMainRes
 import com.gadiwalaUser.Models.BannersMainRes
+import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.CategoryMainRes
 import com.gadiwalaUser.Models.ContactDetailsMain
 import com.gadiwalaUser.Models.FAQsMainRes
@@ -226,7 +227,7 @@ class DataManager private constructor() {
         val call = apiService.addCart(APIKEY,user_id,pid,attribut_id)
         call.enqueue(cb)
     }
-    fun getCart(cb: Callback<MainResponse>,user_id:String,pid:String,attribut_id:String) {
+    fun getCart(cb: Callback<CartMainRes>, user_id:String) {
         val apiService = retrofit.create(ApiService::class.java)
         val call = apiService.getCart(APIKEY,user_id)
         call.enqueue(cb)

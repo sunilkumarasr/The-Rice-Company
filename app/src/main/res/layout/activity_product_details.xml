@@ -601,10 +601,12 @@
             android:text="@string/add_to_cart"
             android:textAllCaps="false"
             app:cornerRadius="8dp"
+            android:visibility="gone"
             android:fontFamily="@font/poppins_semibold"
 
             />
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/lnr_viewcart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

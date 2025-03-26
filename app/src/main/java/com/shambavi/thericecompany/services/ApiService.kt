@@ -4,6 +4,7 @@ package com.gadiwalaUser.services
 
 import com.gadiwalaUser.Models.AddressDataMainRes
 import com.gadiwalaUser.Models.BannersMainRes
+import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.CategoryMainRes
 import com.gadiwalaUser.Models.ContactDetailsMain
 import com.gadiwalaUser.Models.FAQsMainRes
@@ -226,5 +227,5 @@ interface ApiService {
         @Field("api_key") api_key: String,
         @Field("user_id") user_id: String,
 
-    ): Call<MainResponse>
+    ): Call<CartMainRes>
 }

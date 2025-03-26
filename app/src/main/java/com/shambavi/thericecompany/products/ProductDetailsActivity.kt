@@ -11,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.bookiron.itpark.utils.MyPref
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
+import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.ProductDetailsDataMinRes
 import com.gadiwalaUser.services.DataManager
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
@@ -31,11 +33,14 @@ import retrofit2.Response
 class ProductDetailsActivity : AppCompatActivity() {
     lateinit var binding:ActivityProductDetailsBinding
     var product_id=""
+    var attribute_id=""
+    var user_id=""
     val imageList = ArrayList<SlideModel>()
     var  chipList:ArrayList<ChipPrices>? =ArrayList()
         override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityProductDetailsBinding.inflate(layoutInflater)
+            user_id=MyPref.getUser(applicationContext)
         setContentView(binding.root)
             product_id=intent.getStringExtra("product_id").toString()
             Log.e("product_id","product_id $product_id")
@@ -47,16 +52,19 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                 startActivity(intent)
             }
-            binding.btnAddToCart.setOnClickListener {
-                finish()
-            }
+
             binding.backButton.setOnClickListener {
                 finish()
             }
 
             binding.btnAddToCart.setOnClickListener {
-                binding.btnAddToCart.visibility= View.GONE
-                binding.lnrViewcart.visibility= View.VISIBLE
+                if(attribute_id.isEmpty())
+                {
+                    Utils.showMessage("Please select Attribution value",applicationContext)
+                    return@setOnClickListener
+                }
+                addToCart()
+
             }
             binding.btnMinus.setOnClickListener {
                 binding.btnAddToCart.visibility= View.VISIBLE
@@ -78,6 +86,8 @@ class ProductDetailsActivity : AppCompatActivity() {
         lp.marginStart=10
         lp.marginEnd=10
         binding.flexboxLayout.removeAllViews()
+
+        binding.btnAddToCart.visibility=View.GONE
         for (chipText in chipList!!) {
             val chip = Chip(this)
             chip.text = chipText.price
@@ -113,6 +123,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                         R.color.white
                     )
                 ))
+                binding.btnAddToCart.visibility=View.VISIBLE
             }
 
             chip.setOnClickListener {
@@ -128,6 +139,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             if(it.id==id.toString())
             {
                 it.isSelected=true
+                attribute_id=it.id
             }else
             {
                 it.isSelected=false
@@ -201,5 +213,48 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         // Call the sendOtp function in DataManager
         dataManager.productDetails(otpCallback,product_id)
+    }
+    fun addToCart()
+    {
+
+        val dialog= CustomDialog(this@ProductDetailsActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@ProductDetailsActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<MainResponse> {
+            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: MainResponse? = response.body()
+
+                    // Handle the response
+
+                    model?.Message?.let { Utils.showMessage(it,applicationContext) }
+
+                    if(model!!.Status !!)
+                    {
+                        binding.btnAddToCart.visibility= View.GONE
+                        binding.lnrViewcart.visibility= View.VISIBLE
+                    }
+
+                    println("OTP Sent successfully: ${model?.Message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.addCart(otpCallback, user_id  ,product_id,attribute_id)
     }
 }
