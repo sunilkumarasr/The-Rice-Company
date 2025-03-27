@@ -21,9 +21,13 @@ class ContactUsActivity : AppCompatActivity() {
     lateinit var binding:ActivityContactUsBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        //enableEdgeToEdge()
         binding= ActivityContactUsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.header.txtTitle.setText("Contact Us")
+        binding.header.imgBack.setOnClickListener {
+            finish()
+        }
         callData()
     }
     fun callData()
@@ -49,6 +53,11 @@ class ContactUsActivity : AppCompatActivity() {
                     {
                         if(model.date.size>0) {
 
+                            var text=""
+                           model.date.forEach {
+                               text="Address</br></br>" +it.address+"</br></br></br>Phone Number</br>"+it.phone+"</br>"+it.phone2+"</br></br></br>Email Address</br>"+it.email+""
+                           }
+                            binding.webview.loadData(text,"text/html","utf-8")
 
                             return
                         }
