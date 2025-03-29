@@ -86,7 +86,7 @@
             android:id="@+id/txt_product_name"
             style="@style/textview"
             android:textSize="@dimen/_11sdp"
-            android:text="Ulatha Premium Quality Sonamasuri rice"
+            android:text=""
 
             android:textStyle="bold"
             android:layout_marginBottom="16dp"/>
@@ -116,7 +116,7 @@
                     android:id="@+id/txt_mrp_price"
                     style="@style/textview"
                     android:textSize="@dimen/_11sdp"
-                    android:text="₹64"
+                    android:text=""
                     />
             </LinearLayout>
 
@@ -138,7 +138,7 @@
                     android:id="@+id/txt_our_price"
                     style="@style/textview"
                     android:textSize="@dimen/_11sdp"
-                    android:text="₹54"
+                    android:text=""
                     />
             </LinearLayout>
 
@@ -158,7 +158,7 @@
                     android:id="@+id/txt_market_price"
                     style="@style/textview"
 
-                    android:text="₹69"
+                    android:text=""
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>
         </LinearLayout>
@@ -201,6 +201,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:layout_marginBottom="8dp">
 
                 <TextView
@@ -232,6 +233,7 @@
                 android:text="Ho.No. 9-1-34/30/40D, Bapunagar"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_12sdp"
+                android:visibility="gone"
                 android:layout_marginBottom="8dp"/>
             <Button
                 android:id="@+id/btnChangeAddress"
@@ -239,6 +241,7 @@
 
                 android:layout_marginTop="@dimen/_8sdp"
                 android:text="Change"
+                android:visibility="gone"
                 android:textColor="@color/green" />
             <TextView
                 android:id="@+id/txt_order_delivered"
@@ -246,6 +249,7 @@
                 android:text="if ordered before 2:10 PM"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/_11sdp"
+                android:visibility="gone"
                 android:layout_marginTop="@dimen/_8sdp"
                 android:layout_marginBottom="8dp"/>
 

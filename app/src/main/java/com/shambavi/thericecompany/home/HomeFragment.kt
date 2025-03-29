@@ -7,10 +7,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bookiron.itpark.utils.MyPref
+import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 import com.gadiwalaUser.Models.BannersMainRes
 import com.gadiwalaUser.Models.CategoryMainRes
-import com.gadiwalaUser.Models.FAQsMainRes
+import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.ProductMainRes
 import com.gadiwalaUser.services.DataManager
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
@@ -19,18 +21,20 @@ import com.shambavi.thericecompany.Activitys.DashBoardActivity
 import com.shambavi.thericecompany.Activitys.NotificationsActivity
 import com.shambavi.thericecompany.Activitys.SearchActivity
 import com.shambavi.thericecompany.databinding.FragmentHomeBinding
+import com.shambavi.thericecompany.listeners.ProductListener
 import com.shambavi.thericecompany.products.AllProductsActivity
 import com.shambavi.thericecompany.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), ProductListener {
 
     private lateinit var binding: FragmentHomeBinding
 lateinit var categoryAdapter: CategoryAdapter
 lateinit var productsAdapter: ProductsAdapter
 lateinit var topSellingAdapter: ProductsAdapter
+var user_id=""
     val imageList = ArrayList<SlideModel>() // Create image list
 
     override fun onCreateView(
@@ -52,9 +56,12 @@ lateinit var topSellingAdapter: ProductsAdapter
 
     private fun init() {
 
+        user_id=MyPref.getUser(requireActivity().applicationContext)
         categoryAdapter=CategoryAdapter()
         productsAdapter=ProductsAdapter()
         topSellingAdapter=ProductsAdapter()
+
+        productsAdapter.setListener(this)
         binding.recyclerTopCatgories.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
         binding.recyclerProducts.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
         binding.recyclerProductsTopSelling.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
@@ -114,13 +121,13 @@ lateinit var topSellingAdapter: ProductsAdapter
 
                     // Handle the response
 
-                    model?.message?.let { Utils.showMessage(it,requireActivity()) }
+                    //model?.message?.let { Utils.showMessage(it,requireActivity()) }
 
                     if(model?.status == true)
                     {
                         imageList.clear()
                         model.data.forEach {
-                            imageList.add(SlideModel("${ROOT_URL}/${it.image}"))
+                            imageList.add(SlideModel("${ROOT_URL}/${it.image}", ScaleTypes.FIT),)
                         }
                         binding.imageSlider.setImageList(imageList)
 
@@ -160,7 +167,7 @@ lateinit var topSellingAdapter: ProductsAdapter
 
                     // Handle the response
 
-                    model?.message?.let { Utils.showMessage(it,requireActivity()) }
+                    //model?.message?.let { Utils.showMessage(it,requireActivity()) }
 
                     if(model?.status == true)
                     {
@@ -207,7 +214,7 @@ lateinit var topSellingAdapter: ProductsAdapter
 
                     // Handle the response
 
-                    model?.message?.let { Utils.showMessage(it,requireActivity()) }
+                    ////model?.message?.let { Utils.showMessage(it,requireActivity()) }
 
                     if(model?.status == true)
                     {
@@ -235,7 +242,7 @@ lateinit var topSellingAdapter: ProductsAdapter
         }
 
         // Call the sendOtp function in DataManager
-        dataManager.getProducts(otpCallback)
+        dataManager.getProducts(otpCallback,user_id)
     }
     fun getTopSellProducts()
     {
@@ -254,7 +261,7 @@ lateinit var topSellingAdapter: ProductsAdapter
 
                     // Handle the response
 
-                    model?.message?.let { Utils.showMessage(it,requireActivity()) }
+                    //model?.message?.let { Utils.showMessage(it,requireActivity()) }
 
                     if(model?.status == true)
                     {
@@ -282,7 +289,56 @@ lateinit var topSellingAdapter: ProductsAdapter
         }
 
         // Call the sendOtp function in DataManager
-        dataManager.getTopSellProducts(otpCallback)
+        dataManager.getTopSellProducts(otpCallback,user_id)
     }
 
+    override fun addProduct(product_id: String,attribution_id:String) {
+        addCart(product_id,attribution_id)
+
+    }
+
+    override fun deleteProduct(product_id: String) {
+    }
+
+    override fun updateProduct(product_id: String, qnty: Int) {
+    }
+     fun addCart(product_id: String, attribution_id: String)
+         {
+
+             val dialog= CustomDialog(requireActivity())
+             // Obtain the DataManager instance
+             dialog.showDialog(activity,false)
+             val dataManager = DataManager.getDataManager()
+
+             // Create a callback for handling the API response
+             val otpCallback = object : Callback<MainResponse> {
+                 override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                     dialog.closeDialog()
+                     if (response.isSuccessful) {
+                         val model: MainResponse? = response.body()
+
+                         // Handle the response
+
+                         //model?.message?.let { Utils.showMessage(it,requireActivity()) }
+
+
+                            getProducts()
+                         println("OTP Sent successfully: ${model?.Message}")
+                     } else {
+                         // Handle error
+                         println("Failed to send OTP. ${response.message()}")
+
+                     }
+                 }
+
+                 override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                     // Handle failure
+                     println("Failed to send OTP. ${t.message}")
+                     dialog.closeDialog()
+                 }
+             }
+
+             // Call the sendOtp function in DataManager
+             dataManager.addCart(otpCallback,user_id  ,product_id,attribution_id)
+         }
 }

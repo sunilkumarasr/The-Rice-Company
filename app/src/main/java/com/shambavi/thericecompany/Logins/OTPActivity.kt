@@ -157,7 +157,7 @@ var otp=""
                         val user=model.data
                         user!!?.let {
                             MyPref.setUser(applicationContext,
-                                it.usersId!!,it.phone!!,it.fullName!!,it.email!!,it.profile_status!!)
+                                it.id!!,it.phone!!,it.fullName!!,it.email!!,it.profile_status!!)
                         }
                         if(model.data!!.profile_status==1){
 

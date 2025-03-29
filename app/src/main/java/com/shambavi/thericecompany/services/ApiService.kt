@@ -65,13 +65,13 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("api/product_list")
-    fun getProducts(@Field("api_key") api_key: String
+    fun getProducts(@Field("api_key") api_key: String, @Field("user_id") id: String,
     ): Call<ProductMainRes>
 
 
     @FormUrlEncoded
     @POST("api/top_selling")
-    fun getTopSellProducts(@Field("api_key") api_key: String
+    fun getTopSellProducts(@Field("api_key") api_key: String, @Field("user_id") id: String,
     ): Call<ProductMainRes>
 
     @FormUrlEncoded
@@ -110,7 +110,7 @@ interface ApiService {
     @FormUrlEncoded
     @POST("api/get_product_details")
     fun productDetails(@Field("api_key") api_key: String,
-                    @Field("product_id") cate_id: String
+                    @Field("product_id") cate_id: String, @Field("user_id") id: String,
 
     ): Call<ProductDetailsDataMinRes>
 
@@ -118,14 +118,14 @@ interface ApiService {
     @POST("api/get_product_cat_by")
     fun getProductsByCat(
         @Field("api_key") api_key: String,
-        @Field("category_id") cat_id: String,
+        @Field("category_id") cat_id: String, @Field("user_id") id: String,
     ): Call<ProductMainRes>
 
     @FormUrlEncoded
     @POST("api/get_product_sub_cat_by")
     fun getProductsBySubCat(
         @Field("api_key") api_key: String,
-        @Field("sub_category_id") sub_cat_id: String,
+        @Field("sub_category_id") sub_cat_id: String, @Field("user_id") id: String,
     ): Call<ProductMainRes>
 
 
@@ -205,7 +205,7 @@ interface ApiService {
     ): Call<MainResponse>
 
     @FormUrlEncoded
-    @POST("api/delete_account")
+    @POST("api/delivery_slot")
     fun getSlots(
         @Field("api_key") api_key: String,
 
@@ -218,6 +218,26 @@ interface ApiService {
         @Field("user_id") user_id: String,
         @Field("product_id") productId: String,
         @Field("attribute_id") attributeId: String,
+        @Field("quantity") quantity: String,
+
+    ): Call<MainResponse>
+
+    @FormUrlEncoded
+    @POST("api/update_cart")
+    fun updateCart(
+        @Field("api_key") api_key: String,
+        @Field("user_id") user_id: String,
+        @Field("cart_id") cart_id: String,
+        @Field("quantity") quantity: String,
+
+    ): Call<MainResponse>
+
+    @FormUrlEncoded
+    @POST("api/remove_from_cart")
+    fun deleteProduct(
+        @Field("api_key") api_key: String,
+        @Field("user_id") user_id: String,
+        @Field("cart_id") cart_id: String,
 
     ): Call<MainResponse>
 

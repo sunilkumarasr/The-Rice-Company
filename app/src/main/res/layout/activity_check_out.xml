@@ -38,7 +38,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_cart"
             android:layout_width="match_parent"
-            android:layout_margin="@dimen/_16sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
             android:layout_height="wrap_content"
 
             android:layout_weight="1"
@@ -203,7 +203,7 @@
                             <TextView
                                 android:id="@+id/tvBillAmount"
                                 style="@style/textview"
-                                android:text="₹67"
+                                android:text=""
                                 android:textSize="@dimen/_12sdp"
 
                                 android:textColor="@color/gray"
@@ -213,7 +213,7 @@
                                 android:id="@+id/tvDiscountedAmount"
                                 style="@style/textview"
                                 android:layout_marginStart="8dp"
-                                android:text="₹62"
+                                android:text=""
                                 android:textSize="@dimen/_12sdp"
                                 android:textColor="@color/black"
                                 android:textStyle="bold" />
@@ -239,7 +239,7 @@
                             <TextView
                                 android:id="@+id/tvDeliveryCharges"
                                 style="@style/textview"
-                                android:text="₹62"
+                                android:text="₹ 0"
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_12sdp"
                                 android:textStyle="bold" />
@@ -265,7 +265,7 @@
                             <TextView
                                 android:id="@+id/tvGrandTotal"
                                 style="@style/textview"
-                                android:text="₹62"
+                                android:text=""
                                 android:textColor="@color/black"
                                 android:textSize="@dimen/_14sdp"
                                 android:textStyle="bold" />

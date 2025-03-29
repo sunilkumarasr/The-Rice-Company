@@ -2,6 +2,7 @@ package com.gadiwalaUser.services
 
 
 import android.util.Log
+import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.AddressDataMainRes
 import com.gadiwalaUser.Models.BannersMainRes
 import com.gadiwalaUser.Models.CartMainRes
@@ -43,7 +44,6 @@ class DataManager private constructor() {
         val APIKEY = "the_rice_company_7s736V2J2iB549214s40i3Lz77I0297L"
 
         private var dataManager: DataManager? = null
-
         @JvmStatic
         fun getDataManager(): DataManager {
             if (dataManager == null) {
@@ -117,14 +117,14 @@ class DataManager private constructor() {
         call.enqueue(cb)
     }
 
-    fun getProducts(cb: Callback<ProductMainRes>) {
+    fun getProducts(cb: Callback<ProductMainRes>,user_id:String) {
         val apiService = retrofit.create(ApiService::class.java)
-        val call = apiService.getProducts(APIKEY)
+        val call = apiService.getProducts(APIKEY,user_id)
         call.enqueue(cb)
     }
-    fun getTopSellProducts(cb: Callback<ProductMainRes>) {
+    fun getTopSellProducts(cb: Callback<ProductMainRes>,user_id:String) {
         val apiService = retrofit.create(ApiService::class.java)
-        val call = apiService.getTopSellProducts(APIKEY)
+        val call = apiService.getTopSellProducts(APIKEY,user_id)
         call.enqueue(cb)
     }
     fun submitEnquiery(cb: Callback<MainResponse>,name:String,email:String,phone:String,subject:String,message:String) {
@@ -150,21 +150,21 @@ class DataManager private constructor() {
         call.enqueue(cb)
     }
 
-    fun productDetails(cb: Callback<ProductDetailsDataMinRes>, product_id:String ) {
+    fun productDetails(cb: Callback<ProductDetailsDataMinRes>, product_id:String,user_id:String ) {
         val apiService = retrofit.create(ApiService::class.java)
-        val call = apiService.productDetails(APIKEY,product_id)
+        val call = apiService.productDetails(APIKEY,product_id,user_id)
         call.enqueue(cb)
     }
 
-    fun getProductsByCat(cb: Callback<ProductMainRes>, sub_cat_id:String ) {
+    fun getProductsByCat(cb: Callback<ProductMainRes>, sub_cat_id:String,user_id:String ) {
         val apiService = retrofit.create(ApiService::class.java)
-        val call = apiService.getProductsByCat(APIKEY,sub_cat_id)
+        val call = apiService.getProductsByCat(APIKEY,sub_cat_id,user_id)
         call.enqueue(cb)
     }
 
-    fun getProductsBySubCat(cb: Callback<ProductMainRes>, sub_cat_id:String ) {
+    fun getProductsBySubCat(cb: Callback<ProductMainRes>, sub_cat_id:String,user_id:String ) {
         val apiService = retrofit.create(ApiService::class.java)
-        val call = apiService.getProductsBySubCat(APIKEY,sub_cat_id)
+        val call = apiService.getProductsBySubCat(APIKEY,sub_cat_id,user_id)
         call.enqueue(cb)
     }
 
@@ -224,12 +224,24 @@ class DataManager private constructor() {
     }
     fun addCart(cb: Callback<MainResponse>,user_id:String,pid:String,attribut_id:String) {
         val apiService = retrofit.create(ApiService::class.java)
-        val call = apiService.addCart(APIKEY,user_id,pid,attribut_id)
+        val call = apiService.addCart(APIKEY,user_id,pid,attribut_id,"1")
+        call.enqueue(cb)
+    }
+
+    fun updateCart(cb: Callback<MainResponse>,user_id:String,cart_id:String,quantity:String) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.updateCart(APIKEY,user_id,cart_id,quantity)
         call.enqueue(cb)
     }
     fun getCart(cb: Callback<CartMainRes>, user_id:String) {
         val apiService = retrofit.create(ApiService::class.java)
         val call = apiService.getCart(APIKEY,user_id)
+        call.enqueue(cb)
+    }
+
+    fun deleteProduct(cb: Callback<MainResponse>, userId: String, productId: String) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.deleteProduct(APIKEY,userId,productId)
         call.enqueue(cb)
     }
 

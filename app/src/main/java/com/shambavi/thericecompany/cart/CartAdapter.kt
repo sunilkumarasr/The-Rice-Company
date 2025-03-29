@@ -8,11 +8,18 @@ import com.gadiwalaUser.Models.CartModel
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.LayoutCartItemBinding
+import com.shambavi.thericecompany.listeners.ProductListener
 import com.shambavi.thericecompany.utils.Utils.Companion.RUPEE_SYMBOL
 
 class CartAdapter: RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     var cartList:ArrayList<CartModel> = arrayListOf()
+    lateinit var productListener: ProductListener
+
+    fun setListener(productListener: ProductListener)
+    {
+       this .productListener=productListener
+    }
     class CartViewHolder(val binding: LayoutCartItemBinding): RecyclerView.ViewHolder(binding.root) {
 
     }
@@ -29,11 +36,27 @@ class CartAdapter: RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
+var cart=cartList.get(position)
+        holder.binding.tvProductName.setText("${cart.title}")
+        holder.binding.tvProductType.setText("${cart.categoryIdName}")
+        holder.binding.tvQuantity.setText("${cart.quantity}")
+        holder.binding.tvOriginalPrice.setText("${RUPEE_SYMBOL} ${cart.mrpPrice}")
+        holder.binding.tvPrice.setText("${RUPEE_SYMBOL} ${cart.ourPrice}")
+        holder.binding.lnrRemove.setOnClickListener {
+            cart.cartId?.let { it1 -> productListener.deleteProduct(it1) }
+        }
+        holder.binding.btnMinus.setOnClickListener {
+            var qnty=Integer.parseInt(cart.quantity)
+            holder.binding.tvQuantity.text="$qnty"
+            cart.cartId?.let { it1 -> productListener.updateProduct(it1,qnty-1) }
+        }
+        holder.binding.btnPlus.setOnClickListener {
+            var qnty=Integer.parseInt(cart.quantity)
+            holder.binding.tvQuantity.text="$qnty"
+            cart.cartId?.let { it1 -> productListener.updateProduct(it1,qnty+1) }
+        }
 
-        holder.binding.tvProductName.setText("${cartList.get(position).title}")
-        holder.binding.tvQuantity.setText("${cartList.get(position).quantity}")
-        holder.binding.tvPrice.setText("${RUPEE_SYMBOL} ${cartList.get(position).ourPrice}")
-        Glide.with(holder.binding.imgProduct.context).load(ROOT_URL+cartList.get(position).productId).into(holder.binding.imgProduct)
+        Glide.with(holder.binding.imgProduct.context).load(ROOT_URL+cartList.get(position).image).placeholder(R.drawable.item1).into(holder.binding.imgProduct)
 
 
     }

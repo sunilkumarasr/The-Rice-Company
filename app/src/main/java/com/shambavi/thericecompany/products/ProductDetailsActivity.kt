@@ -35,6 +35,8 @@ class ProductDetailsActivity : AppCompatActivity() {
     var product_id=""
     var attribute_id=""
     var user_id=""
+    var cart_id=""
+    var quantity=0
     val imageList = ArrayList<SlideModel>()
     var  chipList:ArrayList<ChipPrices>? =ArrayList()
         override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,8 +69,12 @@ class ProductDetailsActivity : AppCompatActivity() {
 
             }
             binding.btnMinus.setOnClickListener {
-                binding.btnAddToCart.visibility= View.VISIBLE
-                binding.lnrViewcart.visibility= View.GONE
+               quantity=quantity-1;
+                updateCart()
+            }
+            binding.btnPlus.setOnClickListener {
+               quantity=quantity+1;
+                updateCart()
             }
 
             binding.btnViewCart.setOnClickListener {
@@ -123,20 +129,21 @@ class ProductDetailsActivity : AppCompatActivity() {
                         R.color.white
                     )
                 ))
+                if(cart_id.isEmpty())
                 binding.btnAddToCart.visibility=View.VISIBLE
             }
 
             chip.setOnClickListener {
-                updateChips(it.id)
+                updateChips(it.id.toString())
             }
 
             binding.flexboxLayout.addView(chip)
         }
     }
 
-    private fun updateChips(id: Int) {
+    private fun updateChips(id: String) {
         chipList!!.forEach {
-            if(it.id==id.toString())
+            if(it.id==id)
             {
                 it.isSelected=true
                 attribute_id=it.id
@@ -183,6 +190,10 @@ class ProductDetailsActivity : AppCompatActivity() {
                         model.data!!.productAttribute.forEach {
                            chipList!!.add(ChipPrices(it.weight.toString(),it.id.toString(),false))
                         }
+                        if(model.data!!.latestAttribute!=null) {
+                            attribute_id = model.data!!.latestAttribute!!.id.toString()
+                            updateChips(attribute_id)
+                        }
 
                         imageList.clear()
                         imageList.add(SlideModel(ROOT_URL+""+ productDetails.image, ScaleTypes.FIT) )// for one image
@@ -190,6 +201,22 @@ class ProductDetailsActivity : AppCompatActivity() {
                         model.data!!.productImages.forEach {
                             imageList.add(SlideModel(ROOT_URL+""+ it.additionalImage, ScaleTypes.FIT) )// for one image
 
+                        }
+                        model.data!!. cartDetails.let {
+
+
+                            if (it!!.cartId!!.isEmpty()) {
+
+                                binding.lnrViewcart.visibility = View.GONE
+                                binding.btnAddToCart.visibility = View.VISIBLE
+                            } else {
+                                binding.lnrViewcart.visibility = View.VISIBLE
+                                binding.btnAddToCart.visibility = View.GONE
+                                binding.tvQuantity.text="${it.quantity}"
+                                if(it.quantity!=null)
+                                quantity=Integer.parseInt(it.quantity)
+                                cart_id=it.cartId.toString()
+                            }
                         }
 
                         binding. imageSlider.setImageList(imageList)
@@ -212,7 +239,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
 
         // Call the sendOtp function in DataManager
-        dataManager.productDetails(otpCallback,product_id)
+        dataManager.productDetails(otpCallback,product_id,user_id)
     }
     fun addToCart()
     {
@@ -256,5 +283,49 @@ class ProductDetailsActivity : AppCompatActivity() {
 
         // Call the sendOtp function in DataManager
         dataManager.addCart(otpCallback, user_id  ,product_id,attribute_id)
+    }
+
+
+    fun updateCart()
+    {
+
+        val dialog= CustomDialog(this@ProductDetailsActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@ProductDetailsActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<MainResponse> {
+            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: MainResponse? = response.body()
+
+                    // Handle the response
+
+                    model?.Message?.let { Utils.showMessage(it,applicationContext) }
+
+                    if(model!!.Status !!)
+                    {
+                       binding.tvQuantity.text="$quantity"
+                    }
+
+                    println("OTP Sent successfully: ${model?.Message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.updateCart(otpCallback, user_id  , cart_id ,quantity.toString() )
     }
 }

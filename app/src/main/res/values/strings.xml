@@ -48,6 +48,7 @@
     <string name="home">Home</string>
     <string name="shop">Shop</string>
     <string name="other">Other</string>
+    <string name="added_to_cart">Product Added to Cart</string>
 
 
 </resources>

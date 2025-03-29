@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.ProductMainRes
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
@@ -25,6 +26,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
     lateinit var recycler_all_products:RecyclerView
     var sid=""
     var sales=""
+    var user_id=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,6 +35,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         setContentView(binding.root)
         sid=intent.getStringExtra("sid").toString()
         sales=intent.getStringExtra("sales").toString()
+        user_id=MyPref.getUser(applicationContext)
         recycler_all_products=findViewById(R.id.recycler_all_products)
         productsAdapter=ProductsAdapter()
         recycler_all_products.adapter=productsAdapter
@@ -104,10 +107,10 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         // Call the sendOtp function in DataManager
         if(sid.isEmpty())
             if(sales.isEmpty())
-                dataManager.getProducts(otpCallback)
+                dataManager.getProducts(otpCallback, user_id )
             else
-                dataManager.getTopSellProducts(otpCallback)
+                dataManager.getTopSellProducts(otpCallback,user_id)
         else
-        dataManager.getProductsBySubCat(otpCallback,sid)
+        dataManager.getProductsBySubCat(otpCallback,sid,user_id)
     }
 }

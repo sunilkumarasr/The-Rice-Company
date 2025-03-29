@@ -61,10 +61,11 @@
                         android:layout_marginTop="10dp">
 
                         <TextView
+                            android:id="@+id/txt_name"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Sunil"
+                            android:text=""
                             android:singleLine="true"
                             android:fontFamily="@font/teachers_regular"
                             android:textColor="@color/black"
@@ -77,10 +78,11 @@
                         android:layout_marginTop="10dp">
 
                         <TextView
+                            android:id="@+id/txt_email"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Sunil@gmail.com"
+                            android:text=""
                             android:singleLine="true"
                             android:fontFamily="@font/teachers_regular"
                             android:textColor="@color/black"
@@ -93,10 +95,11 @@
                         android:layout_marginTop="10dp">
 
                         <TextView
+                            android:id="@+id/txt_phone"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="+919441085061"
+                            android:text=""
                             android:singleLine="true"
                             android:fontFamily="@font/teachers_regular"
                             android:textColor="@color/black"
@@ -106,7 +109,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/linearVerify"
+                    android:id="@+id/lnr_delete"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_marginTop="15dp"

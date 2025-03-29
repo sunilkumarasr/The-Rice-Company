@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/_5sdp"
-    android:maxWidth="@dimen/_120sdp"
+    android:maxWidth="@dimen/_160sdp"
     android:layout_height="wrap_content">
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        app:cardCornerRadius="@dimen/_2sdp"
+        app:cardElevation="@dimen/_2sdp"
         android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="@color/white"
+        android:layout_height="wrap_content">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="@dimen/_150sdp"
@@ -61,9 +70,17 @@
                     android:fontFamily="@font/poppins"/>
             </LinearLayout>
         </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:orientation="vertical"
+            >
+
+
         <TextView
             android:id="@+id/txt_product_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="Basmsati ( 1Kg: ₹54 )"
@@ -154,23 +171,44 @@
                 android:fontFamily="@font/poppins"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/lnr_add"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/round_edge_colorprimary">
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Add"
-                android:textSize="@dimen/_12sdp"
-                android:textColor="@color/colorPrimary"
-                android:fontFamily="@font/poppins_semibold"/>
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:minHeight="@dimen/_50sdp"
+                >
+                <TextView
+                    android:id="@+id/txt_added_to_cart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:text="@string/added_to_cart"
+                    android:textSize="@dimen/_12sdp"
+                    android:minHeight="@dimen/_40sdp"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/poppins_semibold"/>
+                <LinearLayout
+                    android:id="@+id/lnr_add"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="@dimen/_45sdp"
+                    android:background="@drawable/round_edge_colorprimary">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="Add"
+                        android:textSize="@dimen/_12sdp"
+                        android:textColor="@color/colorPrimary"
+                        android:fontFamily="@font/poppins_semibold"/>
+                </LinearLayout>
+            </LinearLayout>
+
         </LinearLayout>
-
     </LinearLayout>
-
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>
