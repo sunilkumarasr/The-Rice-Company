@@ -49,6 +49,7 @@
     <string name="shop">Shop</string>
     <string name="other">Other</string>
     <string name="added_to_cart">Product Added to Cart</string>
+    <string name="submit">Submit</string>
 
 
 </resources>

@@ -1,5 +1,6 @@
 package com.shambavi.thericecompany.cart
 
+import android.app.ComponentCaller
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
@@ -24,16 +25,39 @@ class AddressListActivity : AppCompatActivity(),ProductListener {
     private lateinit var binding: ActivityAddressListBinding
     private val addressAdapter = AddressAdapter()
 var user_id=""
+var addres_id=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityAddressListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         user_id=MyPref.getUser(applicationContext)
+        addres_id=MyPref.getAddressId(applicationContext)
         setupRecyclerView()
         setupClickListeners()
         getAddress()
         addressAdapter.setListners(this)
+        binding.btnAddAddress.setOnClickListener {
+            var intent=Intent(applicationContext,UpdateAddressActivity::class.java)
+
+            startActivityForResult(intent,1)
+        }
+        binding.ivBack.setOnClickListener {
+            finish()
+        }
+    }
+
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?,
+        caller: ComponentCaller
+    ) {
+        super.onActivityResult(requestCode, resultCode, data, caller)
+        if(resultCode== RESULT_OK)
+        {
+            getAddress()
+        }
     }
 
     private fun setupRecyclerView() {
@@ -69,6 +93,11 @@ var user_id=""
 
                     // model?.message?.let { Utils.showMessage(it,applicationContext) }
 
+                    model!!.data.forEach {
+                        if(it.id==addres_id)
+                            it.isSelected=true
+                    }
+                    addressAdapter.currentList.clear()
                     addressAdapter.submitList(model!!.data)
                     println("OTP Sent successfully: ${model?.message}")
                 } else {

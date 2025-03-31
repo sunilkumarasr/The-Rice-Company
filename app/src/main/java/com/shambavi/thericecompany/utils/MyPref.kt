@@ -129,12 +129,13 @@ class MyPref() {
         }
 
 
-        fun setAddress(ctx:Context,id:String,address:String)
+        fun setAddress(ctx:Context,id:String,address:String,type:String)
         {
             val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             var editor = sharedPreference.edit()
             editor.putString("address_id",id)
             editor.putString("address",address)
+            editor.putString("address_type",type)
             editor.commit()
         }
 
@@ -148,6 +149,10 @@ class MyPref() {
         {
             val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             return sharedPreference.getString("address","").toString()
+        }fun getAddressType(ctx:Context): String
+        {
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
+            return sharedPreference.getString("address_type","").toString()
         }
     }
 }

@@ -49,7 +49,7 @@ class AddressAdapter : ListAdapter<AddressData, AddressAdapter.AddressViewHolder
                     }
                     address.id?.let { it1 ->
                         MyPref.setAddress(binding.tvName.context,
-                            it1,tvAddress.text.toString())
+                            it1,tvAddress.text.toString(),address.type.toString())
                     }
                     listner.addProduct("","")
                 }

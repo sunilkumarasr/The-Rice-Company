@@ -27,6 +27,10 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
     var addres=""
     var slot_id=""
     var slot_time=""
+    var payment_id="12"
+    var product_ids=""
+    var cart_ids=""
+    var qnts=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityCheckOutBinding.inflate(layoutInflater)
@@ -59,6 +63,12 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
                 Utils.showMessage("Select Delivery Address",applicationContext)
                 return@setOnClickListener
             }
+            if(slot_id.isEmpty())
+            {
+                Utils.showMessage("Select Delivery slot",applicationContext)
+                return@setOnClickListener
+            }
+            placeOrder()
         }
         binding.btnChangeAddress.setOnClickListener {
 
@@ -96,6 +106,12 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
                     cartAdapter.cartList.clear()
                     cartAdapter.cartList.addAll(model!!.data)
                     cartAdapter.notifyDataSetChanged()
+                    product_ids=""
+                    cartAdapter.cartList.forEach {
+                        product_ids=product_ids+it.productId+","
+                        cart_ids=cart_ids+it.cartId+","
+                        qnts=qnts+it.quantity+","
+                    }
                     calculateAmount()
                     println("OTP Sent successfully: ${model?.message}")
                 } else {
@@ -197,6 +213,48 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
         // Call the sendOtp function in DataManager
         dataManager.updateCart(otpCallback, user_id  , cart_id ,quantity.toString() )
     }
+    fun placeOrder()
+    {
+
+        val dialog= CustomDialog(this@CheckOutActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@CheckOutActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<MainResponse> {
+            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: MainResponse? = response.body()
+
+                    // Handle the response
+
+                    // model?.Message?.let { Utils.showMessage(it,applicationContext) }
+
+                    if(model!!.Status !!)
+                    {
+                        getCart()
+                    }
+
+                    println("OTP Sent successfully: ${model?.Message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.placeOrder(otpCallback, user_id  ,payment_id,addres_id,totalAmount.toString(), product_ids,qnts,slot_id,cart_ids )
+    }
     override fun addProduct(product_id: String, attribution_id: String) {
 
     }
@@ -208,10 +266,10 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
     override fun updateProduct(cart_id: String, qnty: Int) {
         updateCart(cart_id,qnty.toString())
     }
-
+var totalAmount=0
     fun calculateAmount()
     {
-        var totalAmount=0
+         totalAmount=0
         var discountedAmount=0
         cartAdapter.cartList.forEach {
             totalAmount=totalAmount+Integer.parseInt(it.ourPrice)

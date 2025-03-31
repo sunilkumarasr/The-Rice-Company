@@ -49,7 +49,7 @@ class AddAddressActivity : AppCompatActivity() {
         mobile=MyPref.getMobile(applicationContext).toString()
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
 
-        type="Home"
+        type="Shop"
         inits()
     }
 

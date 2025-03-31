@@ -56,6 +56,9 @@ class SlotsAdapter: RecyclerView.Adapter<SlotsAdapter.CartViewHolder>() {
             if(slot.date==slotList.get(position-1).date)
                 holder.binding.tvDate.visibility= View.GONE
             else holder.binding.tvDate.visibility= View.VISIBLE
+        }else
+        {
+            holder.binding.tvDate.visibility= View.VISIBLE
         }
 
         holder.binding.tvSlot.setOnClickListener {

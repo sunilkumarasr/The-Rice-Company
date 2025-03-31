@@ -248,4 +248,34 @@ interface ApiService {
         @Field("user_id") user_id: String,
 
     ): Call<CartMainRes>
+    @FormUrlEncoded
+    @POST("api/place_order")
+    fun placeOrder(
+        @Field("api_key") api_key: String,
+        @Field("user_id") user_id: String,
+        @Field("payment_id") payment_id: String,
+        @Field("customer_address_id") customer_address_id: String,
+        @Field("amount") amount: String,
+        @Field("product_id") product_id: String,
+        @Field("qty") qty: String,
+        @Field("slotid") slotid: String,
+        @Field("cartid") cartid: String,
+
+    ): Call<MainResponse>
+
+    @FormUrlEncoded
+    @POST("api/get_user_orders")
+    fun getOrders(
+        @Field("api_key") api_key: String,
+        @Field("user_id") user_id: String,
+
+    ): Call<MainResponse>
+
+    @FormUrlEncoded
+    @POST("api/get_user_orders")
+    fun getOrderDetails(
+        @Field("api_key") api_key: String,
+        @Field("user_id") user_id: String,
+
+    ): Call<CartMainRes>
 }

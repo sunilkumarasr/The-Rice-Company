@@ -20,12 +20,15 @@
     <CheckedTextView
         android:id="@+id/tv_slot"
         style="@style/textview"
+        android:textAlignment="center"
+        android:gravity="center"
         android:layout_marginStart="@dimen/_12sdp"
         android:background="@drawable/date_selector"
         android:layout_marginTop="@dimen/_8sdp"
         android:minHeight="@dimen/_45sdp"
-        android:minWidth="@dimen/_120sdp"
-        android:textColor="@drawable/radio_color_selector"
+        android:text="dfsddf"
+        android:minWidth="@dimen/_180sdp"
+        android:textColor="@drawable/radio_color_selector_slot"
         android:textSize="@dimen/_14sdp"/>
 
 </LinearLayout>
