@@ -21,6 +21,7 @@
         android:orientation="horizontal"
         android:background="@drawable/round_edit_gray_light_edge">
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_full_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
@@ -29,6 +30,7 @@
             android:hint="Enter full name"
             android:textSize="15sp"
             android:singleLine="true"
+            android:imeOptions="actionNext"
             android:textColorHint="@color/hintcolor"/>
     </LinearLayout>
 
@@ -67,15 +69,20 @@
             android:layout_marginBottom="10dp"
             android:background="@color/lightGray"/>
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_phone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
             android:layout_marginStart="10sp"
             android:layout_marginEnd="10sp"
+            android:maxLength="10"
+            android:editable="false"
+            android:focusableInTouchMode="false"
             android:hint="Enter phone number"
             android:textSize="15sp"
             android:singleLine="true"
             android:inputType="phone"
+            android:imeOptions="actionNext"
             android:textColorHint="@color/hintcolor"/>
     </LinearLayout>
 
@@ -94,12 +101,15 @@
         android:orientation="horizontal"
         android:background="@drawable/round_edit_gray_light_edge">
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edit_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@null"
             android:layout_marginStart="10sp"
             android:layout_marginEnd="10sp"
             android:hint="Enter email id"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionDone"
             android:textSize="15sp"
             android:singleLine="true"
             android:textColorHint="@color/hintcolor"/>

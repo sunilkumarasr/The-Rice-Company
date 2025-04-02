@@ -2,6 +2,7 @@ package com.shambavi.thericecompany.Activitys
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -65,10 +66,27 @@ var user_id=""
         bottomSheetDialog.setContentView(view)
         val linearCancel = view.findViewById<TextView>(R.id.linearCancel)
         val linearUpload = view.findViewById<TextView>(R.id.linearUpload)
+        val editName = view.findViewById<EditText>(R.id.edit_full_name)
+        val editEmail = view.findViewById<EditText>(R.id.edit_email)
+        val editPhone = view.findViewById<EditText>(R.id.edit_phone)
+        editPhone.setText(MyPref.getMobile(applicationContext).toString())
+        editEmail.setText(MyPref.getEmail(applicationContext).toString())
+        editName.setText(MyPref.getName(applicationContext).toString())
         linearCancel.setOnClickListener {
             bottomSheetDialog.dismiss()
         }
         linearUpload.setOnClickListener {
+            var  name=editName.text.toString().trim()
+            var  email=editEmail.text.toString().trim()
+            var  phone=editPhone.text.toString().trim()
+
+            if(name.isEmpty()||email.isEmpty()||phone.isEmpty())
+            {
+                Utils.showMessage("Please enter required fields",applicationContext)
+                return@setOnClickListener
+
+            }
+            updateProfile(name,phone,email)
             bottomSheetDialog.dismiss()
         }
         bottomSheetDialog.show()
@@ -96,6 +114,8 @@ var user_id=""
                         binding.txtName.text="${it.fullName}"
                         binding.txtPhone.text="${it.phone}"
                         binding.txtEmail.text="${it.email}"
+                        MyPref.setEmail(applicationContext,it.email.toString())
+                        MyPref.setName(applicationContext,it.fullName.toString())
                     }
 
 
@@ -161,5 +181,42 @@ var user_id=""
 
         // Call the sendOtp function in DataManager
         dataManager.deleteAccount(otpCallback, user_id  )
+    }
+    fun updateProfile(name:String,phone:String,email:String)
+    {
+
+        val dialog= CustomDialog(this@MyAccountActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@MyAccountActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<MainResponse> {
+            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: MainResponse? = response.body()
+
+                    // Handle the response
+
+                    model?.Message?.let { Utils.showMessage(it,applicationContext) }
+
+                    finish()
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.updateProfile(otpCallback, user_id ,phone,name,email )
     }
 }

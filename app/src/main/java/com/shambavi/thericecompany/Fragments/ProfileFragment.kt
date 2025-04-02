@@ -19,6 +19,7 @@ import com.shambavi.thericecompany.Activitys.ProductCancelationActivity
 import com.shambavi.thericecompany.Activitys.SavedAddressActivity
 import com.shambavi.thericecompany.Activitys.TermsAndConditionsActivity
 import com.shambavi.thericecompany.R
+import com.shambavi.thericecompany.cart.AddressListActivity
 import com.shambavi.thericecompany.databinding.FragmentHomeBinding
 import com.shambavi.thericecompany.databinding.FragmentProfileBinding
 
@@ -66,7 +67,7 @@ class ProfileFragment : Fragment() ,View.OnClickListener {
                 startActivity(Intent(requireActivity(), MyAccountActivity::class.java))
             }
             R.id.relativeSavedAddress -> {
-                startActivity(Intent(requireActivity(), SavedAddressActivity::class.java))
+                startActivity(Intent(requireActivity(), AddressListActivity::class.java))
             }
             R.id.relativeProductCancelation -> {
                 startActivity(Intent(requireActivity(), ProductCancelationActivity::class.java))

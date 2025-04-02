@@ -8,14 +8,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bookiron.itpark.utils.MyPref
+import com.gadiwalaUser.Models.OrderMainResponse
+import com.gadiwalaUser.services.DataManager
+import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.databinding.FragmentOrdersBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class OrdersFragment : Fragment() {
 
 
     private lateinit var binding: FragmentOrdersBinding
     private lateinit var orderaAdapter: OrdersAdapter
-
+var user_id=""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,10 +34,10 @@ class OrdersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        user_id=MyPref.getUser(requireContext())
         setupRecyclerView()
         setupSearch()
-
+        placeOrder()
         binding.filterButton.setOnClickListener {
             val bottomSheet = DeliverySlotBottomSheet.newInstance()
             bottomSheet.show(childFragmentManager, DeliverySlotBottomSheet.TAG)
@@ -41,7 +48,7 @@ class OrdersFragment : Fragment() {
 
     private fun setupRecyclerView() {
         orderaAdapter = OrdersAdapter(
-            orders = getSampleOrders(), // Replace with your data source
+             // Replace with your data source
             onOrderClick = { order ->
                 // Handle order click
             },
@@ -70,31 +77,43 @@ class OrdersFragment : Fragment() {
         }
     }
 
-    private fun getSampleOrders(): List<Order> {
-        return listOf(
-            Order(
-                id = "1",
-                productImage = "url_to_image",
-                productName = "Daawat Super Basmati Rice",
-                orderStatus = OrderStatusEnum.DELIVERY_EXPECTED,
-                deliveryDate = "tomorrow"
-            ),
-            Order(
-                id = "2",
-                productImage = "url_to_image",
-                productName = "Daawat Super Basmati Rice",
-                orderStatus = OrderStatusEnum.CANCELLED,
-                deliveryDate = "Wed Nov 06"
-            ),
-            Order(
-                id = "3",
-                productImage = "url_to_image",
-                productName = "Daawat Super Basmati Rice",
-                orderStatus = OrderStatusEnum.DELIVERED,
-                deliveryDate = "Oct 31",
-                rating = 4.5f
-            )
-            // Add more sample orders as needed
-        )
+    fun placeOrder()
+    {
+
+        val dialog= CustomDialog(requireActivity())
+        // Obtain the DataManager instance
+        dialog.showDialog(requireActivity(),false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<OrderMainResponse> {
+            override fun onResponse(call: Call<OrderMainResponse>, response: Response<OrderMainResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: OrderMainResponse? = response.body()
+                    orderaAdapter.setList(model!!.orders)
+                    // Handle the response
+
+                    // model?.Message?.let { Utils.showMessage(it,applicationContext) }
+
+
+
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<OrderMainResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.getOrders(otpCallback, user_id  )
     }
 }

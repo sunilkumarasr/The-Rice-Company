@@ -11,6 +11,7 @@ import com.gadiwalaUser.Models.FAQsMainRes
 import com.gadiwalaUser.Models.LoginResponse
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.OTPResponse
+import com.gadiwalaUser.Models.OrderMainResponse
 import com.gadiwalaUser.Models.PrivacyDataMainRes
 import com.gadiwalaUser.Models.ProductDetailsDataMinRes
 import com.gadiwalaUser.Models.ProductMainRes
@@ -269,7 +270,7 @@ interface ApiService {
         @Field("api_key") api_key: String,
         @Field("user_id") user_id: String,
 
-    ): Call<MainResponse>
+    ): Call<OrderMainResponse>
 
     @FormUrlEncoded
     @POST("api/get_user_orders")

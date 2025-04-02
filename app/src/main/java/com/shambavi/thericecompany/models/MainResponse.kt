@@ -1,6 +1,7 @@
 package com.gadiwalaUser.Models
 
 import com.google.gson.annotations.SerializedName
+import com.shambavi.thericecompany.orders.Order
 
 data class ProfileMainResponse(
 
@@ -400,5 +401,12 @@ data class CartModel (
     @SerializedName("attribute_id"         ) var attributeId       : String? = null,
     @SerializedName("quantity"             ) var quantity          : String? = null,
     @SerializedName("cart_id"             ) var cartId          : String? = null
+
+)
+data class OrderMainResponse (
+
+    @SerializedName("status"  ) var status  : Boolean?          = null,
+    @SerializedName("message" ) var message : String?           = null,
+    @SerializedName("orders"  ) var orders  : ArrayList<Order> = arrayListOf()
 
 )

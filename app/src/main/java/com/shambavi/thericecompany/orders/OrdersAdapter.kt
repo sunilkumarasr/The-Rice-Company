@@ -7,14 +7,21 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.bumptech.glide.Glide
+import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
+import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.LayoutOrdersItemBinding
 
 class OrdersAdapter (
-    private val orders: List<Order>,
     private val onOrderClick: (Order) -> Unit,
     private val onRateClick: (Order) -> Unit
 ) : RecyclerView.Adapter<OrdersAdapter.OrderViewHolder>() {
-
+var orders=ArrayList<Order>()
+    fun setList(order:ArrayList<Order>)
+    {
+        orders.clear()
+        orders.addAll(order)
+        notifyDataSetChanged()
+    }
     inner class OrderViewHolder(private val binding: LayoutOrdersItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
@@ -22,22 +29,24 @@ class OrdersAdapter (
             with(binding) {
                 // Load product image using Glide or similar library
                 Glide.with(productImage)
-                    .load(order.productImage)
+                    .load(ROOT_URL +order.productImage)
+                    .placeholder(R.drawable.item1)
                     .into(productImage)
 
                 // Set order status and style
                 orderStatusText.text = when (order.orderStatus) {
-                    OrderStatusEnum.DELIVERY_EXPECTED -> "Delivery expected by ${order.deliveryDate}"
-                    OrderStatusEnum.CANCELLED -> "Cancelled on ${order.deliveryDate}"
-                    OrderStatusEnum.DELIVERED -> "Delivered on ${order.deliveryDate}"
-                    OrderStatusEnum.REFUNDED -> "Refund on ${order.deliveryDate}"
+                    OrderStatusEnum.DELIVERY_EXPECTED.name -> "Delivery expected by ${order.createdAt}"
+                    OrderStatusEnum.CANCELLED.name -> "Cancelled on ${order.createdAt}"
+                    OrderStatusEnum.DELIVERED.name -> "Delivered on ${order.createdAt}"
+                    OrderStatusEnum.REFUNDED.name -> "Refund on ${order.createdAt}"
+                    else -> {""}
                 }
 
-                productNameText.text = order.productName
+                productNameText.text = order.productTitle
 
                 // Handle rating visibility
-                if (order.orderStatus == OrderStatusEnum.DELIVERED) {
-                    if (order.rating != null) {
+                if (order.orderStatus == OrderStatusEnum.DELIVERED.name) {
+                   /* if (order.rating != null) {
                         ratingBar.visibility = View.VISIBLE
                         ratingBar.rating = order.rating
                         rateProductText.visibility = View.GONE
@@ -45,7 +54,7 @@ class OrdersAdapter (
                         ratingBar.visibility = View.GONE
                         rateProductText.visibility = View.VISIBLE
                         rateProductText.setOnClickListener { onRateClick(order) }
-                    }
+                    }*/
                 } else {
                     ratingBar.visibility = View.GONE
                     rateProductText.visibility = View.GONE

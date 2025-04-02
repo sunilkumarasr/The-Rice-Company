@@ -12,6 +12,7 @@ import com.gadiwalaUser.Models.FAQsMainRes
 import com.gadiwalaUser.Models.LoginResponse
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.OTPResponse
+import com.gadiwalaUser.Models.OrderMainResponse
 import com.gadiwalaUser.Models.PrivacyDataMainRes
 import com.gadiwalaUser.Models.ProductDetailsDataMinRes
 import com.gadiwalaUser.Models.ProductMainRes
@@ -244,7 +245,7 @@ class DataManager private constructor() {
         val call = apiService.deleteProduct(APIKEY,userId,productId)
         call.enqueue(cb)
     }
-    fun getOrders(cb: Callback<MainResponse>, userId: String) {
+    fun getOrders(cb: Callback<OrderMainResponse>, userId: String) {
         val apiService = retrofit.create(ApiService::class.java)
         val call = apiService.getOrders(APIKEY,userId)
         call.enqueue(cb)
