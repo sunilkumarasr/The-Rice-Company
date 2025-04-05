@@ -29,7 +29,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/orderStatusText"
+                android:id="@+id/order_id"
                 style="@style/textview"
                 android:textSize="@dimen/_12sdp"
                 android:text="Delivery expected by tommorrow"

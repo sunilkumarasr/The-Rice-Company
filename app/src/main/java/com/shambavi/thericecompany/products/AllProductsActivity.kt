@@ -2,6 +2,7 @@ package com.shambavi.thericecompany.products
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +10,7 @@ import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.ProductMainRes
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
+import com.shambavi.thericecompany.Activitys.SearchActivity
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityAllProductsBinding
 import com.shambavi.thericecompany.databinding.ActivitySplashBinding
@@ -43,6 +45,9 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
             finish()
         }
 
+        binding.linearSearch.setOnClickListener {
+            startActivity(Intent(applicationContext,SearchActivity::class.java))
+        }
         binding.filterButton.setOnClickListener {
             showFilter()
         }
@@ -77,7 +82,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
 
                     // Handle the response
 
-                    model?.message?.let { Utils.showMessage(it,this@AllProductsActivity) }
+
 
                     if(model?.status == true)
                     {
@@ -85,10 +90,17 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
                             productsAdapter.productList.clear()
                             productsAdapter.productList.addAll(model.products)
                             productsAdapter.notifyDataSetChanged()
-                            return
+
+                        }else
+                        {
+                            model?.message?.let { Utils.showMessage(it,this@AllProductsActivity) }
                         }
 
+                    }else
+                    {
+                        model?.message?.let { Utils.showMessage(it,this@AllProductsActivity) }
                     }
+                    checkData()
                     println("OTP Sent successfully: ${model?.message}")
                 } else {
                     // Handle error
@@ -112,5 +124,18 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
                 dataManager.getTopSellProducts(otpCallback,user_id)
         else
         dataManager.getProductsBySubCat(otpCallback,sid,user_id)
+    }
+
+    private fun checkData() {
+
+        if(productsAdapter.itemCount>0)
+        {
+            binding.txtNoData.visibility= View.GONE
+            binding.recyclerAllProducts.visibility= View.VISIBLE
+        }else
+        {
+            binding.txtNoData.visibility= View.VISIBLE
+            binding.recyclerAllProducts.visibility= View.GONE
+        }
     }
 }

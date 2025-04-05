@@ -40,7 +40,9 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(
         Glide.with(holder.binding.imgProduct.context).load(ROOT_URL+categoryList.get(position).categoryImage).into(holder.binding.imgProduct)
         holder.binding.txtProductName.setOnClickListener {
             val ctx=holder.binding.txtProductName.context
-            ctx.startActivity(Intent(ctx, CategoryProductsActivity::class.java))
+            val intent=Intent(ctx, CategoryProductsActivity::class.java)
+            intent.putExtra("cat_id",categoryList.get(position).id)
+            ctx.startActivity(intent)
         }
 
     }

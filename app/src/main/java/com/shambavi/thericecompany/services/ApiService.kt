@@ -273,10 +273,20 @@ interface ApiService {
     ): Call<OrderMainResponse>
 
     @FormUrlEncoded
-    @POST("api/get_user_orders")
+    @POST("api/get_order_details")
     fun getOrderDetails(
         @Field("api_key") api_key: String,
-        @Field("user_id") user_id: String,
+        @Field("id") order_id: String,
 
-    ): Call<CartMainRes>
+    ): Call<OrderMainResponse>
+
+
+    @FormUrlEncoded
+    @POST("api/search_product")
+    fun searchProduct(
+        @Field("api_key") api_key: String,
+        @Field("user_id") user_id: String,
+        @Field("title") searchKye: String,
+
+        ): Call<ProductMainRes>
 }

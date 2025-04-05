@@ -3,6 +3,7 @@ package com.shambavi.thericecompany.cart
 import android.app.ComponentCaller
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -99,6 +100,7 @@ var addres_id=""
                     }
                     addressAdapter.currentList.clear()
                     addressAdapter.submitList(model!!.data)
+                    checkData()
                     println("OTP Sent successfully: ${model?.message}")
                 } else {
                     // Handle error
@@ -151,5 +153,18 @@ var addres_id=""
          )
 
      }*/
+
+    private fun checkData() {
+
+        if(addressAdapter.itemCount>0)
+        {
+            binding.txtNoData.visibility= View.GONE
+            binding.rvAddresses.visibility= View.VISIBLE
+        }else
+        {
+            binding.txtNoData.visibility= View.VISIBLE
+            binding.rvAddresses.visibility= View.GONE
+        }
+    }
 }
 

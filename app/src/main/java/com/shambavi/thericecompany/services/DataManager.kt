@@ -250,9 +250,19 @@ class DataManager private constructor() {
         val call = apiService.getOrders(APIKEY,userId)
         call.enqueue(cb)
     }
+    fun getOrderDetails(cb: Callback<OrderMainResponse>, userId: String) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.getOrderDetails(APIKEY,userId)
+        call.enqueue(cb)
+    }
     fun placeOrder(cb: Callback<MainResponse>, userId: String,payment_id:String,address_id:String,amount:String,productId:String,qty:String,slotid:String,cartid:String) {
         val apiService = retrofit.create(ApiService::class.java)
         val call = apiService.placeOrder(APIKEY,userId,payment_id,address_id,amount,productId,qty,slotid,cartid)
+        call.enqueue(cb)
+    }
+    fun searchProduct(cb: Callback<ProductMainRes>, userId: String,search:String) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.searchProduct(APIKEY,userId,search)
         call.enqueue(cb)
     }
 

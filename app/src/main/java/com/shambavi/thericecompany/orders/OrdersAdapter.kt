@@ -28,13 +28,18 @@ var orders=ArrayList<Order>()
         fun bind(order: Order) {
             with(binding) {
                 // Load product image using Glide or similar library
-                Glide.with(productImage)
-                    .load(ROOT_URL +order.productImage)
-                    .placeholder(R.drawable.item1)
-                    .into(productImage)
+                if(order.products.size>0) {
+                    Glide.with(productImage)
+                        .load(ROOT_URL + order.products.get(0).productImage)
+                        .placeholder(R.drawable.item1)
+                        .into(productImage)
+
+                    productNameText.text=order.products.get(0).productTitle
+
+                }
 
                 // Set order status and style
-                orderStatusText.text = when (order.orderStatus) {
+                orderId.text = when (order.status) {
                     OrderStatusEnum.DELIVERY_EXPECTED.name -> "Delivery expected by ${order.createdAt}"
                     OrderStatusEnum.CANCELLED.name -> "Cancelled on ${order.createdAt}"
                     OrderStatusEnum.DELIVERED.name -> "Delivered on ${order.createdAt}"
@@ -42,10 +47,10 @@ var orders=ArrayList<Order>()
                     else -> {""}
                 }
 
-                productNameText.text = order.productTitle
+                orderId.text = "# ${order.orderId}"
 
                 // Handle rating visibility
-                if (order.orderStatus == OrderStatusEnum.DELIVERED.name) {
+                if (order.status == OrderStatusEnum.DELIVERED.name) {
                    /* if (order.rating != null) {
                         ratingBar.visibility = View.VISIBLE
                         ratingBar.rating = order.rating
@@ -79,7 +84,7 @@ var orders=ArrayList<Order>()
         holder.bind(orders[position])
         holder.itemView.setOnClickListener {
           val intent=  Intent(holder.itemView.context,OrderDetailsActivity::class.java).apply {
-                putExtra("order_id","1")
+                putExtra("order_id",orders.get(position).id)
 
             }
             holder.itemView.context.startActivity(intent)

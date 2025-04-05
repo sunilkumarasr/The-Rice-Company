@@ -8,12 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity.RESULT_OK
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.services.DataManager
+import com.royalit.motherchoice.utils.NetWorkConection
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.SlotsActivity
 import com.shambavi.thericecompany.R
@@ -36,7 +38,10 @@ class CartFragment : Fragment() ,ProductListener{
     var addres=""
     var slot_id=""
     var slot_time=""
-
+    var payment_id="12"
+    var product_ids=""
+    var cart_ids=""
+    var qnts=""
     private lateinit var binding: FragmentCartBinding
 
     override fun onCreateView(
@@ -52,6 +57,13 @@ class CartFragment : Fragment() ,ProductListener{
         super.onViewCreated(view, savedInstanceState)
 
         init()
+        if(!NetWorkConection.isNEtworkConnected(requireActivity()))
+        {
+            AlertDialog.Builder(requireActivity())
+                .setTitle("Alert!")
+                .setMessage("No Network available")
+                .show()
+        }
 
     }
 
@@ -86,6 +98,17 @@ class CartFragment : Fragment() ,ProductListener{
                 Utils.showMessage("Select Delivery Address",requireActivity())
                 return@setOnClickListener
             }
+            if(slot_id.isEmpty())
+            {
+                Utils.showMessage("Select Delivery slot",requireActivity())
+                return@setOnClickListener
+            }
+            if(product_ids.isEmpty())
+            {
+                Utils.showMessage("Cart is Empty",requireActivity())
+                return@setOnClickListener
+            }
+            placeOrder()
         }
         binding.btnChangeAddress.setOnClickListener {
 
@@ -123,7 +146,13 @@ class CartFragment : Fragment() ,ProductListener{
                     cartAdapter.cartList.clear()
                     cartAdapter.cartList.addAll(model!!.data)
                     cartAdapter.notifyDataSetChanged()
+                    cartAdapter.cartList.forEach {
+                        product_ids=product_ids+it.productId+","
+                        cart_ids=cart_ids+it.cartId+","
+                        qnts=qnts+it.quantity+","
+                    }
                     calculateAmount()
+                    checkData()
                     println("OTP Sent successfully: ${model?.message}")
                 } else {
                     // Handle error
@@ -236,9 +265,10 @@ class CartFragment : Fragment() ,ProductListener{
         updateCart(cart_id,qnty.toString())
     }
 
+    var totalAmount=0
     fun calculateAmount()
     {
-        var totalAmount=0
+        totalAmount=0
         var discountedAmount=0
         cartAdapter.cartList.forEach {
             totalAmount=totalAmount+Integer.parseInt(it.ourPrice)
@@ -261,5 +291,58 @@ class CartFragment : Fragment() ,ProductListener{
             binding.tvDeliverySlot.text="$slot_time"
         }
     }
+    private fun checkData() {
 
+        if(cartAdapter.itemCount>0)
+        {
+            binding.txtNoData.visibility= View.GONE
+            binding.recyclerCart.visibility= View.VISIBLE
+        }else
+        {
+            binding.txtNoData.visibility= View.VISIBLE
+            binding.recyclerCart.visibility= View.GONE
+        }
+    }
+    fun placeOrder()
+    {
+
+        val dialog= CustomDialog(requireActivity())
+        // Obtain the DataManager instance
+        dialog.showDialog(requireActivity(),false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<MainResponse> {
+            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: MainResponse? = response.body()
+
+                    // Handle the response
+
+                    // model?.Message?.let { Utils.showMessage(it,applicationContext) }
+
+                    if(model!!.Status !!)
+                    {
+                        getCart()
+                    }
+
+                    println("OTP Sent successfully: ${model?.Message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.placeOrder(otpCallback, user_id  ,payment_id,addres_id,totalAmount.toString(), product_ids,qnts,slot_id,cart_ids )
+    }
 }

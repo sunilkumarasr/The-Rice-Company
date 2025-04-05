@@ -3,13 +3,16 @@ package com.shambavi.thericecompany.cart
 import android.app.ComponentCaller
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.services.DataManager
+import com.royalit.motherchoice.utils.NetWorkConection
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.SlotsActivity
 import com.shambavi.thericecompany.databinding.ActivityCheckOutBinding
@@ -46,12 +49,26 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
         cartAdapter.setListener(this)
         binding.recyclerCart.layoutManager=LinearLayoutManager(applicationContext,LinearLayoutManager.HORIZONTAL,false)
         binding.recyclerCart.adapter=cartAdapter
+        if(!NetWorkConection.isNEtworkConnected(this@CheckOutActivity))
+        {
+            AlertDialog.Builder(this@CheckOutActivity)
+                .setTitle("Alert!")
+                .setMessage("No Network available")
+                .show()
+        }
         getCart()
         binding.btnBack.setOnClickListener {
             finish()
         }
         binding.btnChangeSlot.setOnClickListener {
-
+            if(!NetWorkConection.isNEtworkConnected(this@CheckOutActivity))
+            {
+                AlertDialog.Builder(this@CheckOutActivity)
+                    .setTitle("Alert!")
+                    .setMessage("No Network available")
+                    .show()
+                return@setOnClickListener
+            }
             startActivityForResult(Intent(applicationContext, SlotsActivity::class.java),1)
         }
 
@@ -66,6 +83,19 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
             if(slot_id.isEmpty())
             {
                 Utils.showMessage("Select Delivery slot",applicationContext)
+                return@setOnClickListener
+            }
+            if(product_ids.isEmpty())
+            {
+                Utils.showMessage("Cart is Empty",applicationContext)
+                return@setOnClickListener
+            }
+            if(!NetWorkConection.isNEtworkConnected(this@CheckOutActivity))
+            {
+                AlertDialog.Builder(this@CheckOutActivity)
+                    .setTitle("Alert!")
+                    .setMessage("No Network available")
+                    .show()
                 return@setOnClickListener
             }
             placeOrder()
@@ -112,11 +142,13 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
                         cart_ids=cart_ids+it.cartId+","
                         qnts=qnts+it.quantity+","
                     }
+                    checkData()
                     calculateAmount()
                     println("OTP Sent successfully: ${model?.message}")
                 } else {
                     // Handle error
-                    println("Failed to send OTP. ${response.message()}")
+
+                    finish()
 
                 }
             }
@@ -125,6 +157,7 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
                 // Handle failure
                 println("Failed to send OTP. ${t.message}")
                 dialog.closeDialog()
+                checkData()
             }
         }
 
@@ -295,6 +328,19 @@ var totalAmount=0
             slot_time=data!!.getStringExtra("slot_time").toString()
 
             binding.tvDeliverySlot.text="$slot_time"
+        }
+    }
+
+    private fun checkData() {
+
+        if(cartAdapter.itemCount>0)
+        {
+            binding.txtNoData.visibility= View.GONE
+            binding.recyclerCart.visibility= View.VISIBLE
+        }else
+        {
+            binding.txtNoData.visibility= View.VISIBLE
+            binding.recyclerCart.visibility= View.GONE
         }
     }
 }

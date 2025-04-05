@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bookiron.itpark.utils.MyPref
 import com.denzcoskun.imageslider.constants.ScaleTypes
@@ -16,6 +17,7 @@ import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.ProductMainRes
 import com.gadiwalaUser.services.DataManager
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
+import com.royalit.motherchoice.utils.NetWorkConection
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.DashBoardActivity
 import com.shambavi.thericecompany.Activitys.NotificationsActivity
@@ -62,6 +64,13 @@ var user_id=""
         topSellingAdapter=ProductsAdapter()
 
         productsAdapter.setListener(this)
+        if(!NetWorkConection.isNEtworkConnected(requireActivity()))
+        {
+            AlertDialog.Builder(requireActivity())
+                .setTitle("Alert!")
+                .setMessage("No Network available")
+                .show()
+        }
         binding.recyclerTopCatgories.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
         binding.recyclerProducts.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
         binding.recyclerProductsTopSelling.layoutManager=LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)

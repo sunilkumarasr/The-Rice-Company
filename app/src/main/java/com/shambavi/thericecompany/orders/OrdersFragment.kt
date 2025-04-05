@@ -37,7 +37,7 @@ var user_id=""
         user_id=MyPref.getUser(requireContext())
         setupRecyclerView()
         setupSearch()
-        placeOrder()
+        getOrders()
         binding.filterButton.setOnClickListener {
             val bottomSheet = DeliverySlotBottomSheet.newInstance()
             bottomSheet.show(childFragmentManager, DeliverySlotBottomSheet.TAG)
@@ -77,7 +77,7 @@ var user_id=""
         }
     }
 
-    fun placeOrder()
+    fun getOrders()
     {
 
         val dialog= CustomDialog(requireActivity())
@@ -96,7 +96,7 @@ var user_id=""
 
                     // model?.Message?.let { Utils.showMessage(it,applicationContext) }
 
-
+                    checkData()
 
                     println("OTP Sent successfully: ${model?.message}")
                 } else {
@@ -115,5 +115,17 @@ var user_id=""
 
         // Call the sendOtp function in DataManager
         dataManager.getOrders(otpCallback, user_id  )
+    }
+    private fun checkData() {
+
+        if(orderaAdapter.itemCount>0)
+        {
+            binding.txtNoData.visibility= View.GONE
+            binding.ordersRecyclerView.visibility= View.VISIBLE
+        }else
+        {
+            binding.txtNoData.visibility= View.VISIBLE
+            binding.ordersRecyclerView.visibility= View.GONE
+        }
     }
 }

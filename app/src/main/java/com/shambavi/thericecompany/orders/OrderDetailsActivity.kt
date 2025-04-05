@@ -9,8 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
+import com.gadiwalaUser.Models.OrderMainResponse
+import com.gadiwalaUser.services.DataManager
+import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityOrderDetailsBinding
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class OrderDetailsActivity : AppCompatActivity() {
     private var orderId: String? = null
@@ -27,7 +33,7 @@ class OrderDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
         orderId = intent.getStringExtra(EXTRA_ORDER_ID)
         setupUI()
-        loadOrderDetails()
+        getOrderDetails()
         setupListeners()
 
 
@@ -40,8 +46,8 @@ class OrderDetailsActivity : AppCompatActivity() {
 
     private fun loadOrderDetails() {
         // In a real app, you would fetch this from an API or database
-        val orderDetails = getSampleOrderDetails()
-        displayOrderDetails(orderDetails)
+       // val orderDetails = getSampleOrderDetails()
+       // displayOrderDetails(orderDetails)
     }
 
     private fun displayOrderDetails(orderDetails: OrderDetails) {
@@ -139,7 +145,41 @@ class OrderDetailsActivity : AppCompatActivity() {
             Toast.LENGTH_SHORT
         ).show()
     }
+    fun getOrderDetails()
+    {
 
+        val dialog= CustomDialog(this@OrderDetailsActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@OrderDetailsActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<OrderMainResponse> {
+            override fun onResponse(call: Call<OrderMainResponse>, response: Response<OrderMainResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: OrderMainResponse? = response.body()
+
+
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<OrderMainResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        orderId?.let { dataManager.getOrderDetails(otpCallback, it) }
+    }
+/*
     private fun getSampleOrderDetails(): OrderDetails {
         return OrderDetails(
             orderId = "OD123456",
@@ -188,5 +228,6 @@ class OrderDetailsActivity : AppCompatActivity() {
             rating = null
         )
     }
+*/
 }
 

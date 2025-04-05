@@ -36,6 +36,17 @@
         android:layout_below="@+id/toolbar"
         android:layout_above="@+id/btnPayment"
         >
+        <TextView
+            android:id="@+id/txt_no_data"
+            style="@style/textview"
+            android:visibility="gone"
+            android:text="@string/cart_is_empty"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_24sdp"
+            android:layout_height="@dimen/_180sdp"
+            android:layout_gravity="center"
+            />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_cart"
             android:layout_width="match_parent"
