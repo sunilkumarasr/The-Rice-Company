@@ -5,6 +5,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.gadiwalaUser.Models.FAQsMainRes
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
@@ -19,10 +20,13 @@ class FAQSActivity : AppCompatActivity() {
     lateinit var binding:ActivityFaqsactivityBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         binding=ActivityFaqsactivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.header.txtTitle.text="FAQs"
 
+        binding.header.imgBack.setOnClickListener {
+            finish()
+        }
         callData()
     }
 
@@ -48,6 +52,10 @@ class FAQSActivity : AppCompatActivity() {
                     if(model?.status == true)
                     {
                         if(model.data.size>0) {
+
+                            var faqadapter=FAQAdapter(model.data)
+                            binding.recyclerFaqs.layoutManager= LinearLayoutManager(applicationContext)
+                            binding.recyclerFaqs.adapter=faqadapter
 
 
                             return

@@ -154,5 +154,14 @@ class MyPref() {
             val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             return sharedPreference.getString("address_type","").toString()
         }
+
+        fun clearAddress(ctx:Context){
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
+            var editor = sharedPreference.edit()
+            editor.putString("address_id","")
+            editor.putString("address","")
+            editor.putString("address_type","")
+            editor.commit()
+        }
     }
 }

@@ -410,3 +410,10 @@ data class OrderMainResponse (
     @SerializedName("orders"  ) var orders  : ArrayList<Order> = arrayListOf()
 
 )
+
+
+data class FAQItem(
+    val title: String,
+    val secondLine: String,
+    val description: String
+)

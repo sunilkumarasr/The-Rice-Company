@@ -49,7 +49,7 @@ class EnquiryFormActivity : AppCompatActivity() {
             }
             name= MyPref.getName(applicationContext).toString()
             phone= MyPref.getMobile(applicationContext).toString()
-            name= MyPref.getName(applicationContext).toString()
+            email= MyPref.getEmail(applicationContext).toString()
             callData()
         }
 

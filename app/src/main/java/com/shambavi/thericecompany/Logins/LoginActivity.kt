@@ -43,7 +43,7 @@ class LoginActivity : AppCompatActivity() {
                 Utils.showMessage("Please enter valid mobile number",applicationContext)
                 return@setOnClickListener
             }
-            if(!!NetWorkConection.isNEtworkConnected(this@LoginActivity))
+            if(!NetWorkConection.isNEtworkConnected(this@LoginActivity))
             {
                 Utils.showMessage("Please check Network connection",applicationContext)
                 return@setOnClickListener

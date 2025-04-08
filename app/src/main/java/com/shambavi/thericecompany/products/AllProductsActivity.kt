@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bookiron.itpark.utils.MyPref
+import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.ProductMainRes
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
@@ -16,12 +17,13 @@ import com.shambavi.thericecompany.databinding.ActivityAllProductsBinding
 import com.shambavi.thericecompany.databinding.ActivitySplashBinding
 import com.shambavi.thericecompany.filters.FilterBottomSheetFragment
 import com.shambavi.thericecompany.home.ProductsAdapter
+import com.shambavi.thericecompany.listeners.ProductListener
 import com.shambavi.thericecompany.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.FilterCallback
+class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.FilterCallback,ProductListener
 {
     lateinit var binding: ActivityAllProductsBinding
     lateinit var productsAdapter: ProductsAdapter
@@ -51,6 +53,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         binding.filterButton.setOnClickListener {
             showFilter()
         }
+        productsAdapter.setListener(this)
         getProducts()
     }
     private val filterLauncher = registerForActivityResult( ActivityResultContracts.StartActivityForResult() ) {
@@ -137,5 +140,56 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
             binding.txtNoData.visibility= View.VISIBLE
             binding.recyclerAllProducts.visibility= View.GONE
         }
+    }
+
+    override fun addProduct(product_id: String, attribution_id: String) {
+
+        addCart(product_id,attribution_id)
+
+    }
+
+    override fun deleteProduct(product_id: String) {
+    }
+
+    override fun updateProduct(product_id: String, qnty: Int) {
+    }
+    fun addCart(product_id: String, attribution_id: String)
+    {
+
+        val dialog= CustomDialog(this@AllProductsActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@AllProductsActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<MainResponse> {
+            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: MainResponse? = response.body()
+
+                    // Handle the response
+
+                    //model?.message?.let { Utils.showMessage(it,requireActivity()) }
+
+
+                    getProducts()
+                    println("OTP Sent successfully: ${model?.Message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.addCart(otpCallback,user_id  ,product_id,attribution_id)
     }
 }

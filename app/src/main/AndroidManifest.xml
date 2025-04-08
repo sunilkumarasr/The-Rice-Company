@@ -81,6 +81,7 @@
         <activity
             android:name=".Logins.AddAddressActivity"
             android:exported="false" />
+
         <activity
             android:name=".cart.UpdateAddressActivity"
             android:exported="false" />

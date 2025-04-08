@@ -60,6 +60,7 @@ class AddressAdapter : ListAdapter<AddressData, AddressAdapter.AddressViewHolder
 
                 ivDelete.setOnClickListener {
                     // Handle delete
+                    listner.deleteProduct(address.id.toString())
                 }
             }
         }

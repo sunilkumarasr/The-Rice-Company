@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.AddressDataMainRes
 import com.gadiwalaUser.Models.CartMainRes
+import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Logins.AddAddressActivity
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityAddressListBinding
 import com.shambavi.thericecompany.listeners.ProductListener
+import com.shambavi.thericecompany.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -55,10 +57,9 @@ var addres_id=""
         caller: ComponentCaller
     ) {
         super.onActivityResult(requestCode, resultCode, data, caller)
-        if(resultCode== RESULT_OK)
-        {
+
             getAddress()
-        }
+        //}
     }
 
     private fun setupRecyclerView() {
@@ -98,7 +99,7 @@ var addres_id=""
                         if(it.id==addres_id)
                             it.isSelected=true
                     }
-                    addressAdapter.currentList.clear()
+                   // addressAdapter.currentList.clear()
                     addressAdapter.submitList(model!!.data)
                     checkData()
                     println("OTP Sent successfully: ${model?.message}")
@@ -125,14 +126,57 @@ var addres_id=""
         finish()
     }
 
-    override fun deleteProduct(cart_id: String) {
-
+    override fun deleteProduct(address_id: String) {
+        deleteAddress(address_id)
     }
 
     override fun updateProduct(product_id: String, qnty: Int) {
 
     }
+    fun deleteAddress(address_id: String)
+    {
 
+        val dialog= CustomDialog(this@AddressListActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@AddressListActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<MainResponse> {
+            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: MainResponse? = response.body()
+
+                    // Handle the response
+
+                     model?.Message?.let { Utils.showMessage(it,applicationContext) }
+
+                    if(address_id==addres_id)
+                    {
+                        MyPref.clearAddress(applicationContext)
+                    }
+                    getAddress()
+
+
+
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.deleteAddress(otpCallback, address_id  )
+    }
 
     /* private fun loadAddresses() {
          val addresses = listOf(

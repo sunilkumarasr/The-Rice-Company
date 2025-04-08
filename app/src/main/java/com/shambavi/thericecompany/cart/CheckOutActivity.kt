@@ -43,8 +43,15 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
         addres=MyPref.getAddress(applicationContext)
         if(addres.isEmpty())
             binding.tvAddress.text="Please select Delivery Address"
-        else
-        binding.tvAddress.text=addres
+        else {
+            binding.tvAddress.text = addres
+            var type=MyPref.getAddressType(applicationContext)
+            if(type.isEmpty())
+                binding.txtAdrsType.visibility=View.INVISIBLE
+            else
+                binding.txtAdrsType.visibility=View.VISIBLE
+            binding.txtAdrsType.text=type
+        }
         cartAdapter=CartAdapter()
         cartAdapter.setListener(this)
         binding.recyclerCart.layoutManager=LinearLayoutManager(applicationContext,LinearLayoutManager.HORIZONTAL,false)
@@ -112,6 +119,12 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
         addres_id=MyPref.getAddressId(applicationContext)
         addres=MyPref.getAddress(applicationContext)
        binding.tvAddress.text=addres
+        var type=MyPref.getAddressType(applicationContext)
+        if(type.isEmpty())
+            binding.txtAdrsType.visibility=View.INVISIBLE
+        else
+            binding.txtAdrsType.visibility=View.VISIBLE
+        binding.txtAdrsType.text=type
     } }
 
     fun getCart()
@@ -267,7 +280,9 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
 
                     if(model!!.Status !!)
                     {
-                        getCart()
+                      //  getCart()
+                        startActivity(Intent(applicationContext,OrderSuccessActivity::class.java))
+                        finish()
                     }
 
                     println("OTP Sent successfully: ${model?.Message}")
