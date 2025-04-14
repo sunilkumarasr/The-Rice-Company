@@ -21,6 +21,7 @@ import com.shambavi.thericecompany.Activitys.SlotsActivity
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.cart.AddressListActivity
 import com.shambavi.thericecompany.cart.CartAdapter
+import com.shambavi.thericecompany.cart.OrderSuccessActivity
 import com.shambavi.thericecompany.databinding.ActivityCheckOutBinding
 import com.shambavi.thericecompany.databinding.FragmentCartBinding
 import com.shambavi.thericecompany.databinding.FragmentHomeBinding
@@ -73,20 +74,41 @@ class CartFragment : Fragment() ,ProductListener{
         addres= MyPref.getAddress(requireActivity())
         if(addres.isEmpty())
             binding.tvAddress.text="Please select Delivery Address"
-        else
-            binding.tvAddress.text=addres
+        else {
+            binding.tvAddress.text = addres
+            var type = MyPref.getAddressType(requireActivity())
+            if (type.isEmpty())
+                binding.txtAdrsType.visibility = View.INVISIBLE
+            else
+                binding.txtAdrsType.visibility = View.VISIBLE
+            binding.txtAdrsType.text = type
+        }
         cartAdapter=CartAdapter()
         cartAdapter.setListener(this)
         binding.recyclerCart.layoutManager=
             LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL,false)
         binding.recyclerCart.adapter=cartAdapter
+        if(!NetWorkConection.isNEtworkConnected(requireActivity()))
+        {
+            AlertDialog.Builder(requireActivity())
+                .setTitle("Alert!")
+                .setMessage("No Network available")
+                .show()
+        }
         getCart()
         binding.btnBack.visibility=View.GONE
        /* binding.btnBack.setOnClickListener {
             finish()
         }*/
         binding.btnChangeSlot.setOnClickListener {
-
+            if(!NetWorkConection.isNEtworkConnected(requireActivity()))
+            {
+                AlertDialog.Builder(requireActivity())
+                    .setTitle("Alert!")
+                    .setMessage("No Network available")
+                    .show()
+                return@setOnClickListener
+            }
             startActivityForResult(Intent(requireActivity(), SlotsActivity::class.java),1)
         }
 
@@ -108,6 +130,14 @@ class CartFragment : Fragment() ,ProductListener{
                 Utils.showMessage("Cart is Empty",requireActivity())
                 return@setOnClickListener
             }
+            if(!NetWorkConection.isNEtworkConnected(requireActivity()))
+            {
+                AlertDialog.Builder(requireActivity())
+                    .setTitle("Alert!")
+                    .setMessage("No Network available")
+                    .show()
+                return@setOnClickListener
+            }
             placeOrder()
         }
         binding.btnChangeAddress.setOnClickListener {
@@ -119,9 +149,15 @@ class CartFragment : Fragment() ,ProductListener{
 
     private val addressLauncher = registerForActivityResult( ActivityResultContracts.StartActivityForResult() ) {
             result -> if (result.resultCode == RESULT_OK) {
-        addres_id= MyPref.getAddressId(requireActivity())
-        addres= MyPref.getAddress(requireActivity())
+        addres_id=MyPref.getAddressId(requireActivity())
+        addres=MyPref.getAddress(requireActivity())
         binding.tvAddress.text=addres
+        var type=MyPref.getAddressType(requireActivity())
+        if(type.isEmpty())
+            binding.txtAdrsType.visibility=View.INVISIBLE
+        else
+            binding.txtAdrsType.visibility=View.VISIBLE
+        binding.txtAdrsType.text=type
     } }
 
     fun getCart()
@@ -146,6 +182,7 @@ class CartFragment : Fragment() ,ProductListener{
                     cartAdapter.cartList.clear()
                     cartAdapter.cartList.addAll(model!!.data)
                     cartAdapter.notifyDataSetChanged()
+                    product_ids=""
                     cartAdapter.cartList.forEach {
                         product_ids=product_ids+it.productId+","
                         cart_ids=cart_ids+it.cartId+","
@@ -324,7 +361,8 @@ class CartFragment : Fragment() ,ProductListener{
 
                     if(model!!.Status !!)
                     {
-                        getCart()
+                        startActivity(Intent(requireActivity(), OrderSuccessActivity::class.java))
+
                     }
 
                     println("OTP Sent successfully: ${model?.Message}")

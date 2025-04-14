@@ -45,6 +45,14 @@ var otp=""
 
         type = intent.getStringExtra("type").toString()
         mobileNumber=intent.getStringExtra("mobileNumber").toString()
+        otp=intent.getStringExtra("otp").toString()
+        binding.txtOtpStatic.setText("OTP : $otp")
+        binding.txtMobileNumber.setText("$mobileNumber")
+        binding.txtEdit.setOnClickListener {
+            val intent = Intent(this@OTPActivity, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
         inits()
 
     }
