@@ -1,16 +1,13 @@
 package com.shambavi.thericecompany.orders
 
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
+import android.view.View
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.bumptech.glide.Glide
 import com.gadiwalaUser.Models.OrderMainResponse
 import com.gadiwalaUser.services.DataManager
+import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityOrderDetailsBinding
@@ -50,37 +47,130 @@ class OrderDetailsActivity : AppCompatActivity() {
        // displayOrderDetails(orderDetails)
     }
 
-    private fun displayOrderDetails(orderDetails: OrderDetails) {
+    private fun displayOrderDetails(order: Order) {
         with(binding) {
             // Order ID
-            orderIdText.text = "Order ID: ${orderDetails.orderId}"
+            orderIdText.text = "Order ID: ${order.orderId}"
 
+            if(order.products.size>0) {
+                Glide.with(productImage)
+                    .load(ROOT_URL + order.products.get(0).productImage)
+                    .placeholder(R.drawable.item1)
+                    .into(productImage)
+
+                productNameText.text=order.products.get(0).productTitle
+
+                productDescriptionText.text = order.products.get(0).productTitle
+            }
             // Product Details
-            Glide.with(this@OrderDetailsActivity)
-                .load(orderDetails.productImage)
-                .into(productImage)
 
-            productWeightText.text = orderDetails.productWeight
-            productNameText.text = orderDetails.productName
-            productDescriptionText.text = orderDetails.productDescription
-            priceText.text = "₹${orderDetails.price}"
+            productWeightText.text = order.qty
+
+            priceText.text = "₹ ${order.amount}"
 
             // Order Status Timeline
-            displayOrderTimeline(orderDetails.orderStatus)
+            //displayOrderTimeline(orderDetails.orderStatus)
+            if(order.status=="1")
+            {
+                lnrOrderRefund.visibility= View.GONE
+                lnrOrderReturned.visibility= View.GONE
+                /*lnrOrderDelivered.visibility= View.GONE
+                lnrOrderConfirmed.visibility= View.VISIBLE
+                lnrOrderShipped.visibility= View.GONE
+                lnrOrderOut.visibility= View.GONE
+*/
 
+
+                /*viewOrderConfirmed.visibility=View.GONE
+                viewOrderShipped.visibility=View.GONE
+                viewOrderOutDelivery.visibility=View.GONE
+                viewOrderDelivered.visibility=View.GONE
+              */viewOrderDelivered.visibility=View.GONE
+                viewOrderRetured.visibility=View.GONE
+
+            }else if(order.status=="2")
+            {
+
+                lnrOrderRefund.visibility= View.GONE
+                lnrOrderReturned.visibility= View.GONE
+               /* lnrOrderDelivered.visibility= View.GONE
+                lnrOrderConfirmed.visibility= View.VISIBLE
+                lnrOrderShipped.visibility= View.VISIBLE
+                lnrOrderOut.visibility= View.GONE
+*/
+               /* viewOrderShipped.visibility=View.GONE
+                viewOrderOutDelivery.visibility=View.VISIBLE
+                viewOrderConfirmed.visibility=View.VISIBLE
+
+               */
+                viewOrderDelivered.visibility=View.GONE
+                viewOrderRetured.visibility=View.GONE
+                viewOrderConfirmed.setBackgroundColor(resources.getColor(R.color.green))
+
+            }else if(order.status=="3")
+            {
+                lnrOrderRefund.visibility= View.GONE
+                lnrOrderReturned.visibility= View.GONE
+               /* lnrOrderDelivered.visibility= View.GONE
+                lnrOrderConfirmed.visibility= View.VISIBLE
+                lnrOrderShipped.visibility= View.VISIBLE
+                lnrOrderOut.visibility= View.VISIBLE
+*/
+             /*   viewOrderShipped.visibility=View.VISIBLE
+                viewOrderOutDelivery.visibility=View.VISIBLE
+                viewOrderConfirmed.visibility=View.VISIBLE
+                viewOrderDelivered.visibility=View.GONE
+             */
+                viewOrderDelivered.visibility=View.GONE
+                viewOrderRetured.visibility=View.GONE
+                viewOrderConfirmed.setBackgroundColor(resources.getColor(R.color.green))
+                viewOrderShipped.setBackgroundColor(resources.getColor(R.color.green))
+
+            }else if(order.status=="4")
+            {
+                lnrOrderRefund.visibility= View.GONE
+                lnrOrderReturned.visibility= View.GONE
+               /* lnrOrderDelivered.visibility= View.VISIBLE
+                lnrOrderConfirmed.visibility= View.VISIBLE
+                lnrOrderShipped.visibility= View.VISIBLE
+                lnrOrderOut.visibility= View.VISIBLE
+*/
+                /*viewOrderShipped.visibility=View.VISIBLE
+                viewOrderOutDelivery.visibility=View.VISIBLE
+                viewOrderConfirmed.visibility=View.VISIBLE
+                viewOrderDelivered.visibility=View.GONE
+              */
+                viewOrderDelivered.visibility=View.GONE
+                viewOrderRetured.visibility=View.GONE
+                viewOrderConfirmed.setBackgroundColor(resources.getColor(R.color.green))
+                viewOrderShipped.setBackgroundColor(resources.getColor(R.color.green))
+                viewOrderConfirmed.setBackgroundColor(resources.getColor(R.color.green))
+
+            }else
+            {
+
+            }
             // Shipping Details
-            customerNameText.text = orderDetails.shippingDetails.customerName
-            addressText.text = orderDetails.shippingDetails.address
-            phoneText.text = "Phone Number: ${orderDetails.shippingDetails.phoneNumbers.joinToString(", ")}"
+            customerNameText.text = order.fullName
+            addressText.text = formAddress(order)
+            phoneText.text = "Phone Number: ${order.mobile}"
 
             // Rating
-            if (orderDetails.rating != null) {
-                ratingBar.rating = orderDetails.rating!!
-            }
+
 
             // Billing Details
-            displayBillingDetails(orderDetails.billingDetails)
+          binding.  txtTotalAmount.text = "₹ ${order.amount}"
+          binding.  txtGrandTotal.text = "₹ ${order.amount}"
+
+
+
         }
+    }
+    fun formAddress(data: Order):String
+    {
+        var adrs="${data.houseNo},${data.floor},${data.landmark}\n${data.cityTown},${data.state},${data.country},${data.zipCode}"
+        adrs=adrs.replace(",,",",")
+        return adrs
     }
 
     private fun displayOrderTimeline(statusList: List<OrderStatus>) {/*
@@ -160,7 +250,7 @@ class OrderDetailsActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     val model: OrderMainResponse? = response.body()
 
-
+                    displayOrderDetails(model!!.orders.get(0))
                     println("OTP Sent successfully: ${model?.message}")
                 } else {
                     // Handle error

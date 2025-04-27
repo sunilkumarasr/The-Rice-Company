@@ -77,6 +77,7 @@
                         android:orientation="vertical">
 
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/productWeightText"
                             style="@style/textview"
                             android:text="Basmati (1 Kg)"
@@ -87,10 +88,11 @@
                             android:id="@+id/productNameText"
                             style="@style/textview"
                             android:layout_marginTop="4dp"
-                            android:text="Daawat Super Basmati Rice"
+                            android:text=""
                             android:textSize="@dimen/_12sdp"/>
 
                         <TextView
+                            android:visibility="gone"
                             android:id="@+id/productDescriptionText"
                             style="@style/textview"
                             android:layout_marginTop="4dp"
@@ -102,7 +104,7 @@
                             android:id="@+id/priceText"
                             style="@style/textview"
                             android:layout_marginTop="8dp"
-                            android:text="₹62"
+                            android:text=""
 
                             android:textSize="@dimen/_12sdp"
                             android:textStyle="bold"/>
@@ -118,6 +120,7 @@
 
                     <!-- Order Confirmed -->
                     <LinearLayout
+                        android:id="@+id/lnr_order_confirmed"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -131,36 +134,96 @@
                         <TextView
                             style="@style/textview"
                             android:layout_marginStart="16dp"
-                            android:text="Order Confirmed, 25 Oct 2024"
+                            android:text="Order Confirmed"
 
                             android:textSize="@dimen/_12sdp"/>
                     </LinearLayout>
 
+
                     <View
+                        android:id="@+id/view_order_confirmed"
                         android:layout_width="2dp"
                         android:layout_height="24dp"
                         android:layout_marginStart="11dp"
-                        android:background="#4CAF50"/>
+                        android:background="@color/gray"/>
                     <LinearLayout
+                        android:id="@+id/lnr_order_shipped"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <ImageView
+                            android:id="@+id/img_order_shiiped"
                             android:layout_width="24dp"
                             android:layout_height="24dp"
-                            android:src="@drawable/icon_order_check_success"
-                            />
+                            android:src="@drawable/circle_order_step" />
 
                         <TextView
                             style="@style/textview"
                             android:layout_marginStart="16dp"
-                            android:text="Delivered, 28 Oct 2024"
+                            android:text="Order Shipped"
 
                             android:textSize="@dimen/_12sdp"/>
                     </LinearLayout>
 
                     <View
+                        android:id="@+id/view_order_shipped"
+                        android:layout_width="2dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="11dp"
+                        android:background="@color/gray"/>
+                    <LinearLayout
+                        android:id="@+id/lnr_order_out"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/img_order_out"
+
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/circle_order_step"
+                            />
+
+                        <TextView
+                            style="@style/textview"
+                            android:layout_marginStart="16dp"
+                            android:text="Order Out for Delivery"
+
+                            android:textSize="@dimen/_12sdp"/>
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/view_order_out_delivery"
+                        android:layout_width="2dp"
+                        android:layout_height="24dp"
+                        android:layout_marginStart="11dp"
+                        android:background="@color/gray" />
+                    <LinearLayout
+                        android:id="@+id/lnr_order_delivered"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/img_order_delivered"
+
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/circle_order_step"
+                            />
+
+                        <TextView
+                            style="@style/textview"
+                            android:layout_marginStart="16dp"
+                            android:text="Delivered"
+
+                            android:textSize="@dimen/_12sdp"/>
+                    </LinearLayout>
+
+                    <View
+                        android:id="@+id/view_order_delivered"
                         android:layout_width="2dp"
                         android:layout_height="24dp"
                         android:layout_marginStart="11dp"
@@ -168,6 +231,7 @@
 
                     <!-- Return -->
                     <LinearLayout
+                        android:id="@+id/lnr_order_returned"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -181,12 +245,13 @@
                         <TextView
                             style="@style/textview"
                             android:layout_marginStart="16dp"
-                            android:text="Return, 29 Oct 2024"
+                            android:text="Return"
 
                             android:textSize="@dimen/_12sdp"/>
                     </LinearLayout>
 
                     <View
+                        android:id="@+id/view_order_retured"
                         android:layout_width="2dp"
                         android:layout_height="24dp"
                         android:layout_marginStart="11dp"
@@ -194,6 +259,7 @@
 
                     <!-- Refund -->
                     <LinearLayout
+                        android:id="@+id/lnr_order_refund"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
@@ -207,7 +273,7 @@
                         <TextView
                             style="@style/textview"
                             android:layout_marginStart="16dp"
-                            android:text="Refund, 29 Oct 2024"
+                            android:text="Refund"
 
                             android:textSize="@dimen/_12sdp"/>
                     </LinearLayout>
@@ -240,7 +306,7 @@
                     android:id="@+id/customerNameText"
                     style="@style/textview"
                     android:layout_marginTop="16dp"
-                    android:text="Sai Kumar"
+                    android:text=""
 
                     android:textSize="@dimen/_12sdp"/>
 
@@ -332,6 +398,7 @@
                         android:textSize="@dimen/_12sdp"/>
 
                     <TextView
+                        android:visibility="gone"
                         style="@style/textview"
                         android:text="Saved ₹5"
                         android:textColor="#4CAF50"
@@ -339,8 +406,9 @@
                         android:layout_marginEnd="8dp"/>
 
                     <TextView
+                        android:id="@+id/txt_total_amount"
                         style="@style/textview"
-                        android:text="₹62"
+                        android:text=""
 
                         android:textSize="@dimen/_12sdp"/>
                 </LinearLayout>
@@ -362,8 +430,9 @@
                         android:textSize="@dimen/_12sdp"/>
 
                     <TextView
+                        android:id="@+id/txt_delivery_charges"
                         style="@style/textview"
-                        android:text="₹30"
+                        android:text="₹0"
 
                         android:textSize="@dimen/_12sdp"/>
                 </LinearLayout>
@@ -372,6 +441,7 @@
                 <TextView
                     style="@style/textview"
                     android:layout_marginTop="4dp"
+                    android:visibility="gone"
                     android:text="Shop for ₹69 more to get free delivery"
                     android:textColor="#FF4444"
                     android:textSize="@dimen/_11sdp"/>
@@ -401,8 +471,9 @@
                         android:textStyle="bold"/>
 
                     <TextView
+                        android:id="@+id/txt_grand_total"
                         style="@style/textview"
-                        android:text="₹92"
+                        android:text=""
 
                         android:textSize="@dimen/_14sdp"
                         android:textStyle="bold"/>
