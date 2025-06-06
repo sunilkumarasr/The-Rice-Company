@@ -26,6 +26,8 @@ data class Order(
     @SerializedName("slot_date"           ) var slotDate          : String?           = null,
     @SerializedName("start_time"          ) var startTime         : String?           = null,
     @SerializedName("end_time"            ) var endTime           : String?           = null,
+    @SerializedName("longitude"            ) var longitude           : String?           = null,
+    @SerializedName("latitude"            ) var latitude           : String?           = null,
     @SerializedName("products"            ) var products          : ArrayList<OrderProduct> = arrayListOf()
 )
 

@@ -63,6 +63,7 @@ var user_id=""
         productsAdapter=ProductsAdapter()
         topSellingAdapter=ProductsAdapter()
 
+        binding.txtName.setText("${MyPref.getName(requireActivity().applicationContext)}")
         productsAdapter.setListener(this)
         if(!NetWorkConection.isNEtworkConnected(requireActivity()))
         {

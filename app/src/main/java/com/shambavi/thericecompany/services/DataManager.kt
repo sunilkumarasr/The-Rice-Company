@@ -100,9 +100,11 @@ class DataManager private constructor() {
                    state: String,
                    country: String,
                    zipcode: String,
+                   laitude: String,
+                   longitude: String,
                    ) {
         val apiService = retrofit.create(ApiService::class.java)
-        val call = apiService.addAddress(APIKEY,mobile,user_id,full_name,type,house_no,floor,landmark,city_town,state,country,zipcode)
+        val call = apiService.addAddress(APIKEY,mobile,user_id,full_name,type,house_no,floor,landmark,city_town,state,country,zipcode,laitude,longitude)
         call.enqueue(cb)
     }
 

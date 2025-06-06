@@ -291,6 +291,8 @@ data class AddressData (
     @SerializedName("created_by" ) var createdBy : String? = null,
     @SerializedName("updated_at" ) var updatedAt : String? = null,
     @SerializedName("updated_by" ) var updatedBy : String? = null,
+    @SerializedName("latitude" ) var latitude : String? = null,
+    @SerializedName("longitude" ) var longitude : String? = null,
     @SerializedName("status"     ) var status    : String? = null,
     var isSelected    : Boolean = false,
 

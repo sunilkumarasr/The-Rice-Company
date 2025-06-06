@@ -1,8 +1,12 @@
 package com.shambavi.thericecompany.Logins
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
@@ -10,6 +14,10 @@ import androidx.core.view.WindowInsetsCompat
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.OTPResponse
 import com.gadiwalaUser.services.DataManager
+import com.google.android.libraries.places.api.Places
+import com.google.android.libraries.places.api.model.Place
+import com.google.android.libraries.places.widget.Autocomplete
+import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.DashBoardActivity
 import com.shambavi.thericecompany.Config.ViewController
@@ -40,10 +48,14 @@ class AddAddressActivity : AppCompatActivity() {
     var floor=""
     var area=""
 
+    var lattitude=""
+    var longitude=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        val  apiKey=getString(R.string.MAP_KEY)
+        Places.initialize(applicationContext, apiKey)
 
         user_id=MyPref.getUser(applicationContext).toString()
         mobile=MyPref.getMobile(applicationContext).toString()
@@ -91,6 +103,116 @@ class AddAddressActivity : AppCompatActivity() {
             addAddress()
         }
     }
+    fun locationRequest()
+    {
+        val fields = listOf(
+            Place.Field.NAME,
+            Place.Field.ADDRESS,
+            Place.Field.LAT_LNG,
+            Place.Field.LOCATION,
+            Place.Field.CURBSIDE_PICKUP,
+            Place.Field.ADDRESS_COMPONENTS)
+
+        val intent = Autocomplete.IntentBuilder(AutocompleteActivityMode.FULLSCREEN, fields)
+            .setHint("Search Your Location")
+            // .setLocationRestriction(rectangleBounds)
+
+            .build(this)
+
+        startAutocomplete.launch(intent)
+    }
+    var pickUpCity=""
+    val TAG="UpdateAddressActivity"
+    private val startAutocomplete =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+
+            Log.e(TAG, "User canceled autocomplete ${result.resultCode}")
+
+            if (result.resultCode == Activity.RESULT_OK) {
+                val intent = result.data
+                if (intent != null) {
+                    val place = Autocomplete.getPlaceFromIntent(intent)
+                    var isCityFound=false;
+
+
+                    pickUpCity=""
+                    // binding.editPickLocation.setText(place.addressComponents.toString())
+
+                    var street=""
+                    var city=""
+                    var state=""
+                    var zipCode=""
+                    var addressBuffer=StringBuilder(place.name+",")
+
+                    place.addressComponents.asList().forEach {it->
+                        val types =(it.types) as ArrayList<String>
+
+
+                        if (types.contains("landmark") || types.contains("premise")) {
+                            street = it.name;
+                            addressBuffer.append(street+", ")
+                        } else if (types.contains("sublocality_level_1")) {
+                            state = it.name;
+                            binding.editState.setText("$state")
+                            addressBuffer.append(state+", ")
+                        }else if (types.contains("locality")) {
+                            city = it.name;
+                            addressBuffer.append(city+", ")
+                        } else if (types.contains("administrative_area_level_1")) {
+                            state = it.name;
+                            addressBuffer.append(state+", ")
+                        } else if (types.contains("postal_code")) {
+                            zipCode = it.name;
+                            addressBuffer.append(zipCode)
+                        }else if (types.contains("country")) {
+                            country = it.name;
+                            addressBuffer.append(country)
+                        }
+                    }
+                    if(city.isNotEmpty())
+                        binding.editCity.setText("$city")
+
+                    if(state.isNotEmpty())
+                        binding.editState.setText("$state")
+
+                    if(zipCode.isNotEmpty())
+                        binding.editZipcode.setText("$zipCode")
+
+                    if(street.isNotEmpty())
+                        binding.editLandmark.setText("$street")
+                    if(country.isNotEmpty())
+                        binding.editCountry.setText("$country")
+
+                    if(street.isNotEmpty())
+                        binding.editLandmark.setText("$street")
+
+                    lattitude= place.latLng?.latitude.toString()
+                    longitude= place.latLng?.longitude.toString()
+                    // binding.editPickLocation.setText(addressBuffer.toString())
+
+                    place!!.addressComponents.asList().forEach {
+                        if(isCityFound)
+                        {
+                            return@forEach
+                        }
+                        it.types.forEach {locality->
+                            if(locality.equals("locality"))
+                            {
+                                pickUpCity=it.name
+                                isCityFound=true
+                            }
+                        }
+                        Log.e("Place Location","Location ${it}")
+                    }
+                    Log.e(
+                        TAG, "Place: ${place.name}, ${place.address} ${place.attributions}"
+                    )
+                }
+            } else if (result.resultCode == Activity.RESULT_CANCELED) {
+                // The user canceled the operation.
+                Log.e(TAG, "User canceled autocomplete")
+            }
+        }
     fun addAddress() {
         val dialog= CustomDialog(applicationContext)
         // Obtain the DataManager instance
@@ -145,6 +267,6 @@ class AddAddressActivity : AppCompatActivity() {
         }
 
         // Call the sendOtp function in DataManager
-        dataManager.addAddress(otpCallback,mobile,user_id,full_name,type,flat,floor,area+","+landmark,city,state,country,zipcode)
+        dataManager.addAddress(otpCallback,mobile,user_id,full_name,type,flat,floor,area+","+landmark,city,state,country,zipcode,lattitude,longitude)
     }
 }

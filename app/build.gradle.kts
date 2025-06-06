@@ -75,4 +75,5 @@ dependencies {
     implementation ("com.google.android.flexbox:flexbox:3.0.0")
     implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
 
+    implementation ("com.google.android.libraries.places:places:4.0.0")
 }

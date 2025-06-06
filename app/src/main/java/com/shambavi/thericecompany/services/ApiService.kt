@@ -51,7 +51,9 @@ interface ApiService {
                    @Field("city_town") city: String,
                    @Field("state") state: String,
                    @Field("country") country: String,
-                   @Field("zip_code") zipcode: String
+                   @Field("zip_code") zipcode: String,
+                   @Field("latitude") latitude: String,
+                   @Field("longitude") longitude: String
     ): Call<OTPResponse>
 
     @FormUrlEncoded

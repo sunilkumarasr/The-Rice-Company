@@ -55,6 +55,8 @@
     <string name="no_address">Not yet added any address</string>
     <string name="no_order_placed">No Orders Placed Yet</string>
     <string name="continue_to_shop">Continue to Shopping</string>
+    <string name="pick_address">Pick Address</string>
+    <string name="MAP_KEY">AIzaSyBdf1LlSGswAxUo9S0UNptfSRcDtJRdsDU</string>
 
 
 </resources>
