@@ -53,6 +53,7 @@ class LoginActivity : AppCompatActivity() {
 
         binding.linearRegister.setOnClickListener {
            startActivity(Intent(this@LoginActivity, RegisterActivity::class.java))
+            finish()
         }
     }
 

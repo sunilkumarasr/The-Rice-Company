@@ -87,6 +87,7 @@ class SplashActivity : AppCompatActivity() {
                 else
                 startActivity(Intent(this@SplashActivity, DashBoardActivity::class.java))
             }
+            finish()
         }, 3000)
     }
 

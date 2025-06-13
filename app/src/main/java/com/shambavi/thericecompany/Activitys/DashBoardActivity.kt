@@ -1,5 +1,6 @@
 package com.shambavi.thericecompany.Activitys
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -13,6 +14,7 @@ import com.shambavi.thericecompany.home.HomeFragment
 import com.shambavi.thericecompany.Fragments.CartFragment
 import com.shambavi.thericecompany.orders.OrdersFragment
 import com.shambavi.thericecompany.Fragments.ProfileFragment
+import com.shambavi.thericecompany.Logins.LoginActivity
 import com.shambavi.thericecompany.categories.CategoriesFragment
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityDashBoardBinding
@@ -93,6 +95,13 @@ class DashBoardActivity : AppCompatActivity() {
         transaction.commit()
     }
 
+    fun finishAll()
+    {
+        val intent= Intent(applicationContext, LoginActivity::class.java)
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        startActivity(intent)
+        finish()
+    }
     override fun onBackPressed() {
         super.onBackPressed()
         finishAffinity()

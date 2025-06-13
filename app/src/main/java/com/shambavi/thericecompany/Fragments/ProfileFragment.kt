@@ -7,9 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import com.bookiron.itpark.utils.MyPref
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.shambavi.thericecompany.Activitys.AboutUsActivity
 import com.shambavi.thericecompany.Activitys.ContactUsActivity
+import com.shambavi.thericecompany.Activitys.DashBoardActivity
 import com.shambavi.thericecompany.Activitys.EnquiryFormActivity
 import com.shambavi.thericecompany.Activitys.FAQSActivity
 import com.shambavi.thericecompany.Activitys.HelpAndSupportActivity
@@ -18,6 +20,8 @@ import com.shambavi.thericecompany.Activitys.PrivacyPolicyActivity
 import com.shambavi.thericecompany.Activitys.ProductCancelationActivity
 import com.shambavi.thericecompany.Activitys.SavedAddressActivity
 import com.shambavi.thericecompany.Activitys.TermsAndConditionsActivity
+import com.shambavi.thericecompany.Config.Preferences
+import com.shambavi.thericecompany.Logins.LoginActivity
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.cart.AddressListActivity
 import com.shambavi.thericecompany.databinding.FragmentHomeBinding
@@ -114,6 +118,9 @@ class ProfileFragment : Fragment() ,View.OnClickListener {
         }
         buttonOk.setOnClickListener {
             bottomSheetDialog.dismiss()
+            MyPref.clear(requireActivity().applicationContext)
+
+            (activity as DashBoardActivity).finishAll()
         }
         bottomSheetDialog.show()
     }
