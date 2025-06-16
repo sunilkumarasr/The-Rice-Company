@@ -3,7 +3,6 @@
     android:layout_width="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="@dimen/_5sdp"
-    android:maxWidth="@dimen/_160sdp"
     android:layout_height="wrap_content">
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -22,12 +21,18 @@
             android:layout_width="@dimen/_150sdp"
             android:layout_height="100dp"
             android:background="@drawable/round_light_gray">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="12dp"
+                android:src="@drawable/item1"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:minHeight="@dimen/_22sdp"
                 android:minWidth="@dimen/_60sdp"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:background="@drawable/round_left_edge_only">
@@ -37,15 +42,11 @@
                     android:layout_height="wrap_content"
                     android:gravity="center_horizontal"
                     android:text="30% Off"
+                    android:layout_marginRight="@dimen/_5sdp"
                     android:textSize="@dimen/_12sdp"
                     android:textColor="@color/white"
                     android:fontFamily="@font/poppins"/>
             </LinearLayout>
-            <androidx.appcompat.widget.AppCompatImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="12dp"
-                android:src="@drawable/item1"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

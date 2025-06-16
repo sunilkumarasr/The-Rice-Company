@@ -92,6 +92,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
                         if(model.products.size>0) {
                             productsAdapter.productList.clear()
                             productsAdapter.productList.addAll(model.products)
+                            productsAdapter.productList.addAll(model.products)
                             productsAdapter.notifyDataSetChanged()
 
                         }else

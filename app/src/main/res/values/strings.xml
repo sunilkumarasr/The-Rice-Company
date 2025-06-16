@@ -21,7 +21,7 @@
     <string name="saved_text">Saved ₹5</string>
     <string name="free_delivery_msg">Shop for ₹80 more to get free delivery</string>
     <string name="select_payment">Select Payment Option</string>
-    <string name="change_slot">Change slot</string>
+    <string name="change_slot">Select slot</string>
     <string name="delivery_date_msg">If you want choose delivery date</string>
     <string name="grand_total">Grand Total</string>
     <string name="remove">Remove</string>
@@ -55,7 +55,7 @@
     <string name="no_address">Not yet added any address</string>
     <string name="no_order_placed">No Orders Placed Yet</string>
     <string name="continue_to_shop">Continue to Shopping</string>
-    <string name="pick_address">Pick Address</string>
+    <string name="pick_address">Delivery Address</string>
     <string name="MAP_KEY">AIzaSyBdf1LlSGswAxUo9S0UNptfSRcDtJRdsDU</string>
 
 

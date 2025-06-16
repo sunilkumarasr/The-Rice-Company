@@ -113,8 +113,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:spanCount="2"
-            tools:itemCount="4"
-            android:layout_marginHorizontal="@dimen/_8sdp"
+
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/layout_home_product_item"
             />

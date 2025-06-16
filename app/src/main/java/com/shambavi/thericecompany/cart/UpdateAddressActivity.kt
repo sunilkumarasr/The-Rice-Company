@@ -109,7 +109,7 @@ class UpdateAddressActivity : AppCompatActivity() {
 
             if(lattitude.isEmpty()||longitude.isEmpty())
             {
-                Utils.showMessage("Please pick address",applicationContext)
+                Utils.showMessage("Please Delivery Address",applicationContext)
 
                 return@setOnClickListener
             }
