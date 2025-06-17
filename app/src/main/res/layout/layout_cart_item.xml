@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <androidx.cardview.widget.CardView
         android:id="@+id/cardProduct"
@@ -87,43 +87,46 @@ android:layout_margin="@dimen/_5sdp"
                     android:textSize="@dimen/_12sdp"
                     />
                 <View android:layout_width="wrap_content"
-                    android:layout_height="0dp" android:layout_weight="1"/>
-                <LinearLayout
-                    android:id="@+id/quantityLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/quantity_background"
-                    android:orientation="horizontal"
-                    android:padding="4dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
 
-                    <ImageButton
-                        android:id="@+id/btnMinus"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/ic_minus"
-                        />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/quantityLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/quantity_background"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:layout_gravity="right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/tvQuantity"
-                        style="@style/textview"
-                        android:minWidth="@dimen/_30sdp"
-                        android:gravity="center"
-                        android:text=""
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_14sdp"
-                        android:textStyle="bold" />
+                <ImageButton
+                    android:id="@+id/btnMinus"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_minus"
+                    />
 
-                    <ImageButton
-                        android:id="@+id/btnPlus"
-                        android:layout_width="28dp"
-                        android:layout_height="28dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/ic_plus"
-                        />
-                </LinearLayout>
+                <TextView
+                    android:id="@+id/tvQuantity"
+                    style="@style/textview"
+                    android:minWidth="@dimen/_30sdp"
+                    android:gravity="center"
+                    android:text=""
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    android:textStyle="bold" />
+
+                <ImageButton
+                    android:id="@+id/btnPlus"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_plus"
+                    />
             </LinearLayout>
         </LinearLayout>
 
@@ -147,6 +150,7 @@ android:layout_margin="@dimen/_5sdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 
+        android:visibility="gone"
         android:orientation="horizontal"
         android:layout_marginVertical="@dimen/_8sdp"
 

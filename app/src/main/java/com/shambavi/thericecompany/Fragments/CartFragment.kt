@@ -86,7 +86,7 @@ class CartFragment : Fragment() ,ProductListener{
         cartAdapter=CartAdapter()
         cartAdapter.setListener(this)
         binding.recyclerCart.layoutManager=
-            LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL,false)
+            LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL,false)
         binding.recyclerCart.adapter=cartAdapter
         if(!NetWorkConection.isNEtworkConnected(requireActivity()))
         {
@@ -308,8 +308,8 @@ class CartFragment : Fragment() ,ProductListener{
         totalAmount=0
         var discountedAmount=0
         cartAdapter.cartList.forEach {
-            totalAmount=totalAmount+Integer.parseInt(it.ourPrice)
-            discountedAmount=discountedAmount+Integer.parseInt(it.mrpPrice)
+            totalAmount=totalAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
+            discountedAmount=discountedAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
         }
 
         binding.tvDiscountedAmount.text="${Utils.RUPEE_SYMBOL} $totalAmount"

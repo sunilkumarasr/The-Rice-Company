@@ -54,7 +54,7 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
         }
         cartAdapter=CartAdapter()
         cartAdapter.setListener(this)
-        binding.recyclerCart.layoutManager=LinearLayoutManager(applicationContext,LinearLayoutManager.HORIZONTAL,false)
+        binding.recyclerCart.layoutManager=LinearLayoutManager(applicationContext,LinearLayoutManager.VERTICAL,false)
         binding.recyclerCart.adapter=cartAdapter
         if(!NetWorkConection.isNEtworkConnected(this@CheckOutActivity))
         {
@@ -320,8 +320,8 @@ var totalAmount=0
          totalAmount=0
         var discountedAmount=0
         cartAdapter.cartList.forEach {
-            totalAmount=totalAmount+Integer.parseInt(it.ourPrice)
-            discountedAmount=discountedAmount+Integer.parseInt(it.mrpPrice)
+            totalAmount=totalAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
+            discountedAmount=discountedAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
         }
 
         binding.tvDiscountedAmount.text="${Utils.RUPEE_SYMBOL} $totalAmount"

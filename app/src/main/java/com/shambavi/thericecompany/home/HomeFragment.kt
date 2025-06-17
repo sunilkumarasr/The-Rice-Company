@@ -326,7 +326,7 @@ var user_id=""
                     //model?.Message?.let { Utils.showMessage(it,requireActivity()) }
 
                     getProducts()
-
+                    getTopSellProducts()
 
                 } else {
                     // Handle error
@@ -367,6 +367,7 @@ var user_id=""
 
 
                     getProducts()
+                    getTopSellProducts()
                     println("OTP Sent successfully: ${model?.Message}")
                 } else {
                     // Handle error
@@ -406,6 +407,7 @@ var user_id=""
 
 
                             getProducts()
+                         getTopSellProducts()
                          println("OTP Sent successfully: ${model?.Message}")
                      } else {
                          // Handle error

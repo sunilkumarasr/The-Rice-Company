@@ -29,12 +29,19 @@
             android:textSize="@dimen/_16sdp"
             android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_below="@+id/toolbar"
+        android:layout_above="@+id/btnPayment"
+        >
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_below="@+id/toolbar"
-        android:layout_above="@+id/btnPayment"
         >
         <TextView
             android:id="@+id/txt_no_data"
@@ -236,6 +243,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:visibility="gone"
                             android:layout_marginTop="8dp">
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -262,6 +270,7 @@
                         <TextView
                             style="@style/textview"
                             android:layout_marginTop="8dp"
+                            android:visibility="gone"
                             android:text="Shop for ₹80 more to get free delivery"
                             android:textColor="@color/red" />
                         <LinearLayout
@@ -290,7 +299,7 @@
             </LinearLayout>
         </ScrollView>
     </LinearLayout>
-
+    </androidx.core.widget.NestedScrollView>
 
     <!-- Payment Button -->
     <com.google.android.material.button.MaterialButton

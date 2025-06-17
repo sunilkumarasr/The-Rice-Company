@@ -50,7 +50,7 @@ class SearchActivity : AppCompatActivity(), ProductListener {
         binding.recyclerProducts.adapter=productsAdapter
         user_id=MyPref.getUser(applicationContext)
 
-        inits()
+
         if(!NetWorkConection.isNEtworkConnected(this@SearchActivity))
         {
             AlertDialog.Builder(this@SearchActivity)
@@ -58,7 +58,7 @@ class SearchActivity : AppCompatActivity(), ProductListener {
                 .setMessage("No Network available")
                 .show()
         }
-
+        inits()
     }
 
     var search_key="key"

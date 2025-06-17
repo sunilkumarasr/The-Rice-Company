@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.denzcoskun.imageslider.models.SlideModel
 import com.gadiwalaUser.Models.BannersMainRes
 import com.gadiwalaUser.Models.Category
@@ -51,6 +52,8 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>()
         holder.binding.txtMarketPrice.text="${Utils.RUPEE_SYMBOL} ${obj.marketPrice}"
         holder.binding.txtProductCategory.text="${obj.categoryIdName}"
         holder.binding.tvQuantity.setText("${obj.quantity}")
+        Glide.with(holder.binding.img.context).load(ROOT_URL+obj.image).placeholder(R.drawable.item1).into(holder.binding.img)
+
         holder.binding.txtProductName.setOnClickListener {
             val ctx=holder.binding.txtProductName.context
             val intent=Intent(ctx,ProductDetailsActivity::class.java)
@@ -74,7 +77,7 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>()
         holder.binding.btnPlus.setOnClickListener {
             var qnty=Integer.parseInt(productList.get(position).quantity)
             qnty=qnty+1
-            holder.binding.tvQuantity.setText("${obj.quantity}")
+            holder.binding.tvQuantity.setText("${qnty}")
             productListner. updateProduct(productList.get(position).cartId.toString(),qnty)
         }
         holder.binding.btnMinus.setOnClickListener {
@@ -82,10 +85,10 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>()
             qnty=qnty-1
 
             if(qnty==0) {
-                productListner.updateProduct(productList.get(position).cartId.toString(), qnty)
+                productListner.deleteProduct(productList.get(position).cartId.toString())
             }
                 else {
-                holder.binding.tvQuantity.setText("${obj.quantity}")
+                holder.binding.tvQuantity.setText("${qnty}")
                 productListner.updateProduct(productList.get(position).cartId.toString(), qnty)
             }
         }

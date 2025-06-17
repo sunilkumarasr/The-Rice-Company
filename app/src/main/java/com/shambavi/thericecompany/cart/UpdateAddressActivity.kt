@@ -193,7 +193,7 @@ val TAG="UpdateAddressActivity"
                     // binding.editPickLocation.setText(place.addressComponents.toString())
 
                     var street=""
-                    var city=""
+                    var city2=""
                     var state=""
                     var zipCode=""
                     var addressBuffer=StringBuilder(place.name+",")
@@ -210,8 +210,8 @@ val TAG="UpdateAddressActivity"
                             binding.editState.setText("$state")
                             addressBuffer.append(state+", ")
                         }else if (types.contains("locality")) {
-                            city = it.name;
-                            addressBuffer.append(city+", ")
+                            city2 = it.name;
+                            addressBuffer.append(city2+", ")
                         } else if (types.contains("administrative_area_level_1")) {
                             state = it.name;
                             addressBuffer.append(state+", ")
@@ -223,6 +223,7 @@ val TAG="UpdateAddressActivity"
                             addressBuffer.append(country)
                         }
                     }
+                    city=city2;
                     if(city.isNotEmpty())
                     binding.editCity.setText("$city")
 
