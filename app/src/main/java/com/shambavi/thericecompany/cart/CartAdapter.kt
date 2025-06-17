@@ -47,8 +47,13 @@ var cart=cartList.get(position)
         }
         holder.binding.btnMinus.setOnClickListener {
             var qnty=Integer.parseInt(cart.quantity)
-            holder.binding.tvQuantity.text="$qnty"
-            cart.cartId?.let { it1 -> productListener.updateProduct(it1,qnty-1) }
+            if(qnty==0)
+            {
+                cart.cartId?.let { it1 -> productListener.deleteProduct(it1)}
+            } else {
+                    holder.binding.tvQuantity.text = "$qnty"
+                    cart.cartId?.let { it1 -> productListener.updateProduct(it1, qnty - 1) }
+                }
         }
         holder.binding.btnPlus.setOnClickListener {
             var qnty=Integer.parseInt(cart.quantity)

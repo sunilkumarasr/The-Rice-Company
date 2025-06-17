@@ -120,10 +120,82 @@ class CategoryProductsActivity : AppCompatActivity(),ProductListener {
 
     }
 
-    override fun deleteProduct(product_id: String) {
+    override fun deleteProduct(cart_id: String)  {
+
+        val dialog= CustomDialog(this@CategoryProductsActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@CategoryProductsActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<MainResponse> {
+            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: MainResponse? = response.body()
+
+                    // Handle the response
+
+                    //model?.Message?.let { Utils.showMessage(it,requireActivity()) }
+
+                    getProducts()
+
+
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.deleteProduct(otpCallback, user_id,cart_id  )
     }
 
-    override fun updateProduct(product_id: String, qnty: Int) {
+    override fun updateProduct(cart_id: String, qnty: Int) {
+
+        val dialog= CustomDialog(this@CategoryProductsActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@CategoryProductsActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<MainResponse> {
+            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: MainResponse? = response.body()
+
+                    // Handle the response
+
+                    //model?.message?.let { Utils.showMessage(it,requireActivity()) }
+
+
+                    getProducts()
+                    println("OTP Sent successfully: ${model?.Message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.updateCart(otpCallback,user_id ,cart_id,qnty.toString())
     }
     fun addCart(product_id: String, attribution_id: String)
     {

@@ -207,6 +207,45 @@
                         android:textColor="@color/colorPrimary"
                         android:fontFamily="@font/poppins_semibold"/>
                 </LinearLayout>
+
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/quantityLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/quantity_background"
+                    android:orientation="horizontal"
+                    android:padding="4dp"
+                    android:layout_gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageButton
+                        android:id="@+id/btnMinus"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_minus"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvQuantity"
+                        style="@style/textview"
+                        android:minWidth="@dimen/_30sdp"
+                        android:gravity="center"
+                        android:text=""
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp"
+                        android:textStyle="bold" />
+
+                    <ImageButton
+                        android:id="@+id/btnPlus"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_plus"
+                        />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

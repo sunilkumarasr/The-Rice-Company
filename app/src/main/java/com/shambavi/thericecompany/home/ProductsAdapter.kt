@@ -50,6 +50,7 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>()
         holder.binding.txtOurPrice.text="${Utils.RUPEE_SYMBOL} ${obj.ourPrice}"
         holder.binding.txtMarketPrice.text="${Utils.RUPEE_SYMBOL} ${obj.marketPrice}"
         holder.binding.txtProductCategory.text="${obj.categoryIdName}"
+        holder.binding.tvQuantity.setText("${obj.quantity}")
         holder.binding.txtProductName.setOnClickListener {
             val ctx=holder.binding.txtProductName.context
             val intent=Intent(ctx,ProductDetailsActivity::class.java)
@@ -60,15 +61,33 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>()
         if(obj.cartId.isEmpty())
         {
             holder.binding.lnrAdd.visibility=View.VISIBLE
-            holder.binding.txtAddedToCart.visibility=View.GONE
+            holder.binding.quantityLayout.visibility=View.GONE
         }else
         {
             holder.binding.lnrAdd.visibility=View.GONE
-            holder.binding.txtAddedToCart.visibility=View.VISIBLE
+            holder.binding.quantityLayout.visibility=View.VISIBLE
 
         }
         holder.binding.lnrAdd.setOnClickListener {
             productListner.addProduct(productList.get(position).id.toString(),productList.get(position).attributeId.toString())
+        }
+        holder.binding.btnPlus.setOnClickListener {
+            var qnty=Integer.parseInt(productList.get(position).quantity)
+            qnty=qnty+1
+            holder.binding.tvQuantity.setText("${obj.quantity}")
+            productListner. updateProduct(productList.get(position).cartId.toString(),qnty)
+        }
+        holder.binding.btnMinus.setOnClickListener {
+            var qnty=Integer.parseInt(productList.get(position).quantity)
+            qnty=qnty-1
+
+            if(qnty==0) {
+                productListner.updateProduct(productList.get(position).cartId.toString(), qnty)
+            }
+                else {
+                holder.binding.tvQuantity.setText("${obj.quantity}")
+                productListner.updateProduct(productList.get(position).cartId.toString(), qnty)
+            }
         }
         holder.binding.root.setOnClickListener {
             val ctx=holder.binding.txtProductName.context
