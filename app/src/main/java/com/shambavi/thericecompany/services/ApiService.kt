@@ -291,4 +291,15 @@ interface ApiService {
         @Field("title") searchKye: String,
 
         ): Call<ProductMainRes>
+    @FormUrlEncoded
+    @POST("api/rating")
+    fun setRating(
+        @Field("api_key") api_key: String,
+        @Field("user_id") user_id: String,
+        @Field("product_id") product_id: String,
+
+        @Field("order_id")  order_id: String,
+        @Field("rating")   rating: String,
+
+        ): Call<MainResponse>
 }

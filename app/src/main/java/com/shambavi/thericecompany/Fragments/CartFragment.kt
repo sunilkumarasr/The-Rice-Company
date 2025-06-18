@@ -302,6 +302,10 @@ class CartFragment : Fragment() ,ProductListener{
         updateCart(cart_id,qnty.toString())
     }
 
+    override fun onProductClick(product_id: String) {
+        TODO("Not yet implemented")
+    }
+
     var totalAmount=0
     fun calculateAmount()
     {

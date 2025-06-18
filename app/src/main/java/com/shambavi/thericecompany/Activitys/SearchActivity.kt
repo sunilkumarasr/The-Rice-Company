@@ -1,5 +1,7 @@
 package com.shambavi.thericecompany.Activitys
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -8,6 +10,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -27,6 +30,7 @@ import com.shambavi.thericecompany.databinding.ActivityNotificationsBinding
 import com.shambavi.thericecompany.databinding.ActivitySearchBinding
 import com.shambavi.thericecompany.home.ProductsAdapter
 import com.shambavi.thericecompany.listeners.ProductListener
+import com.shambavi.thericecompany.products.ProductDetailsActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -60,7 +64,20 @@ class SearchActivity : AppCompatActivity(), ProductListener {
         }
         inits()
     }
+    val startProductDetailsForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data = result.data
+           searchProducts(search_key)
+        } else {
+            // Log.d("MyActivity", "Result Canceled or Error: ${result.resultCode}")
+        }
+    }
+    override fun onProductClick(productId: String) {
+        val intent= Intent(this@SearchActivity, ProductDetailsActivity::class.java)
+        intent.putExtra("product_id",productId)
 
+        startProductDetailsForResult.launch(intent)
+    }
     var search_key="key"
     private fun inits() {
 

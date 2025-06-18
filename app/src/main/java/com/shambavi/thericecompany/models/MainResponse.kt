@@ -110,7 +110,8 @@ data class Product (
     @SerializedName("discount_prices"      ) var discountPrices    : String?               = null,
     @SerializedName("weight_class_id"      ) var weightClassId     : String?               = null,
     @SerializedName("cart_id"              ) var cartId            : String               = "",
-    @SerializedName("quantity"             ) var quantity          : String              = ""
+    @SerializedName("quantity"             ) var quantity          : String             = "",
+    @SerializedName("user_rating"             ) var user_rating          : String              = ""
 
 )
 data class Attributes (
@@ -241,7 +242,8 @@ data class ProductDetails (
     @SerializedName("updated_by"         ) var updatedBy         : String? = null,
     @SerializedName("cart_id"              ) var cart_id            : String             = "",
     @SerializedName("quantity"              ) var quantity            : String              = "",
-    @SerializedName("status"             ) var status            : String? = null
+    @SerializedName("status"             ) var status            : String? = null,
+    @SerializedName("average_rating"             ) var user_rating            : String = ""
 
 )
 data class ProductImages (

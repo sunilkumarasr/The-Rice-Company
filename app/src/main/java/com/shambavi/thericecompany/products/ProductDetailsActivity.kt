@@ -56,6 +56,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             }
 
             binding.backButton.setOnClickListener {
+                setResult(RESULT_OK)
                 finish()
             }
 
@@ -70,6 +71,9 @@ class ProductDetailsActivity : AppCompatActivity() {
             }
             binding.btnMinus.setOnClickListener {
                quantity=quantity-1;
+                if(quantity==1)
+                    deleteCart()
+                    else
                 updateCart()
             }
             binding.btnPlus.setOnClickListener {
@@ -82,6 +86,48 @@ class ProductDetailsActivity : AppCompatActivity() {
             }
 
         }
+
+    private fun deleteCart() {
+
+        val dialog= CustomDialog(this@ProductDetailsActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@ProductDetailsActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<MainResponse> {
+            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: MainResponse? = response.body()
+
+                    // Handle the response
+
+                    //model?.Message?.let { Utils.showMessage(it,requireActivity()) }
+
+                    binding.btnAddToCart.visibility= View.VISIBLE
+                    binding.lnrViewcart.visibility= View.GONE
+
+
+
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.deleteProduct(otpCallback, user_id,cart_id  )
+
+    }
 
     fun setData()
     {
@@ -187,6 +233,13 @@ class ProductDetailsActivity : AppCompatActivity() {
                         binding.webviewDescription.loadData("${productDetails!!.descriptions}","text/html","utf-8")
                         binding.txtProductDescription.text="${productDetails!!.descriptions}"
 
+                        if(model.data!!.productDetails!!.user_rating!!.isEmpty()||model.data!!.productDetails!!.user_rating!!.trim().equals("0"))
+                            binding.lnrRating.visibility=View.INVISIBLE
+                        else {
+                            binding.lnrRating.visibility=View.VISIBLE
+
+                            binding.txtRating.setText("${model.data!!.productDetails!!.user_rating}")
+                        }
                         model.data!!.productAttribute.forEach {
                            chipList!!.add(ChipPrices(it.weight.toString(),it.id.toString(),false))
                         }
@@ -310,6 +363,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                        binding.tvQuantity.text="$quantity"
                     }
 
+                    //getProductDetails()
                     println("OTP Sent successfully: ${model?.Message}")
                 } else {
                     // Handle error

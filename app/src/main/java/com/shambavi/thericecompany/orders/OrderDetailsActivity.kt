@@ -4,22 +4,28 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bookiron.itpark.utils.MyPref
 import com.bumptech.glide.Glide
+import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.OrderMainResponse
 import com.gadiwalaUser.services.DataManager
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityOrderDetailsBinding
+import com.shambavi.thericecompany.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class OrderDetailsActivity : AppCompatActivity() {
     private var orderId: String? = null
+    private var ORDER_ID_NOT_NUMBER: String = ""
     private var currentRating: Float = 0f
+    lateinit var orderProductAdapter: OrderProductAdapter
     private lateinit var binding: ActivityOrderDetailsBinding
-
+var user_id=""
     companion object {
         const val EXTRA_ORDER_ID = "order_id"
     }
@@ -29,6 +35,12 @@ class OrderDetailsActivity : AppCompatActivity() {
         binding=ActivityOrderDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         orderId = intent.getStringExtra(EXTRA_ORDER_ID)
+        user_id= MyPref.getUser(applicationContext)
+        orderProductAdapter=OrderProductAdapter()
+        orderProductAdapter.setListener(this)
+        binding.recyclerProducts.layoutManager=LinearLayoutManager(applicationContext)
+        binding.recyclerProducts.adapter=orderProductAdapter
+
         setupUI()
         getOrderDetails()
         setupListeners()
@@ -52,7 +64,7 @@ class OrderDetailsActivity : AppCompatActivity() {
             // Order ID
             orderIdText.text = "Order ID: ${order.orderId}"
 
-            if(order.products.size>0) {
+           /* if(order.products.size>0) {
                 Glide.with(productImage)
                     .load(ROOT_URL + order.products.get(0).productImage)
                     .placeholder(R.drawable.item1)
@@ -66,7 +78,7 @@ class OrderDetailsActivity : AppCompatActivity() {
 
             productWeightText.text = order.qty
 
-            priceText.text = "₹ ${order.amount}"
+            priceText.text = "₹ ${order.amount}"*/
 
             // Order Status Timeline
             //displayOrderTimeline(orderDetails.orderStatus)
@@ -249,9 +261,13 @@ class OrderDetailsActivity : AppCompatActivity() {
                 dialog.closeDialog()
                 if (response.isSuccessful) {
                     val model: OrderMainResponse? = response.body()
-
+                    ORDER_ID_NOT_NUMBER= model!!.orders.get(0).orderId.toString()
                     displayOrderDetails(model!!.orders.get(0))
                     println("OTP Sent successfully: ${model?.message}")
+                    orderProductAdapter.cartList.clear()
+                    orderProductAdapter.cartList.addAll(model!!.orders.get(0).products)
+                  //  orderProductAdapter.cartList.addAll(model!!.orders.get(0).products)
+                    orderProductAdapter.notifyDataSetChanged()
                 } else {
                     // Handle error
                     println("Failed to send OTP. ${response.message()}")
@@ -319,5 +335,42 @@ class OrderDetailsActivity : AppCompatActivity() {
         )
     }
 */
+
+    fun setRating(pid:String,rating:String){
+        val dialog= CustomDialog(this@OrderDetailsActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@OrderDetailsActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<MainResponse> {
+            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: MainResponse? = response.body()
+
+                    // Handle the response
+
+                    model?.Message?.let { Utils.showMessage(it,applicationContext) }
+
+                    println("OTP Sent successfully: ${model?.Message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.setRating(otpCallback ,user_id,pid,ORDER_ID_NOT_NUMBER,rating)
+    }
+
 }
 

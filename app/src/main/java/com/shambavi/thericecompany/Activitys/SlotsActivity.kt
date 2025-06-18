@@ -87,4 +87,8 @@ adapter.setListener(this)
     override fun updateProduct(slot_id: String, slot_time: Int) {
 
     }
+
+    override fun onProductClick(product_id: String) {
+        TODO("Not yet implemented")
+    }
 }

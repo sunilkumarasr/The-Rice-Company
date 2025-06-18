@@ -33,4 +33,7 @@
     <color name="search_hint_color">#98A2B3</color>
     <color name="gold">#D89F5D</color>
     <color name="home_text_bg_color">#F1F2F6</color>
+    <color name="your_filled_star_color">#FFC107</color> <!-- Example: Amber -->
+    <color name="your_empty_star_color">#CCCCCC</color>  <!-- Example: Light Gray -->
+    <color name="your_secondary_star_color">#FF9800</color>
 </resources>

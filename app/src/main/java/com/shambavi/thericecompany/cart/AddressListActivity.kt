@@ -133,6 +133,11 @@ var addres_id=""
     override fun updateProduct(product_id: String, qnty: Int) {
 
     }
+
+    override fun onProductClick(product_id: String) {
+        TODO("Not yet implemented")
+    }
+
     fun deleteAddress(address_id: String)
     {
 

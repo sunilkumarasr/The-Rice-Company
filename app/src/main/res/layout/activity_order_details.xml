@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -27,6 +27,7 @@
                 android:src="@drawable/icon_left_arrow"/>
 
             <TextView
+                android:id="@+id/orderIdText"
                 style="@style/textview"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="56dp"
@@ -41,246 +42,187 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             app:cardCornerRadius="8dp">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_products"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
+
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="16dp"
+            app:cardCornerRadius="8dp">
+        <LinearLayout
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical">
+
+            <!-- Order Confirmed -->
             <LinearLayout
+                android:id="@+id/lnr_order_confirmed"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
+                android:orientation="horizontal">
 
-                <!-- Order ID -->
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/icon_order_check_success"
+                    />
+
                 <TextView
-                    android:id="@+id/orderIdText"
                     style="@style/textview"
-                    android:text="Order ID: OD123456"
-                    android:textColor="@color/gray"
+                    android:layout_marginStart="16dp"
+                    android:text="Order Confirmed"
+
                     android:textSize="@dimen/_12sdp"/>
-
-                <!-- Product Info -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/productImage"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@drawable/item1"
-                        android:scaleType="centerCrop"/>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/productWeightText"
-                            style="@style/textview"
-                            android:text="Basmati (1 Kg)"
-                            android:textColor="@color/gray"
-                            android:textSize="@dimen/_12sdp"/>
-
-                        <TextView
-                            android:id="@+id/productNameText"
-                            style="@style/textview"
-                            android:layout_marginTop="4dp"
-                            android:text=""
-                            android:textSize="@dimen/_12sdp"/>
-
-                        <TextView
-                            android:visibility="gone"
-                            android:id="@+id/productDescriptionText"
-                            style="@style/textview"
-                            android:layout_marginTop="4dp"
-                            android:text="(Fluffy Long Grains)"
-                            android:textColor="@color/gray"
-                            android:textSize="@dimen/_12sdp"/>
-
-                        <TextView
-                            android:id="@+id/priceText"
-                            style="@style/textview"
-                            android:layout_marginTop="8dp"
-                            android:text=""
-
-                            android:textSize="@dimen/_12sdp"
-                            android:textStyle="bold"/>
-                    </LinearLayout>
-                </LinearLayout>
-
-                <!-- Order Timeline -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:orientation="vertical">
-
-                    <!-- Order Confirmed -->
-                    <LinearLayout
-                        android:id="@+id/lnr_order_confirmed"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/icon_order_check_success"
-                           />
-
-                        <TextView
-                            style="@style/textview"
-                            android:layout_marginStart="16dp"
-                            android:text="Order Confirmed"
-
-                            android:textSize="@dimen/_12sdp"/>
-                    </LinearLayout>
-
-
-                    <View
-                        android:id="@+id/view_order_confirmed"
-                        android:layout_width="2dp"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="11dp"
-                        android:background="@color/gray"/>
-                    <LinearLayout
-                        android:id="@+id/lnr_order_shipped"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/img_order_shiiped"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/circle_order_step" />
-
-                        <TextView
-                            style="@style/textview"
-                            android:layout_marginStart="16dp"
-                            android:text="Order Shipped"
-
-                            android:textSize="@dimen/_12sdp"/>
-                    </LinearLayout>
-
-                    <View
-                        android:id="@+id/view_order_shipped"
-                        android:layout_width="2dp"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="11dp"
-                        android:background="@color/gray"/>
-                    <LinearLayout
-                        android:id="@+id/lnr_order_out"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/img_order_out"
-
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/circle_order_step"
-                            />
-
-                        <TextView
-                            style="@style/textview"
-                            android:layout_marginStart="16dp"
-                            android:text="Order Out for Delivery"
-
-                            android:textSize="@dimen/_12sdp"/>
-                    </LinearLayout>
-
-                    <View
-                        android:id="@+id/view_order_out_delivery"
-                        android:layout_width="2dp"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="11dp"
-                        android:background="@color/gray" />
-                    <LinearLayout
-                        android:id="@+id/lnr_order_delivered"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/img_order_delivered"
-
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/circle_order_step"
-                            />
-
-                        <TextView
-                            style="@style/textview"
-                            android:layout_marginStart="16dp"
-                            android:text="Delivered"
-
-                            android:textSize="@dimen/_12sdp"/>
-                    </LinearLayout>
-
-                    <View
-                        android:id="@+id/view_order_delivered"
-                        android:layout_width="2dp"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="11dp"
-                        android:background="#FFA000"/>
-
-                    <!-- Return -->
-                    <LinearLayout
-                        android:id="@+id/lnr_order_returned"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/icon_order_cancelled_check"
-                           />
-
-                        <TextView
-                            style="@style/textview"
-                            android:layout_marginStart="16dp"
-                            android:text="Return"
-
-                            android:textSize="@dimen/_12sdp"/>
-                    </LinearLayout>
-
-                    <View
-                        android:id="@+id/view_order_retured"
-                        android:layout_width="2dp"
-                        android:layout_height="24dp"
-                        android:layout_marginStart="11dp"
-                        android:background="#FFA000"/>
-
-                    <!-- Refund -->
-                    <LinearLayout
-                        android:id="@+id/lnr_order_refund"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/icon_order_return_check"
-                           />
-
-                        <TextView
-                            style="@style/textview"
-                            android:layout_marginStart="16dp"
-                            android:text="Refund"
-
-                            android:textSize="@dimen/_12sdp"/>
-                    </LinearLayout>
-                </LinearLayout>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
+
+            <View
+                android:id="@+id/view_order_confirmed"
+                android:layout_width="2dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="11dp"
+                android:background="@color/gray"/>
+            <LinearLayout
+                android:id="@+id/lnr_order_shipped"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_order_shiiped"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/circle_order_step" />
+
+                <TextView
+                    style="@style/textview"
+                    android:layout_marginStart="16dp"
+                    android:text="Order Shipped"
+
+                    android:textSize="@dimen/_12sdp"/>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_order_shipped"
+                android:layout_width="2dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="11dp"
+                android:background="@color/gray"/>
+            <LinearLayout
+                android:id="@+id/lnr_order_out"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_order_out"
+
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/circle_order_step"
+                    />
+
+                <TextView
+                    style="@style/textview"
+                    android:layout_marginStart="16dp"
+                    android:text="Order Out for Delivery"
+
+                    android:textSize="@dimen/_12sdp"/>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_order_out_delivery"
+                android:layout_width="2dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="11dp"
+                android:background="@color/gray" />
+            <LinearLayout
+                android:id="@+id/lnr_order_delivered"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_order_delivered"
+
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/circle_order_step"
+                    />
+
+                <TextView
+                    style="@style/textview"
+                    android:layout_marginStart="16dp"
+                    android:text="Delivered"
+
+                    android:textSize="@dimen/_12sdp"/>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_order_delivered"
+                android:layout_width="2dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="11dp"
+                android:background="#FFA000"/>
+
+            <!-- Return -->
+            <LinearLayout
+                android:id="@+id/lnr_order_returned"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/icon_order_cancelled_check"
+                    />
+
+                <TextView
+                    style="@style/textview"
+                    android:layout_marginStart="16dp"
+                    android:text="Return"
+
+                    android:textSize="@dimen/_12sdp"/>
+            </LinearLayout>
+
+            <View
+                android:id="@+id/view_order_retured"
+                android:layout_width="2dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="11dp"
+                android:background="#FFA000"/>
+
+            <!-- Refund -->
+            <LinearLayout
+                android:id="@+id/lnr_order_refund"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/icon_order_return_check"
+                    />
+
+                <TextView
+                    style="@style/textview"
+                    android:layout_marginStart="16dp"
+                    android:text="Refund"
+
+                    android:textSize="@dimen/_12sdp"/>
+            </LinearLayout>
+        </LinearLayout>
+        </androidx.cardview.widget.CardView>
         <!-- Shipping Details Card -->
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -341,6 +283,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:visibility="gone"
                 android:padding="16dp">
 
                 <TextView
@@ -483,6 +426,6 @@
 
 
     </LinearLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
 
 

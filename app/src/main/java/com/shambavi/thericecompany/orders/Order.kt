@@ -33,9 +33,17 @@ data class Order(
 
 data class OrderProduct (
 
-    @SerializedName("id"            ) var id           : String? = null,
-    @SerializedName("product_title" ) var productTitle : String? = null,
-    @SerializedName("product_image" ) var productImage : String? = null
+
+
+        @SerializedName("id"            ) var id           : String? = null,
+        @SerializedName("product_id"    ) var productId    : String? = null,
+        @SerializedName("product_title" ) var productTitle : String? = null,
+        @SerializedName("product_image" ) var productImage : String? = null,
+        @SerializedName("mrp_price"     ) var mrpPrice     : String? = null,
+        @SerializedName("market_price"  ) var marketPrice  : String? = null,
+        @SerializedName("our_price"     ) var ourPrice     : String? = null,
+        @SerializedName("user_rating"   ) var userRating   : String? = null
+
 
 )
 // Enum for Order Status

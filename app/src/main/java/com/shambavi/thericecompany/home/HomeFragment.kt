@@ -1,11 +1,13 @@
 package com.shambavi.thericecompany.home
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bookiron.itpark.utils.MyPref
@@ -25,6 +27,7 @@ import com.shambavi.thericecompany.Activitys.SearchActivity
 import com.shambavi.thericecompany.databinding.FragmentHomeBinding
 import com.shambavi.thericecompany.listeners.ProductListener
 import com.shambavi.thericecompany.products.AllProductsActivity
+import com.shambavi.thericecompany.products.ProductDetailsActivity
 import com.shambavi.thericecompany.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
@@ -48,7 +51,21 @@ var user_id=""
 
         return binding.root
     }
+    val startProductDetailsForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data = result.data
+            getProducts()
+            getTopSellProducts()
+              } else {
+           // Log.d("MyActivity", "Result Canceled or Error: ${result.resultCode}")
+        }
+    }
+    override fun onProductClick(productId: String) {
+        val intent=Intent(requireActivity(), ProductDetailsActivity::class.java)
+        intent.putExtra("product_id",productId)
 
+        startProductDetailsForResult.launch(intent)
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -65,6 +82,7 @@ var user_id=""
 
         binding.txtName.setText("${MyPref.getName(requireActivity().applicationContext)}")
         productsAdapter.setListener(this)
+        topSellingAdapter.setListener(this)
         if(!NetWorkConection.isNEtworkConnected(requireActivity()))
         {
             AlertDialog.Builder(requireActivity())
@@ -137,7 +155,7 @@ var user_id=""
                     {
                         imageList.clear()
                         model.data.forEach {
-                            imageList.add(SlideModel("${ROOT_URL}/${it.image}", ScaleTypes.FIT),)
+                            imageList.add(SlideModel("${ROOT_URL}/${it.image}", ScaleTypes.FIT))
                         }
                         binding.imageSlider.setImageList(imageList)
 

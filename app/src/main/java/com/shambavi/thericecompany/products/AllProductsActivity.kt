@@ -1,5 +1,6 @@
 package com.shambavi.thericecompany.products
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -225,6 +226,22 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         // Call the sendOtp function in DataManager
         dataManager.updateCart(otpCallback,user_id ,cart_id,qnty.toString())
     }
+    val startProductDetailsForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val data = result.data
+            getProducts()
+
+        } else {
+            // Log.d("MyActivity", "Result Canceled or Error: ${result.resultCode}")
+        }
+    }
+    override fun onProductClick(productId: String) {
+        val intent=Intent(this@AllProductsActivity, ProductDetailsActivity::class.java)
+        intent.putExtra("product_id",productId)
+
+        startProductDetailsForResult.launch(intent)
+    }
+
     fun addCart(product_id: String, attribution_id: String)
     {
 

@@ -314,7 +314,12 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
     override fun updateProduct(cart_id: String, qnty: Int) {
         updateCart(cart_id,qnty.toString())
     }
-var totalAmount=0
+
+    override fun onProductClick(product_id: String) {
+        TODO("Not yet implemented")
+    }
+
+    var totalAmount=0
     fun calculateAmount()
     {
          totalAmount=0

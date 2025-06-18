@@ -268,4 +268,10 @@ class DataManager private constructor() {
         call.enqueue(cb)
     }
 
+    fun setRating(cb: Callback<MainResponse>,user_id:String,pid:String,oid:String,rating:String) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.setRating(APIKEY,user_id,pid,oid,rating)
+        call.enqueue(cb)
+    }
+
 }

@@ -52,6 +52,13 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>()
         holder.binding.txtMarketPrice.text="${Utils.RUPEE_SYMBOL} ${obj.marketPrice}"
         holder.binding.txtProductCategory.text="${obj.categoryIdName}"
         holder.binding.tvQuantity.setText("${obj.quantity}")
+        if(obj.user_rating.isEmpty()||obj.user_rating.trim().equals("0"))
+            holder.binding.lnrRating.visibility=View.INVISIBLE
+        else {
+            holder.binding.lnrRating.visibility=View.VISIBLE
+
+            holder.binding.txtRating.setText("${obj.user_rating}")
+        }
         Glide.with(holder.binding.img.context).load(ROOT_URL+obj.image).placeholder(R.drawable.item1).into(holder.binding.img)
 
         holder.binding.txtProductName.setOnClickListener {
@@ -93,11 +100,8 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>()
             }
         }
         holder.binding.root.setOnClickListener {
-            val ctx=holder.binding.txtProductName.context
-            val intent=Intent(ctx,ProductDetailsActivity::class.java)
-            intent.putExtra("product_id",productList.get(position).id)
+            productList.get(position).id?.let { it1 -> productListner.onProductClick(it1) }
 
-            ctx.startActivity(intent)
 
         }
     }

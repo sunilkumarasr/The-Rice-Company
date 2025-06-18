@@ -53,6 +53,7 @@
 
         <!-- Rating Section -->
         <LinearLayout
+            android:id="@+id/lnr_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -65,7 +66,7 @@
                 />
 
             <TextView
-                android:id="@+id/txt_start"
+                android:id="@+id/txt_rating"
                 style="@style/textview"
                 android:text="4.4"
                 android:textColor="#000000"
@@ -77,6 +78,7 @@
                 style="@style/textview"
                 android:textSize="@dimen/_11sdp"
                 android:text="(10,232)"
+                android:visibility="gone"
                 android:textColor="@color/gray"
                 android:layout_marginStart="4dp"/>
         </LinearLayout>

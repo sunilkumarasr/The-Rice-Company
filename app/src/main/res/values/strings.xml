@@ -57,6 +57,8 @@
     <string name="continue_to_shop">Continue to Shopping</string>
     <string name="pick_address">Delivery Address</string>
     <string name="MAP_KEY">AIzaSyBdf1LlSGswAxUo9S0UNptfSRcDtJRdsDU</string>
+    <string name="choose_address">Choose Address</string>
+    <string name="rate_this_product">Rate This Product</string>
 
 
 </resources>
