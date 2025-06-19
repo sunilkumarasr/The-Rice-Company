@@ -1,5 +1,6 @@
 package com.shambavi.thericecompany.categories
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import com.gadiwalaUser.Models.CategoryMainRes
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
+import com.shambavi.thericecompany.Activitys.SearchActivity
 import com.shambavi.thericecompany.databinding.FragmentProductsBinding
 import com.shambavi.thericecompany.utils.Utils
 import retrofit2.Call
@@ -33,6 +35,14 @@ class CategoriesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         init()
+        binding.linearSearch.setOnClickListener {
+            startActivityForResult(Intent(requireActivity(), SearchActivity::class.java),100)
+        }
+        getCategories()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         getCategories()
     }
 

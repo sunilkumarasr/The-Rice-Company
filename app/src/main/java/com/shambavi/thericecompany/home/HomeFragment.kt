@@ -101,7 +101,7 @@ var user_id=""
             startActivity(Intent(requireActivity(), NotificationsActivity::class.java))
         }
         binding.linearSearch.setOnClickListener {
-            startActivity(Intent(requireActivity(), SearchActivity::class.java))
+            startActivityForResult(Intent(requireActivity(), SearchActivity::class.java),100)
         }
         binding.txtSeeAllProducts.setOnClickListener {
             val intent=Intent(context,AllProductsActivity::class.java)
@@ -444,4 +444,10 @@ var user_id=""
              // Call the sendOtp function in DataManager
              dataManager.addCart(otpCallback,user_id  ,product_id,attribution_id)
          }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        getProducts()
+        getTopSellProducts()
+    }
 }

@@ -47,6 +47,9 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         binding.backButton.setOnClickListener {
             finish()
         }
+        binding.linearSearch.setOnClickListener {
+            startActivityForResult(Intent(this@AllProductsActivity, SearchActivity::class.java),100)
+        }
 
         binding.linearSearch.setOnClickListener {
             startActivity(Intent(applicationContext,SearchActivity::class.java))
@@ -280,5 +283,10 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
 
         // Call the sendOtp function in DataManager
         dataManager.addCart(otpCallback,user_id  ,product_id,attribution_id)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        getProducts()
     }
 }

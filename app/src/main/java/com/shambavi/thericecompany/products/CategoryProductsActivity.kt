@@ -16,6 +16,7 @@ import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.ProductMainRes
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
+import com.shambavi.thericecompany.Activitys.SearchActivity
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.categories.AllCategoryAdapter
 import com.shambavi.thericecompany.databinding.ActivityCategoryProductsBinding
@@ -42,6 +43,9 @@ class CategoryProductsActivity : AppCompatActivity(),ProductListener {
         user_id= MyPref.getUser(applicationContext)
         binding.backButton.setOnClickListener {
             finish()
+        }
+        binding.linearSearch.setOnClickListener {
+            startActivityForResult(Intent(this@CategoryProductsActivity, SearchActivity::class.java),100)
         }
         recycler_all_products=findViewById(R.id.recycler_all_products)
         productsAdapter=ProductsAdapter()
@@ -255,5 +259,10 @@ class CategoryProductsActivity : AppCompatActivity(),ProductListener {
 
         // Call the sendOtp function in DataManager
         dataManager.addCart(otpCallback,user_id  ,product_id,attribution_id)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        getProducts()
     }
 }

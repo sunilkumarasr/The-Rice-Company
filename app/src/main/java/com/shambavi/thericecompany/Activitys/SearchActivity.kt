@@ -82,7 +82,8 @@ class SearchActivity : AppCompatActivity(), ProductListener {
     private fun inits() {
 
         binding.header.imgBack.setOnClickListener { finish() }
-        binding.editSearch.setOnEditorActionListener(object:TextWatcher,
+
+        binding.editSearch.addTextChangedListener(object:TextWatcher,
             TextView.OnEditorActionListener {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
 
@@ -93,7 +94,7 @@ class SearchActivity : AppCompatActivity(), ProductListener {
             }
 
             override fun afterTextChanged(s: Editable?) {
-               var key=s.toString()
+                var key=s.toString()
                 if(key.length>2)
                 {
                     search_key=key;
@@ -105,8 +106,10 @@ class SearchActivity : AppCompatActivity(), ProductListener {
             }
 
             override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
-                TODO("Not yet implemented")
+
+                return false
             }
+
 
         })
 
@@ -181,7 +184,7 @@ class SearchActivity : AppCompatActivity(), ProductListener {
     }
 
     override fun addProduct(product_id: String, attribution_id: String) {
-
+        addCart(product_id,attribution_id)
 
     }
 
@@ -261,5 +264,44 @@ class SearchActivity : AppCompatActivity(), ProductListener {
 
         // Call the sendOtp function in DataManager
         dataManager.updateCart(otpCallback,user_id ,cart_id,qnty.toString())
+    }
+    fun addCart(product_id: String, attribution_id: String)
+    {
+
+        val dialog= CustomDialog(this@SearchActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@SearchActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<MainResponse> {
+            override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: MainResponse? = response.body()
+
+                    // Handle the response
+
+                    //model?.message?.let { Utils.showMessage(it,requireActivity()) }
+
+
+                    searchProducts(search_key)
+                    println("OTP Sent successfully: ${model?.Message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.addCart(otpCallback,user_id  ,product_id,attribution_id)
     }
 }
