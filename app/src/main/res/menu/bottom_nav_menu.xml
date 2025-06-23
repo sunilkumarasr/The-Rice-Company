@@ -15,7 +15,7 @@
         android:title="Orders"/>
     <item
         android:id="@+id/navigationCart"
-        android:icon="@drawable/profile_ic"
+        android:icon="@drawable/ic_cart"
         android:title="Cart"/>
     <item
         android:id="@+id/navigationProfile"

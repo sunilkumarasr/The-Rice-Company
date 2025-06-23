@@ -27,6 +27,12 @@ class AddProfilePicActivity : AppCompatActivity() {
     }
 
     private fun inits() {
+        binding.txtSkip.setOnClickListener {
+            MyPref.setProfileStatus(applicationContext,1)
+            // if(model.data!!.profile_status==1){
+
+            startActivity(Intent(this@AddProfilePicActivity, DashBoardActivity::class.java))
+        }
         binding.linearVerify.setOnClickListener {
             val intent = Intent(this@AddProfilePicActivity, DashBoardActivity::class.java)
             startActivity(intent)

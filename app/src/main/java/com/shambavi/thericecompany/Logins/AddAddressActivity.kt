@@ -67,6 +67,12 @@ class AddAddressActivity : AppCompatActivity() {
 
     private fun inits() {
 
+        binding.txtSkip.setOnClickListener {
+            MyPref.setProfileStatus(applicationContext,1)
+            // if(model.data!!.profile_status==1){
+
+            startActivity(Intent(this@AddAddressActivity, DashBoardActivity::class.java))
+        }
         binding.radioType.setOnCheckedChangeListener { group, checkedId ->
 
                 if(checkedId==R.id.radio_home)

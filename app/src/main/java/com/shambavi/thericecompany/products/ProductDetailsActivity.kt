@@ -71,7 +71,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             }
             binding.btnMinus.setOnClickListener {
                quantity=quantity-1;
-                if(quantity==1)
+                if(quantity==0)
                     deleteCart()
                     else
                 updateCart()
