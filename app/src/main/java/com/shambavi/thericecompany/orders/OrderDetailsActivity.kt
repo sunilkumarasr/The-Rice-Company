@@ -283,7 +283,7 @@ var user_id=""
         }
 
         // Call the sendOtp function in DataManager
-        orderId?.let { dataManager.getOrderDetails(otpCallback, it) }
+        orderId?.let { dataManager.getOrderDetails(otpCallback, it,user_id) }
     }
 /*
     private fun getSampleOrderDetails(): OrderDetails {

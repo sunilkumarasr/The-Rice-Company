@@ -279,6 +279,7 @@ interface ApiService {
     fun getOrderDetails(
         @Field("api_key") api_key: String,
         @Field("id") order_id: String,
+        @Field("user_id") user_id: String,
 
     ): Call<OrderMainResponse>
 

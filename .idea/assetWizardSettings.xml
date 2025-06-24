@@ -79,8 +79,8 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="imagePath" value="$PROJECT_DIR$/app/src/main/res/drawable/splash_logo_ic.png" />
-                                                <entry key="scalingPercent" value="89" />
+                                                <entry key="imagePath" value="$PROJECT_DIR$/../images/drive-download-20250623T124407Z-1-001/Go rice logo final 1.png" />
+                                                <entry key="scalingPercent" value="101" />
                                                 <entry key="trimmed" value="true" />
                                               </map>
                                             </option>
@@ -301,24 +301,11 @@
                   <entry key="vectorAssetStep">
                     <value>
                       <PersistentState>
-                        <option name="children">
-                          <map>
-                            <entry key="clipartAsset">
-                              <value>
-                                <PersistentState>
-                                  <option name="values">
-                                    <map>
-                                      <entry key="url" value="jar:file:/Applications/Stable-M.app/Contents/plugins/android/lib/android.jar!/images/material/icons/materialicons/keyboard_arrow_down/baseline_keyboard_arrow_down_24.xml" />
-                                    </map>
-                                  </option>
-                                </PersistentState>
-                              </value>
-                            </entry>
-                          </map>
-                        </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_arrow_down" />
+                            <entry key="assetSourceType" value="FILE" />
+                            <entry key="outputName" value="ic_cart" />
+                            <entry key="sourceFile" value="$PROJECT_DIR$/../images/drive-download-20250623T124407Z-1-001/shopping cart.svg" />
                           </map>
                         </option>
                       </PersistentState>
