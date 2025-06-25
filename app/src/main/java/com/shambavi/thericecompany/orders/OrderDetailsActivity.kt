@@ -40,7 +40,7 @@ var user_id=""
         orderProductAdapter.setListener(this)
         binding.recyclerProducts.layoutManager=LinearLayoutManager(applicationContext)
         binding.recyclerProducts.adapter=orderProductAdapter
-
+        binding.addressText.text=""
         setupUI()
         getOrderDetails()
         setupListeners()
