@@ -97,6 +97,8 @@
                     android:textSize="15sp"
                     android:singleLine="true"
                     android:inputType="phone"
+                    android:imeOptions="actionDone"
+
                     android:textColorHint="@color/hintcolor"/>
             </LinearLayout>
 

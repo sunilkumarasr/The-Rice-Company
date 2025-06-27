@@ -1,5 +1,6 @@
 package com.shambavi.thericecompany.cart
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -37,6 +38,8 @@ class CartAdapter: RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
 var cart=cartList.get(position)
+        holder.binding.tvOriginalPrice.paintFlags = holder.binding.tvOriginalPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+
         holder.binding.tvProductName.setText("${cart.title}")
         holder.binding.tvProductType.setText("${cart.categoryIdName}")
         holder.binding.tvQuantity.setText("${cart.quantity}")

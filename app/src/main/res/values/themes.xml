@@ -53,5 +53,12 @@
         <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
-
+    <style name="TextAppearance.App.Strikethrough" parent="TextAppearance.AppCompat.Small">
+        <!--<item name="android:paintFlags">8448</item>-->
+    </style>
+    <style name="HorizontalScrollbarStyle">
+        <item name="android:scrollbarSize">8dp</item> <!-- Thickness of the scrollbar -->
+        <item name="android:scrollbarThumbHorizontal">@drawable/custom_scrollbar_thumb</item> <!-- Custom thumb drawable -->
+        <item name="android:scrollbarTrackHorizontal">@drawable/custom_scrollbar_track</item> <!-- Custom track drawable -->
+    </style>
 </resources>

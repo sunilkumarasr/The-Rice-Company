@@ -2,6 +2,7 @@ package com.shambavi.thericecompany.Fragments
 
 import android.app.ComponentCaller
 import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -72,6 +73,8 @@ class CartFragment : Fragment() ,ProductListener{
         user_id= MyPref.getUser(requireActivity())
         addres_id= MyPref.getAddressId(requireActivity())
         addres= MyPref.getAddress(requireActivity())
+        binding.tvBillAmount.paintFlags = binding.tvBillAmount.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+
         if(addres.isEmpty())
             binding.tvAddress.text="Please select Delivery Address"
         else {
@@ -306,18 +309,23 @@ class CartFragment : Fragment() ,ProductListener{
         TODO("Not yet implemented")
     }
 
+
     var totalAmount=0
+    var mrpAmount=0
+    var discountedAmount=0
     fun calculateAmount()
     {
+        mrpAmount=0
         totalAmount=0
-        var discountedAmount=0
+        discountedAmount=0
         cartAdapter.cartList.forEach {
-            totalAmount=totalAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
+            mrpAmount=mrpAmount+(Integer.parseInt(it.mrpPrice)*Integer.parseInt(it.quantity))
             discountedAmount=discountedAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
+            totalAmount=totalAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
         }
 
         binding.tvDiscountedAmount.text="${Utils.RUPEE_SYMBOL} $totalAmount"
-        binding.tvBillAmount.text="${Utils.RUPEE_SYMBOL} $discountedAmount"
+        binding.tvBillAmount.text="${Utils.RUPEE_SYMBOL} $mrpAmount"
         binding.tvGrandTotal.text="${Utils.RUPEE_SYMBOL} $discountedAmount"
 
     }
@@ -334,14 +342,19 @@ class CartFragment : Fragment() ,ProductListener{
     }
     private fun checkData() {
 
+
         if(cartAdapter.itemCount>0)
         {
             binding.txtNoData.visibility= View.GONE
             binding.recyclerCart.visibility= View.VISIBLE
+
+            binding.lnrCart.visibility=View.VISIBLE
+            binding.txtCount.setText("${cartAdapter.itemCount} Item(s)")
         }else
         {
             binding.txtNoData.visibility= View.VISIBLE
             binding.recyclerCart.visibility= View.GONE
+            binding.lnrCart.visibility=View.GONE
         }
     }
     fun placeOrder()
@@ -365,6 +378,10 @@ class CartFragment : Fragment() ,ProductListener{
 
                     if(model!!.Status !!)
                     {
+                        var saved=  mrpAmount-discountedAmount
+                        val intent= Intent(requireActivity(),OrderSuccessActivity::class.java)
+                        intent.putExtra("saved",saved.toString())
+
                         startActivity(Intent(requireActivity(), OrderSuccessActivity::class.java))
 
                     }

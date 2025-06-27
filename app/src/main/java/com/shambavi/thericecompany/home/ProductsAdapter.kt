@@ -1,6 +1,7 @@
 package com.shambavi.thericecompany.home
 
 import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -45,6 +46,7 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>()
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         var obj=productList.get(position)
+        holder.binding.txtMrp.paintFlags = holder.binding.txtMrp.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         holder.binding.txtProductName.text="${obj.title}"
         holder.binding.txtMrp.text="${Utils.RUPEE_SYMBOL} ${obj.mrpPrice}"
         holder.binding.txtOff.text="${Utils.RUPEE_SYMBOL} ${obj.marketPrice}"

@@ -21,6 +21,7 @@
                 android:id="@+id/backButton"
                 android:layout_width="@dimen/_32sdp"
                 android:layout_height="@dimen/_32sdp"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/icon_left_arrow"/>
@@ -29,10 +30,32 @@
                 android:id="@+id/txt_header"
                 style="@style/textview"
                 android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/_45sdp"
                 android:text="Basmati Rice"
-
+android:layout_toRightOf="@+id/backButton"
+android:layout_toLeftOf="@+id/lnr_cart"
                 android:textSize="@dimen/_16sdp"/>
+            <LinearLayout
+                android:id="@+id/lnr_cart"
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_cart"
+                    app:tint="@color/green" />
+                <TextView
+                    android:id="@+id/txt_count"
+                    style="@style/textview"
+                    android:textColor="@color/green"
+                    android:layout_centerVertical="true"
+                    android:text="@string/products"
+                    android:layout_marginRight="@dimen/_8sdp"
+                    android:textSize="@dimen/_12sdp"/>
+
+            </LinearLayout>
         </RelativeLayout>
         <LinearLayout
             android:layout_width="match_parent"

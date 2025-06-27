@@ -2,6 +2,7 @@ package com.shambavi.thericecompany.cart
 
 import android.app.ComponentCaller
 import android.content.Intent
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
@@ -41,6 +42,8 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
         user_id= MyPref.getUser(applicationContext)
         addres_id=MyPref.getAddressId(applicationContext)
         addres=MyPref.getAddress(applicationContext)
+        binding.tvBillAmount.paintFlags = binding.tvBillAmount.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+
         if(addres.isEmpty())
             binding.tvAddress.text="Please select Delivery Address"
         else {
@@ -281,7 +284,11 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
                     if(model!!.Status !!)
                     {
                       //  getCart()
-                        startActivity(Intent(applicationContext,OrderSuccessActivity::class.java))
+
+                      var saved=  mrpAmount-discountedAmount
+                       val intent= Intent(applicationContext,OrderSuccessActivity::class.java)
+                       intent.putExtra("saved",saved.toString())
+                        startActivity(intent)
                         finish()
                     }
 
@@ -320,17 +327,21 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
     }
 
     var totalAmount=0
+    var mrpAmount=0
+    var discountedAmount=0
     fun calculateAmount()
     {
+        mrpAmount=0
          totalAmount=0
-        var discountedAmount=0
+        discountedAmount=0
         cartAdapter.cartList.forEach {
-            totalAmount=totalAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
+            mrpAmount=mrpAmount+(Integer.parseInt(it.mrpPrice)*Integer.parseInt(it.quantity))
             discountedAmount=discountedAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
+            totalAmount=totalAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
         }
 
         binding.tvDiscountedAmount.text="${Utils.RUPEE_SYMBOL} $totalAmount"
-        binding.tvBillAmount.text="${Utils.RUPEE_SYMBOL} $discountedAmount"
+        binding.tvBillAmount.text="${Utils.RUPEE_SYMBOL} $mrpAmount"
         binding.tvGrandTotal.text="${Utils.RUPEE_SYMBOL} $discountedAmount"
 
     }
@@ -353,14 +364,19 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
 
     private fun checkData() {
 
+
         if(cartAdapter.itemCount>0)
         {
             binding.txtNoData.visibility= View.GONE
             binding.recyclerCart.visibility= View.VISIBLE
+
+            binding.lnrCart.visibility=View.VISIBLE
+            binding.txtCount.setText("${cartAdapter.itemCount} Item(s)")
         }else
         {
             binding.txtNoData.visibility= View.VISIBLE
             binding.recyclerCart.visibility= View.GONE
+            binding.lnrCart.visibility=View.GONE
         }
     }
 }

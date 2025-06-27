@@ -47,7 +47,7 @@ val cateObj=categoryList.get(position)
         val catAdapter=SubCategoryAdapter()
         holder.binding.recyclerTopCatgories.adapter=catAdapter
         catAdapter.categoryList=cateObj.subCategoryList
-        holder.binding.txtCategoryHeader.text="${cateObj.category}"
+         holder.binding.txtCategoryHeader.text="${cateObj.category}"
         holder.itemView.setOnClickListener {
 
            // val ctx=holder.binding.recyclerTopCatgories.context

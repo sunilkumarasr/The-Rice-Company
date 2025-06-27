@@ -156,6 +156,10 @@
                        android:layout_height="wrap_content"
                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                        android:orientation="horizontal"
+
+                       android:scrollbars="horizontal"
+                       android:scrollbarStyle="insideOverlay"
+                       style="@style/HorizontalScrollbarStyle"
                        tools:listitem="@layout/layout_home_top_categories"
                        />
                     
@@ -211,6 +215,10 @@
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:orientation="horizontal"
                         android:visibility="visible"
+
+                        android:scrollbars="horizontal"
+                        android:scrollbarStyle="insideOverlay"
+                        style="@style/HorizontalScrollbarStyle"
                         tools:listitem="@layout/layout_home_product_item"
                         />
 
@@ -264,6 +272,9 @@
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:orientation="horizontal"
                         android:visibility="visible"
+                        android:scrollbars="horizontal"
+                        android:scrollbarStyle="insideOverlay"
+                        style="@style/HorizontalScrollbarStyle"
                         tools:listitem="@layout/layout_home_product_item"
                         />
 

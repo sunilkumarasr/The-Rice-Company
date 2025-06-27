@@ -131,6 +131,7 @@
                         android:textSize="@dimen/_15sdp"
                         android:singleLine="true"
                         android:inputType="phone"
+                        android:imeOptions="actionDone"
                         android:fontFamily="@font/poppins"
                         android:textColorHint="@color/hintcolor"/>
                 </LinearLayout>

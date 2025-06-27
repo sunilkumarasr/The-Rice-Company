@@ -247,7 +247,7 @@ class AddAddressActivity : AppCompatActivity() {
                         MyPref.setProfileStatus(applicationContext,1)
                        // if(model.data!!.profile_status==1){
 
-                            startActivity(Intent(this@AddAddressActivity, DashBoardActivity::class.java))
+                            startActivity(Intent(this@AddAddressActivity, AddProfilePicActivity::class.java))
                       /*  }else{
                             val intent = Intent(this@AddAddressActivity, AddAddressActivity::class.java)
                             startActivity(intent)

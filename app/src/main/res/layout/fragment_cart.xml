@@ -6,7 +6,7 @@
     android:background="#F5F5F5">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="8dp"
+            android:visibility="gone"
             android:src="@drawable/icon_left_arrow" />
 
         <TextView
@@ -27,7 +28,26 @@
             android:text="@string/checkout"
             android:textColor="@color/black"
             android:textSize="@dimen/_16sdp"
+            android:visibility="gone"
             android:textStyle="bold" />
+        <LinearLayout
+            android:id="@+id/lnr_cart"
+            android:layout_width="wrap_content"
+            android:layout_gravity="right"
+            android:visibility="gone"
+            android:layout_marginRight="@dimen/_16sdp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt_count"
+                style="@style/textview"
+                android:textColor="@color/green"
+                android:layout_centerVertical="true"
+                android:text="@string/products"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:textSize="@dimen/_12sdp"/>
+
+        </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

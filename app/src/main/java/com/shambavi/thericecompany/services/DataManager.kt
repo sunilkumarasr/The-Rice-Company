@@ -16,6 +16,7 @@ import com.gadiwalaUser.Models.OrderMainResponse
 import com.gadiwalaUser.Models.PrivacyDataMainRes
 import com.gadiwalaUser.Models.ProductDetailsDataMinRes
 import com.gadiwalaUser.Models.ProductMainRes
+import com.gadiwalaUser.Models.ProfileMainResponse
 import com.gadiwalaUser.Models.SlotsMainRes
 import com.gadiwalaUser.Models.SubCategoryMain
 import com.gadiwalaUser.Models.UserDetailsMainRes
@@ -274,4 +275,36 @@ class DataManager private constructor() {
         call.enqueue(cb)
     }
 
+
+    fun fileUpload(imageFile: File, cb: Callback<ProfileMainResponse>, user_id:String){
+
+        val imagePart = imageFile.toImageRequestBody("profile_image")
+        val apiService = retrofit.create(ApiService::class.java)
+
+        val call = apiService.uploadImage(APIKEY.toTextRequestBody(),user_id.toTextRequestBody(),imagePart
+        )
+        call.enqueue(cb)
+    }
+    fun String.toTextRequestBody(): RequestBody {
+        return this.toRequestBody("text/plain".toMediaTypeOrNull())
+    }
+
+
+    fun File.toImageRequestBody(partName: String): MultipartBody.Part {
+        // Determine the MIME type from the file extension, or use a generic one
+        val mimeType = when (this.extension.toLowerCase()) {
+            "jpg", "jpeg" -> "image/jpeg"
+            "png" -> "image/png"
+            "gif" -> "image/gif"
+            // Add more image types as needed
+            else -> "image/*" // Fallback to a generic image MIME type
+        }
+
+        val requestFile = this.asRequestBody(mimeType.toMediaTypeOrNull())
+
+        // Create the MultipartBody.Part
+        // 'partName' is the name of the form field your server expects for the file
+        // 'this.name' is the actual filename that will be sent
+        return MultipartBody.Part.createFormData(partName, this.name, requestFile)
+    }
 }

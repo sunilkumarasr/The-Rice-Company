@@ -15,6 +15,7 @@ import com.gadiwalaUser.Models.OrderMainResponse
 import com.gadiwalaUser.Models.PrivacyDataMainRes
 import com.gadiwalaUser.Models.ProductDetailsDataMinRes
 import com.gadiwalaUser.Models.ProductMainRes
+import com.gadiwalaUser.Models.ProfileMainResponse
 import com.gadiwalaUser.Models.SlotsMainRes
 import com.gadiwalaUser.Models.SubCategoryMain
 import com.gadiwalaUser.Models.UserDetailsMainRes
@@ -303,4 +304,15 @@ interface ApiService {
         @Field("rating")   rating: String,
 
         ): Call<MainResponse>
+
+    @Multipart
+    @POST("api/update_profile_image") // Replace "upload" with your actual API endpoint
+    fun uploadImage(
+        @Part("api_key") apiKey: RequestBody,
+        @Part("user_id") id: RequestBody,
+
+        @Part imageFile: MultipartBody.Part
+    ): Call<ProfileMainResponse>
+
+
 }

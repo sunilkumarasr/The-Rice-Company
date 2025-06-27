@@ -8,12 +8,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bookiron.itpark.utils.MyPref
+import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.ProductMainRes
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.SearchActivity
 import com.shambavi.thericecompany.R
+import com.shambavi.thericecompany.cart.CheckOutActivity
 import com.shambavi.thericecompany.databinding.ActivityAllProductsBinding
 import com.shambavi.thericecompany.databinding.ActivitySplashBinding
 import com.shambavi.thericecompany.filters.FilterBottomSheetFragment
@@ -47,6 +49,11 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         binding.backButton.setOnClickListener {
             finish()
         }
+        binding.lnrCart.visibility=View.GONE
+        binding.lnrCart.setOnClickListener {
+            startActivity(Intent(applicationContext, CheckOutActivity::class.java))
+
+        }
         binding.linearSearch.setOnClickListener {
             startActivityForResult(Intent(this@AllProductsActivity, SearchActivity::class.java),100)
         }
@@ -59,6 +66,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         }
         productsAdapter.setListener(this)
         getProducts()
+
     }
     private val filterLauncher = registerForActivityResult( ActivityResultContracts.StartActivityForResult() ) {
         result -> if (result.resultCode == RESULT_OK) {
@@ -89,7 +97,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
 
                     // Handle the response
 
-
+                    getCart()
 
                     if(model?.status == true)
                     {
@@ -121,6 +129,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
                 // Handle failure
                 println("Failed to send OTP. ${t.message}")
                 dialog.closeDialog()
+
             }
         }
 
@@ -132,6 +141,54 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
                 dataManager.getTopSellProducts(otpCallback,user_id)
         else
         dataManager.getProductsBySubCat(otpCallback,sid,user_id)
+    }
+
+    fun getCart()
+    {
+
+        val dialog= CustomDialog(this@AllProductsActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@AllProductsActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<CartMainRes> {
+            override fun onResponse(call: Call<CartMainRes>, response: Response<CartMainRes>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: CartMainRes? = response.body()
+
+                    // Handle the response
+
+                    // model?.message?.let { Utils.showMessage(it,applicationContext) }
+                  var count=  model!!.data.size
+                    if(count>0)
+                    {
+                        binding.lnrCart.visibility=View.VISIBLE
+                        binding.txtCount.setText("$count Item(s)")
+                    }else{
+                        binding.lnrCart.visibility=View.GONE
+                    }
+
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+
+                    finish()
+
+                }
+            }
+
+            override fun onFailure(call: Call<CartMainRes>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+                checkData()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.getCart(otpCallback, user_id  )
     }
 
     private fun checkData() {

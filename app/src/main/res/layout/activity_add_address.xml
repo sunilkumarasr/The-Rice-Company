@@ -200,9 +200,9 @@
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
-                        android:text="Flat / House no / Building name*"
+                        android:text="Flat / House no / Building name/ Floor *"
                         android:textColor="@color/black"
-                        android:textSize="14sp"
+                        android:textSize="12sp"
                         android:fontFamily="@font/poppins" />
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -229,6 +229,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Floor"
+                        android:visibility="gone"
                         android:textColor="@color/black"
                         android:textSize="14sp"
                         android:fontFamily="@font/poppins" />
@@ -237,6 +238,7 @@
                         android:layout_height="50dp"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal"
+                        android:visibility="gone"
                         android:background="@drawable/round_edit_gray_light_edge">
                         <androidx.appcompat.widget.AppCompatEditText
                             android:id="@+id/edit_floor"
@@ -433,7 +435,9 @@
                                     android:layout_marginEnd="10sp"
                                     android:hint="Enter zip code"
                                     android:textSize="15sp"
+                                    android:inputType="number"
                                     android:singleLine="true"
+
                                     android:textColorHint="@color/hintcolor"/>
                             </LinearLayout>
                         </LinearLayout>

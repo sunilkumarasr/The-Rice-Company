@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bookiron.itpark.utils.MyPref
+import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.CategoryMainRes
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.ProductMainRes
@@ -39,6 +40,7 @@ class CategoryProductsActivity : AppCompatActivity(),ProductListener {
         setContentView(binding.root)
 
 
+        binding.lnrCart.visibility=View.GONE
         cat_id=intent.getStringExtra("cat_id").toString()
         user_id= MyPref.getUser(applicationContext)
         binding.backButton.setOnClickListener {
@@ -71,7 +73,7 @@ class CategoryProductsActivity : AppCompatActivity(),ProductListener {
                     // Handle the response
 
 
-
+                     getCart()
                     if(model?.status == true)
                     {
                         if(model.products.size>0) {
@@ -106,6 +108,53 @@ class CategoryProductsActivity : AppCompatActivity(),ProductListener {
 
 
             dataManager.getProductsByCat(otpCallback,cat_id,user_id)
+    }
+    fun getCart()
+    {
+
+        val dialog= CustomDialog(this@CategoryProductsActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@CategoryProductsActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<CartMainRes> {
+            override fun onResponse(call: Call<CartMainRes>, response: Response<CartMainRes>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: CartMainRes? = response.body()
+
+                    // Handle the response
+
+                    // model?.message?.let { Utils.showMessage(it,applicationContext) }
+                    var count=  model!!.data.size
+                    if(count>0)
+                    {
+                        binding.lnrCart.visibility=View.VISIBLE
+                        binding.txtCount.setText("$count Item(s)")
+                    }else{
+                        binding.lnrCart.visibility=View.GONE
+                    }
+
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+
+                    finish()
+
+                }
+            }
+
+            override fun onFailure(call: Call<CartMainRes>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+                checkData()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.getCart(otpCallback, user_id  )
     }
     private fun checkData() {
 
