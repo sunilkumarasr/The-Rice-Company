@@ -15,7 +15,9 @@ import com.gadiwalaUser.Models.OTPResponse
 import com.gadiwalaUser.Models.OrderMainResponse
 import com.gadiwalaUser.Models.PrivacyDataMainRes
 import com.gadiwalaUser.Models.ProductDetailsDataMinRes
+import com.gadiwalaUser.Models.ProductImages
 import com.gadiwalaUser.Models.ProductMainRes
+import com.gadiwalaUser.Models.ProfileImgResp
 import com.gadiwalaUser.Models.ProfileMainResponse
 import com.gadiwalaUser.Models.SlotsMainRes
 import com.gadiwalaUser.Models.SubCategoryMain
@@ -83,6 +85,11 @@ class DataManager private constructor() {
     fun login(cb: Callback<LoginResponse>, mobile: String) {
         val apiService = retrofit.create(ApiService::class.java)
         val call = apiService.login(APIKEY,mobile)
+        call.enqueue(cb)
+    }
+    fun resendOTP(cb: Callback<LoginResponse>, mobile: String) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.resendOTP(APIKEY,mobile)
         call.enqueue(cb)
     }
     fun verifyOtp(cb: Callback<OTPResponse>, mobile: String, otp: String) {
@@ -276,7 +283,7 @@ class DataManager private constructor() {
     }
 
 
-    fun fileUpload(imageFile: File, cb: Callback<ProfileMainResponse>, user_id:String){
+    fun fileUpload(imageFile: File, cb: Callback<ProfileImgResp>, user_id:String){
 
         val imagePart = imageFile.toImageRequestBody("profile_image")
         val apiService = retrofit.create(ApiService::class.java)

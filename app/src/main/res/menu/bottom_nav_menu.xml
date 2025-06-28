@@ -6,12 +6,12 @@
         android:title="Home" />
     <item
         android:id="@+id/navigationProducts"
-        android:icon="@drawable/delivery_ic"
+        android:icon="@drawable/ic_product"
         android:title="Products"
         />
     <item
         android:id="@+id/navigationOrders"
-        android:icon="@drawable/support_ic"
+        android:icon="@drawable/ic_order"
         android:title="Orders"/>
     <item
         android:id="@+id/navigationCart"

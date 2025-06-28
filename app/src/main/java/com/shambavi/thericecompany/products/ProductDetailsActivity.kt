@@ -237,6 +237,7 @@ class ProductDetailsActivity : AppCompatActivity() {
                             binding.lnrRating.visibility=View.INVISIBLE
                         else {
                             binding.lnrRating.visibility=View.VISIBLE
+                            binding.txtRatingNo.setText("( ${model.data!!.productDetails!!.user_count} )")
 
                             binding.txtRating.setText("${model.data!!.productDetails!!.user_rating}")
                         }

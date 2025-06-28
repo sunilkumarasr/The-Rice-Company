@@ -243,6 +243,7 @@ data class ProductDetails (
     @SerializedName("cart_id"              ) var cart_id            : String             = "",
     @SerializedName("quantity"              ) var quantity            : String              = "",
     @SerializedName("status"             ) var status            : String? = null,
+    @SerializedName("user_count"             ) var user_count            : String? = null,
     @SerializedName("average_rating"             ) var user_rating            : String = ""
 
 )
@@ -381,6 +382,7 @@ data class CartMainRes (
 
     @SerializedName("status"  ) var status  : Boolean?        = null,
     @SerializedName("message" ) var message : String?         = null,
+    @SerializedName("delivery_charges" ) var delivery_charges : String?         = null,
     @SerializedName("data"    ) var data    : ArrayList<CartModel> = arrayListOf()
 
 )
@@ -414,7 +416,13 @@ data class OrderMainResponse (
     @SerializedName("orders"  ) var orders  : ArrayList<Order> = arrayListOf()
 
 )
+data class ProfileImgResp (
 
+    @SerializedName("status"    ) var status   : Boolean? = null,
+    @SerializedName("message"   ) var message  : String?  = null,
+    @SerializedName("image_url" ) var imageUrl : String?  = null
+
+)
 
 data class FAQItem(
     val title: String,

@@ -11,6 +11,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import com.bookiron.itpark.utils.MyPref
+import com.gadiwalaUser.Models.LoginResponse
 import com.gadiwalaUser.Models.OTPResponse
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
@@ -52,6 +53,9 @@ var otp=""
             val intent = Intent(this@OTPActivity, LoginActivity::class.java)
             startActivity(intent)
             finish()
+        }
+        binding.txtResend.setOnClickListener {
+            resend()
         }
         inits()
 
@@ -195,5 +199,44 @@ var otp=""
 
         // Call the sendOtp function in DataManager
         dataManager.verifyOtp(otpCallback,mobileNumber,otp)
+    }
+    fun resend() {
+        val dialog= CustomDialog(applicationContext)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@OTPActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<LoginResponse> {
+            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: LoginResponse? = response.body()
+
+                    // Handle the response
+
+                    model?.message?.let { Utils.showMessage(it,applicationContext) }
+
+                    if(model?.status == true)
+                    {
+
+
+                    }
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.resendOTP(otpCallback,mobileNumber)
     }
 }

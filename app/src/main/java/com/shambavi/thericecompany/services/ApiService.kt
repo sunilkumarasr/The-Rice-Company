@@ -14,7 +14,9 @@ import com.gadiwalaUser.Models.OTPResponse
 import com.gadiwalaUser.Models.OrderMainResponse
 import com.gadiwalaUser.Models.PrivacyDataMainRes
 import com.gadiwalaUser.Models.ProductDetailsDataMinRes
+import com.gadiwalaUser.Models.ProductImages
 import com.gadiwalaUser.Models.ProductMainRes
+import com.gadiwalaUser.Models.ProfileImgResp
 import com.gadiwalaUser.Models.ProfileMainResponse
 import com.gadiwalaUser.Models.SlotsMainRes
 import com.gadiwalaUser.Models.SubCategoryMain
@@ -33,6 +35,10 @@ interface ApiService {
     @FormUrlEncoded
     @POST("api/login")
     fun login(@Field("api_key") api_key: String,@Field("phone") mobile_number: String): Call<LoginResponse>
+
+    @FormUrlEncoded
+    @POST("api/customer_resend_otp")
+    fun resendOTP(@Field("api_key") api_key: String,@Field("phone") mobile_number: String): Call<LoginResponse>
 
     @FormUrlEncoded
     @POST("api/otp_verify")
@@ -312,7 +318,7 @@ interface ApiService {
         @Part("user_id") id: RequestBody,
 
         @Part imageFile: MultipartBody.Part
-    ): Call<ProfileMainResponse>
+    ): Call<ProfileImgResp>
 
 
 }

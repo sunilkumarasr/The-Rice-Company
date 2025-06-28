@@ -2,6 +2,7 @@ package com.shambavi.thericecompany.Activitys
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -11,12 +12,16 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bookiron.itpark.utils.MyPref
+import com.bumptech.glide.Glide
 import com.gadiwalaUser.Models.MainResponse
+import com.gadiwalaUser.Models.ProductMainRes
+import com.gadiwalaUser.Models.ProfileImgResp
 import com.gadiwalaUser.Models.UserDetailsMainRes
 import com.gadiwalaUser.services.DataManager
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Config.ViewController
+import com.shambavi.thericecompany.Logins.AddProfilePicActivity
 import com.shambavi.thericecompany.Logins.LoginActivity
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityMyAccountBinding
@@ -31,12 +36,15 @@ class MyAccountActivity : AppCompatActivity() {
         ActivityMyAccountBinding.inflate(layoutInflater)
     }
 var user_id=""
+var user_pic=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
         user_id=MyPref.getUser(applicationContext)
+        user_pic=MyPref.getUserpic(applicationContext)
+        Log.e("user_pic","user_pic $user_pic")
         inits()
         getProfile()
         binding.lnrDelete.setOnClickListener {
@@ -47,7 +55,14 @@ var user_id=""
     private fun inits() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "My Account"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
+        Glide.with(binding.imgProfile.context).load(user_pic).placeholder(R.drawable.user_ic).into(binding.imgProfile)
 
+        binding.imgProfile.setOnClickListener {
+            val intent=Intent(this@MyAccountActivity, AddProfilePicActivity::class.java)
+            intent.putExtra("is_account",true)
+            startActivity(intent)
+finish()
+        }
         if(!ViewController.noInterNetConnectivity(applicationContext)){
             ViewController.showToast(applicationContext, "Please check your connection ")
         }else{
@@ -201,7 +216,6 @@ var user_id=""
 
                     model?.Message?.let { Utils.showMessage(it,applicationContext) }
 
-                    finish()
                 } else {
                     // Handle error
                     println("Failed to send OTP. ${response.message()}")

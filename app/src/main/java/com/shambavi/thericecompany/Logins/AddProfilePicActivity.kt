@@ -10,18 +10,24 @@ import android.os.Bundle
 import android.os.Environment
 import android.provider.OpenableColumns
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.bookiron.itpark.utils.MyPref
+import com.bumptech.glide.Glide
 import com.gadiwalaUser.Models.OTPResponse
+import com.gadiwalaUser.Models.ProductImages
+import com.gadiwalaUser.Models.ProfileImgResp
 import com.gadiwalaUser.Models.ProfileMainResponse
 import com.gadiwalaUser.services.DataManager
+import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.DashBoardActivity
+import com.shambavi.thericecompany.Activitys.MyAccountActivity
 import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityAddProfilePicBinding
@@ -42,17 +48,28 @@ class AddProfilePicActivity : AppCompatActivity() {
         ActivityAddProfilePicBinding.inflate(layoutInflater)
     }
     var user_id=""
+    var is_account=false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         user_id= MyPref.getUser(applicationContext).toString()
+        is_account=intent.getBooleanExtra("is_account",false)
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
 
         inits()
     }
 
     private fun inits() {
+        if(is_account)
+        {
+            binding.txtSkip.visibility= View.GONE
+            binding.lnrSpace.visibility= View.GONE
+        }
+
+        binding.txtBack.setOnClickListener {
+            finish()
+        }
         binding.txtSkip.setOnClickListener {
             MyPref.setProfileStatus(applicationContext,1)
             // if(model.data!!.profile_status==1){
@@ -60,8 +77,14 @@ class AddProfilePicActivity : AppCompatActivity() {
             startActivity(Intent(this@AddProfilePicActivity, DashBoardActivity::class.java))
         }
         binding.linearVerify.setOnClickListener {
-            val intent = Intent(this@AddProfilePicActivity, DashBoardActivity::class.java)
-            startActivity(intent)
+            if(is_account) {
+
+            }else
+            {
+                val intent = Intent(this@AddProfilePicActivity, DashBoardActivity::class.java)
+                startActivity(intent)
+            }
+            finish()
         }
         binding.lnrPickPhoto.setOnClickListener {
             checkCameraPermissionAndDispatchIntent()
@@ -198,7 +221,7 @@ class AddProfilePicActivity : AppCompatActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         val uri: Uri? = data?.getData()
@@ -216,11 +239,11 @@ class AddProfilePicActivity : AppCompatActivity() {
 
             returnCursor!!.close()
 
-            /* binding.imageView?.let {
+            *//* binding.imageView?.let {
                  Glide.with(applicationContext)
                      .load(bitmap)
                      .into(it)
-             };*/
+             };*//*
 
             uploadImage(uri)
 
@@ -228,31 +251,37 @@ class AddProfilePicActivity : AppCompatActivity() {
             e.printStackTrace()
             Log.e("Image pick error","image Pick Error ${e.printStackTrace()}")
         }
-    }
+    }*/
     fun uploadImage(uri: Uri){
         val dialog= CustomDialog(this@AddProfilePicActivity)
         dialog.showDialog(this@AddProfilePicActivity,false)
 
         val dataManager = DataManager.getDataManager()
         getFileFromUri(uri)?.let {
-            dataManager.fileUpload(it,object: Callback<ProfileMainResponse> {
+            dataManager.fileUpload(it,object: Callback<ProfileImgResp> {
                 override fun onResponse(
-                    call: Call<ProfileMainResponse>,
-                    response: Response<ProfileMainResponse>
+                    call: Call<ProfileImgResp>,
+                    response: Response<ProfileImgResp>
                 ) {
                     dialog.closeDialog()
                     Log.e("response.body()","response.body() ${response.body()}")
-                    if(response.body()?.Status ==true)
+                    if(response.body()?.status ==true)
                     {
 
+                        MyPref.setUserPic(applicationContext,response.body()!!.imageUrl!!)
+                        if(is_account)
+                            startActivity(Intent(this@AddProfilePicActivity, MyAccountActivity::class.java))
+                        else
+                            startActivity(Intent(this@AddProfilePicActivity, DashBoardActivity::class.java))
 
+                        finish()
 
                     }
                     Log.e("response.body()","response.body() ")
 
                 }
 
-                override fun onFailure(call: Call<ProfileMainResponse>, t: Throwable) {
+                override fun onFailure(call: Call<ProfileImgResp>, t: Throwable) {
                     Log.e("response.body()","response.body() ${t.printStackTrace()}")
                     dialog.closeDialog()
                 }

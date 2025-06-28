@@ -35,6 +35,7 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
     var product_ids=""
     var cart_ids=""
     var qnts=""
+    var delivery_charges=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityCheckOutBinding.inflate(layoutInflater)
@@ -152,6 +153,10 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
                     cartAdapter.cartList.clear()
                     cartAdapter.cartList.addAll(model!!.data)
                     cartAdapter.notifyDataSetChanged()
+                    if( model.delivery_charges!=null&& model.delivery_charges!!.isNotEmpty())
+                    {
+                        delivery_charges=Integer.parseInt(model.delivery_charges)
+                    }
                     product_ids=""
                     cartAdapter.cartList.forEach {
                         product_ids=product_ids+it.productId+","
@@ -340,9 +345,12 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
             totalAmount=totalAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
         }
 
+        totalAmount=totalAmount+delivery_charges
         binding.tvDiscountedAmount.text="${Utils.RUPEE_SYMBOL} $totalAmount"
         binding.tvBillAmount.text="${Utils.RUPEE_SYMBOL} $mrpAmount"
         binding.tvGrandTotal.text="${Utils.RUPEE_SYMBOL} $discountedAmount"
+        binding.tvDeliveryCharges.text="${Utils.RUPEE_SYMBOL} $delivery_charges"
+        binding.txtSaved.setText("Saved ${Utils.RUPEE_SYMBOL} ${mrpAmount-discountedAmount}")
 
     }
 

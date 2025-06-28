@@ -47,12 +47,17 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>()
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         var obj=productList.get(position)
         holder.binding.txtMrp.paintFlags = holder.binding.txtMrp.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-        holder.binding.txtProductName.text="${obj.title}"
+        var displayPrice=""
+        if(obj.attributes.size>0) {
+            var attribution = obj.attributes.get(0)
+            displayPrice="${attribution.weight} ${Utils.RUPEE_SYMBOL}${attribution.prices}"
+        }
+        holder.binding.txtProductName.text="${obj.categoryIdName} ($displayPrice)"
         holder.binding.txtMrp.text="${Utils.RUPEE_SYMBOL} ${obj.mrpPrice}"
         holder.binding.txtOff.text="${Utils.RUPEE_SYMBOL} ${obj.marketPrice}"
         holder.binding.txtOurPrice.text="${Utils.RUPEE_SYMBOL} ${obj.ourPrice}"
         holder.binding.txtMarketPrice.text="${Utils.RUPEE_SYMBOL} ${obj.marketPrice}"
-        holder.binding.txtProductCategory.text="${obj.categoryIdName}"
+        holder.binding.txtProductCategory.text="${obj.title}"
         holder.binding.tvQuantity.setText("${obj.quantity}")
         if(obj.user_rating.isEmpty()||obj.user_rating.trim().equals("0"))
             holder.binding.lnrRating.visibility=View.INVISIBLE

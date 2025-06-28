@@ -16,6 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp">
             <TextView
+                android:id="@+id/txt_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25sp"
@@ -24,6 +25,7 @@
                 android:textSize="17sp"
                 android:fontFamily="@font/poppins" />
             <LinearLayout
+                android:id="@+id/lnr_space"
                 android:layout_width="130dp"
                 android:layout_height="4dp"
                 android:background="#323b43"

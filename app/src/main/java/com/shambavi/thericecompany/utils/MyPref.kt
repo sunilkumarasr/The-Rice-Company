@@ -38,6 +38,18 @@ class MyPref() {
             editor.commit()
 
         }
+ fun setUserPic(
+            ctx: Context,
+            profileStatus: String
+        )
+        {
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
+        var editor = sharedPreference.edit()
+
+            editor.putString("user_pic",profileStatus)
+            editor.commit()
+
+        }
 
         
 
@@ -51,6 +63,11 @@ class MyPref() {
         {
             val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
             return sharedPreference.getString("user_id","").toString()
+        }
+        fun getUserpic(ctx:Context): String
+        {
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
+            return sharedPreference.getString("user_pic","").toString()
         }
         fun getMobile(ctx:Context): String?
         {
