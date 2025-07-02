@@ -41,6 +41,7 @@
             app:labelVisibilityMode="labeled"
             app:menu="@menu/bottom_nav_menu"
             app:itemPaddingTop="5dp"
+
             app:itemTextAppearanceActive="@style/BottomNavTextAppearance"
             app:itemTextAppearanceInactive="@style/BottomNavTextAppearance" />
 

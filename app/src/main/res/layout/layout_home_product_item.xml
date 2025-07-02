@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="@dimen/_5sdp"
+    android:layout_marginRight="@dimen/_5sdp"
     android:layout_height="wrap_content">
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
-        app:cardCornerRadius="@dimen/_2sdp"
-        app:cardElevation="@dimen/_2sdp"
+    <androidx.cardview.widget.CardView
+        android:layout_width="@dimen/_172sdp"
+        app:cardCornerRadius="@dimen/_13sdp"
         android:layout_marginEnd="8dp"
+        app:cardElevation="0dp"
         app:cardBackgroundColor="@color/white"
         android:layout_height="wrap_content">
 
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <RelativeLayout
-            android:layout_width="@dimen/_150sdp"
+            android:layout_width="@dimen/_172sdp"
             android:layout_height="100dp"
             android:background="@drawable/round_light_gray">
 
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="Basmsati ( 1Kg: ₹54 )"
-            android:textSize="@dimen/_9sdp"
+            android:textSize="@dimen/_12sdp"
             android:singleLine="true"
             android:ellipsize="end"
             android:textColor="@color/product_name_color"
@@ -97,12 +97,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
+            android:lines="2"
             android:text="Daawat super Basmati"
-            android:textSize="@dimen/_11sdp"
-            android:singleLine="true"
+            android:textSize="@dimen/_13sdp"
             android:ellipsize="end"
             android:textColor="@color/otp_header_color"
-            android:fontFamily="@font/poppins"/>
+            android:fontFamily="@font/poppins_semibold"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -121,7 +121,7 @@
                 android:layout_weight="1"
                 android:gravity="end"
                 android:text="₹64"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_13sdp"
                 android:textColor="@color/otp_header_color"
                 android:fontFamily="@font/poppins"/>
         </LinearLayout>
@@ -145,7 +145,7 @@
                 android:layout_weight="1"
                 android:gravity="end"
                 android:text="₹54"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_13sdp"
                 android:textColor="@color/otp_header_color"
                 android:fontFamily="@font/poppins"/>
         </LinearLayout>
@@ -169,7 +169,7 @@
                 android:layout_weight="1"
                 android:gravity="end"
                 android:text="₹69"
-                android:textSize="@dimen/_12sdp"
+                android:textSize="@dimen/_13sdp"
                 android:textColor="@color/otp_header_color"
                 android:fontFamily="@font/poppins"/>
         </LinearLayout>
@@ -191,21 +191,20 @@
                     android:visibility="gone"
                     android:text="@string/added_to_cart"
                     android:textSize="@dimen/_12sdp"
-                    android:minHeight="@dimen/_40sdp"
                     android:textColor="@color/colorPrimary"
                     android:fontFamily="@font/poppins_semibold"/>
                 <LinearLayout
                     android:id="@+id/lnr_add"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="@dimen/_45sdp"
+                    android:minHeight="@dimen/_36sdp"
                     android:background="@drawable/round_edge_colorprimary">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="Add"
-                        android:textSize="@dimen/_12sdp"
+                        android:textSize="@dimen/_14sdp"
                         android:textColor="@color/colorPrimary"
                         android:fontFamily="@font/poppins_semibold"/>
                 </LinearLayout>
@@ -215,12 +214,21 @@
                     android:id="@+id/quantityLayout"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/quantity_background"
+                    android:minHeight="@dimen/_40sdp"
                     android:orientation="horizontal"
-                    android:padding="4dp"
                     android:layout_gravity="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
+                    <LinearLayout
+
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/quantity_background"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/_3sdp"
+                        android:layout_gravity="center"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                     <ImageButton
                         android:id="@+id/btnMinus"
@@ -248,9 +256,10 @@
                         android:src="@drawable/ic_plus"
                         />
                 </LinearLayout>
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
     </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
+    </androidx.cardview.widget.CardView>
 </LinearLayout>

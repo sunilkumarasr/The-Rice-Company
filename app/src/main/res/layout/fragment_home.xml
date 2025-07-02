@@ -49,8 +49,8 @@
                             android:layout_height="wrap_content"
                             android:text="Hi"
                             android:layout_marginEnd="5dp"
-                            android:textSize="19sp"
-                            android:fontFamily="@font/poppins"
+                            android:textSize="@dimen/_18sdp"
+                            android:fontFamily="@font/poppins_semibold"
                             android:textColor="@color/white"/>
                         <TextView
                             android:id="@+id/txt_name"
@@ -123,9 +123,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Top Categories"
-                            android:textSize="19sp"
+                            android:textSize="@dimen/_18sdp"
                             android:textColor="@color/otp_header_color"
-                            android:fontFamily="@font/poppins"/>
+                            android:fontFamily="@font/poppins_semibold"/>
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/lnr_see_categories"
@@ -140,7 +140,7 @@
                             android:text="See all"
                             android:textSize="19sp"
                             android:textColor="@color/colorPrimary"
-                            android:fontFamily="@font/poppins"/>
+                            android:fontFamily="@font/poppins_semibold"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -181,9 +181,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Top Selling"
-                            android:textSize="19sp"
+                            android:textSize="@dimen/_18sdp"
                             android:textColor="@color/otp_header_color"
-                            android:fontFamily="@font/poppins"/>
+                            android:fontFamily="@font/poppins_semibold"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -195,9 +195,9 @@
                             android:layout_height="wrap_content"
                             android:gravity="end"
                             android:text="See all"
-                            android:textSize="19sp"
+                            android:textSize="@dimen/_16sdp"
                             android:textColor="@color/colorPrimary"
-                            android:fontFamily="@font/poppins"/>
+                            android:fontFamily="@font/poppins_semibold"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -237,9 +237,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Products"
-                            android:textSize="19sp"
+                            android:textSize="@dimen/_18sdp"
                             android:textColor="@color/otp_header_color"
-                            android:fontFamily="@font/poppins"/>
+                            android:fontFamily="@font/poppins_semibold"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -251,7 +251,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="end"
                             android:text="See all"
-                            android:textSize="19sp"
+                            android:textSize="@dimen/_16sdp"
                             android:textColor="@color/colorPrimary"
                             android:fontFamily="@font/poppins"/>
                     </LinearLayout>

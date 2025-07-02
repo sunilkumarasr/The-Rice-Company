@@ -8,8 +8,9 @@
     <style name="Theme.TheRiceCompany" parent="Base.Theme.TheRiceCompany" />
 
     <style name="BottomNavTextAppearance" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textSize">16sp</item> <!-- Adjust the text size here -->
+        <item name="android:textSize">@dimen/_12sdp</item> <!-- Adjust the text size here -->
         <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
     </style>
     <!-- Custom outlined button style -->
     <style name="OutlinedButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
@@ -60,5 +61,21 @@
         <item name="android:scrollbarSize">8dp</item> <!-- Thickness of the scrollbar -->
         <item name="android:scrollbarThumbHorizontal">@drawable/custom_scrollbar_thumb</item> <!-- Custom thumb drawable -->
         <item name="android:scrollbarTrackHorizontal">@drawable/custom_scrollbar_track</item> <!-- Custom track drawable -->
+    </style>
+
+    <!-- Style for the bottom navigation bar item text -->
+    <style name="BottomNavigationTextStyle" parent="TextAppearance.AppCompat.Caption">
+        <!-- For unselected items -->
+        <!--<item name="android:textSize">12sp</item>--><!-- Define this color -->
+        <item name="android:fontFamily">@font/poppins_semibold</item> <!-- Reference your font file -->
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <!-- Style for the selected bottom navigation bar item text -->
+    <style name="BottomNavigationTextStyle.Active" parent="BottomNavigationTextStyle">
+        <!-- For selected items -->
+       <!-- <item name="android:textColor">@color/bottom_nav_active_color</item> --><!-- Define this color -->
+        <item name="android:fontFamily">@font/poppins_semibold</item> <!-- Reference your bold font file -->
+       <!-- <item name="android:textStyle">bold</item>-->
     </style>
 </resources>

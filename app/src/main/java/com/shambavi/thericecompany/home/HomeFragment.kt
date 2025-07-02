@@ -137,13 +137,13 @@ var user_id=""
 
         val dialog= CustomDialog(requireActivity())
         // Obtain the DataManager instance
-        dialog.showDialog(activity,false)
+       // dialog.showDialog(activity,false)
         val dataManager = DataManager.getDataManager()
 
         // Create a callback for handling the API response
         val otpCallback = object : Callback<BannersMainRes> {
             override fun onResponse(call: Call<BannersMainRes>, response: Response<BannersMainRes>) {
-                dialog.closeDialog()
+               // dialog.closeDialog()
                 if (response.isSuccessful) {
                     val model: BannersMainRes? = response.body()
 
@@ -171,7 +171,7 @@ var user_id=""
             override fun onFailure(call: Call<BannersMainRes>, t: Throwable) {
                 // Handle failure
                 println("Failed to send OTP. ${t.message}")
-                dialog.closeDialog()
+                //dialog.closeDialog()
             }
         }
 
@@ -183,13 +183,13 @@ var user_id=""
 
         val dialog= CustomDialog(requireActivity())
         // Obtain the DataManager instance
-        dialog.showDialog(activity,false)
+       // dialog.showDialog(activity,false)
         val dataManager = DataManager.getDataManager()
 
         // Create a callback for handling the API response
         val otpCallback = object : Callback<CategoryMainRes> {
             override fun onResponse(call: Call<CategoryMainRes>, response: Response<CategoryMainRes>) {
-                dialog.closeDialog()
+               // dialog.closeDialog()
                 if (response.isSuccessful) {
                     val model: CategoryMainRes? = response.body()
 
@@ -218,7 +218,7 @@ var user_id=""
             override fun onFailure(call: Call<CategoryMainRes>, t: Throwable) {
                 // Handle failure
                 println("Failed to send OTP. ${t.message}")
-                dialog.closeDialog()
+               // dialog.closeDialog()
             }
         }
 
@@ -230,13 +230,13 @@ var user_id=""
 
         val dialog= CustomDialog(requireActivity())
         // Obtain the DataManager instance
-        dialog.showDialog(activity,false)
+       // dialog.showDialog(activity,false)
         val dataManager = DataManager.getDataManager()
 
         // Create a callback for handling the API response
         val otpCallback = object : Callback<ProductMainRes> {
             override fun onResponse(call: Call<ProductMainRes>, response: Response<ProductMainRes>) {
-                dialog.closeDialog()
+               // dialog.closeDialog()
                 if (response.isSuccessful) {
                     val model: ProductMainRes? = response.body()
 
@@ -265,7 +265,7 @@ var user_id=""
             override fun onFailure(call: Call<ProductMainRes>, t: Throwable) {
                 // Handle failure
                 println("Failed to send OTP. ${t.message}")
-                dialog.closeDialog()
+               // dialog.closeDialog()
             }
         }
 
@@ -277,13 +277,13 @@ var user_id=""
 
         val dialog= CustomDialog(requireActivity())
         // Obtain the DataManager instance
-        dialog.showDialog(activity,false)
+       // dialog.showDialog(activity,false)
         val dataManager = DataManager.getDataManager()
 
         // Create a callback for handling the API response
         val otpCallback = object : Callback<ProductMainRes> {
             override fun onResponse(call: Call<ProductMainRes>, response: Response<ProductMainRes>) {
-                dialog.closeDialog()
+                //dialog.closeDialog()
                 if (response.isSuccessful) {
                     val model: ProductMainRes? = response.body()
 
@@ -329,13 +329,13 @@ var user_id=""
 
         val dialog= CustomDialog(requireActivity())
         // Obtain the DataManager instance
-        dialog.showDialog(requireActivity(),false)
+       // dialog.showDialog(requireActivity(),false)
         val dataManager = DataManager.getDataManager()
 
         // Create a callback for handling the API response
         val otpCallback = object : Callback<MainResponse> {
             override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
-                dialog.closeDialog()
+              //  dialog.closeDialog()
                 if (response.isSuccessful) {
                     val model: MainResponse? = response.body()
 
@@ -369,13 +369,13 @@ var user_id=""
 
         val dialog= CustomDialog(requireActivity())
         // Obtain the DataManager instance
-        dialog.showDialog(activity,false)
+        //dialog.showDialog(activity,false)
         val dataManager = DataManager.getDataManager()
 
         // Create a callback for handling the API response
         val otpCallback = object : Callback<MainResponse> {
             override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
-                dialog.closeDialog()
+              //  dialog.closeDialog()
                 if (response.isSuccessful) {
                     val model: MainResponse? = response.body()
 
@@ -397,7 +397,7 @@ var user_id=""
             override fun onFailure(call: Call<MainResponse>, t: Throwable) {
                 // Handle failure
                 println("Failed to send OTP. ${t.message}")
-                dialog.closeDialog()
+              //  dialog.closeDialog()
             }
         }
 
@@ -409,13 +409,13 @@ var user_id=""
 
              val dialog= CustomDialog(requireActivity())
              // Obtain the DataManager instance
-             dialog.showDialog(activity,false)
+            // dialog.showDialog(activity,false)
              val dataManager = DataManager.getDataManager()
 
              // Create a callback for handling the API response
              val otpCallback = object : Callback<MainResponse> {
                  override fun onResponse(call: Call<MainResponse>, response: Response<MainResponse>) {
-                     dialog.closeDialog()
+                   //  dialog.closeDialog()
                      if (response.isSuccessful) {
                          val model: MainResponse? = response.body()
 
@@ -437,7 +437,7 @@ var user_id=""
                  override fun onFailure(call: Call<MainResponse>, t: Throwable) {
                      // Handle failure
                      println("Failed to send OTP. ${t.message}")
-                     dialog.closeDialog()
+                   //  dialog.closeDialog()
                  }
              }
 

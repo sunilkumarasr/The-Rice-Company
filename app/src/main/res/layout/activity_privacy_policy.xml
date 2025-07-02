@@ -59,9 +59,10 @@
 
                 <WebView
                     android:id="@+id/webview"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="15dp"
+                    android:layout_marginTop="@dimen/_16sdp"
                     android:layout_gravity="center"
                     android:fontFamily="@font/teachers_regular"
                     android:textColor="@color/text"

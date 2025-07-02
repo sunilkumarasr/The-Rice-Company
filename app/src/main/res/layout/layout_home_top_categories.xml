@@ -11,26 +11,29 @@
 
         <LinearLayout
             android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_80sdp"
+            android:layout_height="@dimen/_100sdp"
             android:background="@drawable/round_light_gray"
-            android:paddingVertical="@dimen/_8sdp"
+            android:gravity="center"
             android:paddingHorizontal="@dimen/_4sdp">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_product"
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="match_parent"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:scaleType="centerInside"
                 android:src="@drawable/item1" />
         </LinearLayout>
         <TextView
             android:id="@+id/txt_product_name"
             style="@style/textview"
             android:layout_width="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="@dimen/_4sdp"
             android:gravity="center_horizontal"
+android:fontFamily="@font/poppins_semibold"
             android:text="Basmsati sdasjdhjashdhasjdhjahsd"
-            android:textSize="@dimen/_10sdp"
-            android:maxLines="1"
+            android:textSize="@dimen/_14sdp"
+            android:maxLines="2"
+            android:minLines="2"
             android:ellipsize="end"
             />
     </LinearLayout>
