@@ -357,14 +357,19 @@ class CartFragment : Fragment() ,ProductListener{
         {
             binding.txtNoData.visibility= View.GONE
             binding.recyclerCart.visibility= View.VISIBLE
+            binding.scrollview.visibility= View.VISIBLE
 
             binding.lnrCart.visibility=View.VISIBLE
+            binding.btnPayment.visibility=View.VISIBLE
             binding.txtCount.setText("${cartAdapter.itemCount} Item(s)")
         }else
         {
             binding.txtNoData.visibility= View.VISIBLE
             binding.recyclerCart.visibility= View.GONE
             binding.lnrCart.visibility=View.GONE
+            binding.scrollview.visibility=View.GONE
+            binding.btnPayment.visibility=View.GONE
+
         }
     }
     fun placeOrder()

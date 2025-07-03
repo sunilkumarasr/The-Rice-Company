@@ -50,7 +50,7 @@
                     style="@style/textview"
                     android:textColor="@color/green"
                     android:layout_centerVertical="true"
-                    android:text="@string/products"
+                    android:text=""
                     android:layout_marginRight="@dimen/_8sdp"
                     android:textSize="@dimen/_12sdp"/>
 
@@ -138,7 +138,7 @@
             app:spanCount="2"
             android:layout_marginHorizontal="@dimen/_2sdp"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            tools:listitem="@layout/layout_home_product_item"
+            tools:listitem="@layout/layout_product_product_item"
             />
         <TextView
             android:id="@+id/txt_no_data"
@@ -147,7 +147,8 @@
             android:text="@string/no_products"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="@dimen/_24sdp"
+            android:textSize="@dimen/_16sdp"
+            android:fontFamily="@font/poppins_semibold"
             android:layout_height="@dimen/_180sdp"
             android:layout_gravity="center"
             />

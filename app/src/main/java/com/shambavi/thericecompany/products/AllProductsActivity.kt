@@ -16,6 +16,7 @@ import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.SearchActivity
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.cart.CheckOutActivity
+import com.shambavi.thericecompany.categories.AllProductsAdapter
 import com.shambavi.thericecompany.databinding.ActivityAllProductsBinding
 import com.shambavi.thericecompany.databinding.ActivitySplashBinding
 import com.shambavi.thericecompany.filters.FilterBottomSheetFragment
@@ -29,7 +30,7 @@ import retrofit2.Response
 class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.FilterCallback,ProductListener
 {
     lateinit var binding: ActivityAllProductsBinding
-    lateinit var productsAdapter: ProductsAdapter
+    lateinit var productsAdapter: AllProductsAdapter
     lateinit var recycler_all_products:RecyclerView
     var sid=""
     var sales=""
@@ -44,7 +45,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         sales=intent.getStringExtra("sales").toString()
         user_id=MyPref.getUser(applicationContext)
         recycler_all_products=findViewById(R.id.recycler_all_products)
-        productsAdapter=ProductsAdapter()
+        productsAdapter=AllProductsAdapter()
         recycler_all_products.adapter=productsAdapter
         binding.backButton.setOnClickListener {
             finish()

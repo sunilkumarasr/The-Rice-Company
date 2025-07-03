@@ -4,12 +4,14 @@ package com.gadiwalaUser.services
 
 import com.gadiwalaUser.Models.AddressDataMainRes
 import com.gadiwalaUser.Models.BannersMainRes
+import com.gadiwalaUser.Models.CartCount
 import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.CategoryMainRes
 import com.gadiwalaUser.Models.ContactDetailsMain
 import com.gadiwalaUser.Models.FAQsMainRes
 import com.gadiwalaUser.Models.LoginResponse
 import com.gadiwalaUser.Models.MainResponse
+import com.gadiwalaUser.Models.NotificationMain
 import com.gadiwalaUser.Models.OTPResponse
 import com.gadiwalaUser.Models.OrderMainResponse
 import com.gadiwalaUser.Models.PrivacyDataMainRes
@@ -320,5 +322,22 @@ interface ApiService {
         @Part imageFile: MultipartBody.Part
     ): Call<ProfileImgResp>
 
+
+
+    @FormUrlEncoded
+    @POST("api/cart_list")
+    fun cartCount(
+        @Field("api_key") api_key: String,
+        @Field("user_id") user_id: String,
+
+        ): Call<CartCount>
+
+    @FormUrlEncoded
+    @POST("api/notification_list")
+    fun getNotifications(
+        @Field("api_key") api_key: String,
+        @Field("user_id") user_id: String,
+
+        ): Call<NotificationMain>
 
 }

@@ -111,6 +111,7 @@ data class Product (
     @SerializedName("weight_class_id"      ) var weightClassId     : String?               = null,
     @SerializedName("cart_id"              ) var cartId            : String               = "",
     @SerializedName("quantity"             ) var quantity          : String             = "",
+    @SerializedName("price_off"             ) var price_off          : String             = "",
     @SerializedName("user_rating"             ) var user_rating          : String              = ""
 
 )
@@ -428,4 +429,32 @@ data class FAQItem(
     val title: String,
     val secondLine: String,
     val description: String
+)
+
+data class CartCount(
+
+
+    @SerializedName("status"     ) var status    : Boolean? = null,
+    @SerializedName("message"    ) var message   : String?  = null,
+    @SerializedName("cart_count" ) var cartCount : Int?     = null
+)
+data class NotificationMain(
+
+
+    @SerializedName("status"  ) var status  : Boolean?        = null,
+    @SerializedName("message" ) var message : String?         = null,
+    @SerializedName("data"    ) var data    : ArrayList<Notification> = arrayListOf()
+)
+
+data class Notification (
+
+    @SerializedName("id"         ) var id        : String? = null,
+    @SerializedName("title"      ) var title     : String? = null,
+    @SerializedName("body"       ) var body      : String? = null,
+    @SerializedName("created_at" ) var createdAt : String? = null,
+    @SerializedName("created_by" ) var createdBy : String? = null,
+    @SerializedName("updated_at" ) var updatedAt : String? = null,
+    @SerializedName("updated_by" ) var updatedBy : String? = null,
+    @SerializedName("status"     ) var status    : String? = null
+
 )

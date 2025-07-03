@@ -1,4 +1,4 @@
-package com.shambavi.thericecompany.home
+package com.shambavi.thericecompany.categories
 
 import android.content.Intent
 import android.graphics.Paint
@@ -18,6 +18,7 @@ import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivitySplashBinding
 import com.shambavi.thericecompany.databinding.LayoutHomeProductItemBinding
+import com.shambavi.thericecompany.databinding.LayoutProductProductItemBinding
 import com.shambavi.thericecompany.listeners.ProductListener
 import com.shambavi.thericecompany.products.ProductDetailsActivity
 import com.shambavi.thericecompany.utils.Utils
@@ -25,17 +26,17 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>() {
+class AllProductsAdapter: RecyclerView.Adapter<AllProductsAdapter.ProductViewHolder>() {
 
     var productList:ArrayList<Product> = arrayListOf()
     lateinit var productListner: ProductListener
-    class ProductViewHolder(val binding: LayoutHomeProductItemBinding): RecyclerView.ViewHolder(binding.root) {
+    class ProductViewHolder(val binding: LayoutProductProductItemBinding): RecyclerView.ViewHolder(binding.root) {
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
 
-        val binding=LayoutHomeProductItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        val binding=LayoutProductProductItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
        // val view=LayoutInflater.from(parent.context).inflate(R.layout.layout_home_product_item,parent,false)
         return ProductViewHolder(binding)
     }

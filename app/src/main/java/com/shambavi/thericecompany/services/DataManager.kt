@@ -5,12 +5,14 @@ import android.util.Log
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.AddressDataMainRes
 import com.gadiwalaUser.Models.BannersMainRes
+import com.gadiwalaUser.Models.CartCount
 import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.CategoryMainRes
 import com.gadiwalaUser.Models.ContactDetailsMain
 import com.gadiwalaUser.Models.FAQsMainRes
 import com.gadiwalaUser.Models.LoginResponse
 import com.gadiwalaUser.Models.MainResponse
+import com.gadiwalaUser.Models.NotificationMain
 import com.gadiwalaUser.Models.OTPResponse
 import com.gadiwalaUser.Models.OrderMainResponse
 import com.gadiwalaUser.Models.PrivacyDataMainRes
@@ -279,6 +281,16 @@ class DataManager private constructor() {
     fun setRating(cb: Callback<MainResponse>,user_id:String,pid:String,oid:String,rating:String) {
         val apiService = retrofit.create(ApiService::class.java)
         val call = apiService.setRating(APIKEY,user_id,pid,oid,rating)
+        call.enqueue(cb)
+    }
+    fun cartCount(cb: Callback<CartCount>, user_id:String) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.cartCount(APIKEY,user_id)
+        call.enqueue(cb)
+    }
+    fun getNotifications(cb: Callback<NotificationMain>, user_id:String) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.getNotifications(APIKEY,user_id)
         call.enqueue(cb)
     }
 

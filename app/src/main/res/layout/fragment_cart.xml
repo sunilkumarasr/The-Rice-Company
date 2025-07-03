@@ -62,6 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:background="@color/white"
         >
         <TextView
             android:id="@+id/txt_no_data"
@@ -70,9 +71,10 @@
             android:text="@string/cart_is_empty"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="@dimen/_24sdp"
+            android:textSize="@dimen/_16sdp"
             android:layout_height="@dimen/_180sdp"
             android:layout_gravity="center"
+            android:fontFamily="@font/poppins_semibold"
             />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_cart"

@@ -228,6 +228,7 @@ var user_id=""
     fun getProducts()
     {
 
+        (requireActivity() as DashBoardActivity) .getCartCount()
         val dialog= CustomDialog(requireActivity())
         // Obtain the DataManager instance
        // dialog.showDialog(activity,false)
