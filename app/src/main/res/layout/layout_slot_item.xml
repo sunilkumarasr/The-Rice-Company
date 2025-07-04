@@ -17,18 +17,26 @@
         android:layout_width="match_parent"
         android:textSize="@dimen/_18sdp"
         android:textStyle="bold"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_slots"
+        android:layout_width="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        android:layout_height="wrap_content"/>
     <CheckedTextView
         android:id="@+id/tv_slot"
         style="@style/textview"
         android:textAlignment="center"
         android:gravity="center"
+        android:minWidth="@dimen/_130sdp"
         android:layout_marginStart="@dimen/_12sdp"
-        android:background="@drawable/date_selector"
+        android:background="@drawable/slot_selector"
         android:layout_marginTop="@dimen/_8sdp"
-        android:minHeight="@dimen/_45sdp"
+        android:minHeight="@dimen/_40sdp"
+        android:checked="false"
         android:text="dfsddf"
-        android:minWidth="@dimen/_180sdp"
+
         android:textColor="@drawable/radio_color_selector_slot"
-        android:textSize="@dimen/_14sdp"/>
+        android:textSize="@dimen/_11sdp"/>
 
 </LinearLayout>

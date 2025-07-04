@@ -37,7 +37,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginStart="56dp"
                 android:text="@string/product_details"
-
+android:fontFamily="@font/poppins_semibold"
                 android:textSize="@dimen/_16sdp"/>
         </RelativeLayout>
         <com.denzcoskun.imageslider.ImageSlider
@@ -89,7 +89,7 @@
             android:textSize="@dimen/_11sdp"
             android:text=""
 
-            android:textStyle="bold"
+            android:fontFamily="@font/poppins_semibold"
             android:layout_marginBottom="16dp"/>
 
         <!-- Price Section -->
@@ -118,6 +118,7 @@
                     style="@style/textview"
                     android:textSize="@dimen/_11sdp"
                     android:text=""
+                    android:fontFamily="@font/poppins_semibold"
                     />
             </LinearLayout>
 
@@ -140,6 +141,7 @@
                     style="@style/textview"
                     android:textSize="@dimen/_11sdp"
                     android:text=""
+                    android:fontFamily="@font/poppins_semibold"
                     />
             </LinearLayout>
 
@@ -158,7 +160,7 @@
                 <TextView
                     android:id="@+id/txt_market_price"
                     style="@style/textview"
-
+                    android:fontFamily="@font/poppins_semibold"
                     android:text=""
                     android:textSize="@dimen/_12sdp" />
             </LinearLayout>
@@ -168,7 +170,7 @@
         <TextView
             style="@style/textview"
             android:text="Select Variant"
-
+            android:fontFamily="@font/poppins_semibold"
             android:textSize="@dimen/_12sdp"
             android:layout_marginBottom="8dp"/>
 
@@ -243,6 +245,7 @@
                 android:layout_marginTop="@dimen/_8sdp"
                 android:text="Change"
                 android:visibility="gone"
+                android:fontFamily="@font/poppins_semibold"
                 android:textColor="@color/green" />
             <TextView
                 android:id="@+id/txt_order_delivered"
@@ -300,8 +303,7 @@
                 style="@style/textview"
                 android:text="Product Details"
                 android:textSize="@dimen/_16sdp"
-                android:textStyle="bold"
-
+                android:fontFamily="@font/poppins_semibold"
                 android:layout_marginBottom="16dp"/>
 
           <!--  &lt;!&ndash; Sales Package &ndash;&gt;

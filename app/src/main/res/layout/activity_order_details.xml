@@ -77,10 +77,10 @@
 
                 <TextView
                     style="@style/textview"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:text="Order Confirmed"
 
-                    android:textSize="@dimen/_12sdp"/>
+                    android:textSize="@dimen/_14sdp"/>
             </LinearLayout>
 
 
@@ -104,10 +104,10 @@
 
                 <TextView
                     style="@style/textview"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:text="Order Shipped"
 
-                    android:textSize="@dimen/_12sdp"/>
+                    android:textSize="@dimen/_14sdp"/>
             </LinearLayout>
 
             <View
@@ -132,10 +132,10 @@
 
                 <TextView
                     style="@style/textview"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:text="Order Out for Delivery"
 
-                    android:textSize="@dimen/_12sdp"/>
+                    android:textSize="@dimen/_14sdp"/>
             </LinearLayout>
 
             <View
@@ -160,10 +160,10 @@
 
                 <TextView
                     style="@style/textview"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:text="Delivered"
 
-                    android:textSize="@dimen/_12sdp"/>
+                    android:textSize="@dimen/_14sdp"/>
             </LinearLayout>
 
             <View
@@ -188,10 +188,10 @@
 
                 <TextView
                     style="@style/textview"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:text="Return"
 
-                    android:textSize="@dimen/_12sdp"/>
+                    android:textSize="@dimen/_14sdp"/>
             </LinearLayout>
 
             <View
@@ -216,10 +216,10 @@
 
                 <TextView
                     style="@style/textview"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="@dimen/_16sdp"
                     android:text="Refund"
 
-                    android:textSize="@dimen/_12sdp"/>
+                    android:textSize="@dimen/_14sdp"/>
             </LinearLayout>
         </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -241,8 +241,9 @@
                     style="@style/textview"
                     android:text="Shipping Details"
 
-                    android:textSize="@dimen/_14sdp"
-                    android:textStyle="bold"/>
+                    android:textSize="@dimen/_16sdp"
+                    android:fontFamily="@font/poppins_semibold"
+                    />
 
                 <TextView
                     android:id="@+id/customerNameText"
@@ -322,7 +323,8 @@
                     android:text="Bill Details"
                     android:textColor="#000000"
                     android:textSize="@dimen/_14sdp"
-                    android:textStyle="bold"/>
+                    android:fontFamily="@font/poppins_semibold"
+                    />
 
                 <!-- Bill Amount -->
                 <LinearLayout

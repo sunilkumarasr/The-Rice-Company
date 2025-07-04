@@ -40,9 +40,9 @@
                    android:layout_marginStart="15dp"
                    android:layout_toRightOf="@+id/imgUser"
                    android:text="My Account"
-                   android:textColor="@color/black"
+                   android:textColor="@color/black_profile"
                    android:textSize="18sp"
-                   android:fontFamily="@font/teachers_regular" />
+                   android:fontFamily="@font/poppins" />
                <androidx.appcompat.widget.AppCompatImageView
                    android:layout_width="20dp"
                    android:layout_height="20dp"
@@ -73,9 +73,9 @@
                    android:layout_marginStart="15dp"
                    android:layout_toRightOf="@+id/imgKYCDetails"
                    android:text="Saved Addresses"
-                   android:textColor="@color/black"
+                   android:textColor="@color/black_profile"
                    android:textSize="18sp"
-                   android:fontFamily="@font/teachers_regular" />
+                   android:fontFamily="@font/poppins" />
                <androidx.appcompat.widget.AppCompatImageView
                    android:layout_width="20dp"
                    android:layout_height="20dp"
@@ -107,9 +107,9 @@
                    android:layout_marginStart="15dp"
                    android:layout_toRightOf="@+id/imgProductCancelation"
                    android:text="Product Cancelation Request"
-                   android:textColor="@color/black"
+                   android:textColor="@color/black_profile"
                    android:textSize="18sp"
-                   android:fontFamily="@font/teachers_regular" />
+                   android:fontFamily="@font/poppins" />
                <androidx.appcompat.widget.AppCompatImageView
                    android:layout_width="20dp"
                    android:layout_height="20dp"
@@ -140,9 +140,9 @@
                    android:layout_marginStart="15dp"
                    android:layout_toRightOf="@+id/imgAboutUS"
                    android:text="About US"
-                   android:textColor="@color/black"
+                   android:textColor="@color/black_profile"
                    android:textSize="18sp"
-                   android:fontFamily="@font/teachers_regular" />
+                   android:fontFamily="@font/poppins" />
                <androidx.appcompat.widget.AppCompatImageView
                    android:layout_width="20dp"
                    android:layout_height="20dp"
@@ -174,9 +174,9 @@
                    android:layout_marginStart="15dp"
                    android:layout_toRightOf="@+id/imgPrivacyPolicy"
                    android:text="Privacy Policy"
-                   android:textColor="@color/black"
+                   android:textColor="@color/black_profile"
                    android:textSize="18sp"
-                   android:fontFamily="@font/teachers_regular" />
+                   android:fontFamily="@font/poppins" />
                <androidx.appcompat.widget.AppCompatImageView
                    android:layout_width="20dp"
                    android:layout_height="20dp"
@@ -208,9 +208,9 @@
                    android:layout_marginStart="15dp"
                    android:layout_toRightOf="@+id/imgTermsAndConditions"
                    android:text="Terms And Conditions"
-                   android:textColor="@color/black"
+                   android:textColor="@color/black_profile"
                    android:textSize="18sp"
-                   android:fontFamily="@font/teachers_regular" />
+                   android:fontFamily="@font/poppins" />
                <androidx.appcompat.widget.AppCompatImageView
                    android:layout_width="20dp"
                    android:layout_height="20dp"
@@ -243,9 +243,9 @@
                    android:layout_marginStart="15dp"
                    android:layout_toRightOf="@+id/imgHelpAndSupport"
                    android:text="Help And Support"
-                   android:textColor="@color/black"
+                   android:textColor="@color/black_profile"
                    android:textSize="18sp"
-                   android:fontFamily="@font/teachers_regular" />
+                   android:fontFamily="@font/poppins" />
                <androidx.appcompat.widget.AppCompatImageView
                    android:layout_width="20dp"
                    android:layout_height="20dp"
@@ -277,9 +277,9 @@
                    android:layout_marginStart="15dp"
                    android:layout_toRightOf="@+id/imgContactUS"
                    android:text="Contact US"
-                   android:textColor="@color/black"
+                   android:textColor="@color/black_profile"
                    android:textSize="18sp"
-                   android:fontFamily="@font/teachers_regular" />
+                   android:fontFamily="@font/poppins" />
                <androidx.appcompat.widget.AppCompatImageView
                    android:layout_width="20dp"
                    android:layout_height="20dp"
@@ -311,9 +311,9 @@
                    android:layout_marginStart="15dp"
                    android:layout_toRightOf="@+id/imgFAQS"
                    android:text="FAQ's"
-                   android:textColor="@color/black"
+                   android:textColor="@color/black_profile"
                    android:textSize="18sp"
-                   android:fontFamily="@font/teachers_regular" />
+                   android:fontFamily="@font/poppins" />
                <androidx.appcompat.widget.AppCompatImageView
                    android:layout_width="20dp"
                    android:layout_height="20dp"
@@ -345,9 +345,9 @@
                    android:layout_marginStart="15dp"
                    android:layout_toRightOf="@+id/imgEnquiryForm"
                    android:text="Enquiry Form"
-                   android:textColor="@color/black"
+                   android:textColor="@color/black_profile"
                    android:textSize="18sp"
-                   android:fontFamily="@font/teachers_regular" />
+                   android:fontFamily="@font/poppins" />
                <androidx.appcompat.widget.AppCompatImageView
                    android:layout_width="20dp"
                    android:layout_height="20dp"
@@ -379,9 +379,9 @@
                    android:layout_marginStart="15dp"
                    android:layout_toRightOf="@+id/imgLogout"
                    android:text="Logout"
-                   android:textColor="@color/black"
+                   android:textColor="@color/black_profile"
                    android:textSize="18sp"
-                   android:fontFamily="@font/teachers_regular" />
+                   android:fontFamily="@font/poppins" />
             </RelativeLayout>
 
          </LinearLayout>

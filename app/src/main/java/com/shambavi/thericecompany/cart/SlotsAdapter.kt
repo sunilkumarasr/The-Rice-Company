@@ -17,15 +17,34 @@ import com.shambavi.thericecompany.utils.Utils.Companion.RUPEE_SYMBOL
 class SlotsAdapter: RecyclerView.Adapter<SlotsAdapter.CartViewHolder>() {
 
     var slotList:ArrayList<Slots> = arrayListOf()
+    var keysList:ArrayList<String> = arrayListOf()
     lateinit var productListener: ProductListener
-
+    var hashMap=HashMap<String,ArrayList<Slots>>()
     fun setListener(productListener: ProductListener)
     {
        this .productListener=productListener
     }
 
+
     fun setSlotLists(slotList:ArrayList<Slots> )
     {
+        hashMap.clear()
+        slotList.forEach {
+
+            if(hashMap.containsKey(it.date))
+            {
+                var list=hashMap.get(it.date) as ArrayList<Slots>
+                list.add(it)
+                hashMap.put(it.date!!,list)
+            }else
+            {
+                keysList.add(it.date!!)
+                var list=ArrayList<Slots>()
+                list.add(it)
+                hashMap.put(it.date!!,list)
+
+            }
+        }
        this .slotList=slotList
         notifyDataSetChanged()
     }
@@ -42,15 +61,19 @@ class SlotsAdapter: RecyclerView.Adapter<SlotsAdapter.CartViewHolder>() {
     }
 
     override fun getItemCount(): Int {
-        return slotList.size
+        return keysList.size
     }
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         var slot=slotList.get(position)
         holder.binding.tvSlot.setText("${slot.date}")
-
+        holder.binding.tvSlot.visibility=View.GONE
         holder.binding.tvDate.text="${slot.date}"
         holder.binding.tvSlot.text="${slot.startTime} - ${slot.endTime}"
+        var slotsAdapterInner=SlotsAdapterInner()
+        slotsAdapterInner.setListener(productListener)
+        slotsAdapterInner.setSlotLists(hashMap.get(keysList.get(position))!! as ArrayList<Slots> )
+        holder.binding.recyclerSlots.adapter=slotsAdapterInner
         if(position>0)
         {
             if(slot.date==slotList.get(position-1).date)

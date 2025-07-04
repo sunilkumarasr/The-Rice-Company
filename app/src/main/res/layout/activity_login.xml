@@ -91,7 +91,7 @@
                     android:textAlignment="center"
                     android:text="@string/login_to_track_your"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="@dimen/_13sdp"
                     android:fontFamily="@font/poppins_semibold" />
 
                 <LinearLayout
@@ -170,10 +170,10 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins"
+                        android:fontFamily="@font/poppins_semibold"
                         android:text="Don't have an account?"
                         android:textColor="@color/black"
-                        android:textSize="15sp" />
+                        android:textSize="@dimen/_10sdp" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -182,7 +182,7 @@
                         android:fontFamily="@font/poppins_semibold"
                         android:text="Register Now"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="17sp" />
+                        android:textSize="@dimen/_12sdp" />
                 </LinearLayout>
 
 

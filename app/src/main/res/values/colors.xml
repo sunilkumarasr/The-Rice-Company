@@ -4,6 +4,7 @@
     <color name="colorPrimary_light">#BA31705A</color>
     <color name="darkcolorPrimary">#31705a</color>
     <color name="black">#000000</color>
+    <color name="black_profile">#101828</color>
     <color name="unselect">#6e7684</color>
     <color name="txtHeader">#707070</color>
     <color name="text">#333333</color>

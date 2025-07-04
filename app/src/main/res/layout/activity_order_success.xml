@@ -37,8 +37,8 @@
             android:layout_marginTop="@dimen/_20sdp"
             android:text="Order Placed Successful"
             android:textColor="#2D2D2D"
-            android:textSize="@dimen/_18sdp"
-            android:textStyle="bold"
+            android:textSize="@dimen/_16sdp"
+            android:fontFamily="@font/poppins_semibold"
 
             />
 
@@ -64,7 +64,7 @@
         >
         <TextView style="@style/textview"
             android:gravity="center"
-            android:textSize="@dimen/_18sdp"
+            android:textSize="@dimen/_16sdp"
             android:layout_width="match_parent"
             android:layout_gravity="center"
             android:drawableTint="@color/colorPrimary"

@@ -134,7 +134,7 @@
                             android:paddingHorizontal="@dimen/_5sdp"
                             android:background="@drawable/background_address_selector"
                             android:layout_width="match_parent"
-                            android:drawableLeft="@drawable/icon_shop"
+                            android:drawableLeft="@drawable/ic_home"
                             android:button="@null"
                             android:textColor="@drawable/radio_color_selector"
                             android:checked="true"

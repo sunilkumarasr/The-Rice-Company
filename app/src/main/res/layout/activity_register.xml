@@ -117,14 +117,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:gravity="center_vertical"
+                        android:gravity="center"
                         android:layout_gravity="center_horizontal">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/if_you_dont_have_account"
-                            android:textColor="@color/black"
-                            android:textSize="13sp"
+                            android:textColor="@color/otp_header_color"
+                            android:textSize="@dimen/_8sdp"
                             android:fontFamily="@font/poppins_semibold"/>
                         <TextView
                             android:layout_width="wrap_content"
@@ -132,7 +132,7 @@
                             android:layout_marginStart="3dp"
                             android:text="@string/login"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="17sp"
+                            android:textSize="@dimen/_11sdp"
                             android:fontFamily="@font/poppins_semibold" />
                     </LinearLayout>
                     <LinearLayout

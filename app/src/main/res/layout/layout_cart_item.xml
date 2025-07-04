@@ -22,8 +22,8 @@ android:layout_margin="@dimen/_5sdp"
 
         <ImageView
             android:id="@+id/imgProduct"
-            android:layout_width="@dimen/_60sdp"
-            android:layout_height="@dimen/_60sdp"
+            android:layout_width="@dimen/_55sdp"
+            android:layout_height="@dimen/_80sdp"
             android:scaleType="centerCrop"
             android:src="@drawable/item1"
             android:layout_margin="@dimen/_12sdp"
@@ -57,7 +57,7 @@ android:layout_margin="@dimen/_5sdp"
                 android:layout_marginTop="4dp"
                 android:maxLines="2"
                 android:minLines="2"
-                android:fontFamily="@font/poppins"
+                android:fontFamily="@font/poppins_semibold"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="@dimen/_12sdp" />
@@ -74,7 +74,7 @@ android:layout_margin="@dimen/_5sdp"
                     android:text=""
                     android:textColor="@color/black"
                     android:textSize="@dimen/_14sdp"
-                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_semibold"
                     />
 
                 <TextView

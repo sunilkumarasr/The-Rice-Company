@@ -47,8 +47,11 @@
             <TextView
                 android:id="@+id/tvAddress"
                 style="@style/textview"
+                android:textSize="@dimen/_10sdp"
                 android:layout_marginTop="4dp"
                 android:textColor="@color/gray"
+                android:fontFamily="@font/poppins"
+
                 />
 
             <TextView
@@ -56,6 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:fontFamily="@font/poppins"
                 android:textColor="#666666"/>
         </LinearLayout>
 
@@ -91,6 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_5sdp"
+            app:tint="@color/red"
             android:src="@drawable/icon_address_delete"/>
         </LinearLayout>
     </LinearLayout>

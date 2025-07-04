@@ -26,7 +26,7 @@
         android:layout_centerVertical="true"
         android:textSize="18sp"
         android:textAlignment="center"
-        android:fontFamily="@font/poppins"
+        android:fontFamily="@font/poppins_semibold"
         android:textColor="@color/black"/>
 
 

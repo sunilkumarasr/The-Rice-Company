@@ -24,6 +24,7 @@ class NotificationsActivity : AppCompatActivity() {
     val binding: ActivityNotificationsBinding by lazy {
         ActivityNotificationsBinding.inflate(layoutInflater)
     }
+    lateinit var notificationAdapter: NotificationAdapter
     var user_id=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +39,8 @@ class NotificationsActivity : AppCompatActivity() {
     private fun inits() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "Notifications"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
-
+        notificationAdapter=NotificationAdapter()
+        binding.listNotification.adapter=notificationAdapter
         if(!ViewController.noInterNetConnectivity(applicationContext)){
             ViewController.showToast(applicationContext, "Please check your connection ")
         }else{
@@ -69,7 +71,7 @@ class NotificationsActivity : AppCompatActivity() {
                     if(model?.status == true)
                     {
 
-
+                        notificationAdapter.setLists(model.data)
 
                     }else
                     {
