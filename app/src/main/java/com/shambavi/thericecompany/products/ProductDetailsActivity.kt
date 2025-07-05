@@ -82,11 +82,15 @@ class ProductDetailsActivity : AppCompatActivity() {
             }
 
             binding.btnViewCart.setOnClickListener {
-                startActivity(Intent(applicationContext,CheckOutActivity::class.java))
+                startActivityForResult(Intent(applicationContext,CheckOutActivity::class.java),200)
             }
 
         }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        getProductDetails()
+    }
     private fun deleteCart() {
 
         val dialog= CustomDialog(this@ProductDetailsActivity)

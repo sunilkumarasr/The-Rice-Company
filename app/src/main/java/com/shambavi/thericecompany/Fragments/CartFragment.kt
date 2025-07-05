@@ -18,6 +18,7 @@ import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.services.DataManager
 import com.royalit.motherchoice.utils.NetWorkConection
 import com.royalpark.gaadiwala_admin.views.CustomDialog
+import com.shambavi.thericecompany.Activitys.DashBoardActivity
 import com.shambavi.thericecompany.Activitys.SlotsActivity
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.cart.AddressListActivity
@@ -237,6 +238,8 @@ class CartFragment : Fragment() ,ProductListener{
                     //model?.Message?.let { Utils.showMessage(it,requireActivity()) }
 
                     getCart()
+                    (requireActivity() as DashBoardActivity) .getCartCount()
+
 
 
                 } else {
