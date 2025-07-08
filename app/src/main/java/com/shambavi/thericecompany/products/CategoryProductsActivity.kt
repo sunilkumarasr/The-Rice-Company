@@ -20,6 +20,7 @@ import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.SearchActivity
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.categories.AllCategoryAdapter
+import com.shambavi.thericecompany.categories.AllProductsAdapter
 import com.shambavi.thericecompany.databinding.ActivityCategoryProductsBinding
 import com.shambavi.thericecompany.home.ProductsAdapter
 import com.shambavi.thericecompany.listeners.ProductListener
@@ -30,7 +31,7 @@ import retrofit2.Response
 
 class CategoryProductsActivity : AppCompatActivity(),ProductListener {
     lateinit var binding:ActivityCategoryProductsBinding
-    lateinit var productsAdapter: ProductsAdapter
+    lateinit var productsAdapter: AllProductsAdapter
     lateinit var recycler_all_products: RecyclerView
     var user_id=""
     var cat_id=""
@@ -50,7 +51,7 @@ class CategoryProductsActivity : AppCompatActivity(),ProductListener {
             startActivityForResult(Intent(this@CategoryProductsActivity, SearchActivity::class.java),100)
         }
         recycler_all_products=findViewById(R.id.recycler_all_products)
-        productsAdapter=ProductsAdapter()
+        productsAdapter=AllProductsAdapter()
         recycler_all_products.adapter=productsAdapter
         productsAdapter.setListener(this)
         getProducts()

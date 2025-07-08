@@ -51,7 +51,7 @@
         android:text="@string/no_order_placed"
         android:gravity="center"
         android:textColor="@color/black"
-        android:textSize="@dimen/_24sdp"
+        android:textSize="@dimen/_16sdp"
         android:layout_height="@dimen/_180sdp"
         android:layout_gravity="center"
         />

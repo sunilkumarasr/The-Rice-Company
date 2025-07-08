@@ -130,9 +130,9 @@
                     <LinearLayout
                         android:id="@+id/lnr_see_categories"
 
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        >
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -186,9 +186,8 @@
                             android:fontFamily="@font/poppins_semibold"/>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
                         <TextView
                             android:id="@+id/txt_see_all_top_selling"
                             android:layout_width="match_parent"
@@ -242,9 +241,8 @@
                             android:fontFamily="@font/poppins_semibold"/>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1">
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
                         <TextView
                             android:id="@+id/txt_see_all_products"
                             android:layout_width="match_parent"

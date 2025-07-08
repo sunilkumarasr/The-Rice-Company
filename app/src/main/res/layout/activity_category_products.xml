@@ -137,9 +137,8 @@ android:layout_toLeftOf="@+id/lnr_cart"
             android:id="@+id/recycler_all_products"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-
-            app:spanCount="2"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+app:spanCount="2"
             tools:listitem="@layout/layout_home_product_item" />
 
         <TextView
@@ -149,7 +148,7 @@ android:layout_toLeftOf="@+id/lnr_cart"
             android:text="@string/no_products"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="@dimen/_24sdp"
+            android:textSize="@dimen/_16sdp"
             android:layout_height="@dimen/_180sdp"
             android:layout_gravity="center"
             />

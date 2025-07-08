@@ -44,11 +44,13 @@ class CustomDialog(ctx:Context): Dialog(ctx), DialogInterface.OnClickListener {
         mpd.getWindow()?.setLayout(200, 200)
         mpd.setCanceledOnTouchOutside(cancelable)
         if (context == null) return
-        mpd.show()
+       // mpd.show()
     }
     fun closeDialog() {
         /* if(animator!=null)
             animator.end();*/
+        (return)
+        true
         if (mpd != null && mpd.isShowing) {
             try {
                 if (mpd.context == null) {

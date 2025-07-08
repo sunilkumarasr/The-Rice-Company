@@ -57,7 +57,7 @@
             android:text="@string/no_products"
             android:gravity="center"
             android:textColor="@color/black"
-            android:textSize="@dimen/_24sdp"
+            android:textSize="@dimen/_16sdp"
             android:layout_height="match_parent"
             android:layout_gravity="center"
             />

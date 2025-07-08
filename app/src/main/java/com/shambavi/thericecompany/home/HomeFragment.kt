@@ -24,6 +24,7 @@ import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.DashBoardActivity
 import com.shambavi.thericecompany.Activitys.NotificationsActivity
 import com.shambavi.thericecompany.Activitys.SearchActivity
+import com.shambavi.thericecompany.categories.AllProductsAdapter
 import com.shambavi.thericecompany.databinding.FragmentHomeBinding
 import com.shambavi.thericecompany.listeners.ProductListener
 import com.shambavi.thericecompany.products.AllProductsActivity
@@ -37,8 +38,8 @@ class HomeFragment : Fragment(), ProductListener {
 
     private lateinit var binding: FragmentHomeBinding
 lateinit var categoryAdapter: CategoryAdapter
-lateinit var productsAdapter: ProductsAdapter
-lateinit var topSellingAdapter: ProductsAdapter
+lateinit var productsAdapter: AllProductsAdapter
+lateinit var topSellingAdapter: AllProductsAdapter
 var user_id=""
     val imageList = ArrayList<SlideModel>() // Create image list
 
@@ -77,8 +78,8 @@ var user_id=""
 
         user_id=MyPref.getUser(requireActivity().applicationContext)
         categoryAdapter=CategoryAdapter()
-        productsAdapter=ProductsAdapter()
-        topSellingAdapter=ProductsAdapter()
+        productsAdapter=AllProductsAdapter()
+        topSellingAdapter=AllProductsAdapter()
 
         binding.txtName.setText("${MyPref.getName(requireActivity().applicationContext)}")
         productsAdapter.setListener(this)
