@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Terms &amp; Conditions"
-                android:textSize="16sp"
+                android:textSize="@dimen/_14sdp"
                 android:textStyle="bold" />
 
             <ImageView
@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:visibility="gone"
             android:text="Product of The Rice Company Pvt. Ltd."
-            android:textSize="14sp" />
+            android:textSize="@dimen/_12sdp" />
 
         <TextView
             android:id="@+id/faqDescriptionTextView"

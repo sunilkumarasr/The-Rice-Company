@@ -7,7 +7,7 @@
     android:orientation="vertical">
     <include
         android:id="@+id/header"
-        layout="@layout/top_layout"/>
+        layout="@layout/top_layout_help"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -16,6 +16,7 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white"
             android:layout_weight="0.1">
 
             <LinearLayout

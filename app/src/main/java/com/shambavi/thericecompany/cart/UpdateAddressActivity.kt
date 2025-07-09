@@ -9,6 +9,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.bookiron.itpark.utils.MyPref
+import com.gadiwalaUser.Models.AddressDataMainRes
+import com.gadiwalaUser.Models.AddressDataSingle
 import com.gadiwalaUser.Models.OTPResponse
 import com.gadiwalaUser.services.DataManager
 import com.google.android.libraries.places.api.model.Place
@@ -51,6 +53,7 @@ class UpdateAddressActivity : AppCompatActivity() {
     var flat=""
     var floor=""
     var area=""
+    var address_id=""
 
     var lattitude=""
     var longitude=""
@@ -68,6 +71,12 @@ class UpdateAddressActivity : AppCompatActivity() {
         type="Shop"
         binding.editEmail.setText("${MyPref.getEmail(applicationContext)}")
         binding.editFullName.setText("${MyPref.getName(applicationContext)}")
+
+        address_id=intent.getStringExtra("address_id").toString()
+
+        if(address_id!=null&&address_id.isNotEmpty())
+            getAddress()
+
         inits()
         binding.ivBack.setOnClickListener {
             finish()
@@ -118,6 +127,10 @@ class UpdateAddressActivity : AppCompatActivity() {
                 Utils.showMessage("Please fill all details",applicationContext)
                 return@setOnClickListener
             }
+
+            if(address_id!=null&&address_id.isNotEmpty())
+            updateAddress()
+            else
             addAddress()
         }
     }
@@ -160,6 +173,46 @@ class UpdateAddressActivity : AppCompatActivity() {
 
         // Call the sendOtp function in DataManager
         dataManager.addAddress(otpCallback,mobile,user_id,full_name,type,flat,floor,area+","+landmark,city,state,country,zipcode,lattitude,longitude)
+    }
+    fun updateAddress() {
+        val dialog= CustomDialog(applicationContext)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@UpdateAddressActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<OTPResponse> {
+            override fun onResponse(call: Call<OTPResponse>, response: Response<OTPResponse>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: OTPResponse? = response.body()
+
+                    // Handle the response
+
+                    model?.message?.let { Utils.showMessage(it,applicationContext) }
+
+                    if(model?.status == true)
+                    {
+                        setResult(RESULT_OK)
+                        finish()
+
+                    }
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+                }
+            }
+
+            override fun onFailure(call: Call<OTPResponse>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.updateAddress(otpCallback,address_id,mobile,user_id,full_name,type,flat+","+floor,area,landmark,city,state,country,zipcode,lattitude,longitude)
     }
 
 
@@ -268,4 +321,65 @@ val TAG="UpdateAddressActivity"
                 Log.e(TAG, "User canceled autocomplete")
             }
         }
+    fun getAddress()
+    {
+
+        val dialog= CustomDialog(this@UpdateAddressActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@UpdateAddressActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<AddressDataSingle> {
+            override fun onResponse(call: Call<AddressDataSingle>, response: Response<AddressDataSingle>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: AddressDataSingle? = response.body()
+
+                    val addressData=model!!.data
+                    if(addressData!=null)
+                    {
+                        binding.editLandmark.setText("${addressData.landmark}")
+                        binding.editFloor.setText("${addressData.floor}")
+                        binding.editCity.setText("${addressData.cityTown}")
+                        binding.editState.setText("${addressData.state}")
+                        binding.editZipcode.setText("${addressData.zipCode}")
+                        binding.editCountry.setText("${addressData.country}")
+                        binding.editFlatNo.setText("${addressData.houseNo}")
+                        binding.editArea.setText("${addressData.floor}")
+                       // binding.editEmail.setText("${addressData.}")
+
+                        lattitude= addressData.latitude.toString()
+                        longitude=addressData.longitude.toString()
+
+                        type=addressData.type.toString()
+                        if(addressData.type=="Home") {
+                            binding.radioHome.isChecked = true
+                        }
+                        else if(addressData.type=="Shop")   binding.radioShop.isChecked=true
+                        else if(addressData.type=="Other")   binding.radioOther.isChecked=true
+                    }
+                    // Handle the response
+
+                    // model?.message?.let { Utils.showMessage(it,applicationContext) }
+
+
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<AddressDataSingle>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.getAddressById(otpCallback, user_id ,address_id )
+    }
 }

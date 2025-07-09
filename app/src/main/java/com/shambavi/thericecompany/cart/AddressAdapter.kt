@@ -1,7 +1,10 @@
 package com.shambavi.thericecompany.cart
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bookiron.itpark.utils.MyPref
@@ -9,7 +12,7 @@ import com.gadiwalaUser.Models.AddressData
 import com.shambavi.thericecompany.databinding.ItemAddressBinding
 import com.shambavi.thericecompany.listeners.ProductListener
 
-class AddressAdapter : ListAdapter<AddressData, AddressAdapter.AddressViewHolder>(AddressDiffCallback()) {
+class AddressAdapter(val activity: AddressListActivity) : ListAdapter<AddressData, AddressAdapter.AddressViewHolder>(AddressDiffCallback()) {
 
     private var selectedPosition = -1
     private var bindingAdapterPosition = -1
@@ -54,8 +57,14 @@ class AddressAdapter : ListAdapter<AddressData, AddressAdapter.AddressViewHolder
                     listner.addProduct("","")
                 }
 
+
                 ivEdit.setOnClickListener {
-                    // Handle edit
+
+                    var intent= Intent(activity,UpdateAddressActivity::class.java)
+                    intent.putExtra("address_id",address.id.toString())
+                        val bundle=Bundle()
+
+                   startActivityForResult(activity,intent,1,bundle)
                 }
 
                 ivDelete.setOnClickListener {

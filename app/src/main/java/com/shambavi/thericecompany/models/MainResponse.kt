@@ -277,6 +277,14 @@ data class AddressDataMainRes (
     @SerializedName("data"    ) var data    : ArrayList<AddressData> = arrayListOf()
 
 )
+
+data class AddressDataSingle (
+
+    @SerializedName("status"  ) var status  : Boolean?        = null,
+    @SerializedName("message" ) var message : String?         = null,
+    @SerializedName("data"    ) var data    : AddressData ?=null
+
+)
 data class AddressData (
 
     @SerializedName("id"         ) var id        : String? = null,

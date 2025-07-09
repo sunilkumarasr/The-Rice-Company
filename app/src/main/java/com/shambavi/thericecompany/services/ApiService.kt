@@ -3,6 +3,7 @@ package com.gadiwalaUser.services
 
 
 import com.gadiwalaUser.Models.AddressDataMainRes
+import com.gadiwalaUser.Models.AddressDataSingle
 import com.gadiwalaUser.Models.BannersMainRes
 import com.gadiwalaUser.Models.CartCount
 import com.gadiwalaUser.Models.CartMainRes
@@ -50,6 +51,25 @@ interface ApiService {
     @FormUrlEncoded
     @POST("api/save_address")
     fun addAddress(@Field("api_key") api_key: String,
+                   @Field("mobile") mobile_number: String,
+                   @Field("user_id") user_id: String,
+                   @Field("full_name") full_name: String,
+                   @Field("type") type: String,
+                   @Field("house_no") house_no: String,
+                   @Field("floor") floor: String,
+                   @Field("landmark") landmark: String,
+                   @Field("city_town") city: String,
+                   @Field("state") state: String,
+                   @Field("country") country: String,
+                   @Field("zip_code") zipcode: String,
+                   @Field("latitude") latitude: String,
+                   @Field("longitude") longitude: String
+    ): Call<OTPResponse>
+
+    @FormUrlEncoded
+    @POST("api/update_address")
+    fun updateAddress(@Field("api_key") api_key: String,
+                   @Field("address_id") id: String,
                    @Field("mobile") mobile_number: String,
                    @Field("user_id") user_id: String,
                    @Field("full_name") full_name: String,
@@ -148,6 +168,15 @@ interface ApiService {
         @Field("sub_category_id") sub_cat_id: String,
     ): Call<MainResponse>
 */
+
+    @FormUrlEncoded
+    @POST("api/get_address_by_id")
+    fun getAddressById(
+        @Field("api_key") api_key: String,
+        @Field("user_id") user_id: String,
+        @Field("address_id") address_id: String,
+    ): Call<AddressDataSingle>
+
 
     @FormUrlEncoded
     @POST("api/user_address_details")

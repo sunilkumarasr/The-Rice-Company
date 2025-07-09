@@ -3,7 +3,9 @@ package com.gadiwalaUser.services
 
 import android.util.Log
 import com.bookiron.itpark.utils.MyPref
+import com.gadiwalaUser.Models.AddressData
 import com.gadiwalaUser.Models.AddressDataMainRes
+import com.gadiwalaUser.Models.AddressDataSingle
 import com.gadiwalaUser.Models.BannersMainRes
 import com.gadiwalaUser.Models.CartCount
 import com.gadiwalaUser.Models.CartMainRes
@@ -117,6 +119,25 @@ class DataManager private constructor() {
         val call = apiService.addAddress(APIKEY,mobile,user_id,full_name,type,house_no,floor,landmark,city_town,state,country,zipcode,laitude,longitude)
         call.enqueue(cb)
     }
+    fun updateAddress(cb: Callback<OTPResponse>,
+                      id:String,mobile: String,
+                   user_id: String,
+                   full_name: String,
+                   type: String,
+                   house_no: String,
+                   floor: String,
+                   landmark: String,
+                   city_town: String,
+                   state: String,
+                   country: String,
+                   zipcode: String,
+                   laitude: String,
+                   longitude: String,
+                   ) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.updateAddress(APIKEY,id,mobile,user_id,full_name,type,house_no,floor,landmark,city_town,state,country,zipcode,laitude,longitude)
+        call.enqueue(cb)
+    }
 
 
     fun getcategory(cb: Callback<CategoryMainRes>) {
@@ -189,6 +210,11 @@ class DataManager private constructor() {
     fun getAddressDetails(cb: Callback<AddressDataMainRes>, user_id:String ) {
         val apiService = retrofit.create(ApiService::class.java)
         val call = apiService.getAddressDetails(APIKEY,user_id)
+        call.enqueue(cb)
+    }
+    fun getAddressById(cb: Callback<AddressDataSingle>, user_id:String, id:String ) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.getAddressById(APIKEY,user_id,id)
         call.enqueue(cb)
     }
 

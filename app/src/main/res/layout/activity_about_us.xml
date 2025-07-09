@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <include
-            layout="@layout/top_layout"/>
+            layout="@layout/top_layout_help"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,8 +27,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="25dp"
-                android:textSize="18sp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:textSize="@dimen/_16sdp"
                 android:text="The Rice Company"
                 android:fontFamily="@font/teachers_semibold"
                 android:textColor="@color/black"/>

@@ -8,11 +8,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <include
             android:id="@+id/header"
-            layout="@layout/top_layoup"/>
+            layout="@layout/top_layout_help"/>
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_faqs"
             android:layout_marginVertical="@dimen/_8sdp"

@@ -9,7 +9,7 @@
     android:background="@color/white"
     tools:context=".Activitys.ContactUsActivity">
     <include android:id="@+id/header"
-        layout="@layout/top_layout"/>
+        layout="@layout/top_layout_help"/>
     <WebView
         android:id="@+id/webview"
         android:layout_width="match_parent"

@@ -24,7 +24,7 @@
         android:layout_marginStart="10dp"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:textSize="18sp"
+        android:textSize="@dimen/_16sdp"
         android:textAlignment="center"
         android:fontFamily="@font/poppins_semibold"
         android:textColor="@color/black"/>

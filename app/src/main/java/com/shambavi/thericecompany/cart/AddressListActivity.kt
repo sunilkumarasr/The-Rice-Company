@@ -26,7 +26,7 @@ import retrofit2.Response
 
 class AddressListActivity : AppCompatActivity(),ProductListener {
     private lateinit var binding: ActivityAddressListBinding
-    private val addressAdapter = AddressAdapter()
+    private val addressAdapter = AddressAdapter(this)
 var user_id=""
 var addres_id=""
 

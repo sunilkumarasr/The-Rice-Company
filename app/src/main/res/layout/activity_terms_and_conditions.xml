@@ -12,7 +12,7 @@
         android:orientation="vertical">
 
         <include
-            layout="@layout/top_layout"/>
+            layout="@layout/top_layout_help"/>
 
 
         <LinearLayout

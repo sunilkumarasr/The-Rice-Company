@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="8dp"
-    app:cardCornerRadius="@dimen/_8sdp"
-
-    app:cardBackgroundColor="#F5F6F7"
-    app:cardElevation="5dp">
+    android:background="@drawable/drablw_address_item_bg"
+>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,21 +18,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="16dp">
+        >
 
         <RadioButton
             android:id="@+id/rbAddress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="false"
-            android:focusableInTouchMode="false"
-            android:layout_gravity="center_vertical"/>
+            android:focusableInTouchMode="false"/>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="@dimen/_1sdp"
             android:orientation="vertical">
 
             <TextView
@@ -72,7 +69,6 @@
         android:orientation="horizontal">
 
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/lnr_edit"
             android:layout_width="wrap_content"
             android:layout_marginRight="@dimen/_16sdp"
@@ -95,9 +91,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_5sdp"
-            app:tint="@color/red"
-            android:src="@drawable/icon_address_delete"/>
+            android:src="@drawable/ic_trash"/>
         </LinearLayout>
     </LinearLayout>
     </LinearLayout>
-</androidx.cardview.widget.CardView>
+</LinearLayout>

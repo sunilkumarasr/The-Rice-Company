@@ -2,6 +2,7 @@ package com.shambavi.thericecompany.products
 
 import android.content.Intent
 import android.content.res.ColorStateList
+import android.graphics.Paint
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -47,7 +48,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             product_id=intent.getStringExtra("product_id").toString()
             Log.e("product_id","product_id $product_id")
             getProductDetails()
-
+            binding.txtMrpPrice.paintFlags = binding.txtMrpPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             binding.txtViewDetails.setOnClickListener {
                 val intent=Intent(applicationContext, PrivacyPolicyActivity::class.java)
                 intent.putExtra("isOtherDetails","isOtherDetails")

@@ -12,7 +12,7 @@
         android:background="@color/white">
 
         <include
-            layout="@layout/top_layout"/>
+            layout="@layout/top_layout_help"/>
 
         <ScrollView
             android:layout_width="match_parent"
