@@ -128,7 +128,8 @@ class UpdateAddressActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            if(address_id!=null&&address_id.isNotEmpty())
+            Log.e("Update Address","Update Address $address_id")
+            if(address_id!=null&&address_id.isNotEmpty()&&address_id!="null")
             updateAddress()
             else
             addAddress()

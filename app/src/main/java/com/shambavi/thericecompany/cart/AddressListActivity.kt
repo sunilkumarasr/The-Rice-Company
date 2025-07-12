@@ -72,8 +72,13 @@ var addres_id=""
     private fun setupClickListeners() {
         binding.ivBack.setOnClickListener { finish() }
         binding.btnAddAddress.setOnClickListener {
-            startActivity(Intent(this, AddAddressActivity::class.java))
+            startActivityForResult(Intent(this, AddAddressActivity::class.java),200)
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        getAddress()
     }
 
     fun getAddress()

@@ -400,7 +400,7 @@ class CartFragment : Fragment() ,ProductListener{
                         val intent= Intent(requireActivity(),OrderSuccessActivity::class.java)
                         intent.putExtra("saved",saved.toString())
 
-                        startActivity(Intent(requireActivity(), OrderSuccessActivity::class.java))
+                        startActivity(intent)
 
                     }
 
