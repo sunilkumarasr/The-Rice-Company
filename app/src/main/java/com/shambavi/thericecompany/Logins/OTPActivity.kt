@@ -55,6 +55,10 @@ var otp=""
             finish()
         }
         binding.txtResend.setOnClickListener {
+            binding.pinEdit1.setText("")
+            binding.pinEdit2.setText("")
+            binding.pinEdit3.setText("")
+            binding.pinEdit4.setText("")
             resend()
         }
         inits()

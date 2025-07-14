@@ -37,7 +37,7 @@
             <TextView
                 android:id="@+id/tvName"
                 style="@style/textview"
-
+android:fontFamily="@font/poppins_semibold"
                 android:textSize="@dimen/_14sdp"
                 android:textStyle="bold"/>
 
@@ -71,7 +71,7 @@
         <LinearLayout
             android:id="@+id/lnr_edit"
             android:layout_width="wrap_content"
-            android:layout_marginRight="@dimen/_16sdp"
+            android:layout_marginRight="@dimen/_5sdp"
             android:layout_height="wrap_content">
             <ImageView
                 android:id="@+id/ivEdit"

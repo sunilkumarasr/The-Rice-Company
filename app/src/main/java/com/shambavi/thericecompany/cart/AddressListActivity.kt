@@ -50,7 +50,8 @@ var addres_id=""
         }
     }
 
-    override fun onActivityResult(
+
+    /*override fun onActivityResult(
         requestCode: Int,
         resultCode: Int,
         data: Intent?,
@@ -60,7 +61,7 @@ var addres_id=""
 
             getAddress()
         //}
-    }
+    }*/
 
     private fun setupRecyclerView() {
         binding.rvAddresses.apply {

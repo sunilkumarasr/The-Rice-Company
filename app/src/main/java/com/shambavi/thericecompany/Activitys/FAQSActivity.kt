@@ -22,7 +22,7 @@ class FAQSActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding=ActivityFaqsactivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.header.txtTitle.text="FAQs"
+        binding.header.txtTitle.text="FAQ`s"
 
         binding.header.imgBack.setOnClickListener {
             finish()

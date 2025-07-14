@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Grocery"
-        android:textSize="@dimen/_22sdp"
+        android:textSize="@dimen/_18sdp"
         android:textColor="@color/otp_header_color"
         android:fontFamily="@font/poppins_semibold"
         />
