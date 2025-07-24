@@ -37,7 +37,7 @@
                 android:text="Skip"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_13sdp"
-                android:fontFamily="@font/poppins" />
+                android:fontFamily="@font/teachers_medium" />
         </RelativeLayout>
 
         <TextView
@@ -48,8 +48,8 @@
             android:layout_marginTop="25sp"
             android:text="Oh hey! Let's start with an intro"
             android:textColor="@color/white"
-            android:textSize="@dimen/_14sdp"
-            android:fontFamily="@font/poppins" />
+            android:textSize="@dimen/_15sdp"
+            android:fontFamily="@font/teachers_medium" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,7 +84,7 @@
                         android:layout_width="250dp"
                         android:layout_height="wrap_content"
                         android:text="Your full name"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text"
                         android:textSize="@dimen/_11sdp"
                         android:fontFamily="@font/poppins" />
                     <LinearLayout
@@ -101,7 +101,7 @@
                             android:layout_marginStart="10sp"
                             android:layout_marginEnd="10sp"
                             android:hint="Enter full name"
-                            android:textSize="@dimen/_13sdp"
+                            android:textSize="@dimen/_12sdp"
                             android:fontFamily="@font/poppins"
                             android:imeOptions="actionNext"
                             android:singleLine="true"
@@ -113,7 +113,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Email"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text"
                         android:textSize="@dimen/_11sdp"
                         android:fontFamily="@font/poppins" />
                     <LinearLayout
@@ -130,7 +130,7 @@
                             android:layout_marginStart="10sp"
                             android:layout_marginEnd="10sp"
                             android:hint="Enter email address"
-                            android:textSize="@dimen/_13sdp"
+                            android:textSize="@dimen/_12sdp"
                             android:singleLine="true"
                             android:fontFamily="@font/poppins"
                             android:inputType="textEmailAddress"
@@ -144,8 +144,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Add Delivery Address"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_16sdp"
+                        android:textColor="@color/text"
+                        android:textSize="@dimen/_14sdp"
                         android:fontFamily="@font/poppins" />
 
                     <RadioGroup
@@ -174,7 +174,6 @@
                             android:layout_weight="1"
                             android:layout_marginHorizontal="@dimen/_5sdp"
                             android:textColor="@drawable/radio_color_selector"
-
                             android:paddingHorizontal="@dimen/_5sdp"
                             android:background="@drawable/background_address_selector"
                             android:layout_width="match_parent"
@@ -207,15 +206,15 @@
                         android:id="@+id/txt_pick_address"
                         android:layout_width="wrap_content"
                         android:layout_gravity="right"
+                        android:gravity="center_vertical"
                         android:layout_height="wrap_content"
                         android:text="@string/choose_address"
                         android:layout_margin="@dimen/_12sdp"
                         android:drawablePadding="@dimen/_8sdp"
-                        android:textSize="@dimen/_12sdp"
-                        android:fontFamily="@font/poppins_semibold"
-
-                        android:drawableLeft="@drawable/icon_loc"
-                        />
+                        android:textSize="@dimen/_10sdp"
+                        android:fontFamily="@font/teachers_medium"
+                        android:drawableTint="@color/text"
+                        android:drawableLeft="@drawable/icon_loc"/>
 
 
 
@@ -224,7 +223,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Flat / House no / Building name/ Floor *"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text"
                         android:textSize="@dimen/_11sdp"
                         android:fontFamily="@font/poppins" />
                     <LinearLayout
@@ -242,7 +241,7 @@
                             android:layout_marginStart="10sp"
                             android:layout_marginEnd="10sp"
                             android:hint="Enter flat number"
-                            android:textSize="15sp"
+                            android:textSize="@dimen/_12sdp"
                             android:singleLine="true"
                             android:textColorHint="@color/hintcolor"/>
                     </LinearLayout>
@@ -282,7 +281,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Area / Sector / locality*"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text"
                         android:textSize="@dimen/_11sdp"
                         android:fontFamily="@font/poppins" />
                     <LinearLayout
@@ -301,7 +300,7 @@
                             android:layout_marginEnd="10sp"
                             android:hint="Enter area"
                             android:fontFamily="@font/poppins"
-                            android:textSize="@dimen/_13sdp"
+                            android:textSize="@dimen/_12sdp"
                             android:singleLine="true"
                             android:textColorHint="@color/hintcolor"/>
                     </LinearLayout>
@@ -311,7 +310,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Near by landmark ( Optional )"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text"
                         android:textSize="@dimen/_11sdp"
                         android:fontFamily="@font/poppins" />
                     <LinearLayout
@@ -329,7 +328,7 @@
                             android:layout_marginStart="10sp"
                             android:layout_marginEnd="10sp"
                             android:hint="Enter near by landmark"
-                            android:textSize="@dimen/_13sdp"
+                            android:textSize="@dimen/_12sdp"
                             android:singleLine="true"
                             android:fontFamily="@font/poppins"
                             android:textColorHint="@color/hintcolor"/>
@@ -340,7 +339,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="City"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text"
                         android:textSize="@dimen/_11sdp"
                         android:fontFamily="@font/poppins" />
                     <LinearLayout
@@ -358,7 +357,7 @@
                             android:layout_marginStart="10sp"
                             android:layout_marginEnd="10sp"
                             android:hint="Enter city"
-                            android:textSize="@dimen/_13sdp"
+                            android:textSize="@dimen/_12sdp"
                             android:singleLine="true"
                             android:fontFamily="@font/poppins"
                             android:textColorHint="@color/hintcolor"/>
@@ -369,7 +368,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Country"
-                        android:textColor="@color/black"
+                        android:textColor="@color/text"
                         android:textSize="@dimen/_11sdp"
                         android:fontFamily="@font/poppins" />
                     <LinearLayout
@@ -387,7 +386,7 @@
                             android:layout_marginStart="10sp"
                             android:layout_marginEnd="10sp"
                             android:hint="Enter country"
-                            android:textSize="@dimen/_13sdp"
+                            android:textSize="@dimen/_12sdp"
                             android:singleLine="true"
                             android:fontFamily="@font/poppins"
                             android:textColorHint="@color/hintcolor"/>
@@ -409,7 +408,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:text="State"
-                                android:textColor="@color/black"
+                                android:textColor="@color/text"
                                 android:textSize="@dimen/_11sdp"
                                 android:fontFamily="@font/poppins" />
                             <LinearLayout
@@ -427,7 +426,7 @@
                                     android:layout_marginStart="10sp"
                                     android:layout_marginEnd="10sp"
                                     android:hint="Enter state"
-                                    android:textSize="@dimen/_13sdp"
+                                    android:textSize="@dimen/_12sdp"
                                     android:singleLine="true"
                                     android:fontFamily="@font/poppins"
                                     android:textColorHint="@color/hintcolor"/>
@@ -444,7 +443,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="10dp"
                                 android:text="Zip code"
-                                android:textColor="@color/black"
+                                android:textColor="@color/text"
                                 android:textSize="@dimen/_11sdp"
                                 android:fontFamily="@font/poppins" />
                             <LinearLayout
@@ -462,7 +461,7 @@
                                     android:layout_marginStart="10sp"
                                     android:layout_marginEnd="10sp"
                                     android:hint="Enter zip code"
-                                    android:textSize="@dimen/_13sdp"
+                                    android:textSize="@dimen/_12sdp"
                                     android:singleLine="true"
                                     android:inputType="number"
                                     android:fontFamily="@font/poppins"
@@ -489,11 +488,10 @@
                     android:layout_gravity="center_vertical"
                     android:text="Continue"
                     android:textColor="@color/white"
-                    android:textSize="17sp"
-                    android:fontFamily="@font/poppins" />
+                    android:textSize="17sp"/>
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:src="@drawable/right_arrow"
                     app:tint="@color/white"
                     android:layout_gravity="center_vertical"

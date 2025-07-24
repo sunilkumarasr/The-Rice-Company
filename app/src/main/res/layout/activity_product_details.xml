@@ -1,262 +1,297 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="#FFFFFF">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/lnr_bottom"
-        >
+        android:layout_above="@+id/lnr_bottom">
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:background="#FFFFFF"
-            android:gravity="center_vertical"
-            android:elevation="4dp">
-
-            <ImageButton
-                android:id="@+id/backButton"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_centerVertical="true"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:src="@drawable/icon_left_arrow"/>
-
-            <TextView
-                style="@style/textview"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:text="@string/product_details"
-android:fontFamily="@font/poppins_semibold"
-                android:textSize="@dimen/_16sdp"/>
-        </LinearLayout>
-        <com.denzcoskun.imageslider.ImageSlider
-            android:id="@+id/image_slider"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_120sdp"
-            app:iss_auto_cycle="true"
-            app:iss_period="1000"
-            app:iss_delay="1000"
-            app:iss_selected_dot="@color/red"
-            android:layout_marginBottom="@dimen/_16sdp"
-            app:iss_text_align="CENTER"/>
-
-        <!-- Rating Section -->
-        <LinearLayout
-            android:id="@+id/lnr_rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="8dp">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/icon_star"
-                />
-
-            <TextView
-                android:id="@+id/txt_rating"
-                style="@style/textview"
-                android:text=""
-                android:textColor="#000000"
-                android:textSize="@dimen/_11sdp"
-                android:layout_marginStart="4dp"/>
-
-            <TextView
-                android:id="@+id/txt_rating_no"
-                style="@style/textview"
-                android:textSize="@dimen/_11sdp"
-                android:text=""
-                android:textColor="@color/gray"
-                android:layout_marginStart="4dp"/>
-        </LinearLayout>
-
-        <!-- Product Title -->
-        <TextView
-            android:id="@+id/txt_product_name"
-            style="@style/textview"
-            android:textSize="@dimen/_11sdp"
-            android:text=""
-
-            android:fontFamily="@font/poppins_semibold"
-            android:layout_marginBottom="16dp"/>
-
-        <!-- Price Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginBottom="16dp">
+            android:padding="16dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="4dp">
+                android:layout_height="56dp"
+                android:background="#FFFFFF"
+                android:gravity="center_vertical">
+
+                <ImageButton
+                    android:id="@+id/backButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_centerVertical="true"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/icon_left_arrow" />
 
                 <TextView
-                    style="@style/textview"
-                    android:textSize="@dimen/_11sdp"
-                    android:textColor="@color/gray"
-                    android:minWidth="@dimen/_80sdp"
-                    android:text="MRP: "
-                    />
-
-                <TextView
-                    android:id="@+id/txt_mrp_price"
-                    style="@style/textview"
-                    android:textSize="@dimen/_11sdp"
-                    android:text=""
-                    android:fontFamily="@font/poppins_semibold"
-                    />
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:textColor="@color/text"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:fontFamily="@font/teachers_medium"
+                    android:text="@string/product_details"
+                    android:textSize="@dimen/_15sdp" />
             </LinearLayout>
 
-            <LinearLayout
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/image_slider"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="4dp">
+                android:layout_height="@dimen/_180sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:layout_gravity="center"
+                app:iss_auto_cycle="true"
+                app:iss_delay="1000"
+                app:iss_period="1000"
+                app:iss_selected_dot="@color/red"
+                app:iss_text_align="CENTER" />
 
-                <TextView
-                    style="@style/textview"
-                    android:textSize="@dimen/_11sdp"
-                    android:text="Our Price: "
-                    android:textColor="@color/gray"
-                    android:minWidth="@dimen/_80sdp"
-                    />
 
-                <TextView
-                    android:id="@+id/txt_our_price"
-                    style="@style/textview"
-                    android:textSize="@dimen/_11sdp"
-                    android:text=""
-                    android:fontFamily="@font/poppins_semibold"
-                    />
-            </LinearLayout>
-
+            <!-- Rating Section -->
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/lnr_rating"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:orientation="horizontal">
 
-                <TextView
-                    style="@style/textview"
-                    android:text="Market Price: "
-                    android:textColor="@color/gray"
-                    android:minWidth="@dimen/_80sdp"
-                    android:textSize="@dimen/_12sdp"/>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_star" />
 
                 <TextView
-                    android:id="@+id/txt_market_price"
+                    android:id="@+id/txt_rating"
                     style="@style/textview"
-                    android:fontFamily="@font/poppins_semibold"
+                    android:layout_marginStart="4dp"
                     android:text=""
-                    android:textSize="@dimen/_12sdp" />
+                    android:textColor="#000000"
+                    android:textSize="@dimen/_11sdp" />
+
+                <TextView
+                    android:id="@+id/txt_rating_no"
+                    style="@style/textview"
+                    android:layout_marginStart="4dp"
+                    android:text=""
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_11sdp" />
             </LinearLayout>
-        </LinearLayout>
 
-        <!-- Variant Selection -->
-        <TextView
-            style="@style/textview"
-            android:text="Select Variant"
-            android:fontFamily="@font/poppins_semibold"
-            android:textSize="@dimen/_12sdp"
-            android:layout_marginBottom="8dp"/>
+            <!-- Product Title -->
+            <TextView
+                android:id="@+id/txt_product_name"
+                style="@style/textview"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/poppins_semibold"
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
+                android:text=""
+                android:textSize="@dimen/_11sdp" />
 
-            <com.google.android.flexbox.FlexboxLayout
-                android:id="@+id/flexboxLayout"
+            <!-- Price Section -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:flexWrap="wrap"
-                app:flexDirection="row"
-                app:justifyContent="space_around"
-                >
-            </com.google.android.flexbox.FlexboxLayout>
+                android:layout_marginBottom="16dp"
+                android:orientation="vertical">
 
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
 
-        <!-- Delivery Section -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
+                    <TextView
+                        style="@style/textview"
+                        android:minWidth="@dimen/_80sdp"
+                        android:text="MRP: "
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_11sdp" />
 
-            android:padding="16dp"
-            android:layout_marginBottom="16dp">
+                    <TextView
+                        android:id="@+id/txt_mrp_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="@dimen/_11sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textview"
+                        android:minWidth="@dimen/_80sdp"
+                        android:text="Our Price: "
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <TextView
+                        android:id="@+id/txt_our_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="@dimen/_11sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/textview"
+                        android:minWidth="@dimen/_80sdp"
+                        android:text="Market Price: "
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/txt_market_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Variant Selection -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/teachers_medium"
+                android:text="Select Variant"
+                android:textColor="@color/text"
+                android:textSize="@dimen/_16sdp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:visibility="gone"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="16dp">
 
-                <TextView
-                    style="@style/textview"
-                    android:text="Delivery to: "
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/_12sdp"/>
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
+                <com.google.android.flexbox.FlexboxLayout
+                    android:id="@+id/flexboxLayout"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Sai Kumar, 500008"
+                    app:flexDirection="row"
+                    app:flexWrap="wrap"
+                    app:justifyContent="space_around"></com.google.android.flexbox.FlexboxLayout>
 
-                    android:textSize="@dimen/_12sdp"/>
-
-                <TextView
-                    style="@style/textview"
-                    android:text="Home"
-                    android:paddingVertical="@dimen/_2sdp"
-                    android:paddingHorizontal="@dimen/_4sdp"
-                    android:background="@drawable/drawable_home_text_bg"
-                    android:textSize="@dimen/_10sdp"/>
             </LinearLayout>
 
-            <TextView
-                style="@style/textview"
-                android:text="Ho.No. 9-1-34/30/40D, Bapunagar"
-                android:textColor="@color/gray"
-                android:textSize="@dimen/_12sdp"
-                android:visibility="gone"
-                android:layout_marginBottom="8dp"/>
-            <Button
-                android:id="@+id/btnChangeAddress"
-                style="@style/OutlinedButtonStyle"
+            <!-- Delivery Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
 
-                android:layout_marginTop="@dimen/_8sdp"
-                android:text="Change"
-                android:visibility="gone"
-                android:fontFamily="@font/poppins_semibold"
-                android:textColor="@color/green" />
-            <TextView
-                android:id="@+id/txt_order_delivered"
-                style="@style/textview"
-                android:text="if ordered before 2:10 PM"
-                android:textColor="@color/gray"
-                android:textSize="@dimen/_11sdp"
-                android:visibility="gone"
-                android:layout_marginTop="@dimen/_8sdp"
-                android:layout_marginBottom="8dp"/>
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:orientation="horizontal"
+                    android:visibility="gone">
+
+                    <TextView
+                        style="@style/textview"
+                        android:text="Delivery to: "
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        style="@style/textview"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Sai Kumar, 500008"
+
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        style="@style/textview"
+                        android:background="@drawable/drawable_home_text_bg"
+                        android:paddingHorizontal="@dimen/_4sdp"
+                        android:paddingVertical="@dimen/_2sdp"
+                        android:text="Home"
+                        android:textSize="@dimen/_10sdp" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/textview"
+                    android:layout_marginBottom="8dp"
+                    android:text="Ho.No. 9-1-34/30/40D, Bapunagar"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_12sdp"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btnChangeAddress"
+                    style="@style/OutlinedButtonStyle"
+
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="Change"
+                    android:textColor="@color/green"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/txt_order_delivered"
+                    style="@style/textview"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginBottom="8dp"
+                    android:text="if ordered before 2:10 PM"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_11sdp"
+                    android:visibility="gone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/textview"
+                        android:layout_marginBottom="4dp"
+
+                        android:text="• Schedule Your Delivery"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        style="@style/textview"
+                        android:layout_marginBottom="4dp"
+
+                        android:text="• Cash on Delivery"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        style="@style/textview"
+                        android:text="• Easy doorstep Returns"
+
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/txt_view_details"
+                        style="@style/textview"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:text="@string/view_details"
+                        android:textColor="#367CFF"
+                        android:textSize="@dimen/_12sdp" />
+                </LinearLayout>
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -264,332 +299,298 @@ android:fontFamily="@font/poppins_semibold"
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/textview"
-                    android:text="• Schedule Your Delivery"
-
-                    android:textSize="@dimen/_12sdp"
-                    android:layout_marginBottom="4dp"/>
-
-                <TextView
-                    style="@style/textview"
-                    android:text="• Cash on Delivery"
-
-                    android:textSize="@dimen/_12sdp"
-                    android:layout_marginBottom="4dp"/>
-
-                <TextView
-                    style="@style/textview"
-                    android:text="• Easy doorstep Returns"
-
-                    android:textSize="@dimen/_12sdp"/>
-
-                <TextView
-                    android:id="@+id/txt_view_details"
-                    style="@style/textview"
-                    android:text="@string/view_details"
-                    android:textColor="#367CFF"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:textSize="@dimen/_12sdp"/>
-            </LinearLayout>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-           >
-
-            <TextView
-                style="@style/textview"
-                android:text="Product Details"
-                android:textSize="@dimen/_16sdp"
-                android:fontFamily="@font/poppins_semibold"
-                android:layout_marginBottom="16dp"/>
-
-          <!--  &lt;!&ndash; Sales Package &ndash;&gt;
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Sales Package"
+                    android:layout_marginBottom="16dp"
+                    android:textColor="@color/text"
+                    android:fontFamily="@font/teachers_medium"
+                    android:text="Product Details"
+                    android:textSize="@dimen/_16sdp" />
+
+                <!--  &lt;!&ndash; Sales Package &ndash;&gt;
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="8dp">
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="Sales Package"
+                          android:textColor="@color/gray"
+                          android:textSize="@dimen/_12sdp"/>
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="1 pack of Daawat Super Basmati Rice"
+
+                          android:textSize="@dimen/_12sdp"/>
+                  </LinearLayout>
+
+                  &lt;!&ndash; Brand &ndash;&gt;
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="8dp">
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="Brand"
+                          android:textColor="@color/gray"
+                          android:textSize="@dimen/_12sdp"/>
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="Daawat"
+
+                          android:textSize="@dimen/_12sdp"/>
+                  </LinearLayout>
+
+                  &lt;!&ndash; Model Name &ndash;&gt;
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="8dp">
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="Model Name"
+                          android:textColor="@color/gray"
+                          android:textSize="@dimen/_12sdp"/>
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="Super"
+
+                          android:textSize="@dimen/_12sdp"/>
+                  </LinearLayout>
+
+                  &lt;!&ndash; Rice Type &ndash;&gt;
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="8dp">
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="Rice Type"
+                          android:textColor="@color/gray"
+                          android:textSize="@dimen/_12sdp"/>
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="Basmati Rice"
+
+                          android:textSize="@dimen/_12sdp"/>
+                  </LinearLayout>
+
+                  &lt;!&ndash; Color &ndash;&gt;
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="8dp">
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="Color"
+                          android:textColor="@color/gray"
+                          android:textSize="@dimen/_12sdp"/>
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="White"
+
+                          android:textSize="@dimen/_12sdp"/>
+                  </LinearLayout>
+
+                  &lt;!&ndash; Maximum Shelf Life &ndash;&gt;
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="8dp">
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="Maximum Shelf Life"
+                          android:textColor="@color/gray"
+                          android:textSize="@dimen/_12sdp"/>
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="24 Months"
+
+                          android:textSize="@dimen/_12sdp"/>
+                  </LinearLayout>
+
+                  &lt;!&ndash; Nutrient Content &ndash;&gt;
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="8dp">
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="Nutrient Content"
+                          android:textColor="@color/gray"
+                          android:textSize="@dimen/_12sdp"/>
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="NA"
+
+                          android:textSize="@dimen/_12sdp"/>
+                  </LinearLayout>
+
+                  &lt;!&ndash; Container Type &ndash;&gt;
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="8dp">
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="Container Type"
+                          android:textColor="@color/gray"
+                          android:textSize="@dimen/_12sdp"/>
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="Pouch"
+
+                          android:textSize="@dimen/_12sdp"/>
+                  </LinearLayout>
+
+                  &lt;!&ndash; Country of Origin &ndash;&gt;
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="8dp">
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="Country of Origin"
+                          android:textColor="@color/gray"
+                          android:textSize="@dimen/_12sdp"/>
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="India"
+
+                          android:textSize="@dimen/_12sdp"/>
+                  </LinearLayout>
+
+                  &lt;!&ndash; Net Quantity &ndash;&gt;
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      android:layout_marginBottom="16dp">
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="Net Quantity"
+                          android:textColor="@color/gray"
+                          android:textSize="@dimen/_12sdp"/>
+
+                      <TextView
+                          style="@style/textview"
+                          android:layout_width="0dp"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="1"
+                          android:text="5 kg"
+
+                          android:textSize="@dimen/_12sdp"/>
+                  </LinearLayout>-->
+
+                <!-- Disclaimer Text -->
+                <WebView
+                    android:id="@+id/webview_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/txt_product_description"
+                    style="@style/textview"
+                    android:lineSpacingExtra="4dp"
+
+                    android:text=""
                     android:textColor="@color/gray"
-                    android:textSize="@dimen/_12sdp"/>
+                    android:textSize="@dimen/_10sdp"
+                    android:visibility="gone" />
 
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="1 pack of Daawat Super Basmati Rice"
-
-                    android:textSize="@dimen/_12sdp"/>
             </LinearLayout>
 
-            &lt;!&ndash; Brand &ndash;&gt;
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
 
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Brand"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/_12sdp"/>
+            <!-- Continue with the rest of the previous product details... -->
 
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Daawat"
-
-                    android:textSize="@dimen/_12sdp"/>
-            </LinearLayout>
-
-            &lt;!&ndash; Model Name &ndash;&gt;
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Model Name"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/_12sdp"/>
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Super"
-
-                    android:textSize="@dimen/_12sdp"/>
-            </LinearLayout>
-
-            &lt;!&ndash; Rice Type &ndash;&gt;
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Rice Type"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/_12sdp"/>
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Basmati Rice"
-
-                    android:textSize="@dimen/_12sdp"/>
-            </LinearLayout>
-
-            &lt;!&ndash; Color &ndash;&gt;
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Color"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/_12sdp"/>
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="White"
-
-                    android:textSize="@dimen/_12sdp"/>
-            </LinearLayout>
-
-            &lt;!&ndash; Maximum Shelf Life &ndash;&gt;
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Maximum Shelf Life"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/_12sdp"/>
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="24 Months"
-
-                    android:textSize="@dimen/_12sdp"/>
-            </LinearLayout>
-
-            &lt;!&ndash; Nutrient Content &ndash;&gt;
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Nutrient Content"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/_12sdp"/>
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="NA"
-
-                    android:textSize="@dimen/_12sdp"/>
-            </LinearLayout>
-
-            &lt;!&ndash; Container Type &ndash;&gt;
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Container Type"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/_12sdp"/>
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Pouch"
-
-                    android:textSize="@dimen/_12sdp"/>
-            </LinearLayout>
-
-            &lt;!&ndash; Country of Origin &ndash;&gt;
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="8dp">
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Country of Origin"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/_12sdp"/>
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="India"
-
-                    android:textSize="@dimen/_12sdp"/>
-            </LinearLayout>
-
-            &lt;!&ndash; Net Quantity &ndash;&gt;
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginBottom="16dp">
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Net Quantity"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/_12sdp"/>
-
-                <TextView
-                    style="@style/textview"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="5 kg"
-
-                    android:textSize="@dimen/_12sdp"/>
-            </LinearLayout>-->
-
-            <!-- Disclaimer Text -->
-            <WebView
-                android:id="@+id/webview_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-            <TextView
-                android:visibility="gone"
-                android:id="@+id/txt_product_description"
-                style="@style/textview"
-
-                android:text=""
-                android:textColor="@color/gray"
-                android:textSize="@dimen/_10sdp"
-                android:lineSpacingExtra="4dp"/>
+            <!-- [Previous product details sections remain the same] -->
 
         </LinearLayout>
-
-
-        <!-- Continue with the rest of the previous product details... -->
-
-        <!-- [Previous product details sections remain the same] -->
-
-    </LinearLayout>
 
     </ScrollView>
 
@@ -597,56 +598,56 @@ android:fontFamily="@font/poppins_semibold"
         android:id="@+id/lnr_bottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
         android:layout_alignParentBottom="true"
-        >
+        android:orientation="vertical">
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnAddToCart"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_48sdp"
             android:layout_margin="16dp"
             android:backgroundTint="@color/gold"
+            android:fontFamily="@font/poppins_semibold"
             android:text="@string/add_to_cart"
             android:textAllCaps="false"
-            app:cornerRadius="8dp"
             android:visibility="gone"
-            android:fontFamily="@font/poppins_semibold"
+            app:cornerRadius="8dp" />
 
-            />
         <LinearLayout
-            android:visibility="gone"
             android:id="@+id/lnr_viewcart"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            >
+            android:visibility="gone">
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/btnViewCart"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="@dimen/_48sdp"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:layout_weight="1"
                 android:backgroundTint="@color/white"
+                android:fontFamily="@font/poppins_semibold"
                 android:text="@string/view_cart"
                 android:textAllCaps="false"
+                android:textColor="@color/gold"
                 app:cornerRadius="8dp"
                 app:strokeColor="@color/gold"
                 app:strokeWidth="1dp"
-                android:textColor="@color/gold"
-                android:layout_marginHorizontal="@dimen/_5sdp"
-                android:fontFamily="@font/poppins_semibold"
 
                 />
+
             <LinearLayout
                 android:id="@+id/quantityLayout"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="@dimen/_48sdp"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:layout_weight="1"
                 android:background="@drawable/quantity_background"
-                android:orientation="horizontal"
-                android:padding="4dp"
                 android:backgroundTint="@color/gold"
                 android:gravity="center"
-                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:orientation="horizontal"
+                android:padding="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -656,14 +657,13 @@ android:fontFamily="@font/poppins_semibold"
                     android:layout_height="28dp"
                     android:layout_marginLeft="@dimen/_8sdp"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_minus"
-                    />
+                    android:src="@drawable/ic_minus" />
 
                 <TextView
                     android:id="@+id/tvQuantity"
                     style="@style/textview"
-                    android:minWidth="@dimen/_50sdp"
                     android:gravity="center"
+                    android:minWidth="@dimen/_50sdp"
                     android:text="1"
 
                     android:textColor="@color/white"
@@ -677,10 +677,8 @@ android:fontFamily="@font/poppins_semibold"
                     android:layout_marginRight="@dimen/_8sdp"
 
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:src="@drawable/ic_plus"
-                    />
+                    android:src="@drawable/ic_plus" />
             </LinearLayout>
-
 
 
         </LinearLayout>

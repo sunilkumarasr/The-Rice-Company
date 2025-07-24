@@ -60,7 +60,9 @@ class UpdateAddressActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-       val  apiKey=getString(R.string.MAP_KEY)
+        ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
+
+        val  apiKey=getString(R.string.MAP_KEY)
 
         Places.initialize(applicationContext, apiKey)
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bookiron.itpark.utils.MyPref
 import com.bumptech.glide.Glide
@@ -12,6 +13,7 @@ import com.gadiwalaUser.Models.OrderMainResponse
 import com.gadiwalaUser.services.DataManager
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
 import com.royalpark.gaadiwala_admin.views.CustomDialog
+import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityOrderDetailsBinding
 import com.shambavi.thericecompany.utils.Utils
@@ -25,28 +27,36 @@ class OrderDetailsActivity : AppCompatActivity() {
     private var currentRating: Float = 0f
     lateinit var orderProductAdapter: OrderProductAdapter
     private lateinit var binding: ActivityOrderDetailsBinding
-var user_id=""
+    var user_id = ""
+
     companion object {
         const val EXTRA_ORDER_ID = "order_id"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityOrderDetailsBinding.inflate(layoutInflater)
+        binding = ActivityOrderDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewController.changeStatusBarColor(
+            this,
+            ContextCompat.getColor(this, R.color.colorPrimary),
+            false
+        )
+
         orderId = intent.getStringExtra(EXTRA_ORDER_ID)
-        user_id= MyPref.getUser(applicationContext)
-        orderProductAdapter=OrderProductAdapter()
+        user_id = MyPref.getUser(applicationContext)
+        orderProductAdapter = OrderProductAdapter()
         orderProductAdapter.setListener(this)
-        binding.recyclerProducts.layoutManager=LinearLayoutManager(applicationContext)
-        binding.recyclerProducts.adapter=orderProductAdapter
-        binding.addressText.text=""
+        binding.recyclerProducts.layoutManager = LinearLayoutManager(applicationContext)
+        binding.recyclerProducts.adapter = orderProductAdapter
+        binding.addressText.text = ""
         setupUI()
         getOrderDetails()
         setupListeners()
 
 
     }
+
     private fun setupUI() {
         binding.backButton.setOnClickListener {
             onBackPressed()
@@ -55,8 +65,8 @@ var user_id=""
 
     private fun loadOrderDetails() {
         // In a real app, you would fetch this from an API or database
-       // val orderDetails = getSampleOrderDetails()
-       // displayOrderDetails(orderDetails)
+        // val orderDetails = getSampleOrderDetails()
+        // displayOrderDetails(orderDetails)
     }
 
     private fun displayOrderDetails(order: Order) {
@@ -64,28 +74,27 @@ var user_id=""
             // Order ID
             orderIdText.text = "Order ID: ${order.orderId}"
 
-           /* if(order.products.size>0) {
-                Glide.with(productImage)
-                    .load(ROOT_URL + order.products.get(0).productImage)
-                    .placeholder(R.drawable.item1)
-                    .into(productImage)
+            /* if(order.products.size>0) {
+                 Glide.with(productImage)
+                     .load(ROOT_URL + order.products.get(0).productImage)
+                     .placeholder(R.drawable.item1)
+                     .into(productImage)
 
-                productNameText.text=order.products.get(0).productTitle
+                 productNameText.text=order.products.get(0).productTitle
 
-                productDescriptionText.text = order.products.get(0).productTitle
-            }
-            // Product Details
+                 productDescriptionText.text = order.products.get(0).productTitle
+             }
+             // Product Details
 
-            productWeightText.text = order.qty
+             productWeightText.text = order.qty
 
-            priceText.text = "₹ ${order.amount}"*/
+             priceText.text = "₹ ${order.amount}"*/
 
             // Order Status Timeline
             //displayOrderTimeline(orderDetails.orderStatus)
-            if(order.status=="1")
-            {
-                lnrOrderRefund.visibility= View.GONE
-                lnrOrderReturned.visibility= View.GONE
+            if (order.status == "1") {
+                lnrOrderRefund.visibility = View.GONE
+                lnrOrderReturned.visibility = View.GONE
                 /*lnrOrderDelivered.visibility= View.GONE
                 lnrOrderConfirmed.visibility= View.VISIBLE
                 lnrOrderShipped.visibility= View.GONE
@@ -97,69 +106,65 @@ var user_id=""
                 viewOrderShipped.visibility=View.GONE
                 viewOrderOutDelivery.visibility=View.GONE
                 viewOrderDelivered.visibility=View.GONE
-              */viewOrderDelivered.visibility=View.GONE
-                viewOrderRetured.visibility=View.GONE
+              */viewOrderDelivered.visibility = View.GONE
+                viewOrderRetured.visibility = View.GONE
 
-            }else if(order.status=="2")
-            {
+            } else if (order.status == "2") {
 
-                lnrOrderRefund.visibility= View.GONE
-                lnrOrderReturned.visibility= View.GONE
-               /* lnrOrderDelivered.visibility= View.GONE
-                lnrOrderConfirmed.visibility= View.VISIBLE
-                lnrOrderShipped.visibility= View.VISIBLE
-                lnrOrderOut.visibility= View.GONE
-*/
-               /* viewOrderShipped.visibility=View.GONE
-                viewOrderOutDelivery.visibility=View.VISIBLE
-                viewOrderConfirmed.visibility=View.VISIBLE
+                lnrOrderRefund.visibility = View.GONE
+                lnrOrderReturned.visibility = View.GONE
+                /* lnrOrderDelivered.visibility= View.GONE
+                 lnrOrderConfirmed.visibility= View.VISIBLE
+                 lnrOrderShipped.visibility= View.VISIBLE
+                 lnrOrderOut.visibility= View.GONE
+ */
+                /* viewOrderShipped.visibility=View.GONE
+                 viewOrderOutDelivery.visibility=View.VISIBLE
+                 viewOrderConfirmed.visibility=View.VISIBLE
 
-               */
-                viewOrderDelivered.visibility=View.GONE
-                viewOrderRetured.visibility=View.GONE
+                */
+                viewOrderDelivered.visibility = View.GONE
+                viewOrderRetured.visibility = View.GONE
                 viewOrderConfirmed.setBackgroundColor(resources.getColor(R.color.green))
 
-            }else if(order.status=="3")
-            {
-                lnrOrderRefund.visibility= View.GONE
-                lnrOrderReturned.visibility= View.GONE
-               /* lnrOrderDelivered.visibility= View.GONE
-                lnrOrderConfirmed.visibility= View.VISIBLE
-                lnrOrderShipped.visibility= View.VISIBLE
-                lnrOrderOut.visibility= View.VISIBLE
-*/
-             /*   viewOrderShipped.visibility=View.VISIBLE
-                viewOrderOutDelivery.visibility=View.VISIBLE
-                viewOrderConfirmed.visibility=View.VISIBLE
-                viewOrderDelivered.visibility=View.GONE
-             */
-                viewOrderDelivered.visibility=View.GONE
-                viewOrderRetured.visibility=View.GONE
+            } else if (order.status == "3") {
+                lnrOrderRefund.visibility = View.GONE
+                lnrOrderReturned.visibility = View.GONE
+                /* lnrOrderDelivered.visibility= View.GONE
+                 lnrOrderConfirmed.visibility= View.VISIBLE
+                 lnrOrderShipped.visibility= View.VISIBLE
+                 lnrOrderOut.visibility= View.VISIBLE
+ */
+                /*   viewOrderShipped.visibility=View.VISIBLE
+                   viewOrderOutDelivery.visibility=View.VISIBLE
+                   viewOrderConfirmed.visibility=View.VISIBLE
+                   viewOrderDelivered.visibility=View.GONE
+                */
+                viewOrderDelivered.visibility = View.GONE
+                viewOrderRetured.visibility = View.GONE
                 viewOrderConfirmed.setBackgroundColor(resources.getColor(R.color.green))
                 viewOrderShipped.setBackgroundColor(resources.getColor(R.color.green))
 
-            }else if(order.status=="4")
-            {
-                lnrOrderRefund.visibility= View.GONE
-                lnrOrderReturned.visibility= View.GONE
-               /* lnrOrderDelivered.visibility= View.VISIBLE
-                lnrOrderConfirmed.visibility= View.VISIBLE
-                lnrOrderShipped.visibility= View.VISIBLE
-                lnrOrderOut.visibility= View.VISIBLE
-*/
+            } else if (order.status == "4") {
+                lnrOrderRefund.visibility = View.GONE
+                lnrOrderReturned.visibility = View.GONE
+                /* lnrOrderDelivered.visibility= View.VISIBLE
+                 lnrOrderConfirmed.visibility= View.VISIBLE
+                 lnrOrderShipped.visibility= View.VISIBLE
+                 lnrOrderOut.visibility= View.VISIBLE
+ */
                 /*viewOrderShipped.visibility=View.VISIBLE
                 viewOrderOutDelivery.visibility=View.VISIBLE
                 viewOrderConfirmed.visibility=View.VISIBLE
                 viewOrderDelivered.visibility=View.GONE
               */
-                viewOrderDelivered.visibility=View.GONE
-                viewOrderRetured.visibility=View.GONE
+                viewOrderDelivered.visibility = View.GONE
+                viewOrderRetured.visibility = View.GONE
                 viewOrderConfirmed.setBackgroundColor(resources.getColor(R.color.green))
                 viewOrderShipped.setBackgroundColor(resources.getColor(R.color.green))
                 viewOrderConfirmed.setBackgroundColor(resources.getColor(R.color.green))
 
-            }else
-            {
+            } else {
 
             }
             // Shipping Details
@@ -171,17 +176,17 @@ var user_id=""
 
 
             // Billing Details
-          binding.  txtTotalAmount.text = "₹ ${order.amount}"
-          binding.  txtGrandTotal.text = "₹ ${order.amount}"
-
+            binding.txtTotalAmount.text = "₹${order.amount}"
+            binding.txtGrandTotal.text = "₹${order.amount}"
 
 
         }
     }
-    fun formAddress(data: Order):String
-    {
-        var adrs="${data.houseNo},${data.floor},${data.landmark}\n${data.cityTown},${data.state},${data.country},${data.zipCode}"
-        adrs=adrs.replace(",,",",")
+
+    fun formAddress(data: Order): String {
+        var adrs =
+            "${data.houseNo},${data.floor},${data.landmark}\n${data.cityTown},${data.state},${data.country},${data.zipCode}"
+        adrs = adrs.replace(",,", ",")
         return adrs
     }
 
@@ -247,26 +252,29 @@ var user_id=""
             Toast.LENGTH_SHORT
         ).show()
     }
-    fun getOrderDetails()
-    {
 
-        val dialog= CustomDialog(this@OrderDetailsActivity)
+    fun getOrderDetails() {
+
+        val dialog = CustomDialog(this@OrderDetailsActivity)
         // Obtain the DataManager instance
-        dialog.showDialog(this@OrderDetailsActivity,false)
+        dialog.showDialog(this@OrderDetailsActivity, false)
         val dataManager = DataManager.getDataManager()
 
         // Create a callback for handling the API response
         val otpCallback = object : Callback<OrderMainResponse> {
-            override fun onResponse(call: Call<OrderMainResponse>, response: Response<OrderMainResponse>) {
+            override fun onResponse(
+                call: Call<OrderMainResponse>,
+                response: Response<OrderMainResponse>
+            ) {
                 dialog.closeDialog()
                 if (response.isSuccessful) {
                     val model: OrderMainResponse? = response.body()
-                    ORDER_ID_NOT_NUMBER= model!!.orders.get(0).orderId.toString()
+                    ORDER_ID_NOT_NUMBER = model!!.orders.get(0).orderId.toString()
                     displayOrderDetails(model!!.orders.get(0))
                     println("OTP Sent successfully: ${model?.message}")
                     orderProductAdapter.cartList.clear()
                     orderProductAdapter.cartList.addAll(model!!.orders.get(0).products)
-                  //  orderProductAdapter.cartList.addAll(model!!.orders.get(0).products)
+                    //  orderProductAdapter.cartList.addAll(model!!.orders.get(0).products)
                     orderProductAdapter.notifyDataSetChanged()
                 } else {
                     // Handle error
@@ -283,63 +291,63 @@ var user_id=""
         }
 
         // Call the sendOtp function in DataManager
-        orderId?.let { dataManager.getOrderDetails(otpCallback, it,user_id) }
+        orderId?.let { dataManager.getOrderDetails(otpCallback, it, user_id) }
     }
-/*
-    private fun getSampleOrderDetails(): OrderDetails {
-        return OrderDetails(
-            orderId = "OD123456",
-            productImage = "sample_image_url",
-            productName = "Daawat Super Basmati Rice",
-            productWeight = "Basmati (1 Kg)",
-            productDescription = "(Fluffy Long Grains)",
-            price = 62.0,
-            orderStatus = listOf(
-                OrderStatus(
-                    status = "Order Confirmed",
-                    date = "25 Oct 2024",
-                    isCompleted = true,
-                    statusColor = R.color.green
+    /*
+        private fun getSampleOrderDetails(): OrderDetails {
+            return OrderDetails(
+                orderId = "OD123456",
+                productImage = "sample_image_url",
+                productName = "Daawat Super Basmati Rice",
+                productWeight = "Basmati (1 Kg)",
+                productDescription = "(Fluffy Long Grains)",
+                price = 62.0,
+                orderStatus = listOf(
+                    OrderStatus(
+                        status = "Order Confirmed",
+                        date = "25 Oct 2024",
+                        isCompleted = true,
+                        statusColor = R.color.green
+                    ),
+                    OrderStatus(
+                        status = "Delivered",
+                        date = "28 Oct 2024",
+                        isCompleted = true,
+                        statusColor = R.color.green
+                    ),
+                    OrderStatus(
+                        status = "Return",
+                        date = "29 Oct 2024",
+                        isCompleted = true,
+                        statusColor = R.color.gold
+                    ),
+                    OrderStatus(
+                        status = "Refund",
+                        date = "29 Oct 2024",
+                        isCompleted = true,
+                        statusColor = R.color.gold
+                    )
                 ),
-                OrderStatus(
-                    status = "Delivered",
-                    date = "28 Oct 2024",
-                    isCompleted = true,
-                    statusColor = R.color.green
+                shippingDetails = ShippingDetails(
+                    customerName = "Sai Kumar",
+                    address = "Ho.No. 9-1-34/30/40D, Bapunagar,\nLonger House, Hyderabad,\nTelangana- 500008",
+                    phoneNumbers = listOf("9123456789", "9876543210")
                 ),
-                OrderStatus(
-                    status = "Return",
-                    date = "29 Oct 2024",
-                    isCompleted = true,
-                    statusColor = R.color.gold
+                billingDetails = BillingDetails(
+                    itemPrice = 62.0,
+                    savings = 5.0,
+                    deliveryCharge = 30.0,
+                    freeDeliveryThreshold = 131.0 // 62 + 69 more for free delivery
                 ),
-                OrderStatus(
-                    status = "Refund",
-                    date = "29 Oct 2024",
-                    isCompleted = true,
-                    statusColor = R.color.gold
-                )
-            ),
-            shippingDetails = ShippingDetails(
-                customerName = "Sai Kumar",
-                address = "Ho.No. 9-1-34/30/40D, Bapunagar,\nLonger House, Hyderabad,\nTelangana- 500008",
-                phoneNumbers = listOf("9123456789", "9876543210")
-            ),
-            billingDetails = BillingDetails(
-                itemPrice = 62.0,
-                savings = 5.0,
-                deliveryCharge = 30.0,
-                freeDeliveryThreshold = 131.0 // 62 + 69 more for free delivery
-            ),
-            rating = null
-        )
-    }
-*/
+                rating = null
+            )
+        }
+    */
 
-    fun setRating(pid:String,rating:String){
-        val dialog= CustomDialog(this@OrderDetailsActivity)
+    fun setRating(pid: String, rating: String) {
+        val dialog = CustomDialog(this@OrderDetailsActivity)
         // Obtain the DataManager instance
-        dialog.showDialog(this@OrderDetailsActivity,false)
+        dialog.showDialog(this@OrderDetailsActivity, false)
         val dataManager = DataManager.getDataManager()
 
         // Create a callback for handling the API response
@@ -351,7 +359,7 @@ var user_id=""
 
                     // Handle the response
 
-                    model?.Message?.let { Utils.showMessage(it,applicationContext) }
+                    model?.Message?.let { Utils.showMessage(it, applicationContext) }
 
                     println("OTP Sent successfully: ${model?.Message}")
                 } else {
@@ -369,7 +377,7 @@ var user_id=""
         }
 
         // Call the sendOtp function in DataManager
-        dataManager.setRating(otpCallback ,user_id,pid,ORDER_ID_NOT_NUMBER,rating)
+        dataManager.setRating(otpCallback, user_id, pid, ORDER_ID_NOT_NUMBER, rating)
     }
 
 }

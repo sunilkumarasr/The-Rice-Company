@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,6 +12,7 @@ import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.SlotsMainRes
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
+import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.cart.SlotsAdapter
 import com.shambavi.thericecompany.databinding.ActivityCheckOutBinding
@@ -27,6 +29,8 @@ class SlotsActivity : AppCompatActivity(), ProductListener {
         super.onCreate(savedInstanceState)
         binding=ActivitySlotsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
+
         adapter=SlotsAdapter()
         binding.rvSlots.layoutManager=LinearLayoutManager(applicationContext)
         binding.rvSlots.adapter=adapter

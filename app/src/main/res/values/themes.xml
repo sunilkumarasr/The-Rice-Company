@@ -8,9 +8,9 @@
     <style name="Theme.TheRiceCompany" parent="Base.Theme.TheRiceCompany" />
 
     <style name="BottomNavTextAppearance" parent="TextAppearance.AppCompat.Medium">
-        <item name="android:textSize">@dimen/_12sdp</item> <!-- Adjust the text size here -->
+        <item name="android:textSize">@dimen/_10sdp</item> <!-- Adjust the text size here -->
         <item name="android:textColor">?attr/colorOnSurface</item>
-        <item name="android:fontFamily">@font/poppins_semibold</item>
+        <item name="android:fontFamily">@font/teachers_medium</item>
     </style>
     <!-- Custom outlined button style -->
     <style name="OutlinedButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">

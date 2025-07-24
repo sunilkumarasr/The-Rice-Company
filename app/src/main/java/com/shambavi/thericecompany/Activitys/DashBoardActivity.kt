@@ -3,6 +3,7 @@ package com.shambavi.thericecompany.Activitys
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -34,6 +35,9 @@ class DashBoardActivity : AppCompatActivity() {
     var user_id=""
 
     private lateinit var bottomNavigationView: BottomNavigationView
+
+    //exit
+    private var isHomeFragmentDisplayed = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -145,11 +149,6 @@ badge!!.isVisible=isVisible
         startActivity(intent)
         finish()
     }
-    override fun onBackPressed() {
-        super.onBackPressed()
-        finishAffinity()
-    }
-
 
     fun getCartCount()
     {
@@ -201,4 +200,31 @@ badge!!.isVisible=isVisible
         // Call the sendOtp function in DataManager
         dataManager.cartCount(otpCallback,user_id)
     }
+
+    override fun onBackPressed() {
+        if (isHomeFragmentDisplayed) {
+            exitDialog()
+        } else {
+            isHomeFragmentDisplayed = true
+            // Navigate to HomeFragment
+            binding.txtTitle.visibility = View.GONE
+            loadFragment(HomeFragment())
+        }
+    }
+    private fun exitDialog() {
+        isHomeFragmentDisplayed = false
+        val dialogBuilder = AlertDialog.Builder(this@DashBoardActivity)
+        dialogBuilder.setTitle("Exit")
+        dialogBuilder.setMessage("Are you sure want to exit this app?")
+        dialogBuilder.setPositiveButton("Ok") { dialog, _ ->
+            finishAffinity()
+            dialog.dismiss()
+        }
+        dialogBuilder.setNegativeButton(R.string.cancel) { dialog, _ ->
+            dialog.dismiss()
+        }
+        val b = dialogBuilder.create()
+        b.show()
+    }
+
 }

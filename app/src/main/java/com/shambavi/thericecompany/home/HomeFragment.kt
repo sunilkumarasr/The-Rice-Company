@@ -112,7 +112,7 @@ var user_id=""
 
             startActivity(intent)
         }
-        binding.txtSeeAllTopSelling.setOnClickListener {
+        binding.txtseealltopselling.setOnClickListener {
             val intent=Intent(context,AllProductsActivity::class.java)
             intent.putExtra("pid","")
             intent.putExtra("sid","")
@@ -157,6 +157,7 @@ var user_id=""
                         imageList.clear()
                         model.data.forEach {
                             imageList.add(SlideModel("${ROOT_URL}/${it.image}", ScaleTypes.FIT))
+                            println("Banners successfully: ${ROOT_URL}/${it.image}")
                         }
                         binding.imageSlider.setImageList(imageList)
 

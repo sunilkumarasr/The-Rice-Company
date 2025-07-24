@@ -90,7 +90,7 @@
                     android:layout_marginEnd="25sp"
                     android:textAlignment="center"
                     android:text="@string/login_to_track_your"
-                    android:textColor="@color/black"
+                    android:textColor="@color/text"
                     android:textSize="@dimen/_13sdp"
                     android:fontFamily="@font/poppins_semibold" />
 
@@ -128,7 +128,7 @@
                         android:layout_marginStart="10sp"
                         android:layout_marginEnd="10sp"
                         android:hint="@string/enter_phone_number"
-                        android:textSize="@dimen/_15sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:singleLine="true"
                         android:inputType="phone"
                         android:imeOptions="actionDone"
@@ -149,7 +149,7 @@
                         android:gravity="center"
                         android:text="Continue"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_16sdp"
+                        android:textSize="@dimen/_13sdp"
                         android:fontFamily="@font/poppins_semibold" />
                 </LinearLayout>
                 <View
@@ -170,19 +170,19 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/teachers_medium"
                         android:text="Don't have an account?"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_10sdp" />
+                        android:textColor="@color/text"
+                        android:textSize="@dimen/_13sdp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="5dp"
-                        android:fontFamily="@font/poppins_semibold"
+                        android:fontFamily="@font/teachers_semibold"
                         android:text="Register Now"
                         android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/_12sdp" />
+                        android:textSize="@dimen/_13sdp" />
                 </LinearLayout>
 
 

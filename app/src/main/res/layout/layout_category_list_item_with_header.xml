@@ -12,15 +12,16 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:text="Grocery"
-        android:textSize="@dimen/_18sdp"
-        android:textColor="@color/otp_header_color"
-        android:fontFamily="@font/poppins_semibold"
+        android:textSize="@dimen/_17sdp"
+        android:textColor="@color/text"
+        android:fontFamily="@font/teachers_medium"
         />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_top_catgories"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_5sdp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         android:orientation="horizontal"
         app:spanCount="3"

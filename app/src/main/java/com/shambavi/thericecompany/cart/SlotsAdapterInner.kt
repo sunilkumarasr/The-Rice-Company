@@ -12,7 +12,6 @@ import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.LayoutCartItemBinding
 import com.shambavi.thericecompany.databinding.LayoutSlotItemBinding
 import com.shambavi.thericecompany.listeners.ProductListener
-import com.shambavi.thericecompany.utils.Utils.Companion.RUPEE_SYMBOL
 
 class SlotsAdapterInner: RecyclerView.Adapter<SlotsAdapterInner.CartViewHolder>() {
 
@@ -48,10 +47,10 @@ class SlotsAdapterInner: RecyclerView.Adapter<SlotsAdapterInner.CartViewHolder>(
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
         var slot=slotList.get(position)
-        holder.binding.tvSlot.setText("${slot.date}")
+        holder.binding.tvSlot.setText(" ${slot.date} ")
         holder.binding.tvDate.visibility= View.GONE
-        holder.binding.tvDate.text="${slot.date}"
-        holder.binding.tvSlot.text="${slot.startTime} - ${slot.endTime}"
+        holder.binding.tvDate.text=" ${slot.date} "
+        holder.binding.tvSlot.text=" ${slot.startTime} - ${slot.endTime} "
 
         holder.binding.tvSlot.setOnClickListener {
             productListener.addProduct(slot.id.toString(),"${slot.date} \n${holder.binding.tvSlot.text}")

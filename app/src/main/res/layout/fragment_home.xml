@@ -48,20 +48,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Hi"
-                            android:layout_marginEnd="5dp"
-                            android:textSize="@dimen/_18sdp"
-                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="@dimen/_16sdp"
+                            android:fontFamily="@font/teachers_medium"
                             android:textColor="@color/white"/>
                         <TextView
                             android:id="@+id/txt_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
-                            android:textSize="19sp"
+                            android:textSize="@dimen/_18sdp"
                             android:textColor="@color/white"
-                            android:fontFamily="@font/teachers_semibold"/>
+                            android:fontFamily="@font/teachers_medium"/>
                     </LinearLayout>
-
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imgNotification"
@@ -99,7 +97,8 @@
                 <com.denzcoskun.imageslider.ImageSlider
                     android:id="@+id/image_slider"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_170sdp"
+                    android:layout_height="@dimen/_180sdp"
+                    android:background="@color/white"
                     app:iss_auto_cycle="true"
                     app:iss_period="1000"
                     app:iss_delay="1000"
@@ -123,9 +122,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Top Categories"
-                            android:textSize="@dimen/_18sdp"
+                            android:textSize="@dimen/_17sdp"
                             android:textColor="@color/otp_header_color"
-                            android:fontFamily="@font/poppins_semibold"/>
+                            android:fontFamily="@font/teachers_medium"/>
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/lnr_see_categories"
@@ -138,9 +137,9 @@
                             android:layout_height="wrap_content"
                             android:gravity="end"
                             android:text="See all"
-                            android:textSize="19sp"
+                            android:textSize="@dimen/_15sdp"
                             android:textColor="@color/colorPrimary"
-                            android:fontFamily="@font/poppins_semibold"/>
+                            android:fontFamily="@font/teachers_medium"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -156,7 +155,6 @@
                        android:layout_height="wrap_content"
                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                        android:orientation="horizontal"
-
                        android:scrollbars="horizontal"
                        android:scrollbarStyle="insideOverlay"
                        style="@style/HorizontalScrollbarStyle"
@@ -181,22 +179,22 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Top Selling"
-                            android:textSize="@dimen/_18sdp"
+                            android:textSize="@dimen/_17sdp"
                             android:textColor="@color/otp_header_color"
-                            android:fontFamily="@font/poppins_semibold"/>
+                            android:fontFamily="@font/teachers_medium"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <TextView
-                            android:id="@+id/txt_see_all_top_selling"
+                            android:id="@+id/txtseealltopselling"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="end"
                             android:text="See all"
-                            android:textSize="@dimen/_16sdp"
+                            android:textSize="@dimen/_15sdp"
                             android:textColor="@color/colorPrimary"
-                            android:fontFamily="@font/poppins_semibold"/>
+                            android:fontFamily="@font/teachers_medium"/>
                     </LinearLayout>
                 </LinearLayout>
 
@@ -214,14 +212,12 @@
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                         android:orientation="horizontal"
                         android:visibility="visible"
-
                         android:scrollbars="horizontal"
                         android:scrollbarStyle="insideOverlay"
                         style="@style/HorizontalScrollbarStyle"
-                        tools:listitem="@layout/layout_home_product_item"
-                        />
-
+                        tools:listitem="@layout/layout_home_product_item"/>
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -236,9 +232,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Products"
-                            android:textSize="@dimen/_18sdp"
+                            android:textSize="@dimen/_17sdp"
                             android:textColor="@color/otp_header_color"
-                            android:fontFamily="@font/poppins_semibold"/>
+                            android:fontFamily="@font/teachers_medium"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -249,9 +245,9 @@
                             android:layout_height="wrap_content"
                             android:gravity="end"
                             android:text="See all"
-                            android:textSize="@dimen/_16sdp"
+                            android:textSize="@dimen/_15sdp"
                             android:textColor="@color/colorPrimary"
-                            android:fontFamily="@font/poppins"/>
+                            android:fontFamily="@font/teachers_medium"/>
                     </LinearLayout>
                 </LinearLayout>
 

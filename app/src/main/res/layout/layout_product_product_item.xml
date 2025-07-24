@@ -2,12 +2,12 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginRight="@dimen/_5sdp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_5sdp"
+    android:layout_marginEnd="@dimen/_5sdp">
     <androidx.cardview.widget.CardView
-        android:layout_width="@dimen/_142sdp"
+        android:layout_width="match_parent"
         app:cardCornerRadius="@dimen/_13sdp"
-        android:layout_marginEnd="8dp"
         app:cardElevation="0dp"
         app:cardBackgroundColor="@color/white"
         android:layout_height="wrap_content">
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <RelativeLayout
-            android:layout_width="@dimen/_142sdp"
+            android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/round_light_gray">
 
@@ -88,25 +88,26 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="3dp"
             android:text="Basmsati ( 1Kg: ₹54 )"
-            android:textSize="@dimen/_11sdp"
+            android:textSize="@dimen/_10sdp"
             android:singleLine="true"
             android:ellipsize="end"
-            android:textColor="@color/product_name_color"
-            android:fontFamily="@font/poppins"/>
+            android:textColor="@color/product_name_color"/>
         <TextView
             android:id="@+id/txt_product_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
             android:layout_marginTop="3dp"
             android:lines="2"
             android:text="Daawat super Basmati"
             android:textSize="@dimen/_12sdp"
             android:ellipsize="end"
             android:textColor="@color/otp_header_color"
-            android:fontFamily="@font/poppins_semibold"/>
+            android:fontFamily="@font/teachers_medium"/>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -122,13 +123,14 @@
                 android:gravity="end"
                 android:text="₹64"
                 android:textSize="@dimen/_13sdp"
-                android:textColor="@color/otp_header_color"
-                android:fontFamily="@font/poppins"/>
+                android:textColor="@color/otp_header_color"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
             android:layout_marginTop="5dp">
             <TextView
                 android:layout_width="wrap_content"
@@ -145,13 +147,14 @@
                 android:gravity="end"
                 android:text="₹54"
                 android:textSize="@dimen/_13sdp"
-                android:textColor="@color/otp_header_color"
-                android:fontFamily="@font/poppins"/>
+                android:textColor="@color/otp_header_color"/>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
             android:layout_marginTop="5dp">
             <TextView
                 android:layout_width="wrap_content"
@@ -168,19 +171,15 @@
                 android:gravity="end"
                 android:text="₹69"
                 android:textSize="@dimen/_13sdp"
-                android:textColor="@color/otp_header_color"
-                android:fontFamily="@font/poppins"/>
+                android:textColor="@color/otp_header_color"/>
         </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:minHeight="@dimen/_50sdp"
-                >
+                android:layout_marginBottom="@dimen/_8sdp">
                 <TextView
                     android:id="@+id/txt_added_to_cart"
                     android:layout_width="wrap_content"
@@ -195,14 +194,14 @@
                     android:id="@+id/lnr_add"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:minHeight="@dimen/_36sdp"
+                    android:minHeight="@dimen/_30sdp"
                     android:background="@drawable/round_edge_colorprimary">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
                         android:text="Add"
-                        android:textSize="@dimen/_14sdp"
+                        android:textSize="@dimen/_12sdp"
                         android:textColor="@color/colorPrimary"
                         android:fontFamily="@font/poppins_semibold"/>
                 </LinearLayout>

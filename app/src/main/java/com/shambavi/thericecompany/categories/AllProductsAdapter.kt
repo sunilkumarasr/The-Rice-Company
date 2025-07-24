@@ -54,10 +54,10 @@ class AllProductsAdapter: RecyclerView.Adapter<AllProductsAdapter.ProductViewHol
             displayPrice="${attribution.weight} ${Utils.RUPEE_SYMBOL}${attribution.prices}"
         }
         holder.binding.txtProductName.text="${obj.categoryIdName} ($displayPrice)"
-        holder.binding.txtMrp.text="${Utils.RUPEE_SYMBOL} ${obj.mrpPrice}"
+        holder.binding.txtMrp.text="${Utils.RUPEE_SYMBOL}${obj.mrpPrice}"
         holder.binding.txtOff.text="${obj.price_off}%"
-        holder.binding.txtOurPrice.text="${Utils.RUPEE_SYMBOL} ${obj.ourPrice}"
-        holder.binding.txtMarketPrice.text="${Utils.RUPEE_SYMBOL} ${obj.marketPrice}"
+        holder.binding.txtOurPrice.text="${Utils.RUPEE_SYMBOL}${obj.ourPrice}"
+        holder.binding.txtMarketPrice.text="${Utils.RUPEE_SYMBOL}${obj.marketPrice}"
         holder.binding.txtProductCategory.text="${obj.title}"
         holder.binding.tvQuantity.setText("${obj.quantity}")
         if(obj.user_rating.isEmpty()||obj.user_rating.trim().equals("0"))

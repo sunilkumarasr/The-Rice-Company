@@ -60,7 +60,6 @@
                     android:padding="15dp"
                     android:layout_marginVertical="@dimen/_22sdp"
                     android:layout_marginHorizontal="@dimen/_16sdp"
-
                     android:layout_gravity="center"
                     android:fontFamily="@font/teachers_regular"
                     android:textColor="@color/text"

@@ -1,6 +1,7 @@
 package com.shambavi.thericecompany.Activitys
 
 import android.os.Bundle
+import android.text.Html
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
@@ -67,6 +68,7 @@ class AboutUsActivity : AppCompatActivity() {
                     if(model?.status == true)
                     {
                         if(model.data.size>0) {
+
                             model.data.get(0).description?.let {
                                 binding.webview.loadData(
                                     it,

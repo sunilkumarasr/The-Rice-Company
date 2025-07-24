@@ -31,7 +31,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:text="Address List"
-                android:fontFamily="@font/poppins_semibold"
+                android:fontFamily="@font/teachers_medium"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/_16sdp"/>
         </LinearLayout>
@@ -119,7 +119,7 @@
                         android:layout_marginTop="10dp"
                         android:text="Add Delivery Address"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/_16sdp"
+                        android:textSize="@dimen/_15sdp"
                         android:fontFamily="@font/poppins" />
 
                     <RadioGroup
@@ -186,8 +186,7 @@
                         android:layout_margin="@dimen/_12sdp"
                         android:drawablePadding="@dimen/_8sdp"
                         android:textSize="@dimen/_12sdp"
-                        android:fontFamily="@font/poppins_semibold"
-
+                        android:fontFamily="@font/teachers_medium"
                         android:drawableLeft="@drawable/icon_loc"
                         />
 

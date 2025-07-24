@@ -3,12 +3,14 @@ package com.shambavi.thericecompany.Activitys
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
+import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityEnquiryFormBinding
 import com.shambavi.thericecompany.databinding.ActivityTermsAndConditionsBinding
@@ -29,8 +31,9 @@ class EnquiryFormActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //enableEdgeToEdge()
-
         setContentView(binding.root)
+        ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
+
         binding.header.txtTitle.setText("Enquiry Form")
         binding.lnrCancel.setOnClickListener {
             finish()

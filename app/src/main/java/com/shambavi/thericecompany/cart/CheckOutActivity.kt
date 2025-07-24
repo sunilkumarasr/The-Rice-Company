@@ -8,6 +8,7 @@ import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.CartMainRes
@@ -16,6 +17,8 @@ import com.gadiwalaUser.services.DataManager
 import com.royalit.motherchoice.utils.NetWorkConection
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.SlotsActivity
+import com.shambavi.thericecompany.Config.ViewController
+import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityCheckOutBinding
 import com.shambavi.thericecompany.listeners.ProductListener
 import com.shambavi.thericecompany.utils.Utils
@@ -40,6 +43,7 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
         super.onCreate(savedInstanceState)
         binding=ActivityCheckOutBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
         user_id= MyPref.getUser(applicationContext)
         addres_id=MyPref.getAddressId(applicationContext)
         addres=MyPref.getAddress(applicationContext)
@@ -293,6 +297,7 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
                       var saved=  mrpAmount-discountedAmount
                        val intent= Intent(applicationContext,OrderSuccessActivity::class.java)
                        intent.putExtra("saved",saved.toString())
+                       intent.putExtra("OrderID","123456")
                         startActivity(intent)
                         finish()
                     }

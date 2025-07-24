@@ -334,12 +334,12 @@ class CartFragment : Fragment() ,ProductListener{
         }
 
         totalAmount=totalAmount+delivery_charges
-        binding.tvDiscountedAmount.text="${Utils.RUPEE_SYMBOL} $totalAmount"
-        binding.tvBillAmount.text="${Utils.RUPEE_SYMBOL} $mrpAmount"
-        binding.tvGrandTotal.text="${Utils.RUPEE_SYMBOL} $discountedAmount"
-        binding.tvDeliveryCharges.text="${Utils.RUPEE_SYMBOL} $delivery_charges"
+        binding.tvDiscountedAmount.text="${Utils.RUPEE_SYMBOL}$totalAmount"
+        binding.tvBillAmount.text="${Utils.RUPEE_SYMBOL}$mrpAmount"
+        binding.tvGrandTotal.text="${Utils.RUPEE_SYMBOL}$discountedAmount"
+        binding.tvDeliveryCharges.text="${Utils.RUPEE_SYMBOL}$delivery_charges"
 
-        binding.txtSaved.setText("Saved ${Utils.RUPEE_SYMBOL} ${mrpAmount-discountedAmount}")
+        binding.txtSaved.setText("Saved ${Utils.RUPEE_SYMBOL}${mrpAmount-discountedAmount}")
 
     }
 
@@ -354,7 +354,6 @@ class CartFragment : Fragment() ,ProductListener{
         }
     }
     private fun checkData() {
-
 
         if(cartAdapter.itemCount>0)
         {
@@ -377,7 +376,6 @@ class CartFragment : Fragment() ,ProductListener{
     }
     fun placeOrder()
     {
-
         val dialog= CustomDialog(requireActivity())
         // Obtain the DataManager instance
         dialog.showDialog(requireActivity(),false)
@@ -399,9 +397,8 @@ class CartFragment : Fragment() ,ProductListener{
                         var saved=  mrpAmount-discountedAmount
                         val intent= Intent(requireActivity(),OrderSuccessActivity::class.java)
                         intent.putExtra("saved",saved.toString())
-
+                        intent.putExtra("OrderID","123456")
                         startActivity(intent)
-
                     }
 
                     println("OTP Sent successfully: ${model?.Message}")

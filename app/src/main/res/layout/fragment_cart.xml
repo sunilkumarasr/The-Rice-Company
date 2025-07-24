@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="@color/white">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
         android:elevation="2dp"
+        android:visibility="visible"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
@@ -19,8 +20,8 @@
             android:layout_height="wrap_content"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="8dp"
-            android:visibility="gone"
-            android:src="@drawable/icon_left_arrow" />
+            android:src="@drawable/icon_left_arrow"
+            android:visibility="gone" />
 
         <TextView
             style="@style/textview"
@@ -28,344 +29,348 @@
             android:text="@string/checkout"
             android:textColor="@color/black"
             android:textSize="@dimen/_16sdp"
-            android:visibility="gone"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
+
         <LinearLayout
             android:id="@+id/lnr_cart"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:visibility="gone"
             android:layout_marginRight="@dimen/_16sdp"
-            android:layout_height="wrap_content">
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/txt_count"
                 style="@style/textview"
-                android:textColor="@color/green"
                 android:layout_centerVertical="true"
-                android:text="@string/products"
                 android:layout_marginRight="@dimen/_8sdp"
-                android:textSize="@dimen/_12sdp"/>
+                android:text="@string/products"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_12sdp" />
 
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
-        android:layout_below="@+id/toolbar"
         android:layout_above="@+id/btnPayment"
-        >
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@color/white"
-        >
-        <TextView
-            android:id="@+id/txt_no_data"
-            style="@style/textview"
-            android:visibility="gone"
-            android:text="@string/cart_is_empty"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_16sdp"
-            android:layout_height="@dimen/_180sdp"
-            android:layout_gravity="center"
-            android:fontFamily="@font/poppins_semibold"
-            />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_cart"
+        android:layout_below="@+id/toolbar">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginHorizontal="@dimen/_16sdp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
 
-
-
-            />
-        <ScrollView
-            android:id="@+id/scrollview"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            >
-            <LinearLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:visibility="gone"
+                android:id="@+id/recycler_cart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginHorizontal="@dimen/_16sdp" />
 
-                >
+            <ScrollView
+                android:visibility="gone"
+                android:id="@+id/scrollview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
 
-
-
-                <!-- Toolbar -->
-
-
-                <!-- Product Card -->
-
-                <!-- Delivery Address Section -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardDelivery"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:layout_marginTop="16dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp"
-                    app:layout_constraintTop_toBottomOf="@id/recycler_cart">
+                    android:orientation="vertical">
 
-                    <LinearLayout
+
+                    <!-- Toolbar -->
+
+
+                    <!-- Product Card -->
+
+                    <!-- Delivery Address Section -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardDelivery"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:layout_constraintTop_toBottomOf="@id/recycler_cart">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical">
-
-                            <TextView
-                                style="@style/textview"
-                                android:text="Delivery to: "
-
-                                />
-
-                            <TextView
-                                android:id="@+id/tvDeliveryName"
-                                android:layout_width="0dp"
-                                style="@style/textview"
-                                android:layout_weight="1"
-                                android:text=""
-                                android:textColor="@color/black"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/txt_adrs_type"
-                                style="@style/textview"
-                                android:text=""
-                                android:paddingVertical="@dimen/_2sdp"
-                                android:paddingHorizontal="@dimen/_8sdp"
-                                android:background="@drawable/drawable_home_text_bg"
-
-                                />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/tvAddress"
-                            style="@style/textview"
-
-                            android:text=""
-                            android:textColor="@color/gray"
-                            />
-
-                        <Button
-                            android:id="@+id/btnChangeAddress"
-                            style="@style/OutlinedButtonStyle"
-
-                            android:layout_marginTop="8dp"
-                            android:text="Change"
-                            android:textColor="@color/green" />
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:background="@color/gray"
-                            android:layout_marginVertical="@dimen/_8sdp"
-
-                            />
-                        <TextView
-                            android:id="@+id/tvDeliverySlot"
-                            style="@style/textview"
-
-                            android:text="If you want choose delivery date"
-                            android:textColor="@color/gray"
-                            />
-
-                        <Button
-                            android:id="@+id/btnChangeSlot"
-                            style="@style/OutlinedButtonStyle"
-                            app:icon="@drawable/ic_calendar"
-                            android:drawablePadding="8dp"
-                            android:layout_marginTop="0dp"
-                            android:text="Select slot"
-                            android:textColor="@color/green"
-                            />
-
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-                <!-- Delivery Slot Section -->
-
-                <!-- Bill Details Section -->
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardBill"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    app:cardCornerRadius="12dp"
-                    app:cardElevation="2dp"
-                    app:layout_constraintTop_toBottomOf="@id/cardDelivery"
-                    >
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Bill Details"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:gravity="center_vertical">
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:src="@drawable/icon_document"
-                                />
+                            android:orientation="vertical"
+                            android:padding="16dp">
 
                             <LinearLayout
-                                android:layout_width="0dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical">
 
-                                android:layout_weight="1"
-                                android:layout_height="wrap_content">
+                                <TextView
+                                    style="@style/textview"
+                                    android:text="Delivery to: "
+
+                                    />
+
+                                <TextView
+                                    android:id="@+id/tvDeliveryName"
+                                    style="@style/textview"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/txt_adrs_type"
+                                    style="@style/textview"
+                                    android:background="@drawable/drawable_home_text_bg"
+                                    android:paddingHorizontal="@dimen/_8sdp"
+                                    android:paddingVertical="@dimen/_2sdp"
+                                    android:text=""
+
+                                    />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tvAddress"
+                                style="@style/textview"
+
+                                android:text=""
+                                android:textColor="@color/gray" />
+
+                            <Button
+                                android:id="@+id/btnChangeAddress"
+                                style="@style/OutlinedButtonStyle"
+
+                                android:layout_marginTop="8dp"
+                                android:text="Change"
+                                android:textColor="@color/green" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginVertical="@dimen/_8sdp"
+                                android:background="@color/gray"
+
+                                />
+
+                            <TextView
+                                android:id="@+id/tvDeliverySlot"
+                                style="@style/textview"
+
+                                android:text="If you want choose delivery date"
+                                android:textColor="@color/gray" />
+
+                            <Button
+                                android:id="@+id/btnChangeSlot"
+                                style="@style/OutlinedButtonStyle"
+                                android:layout_marginTop="0dp"
+                                android:drawablePadding="8dp"
+                                android:text="Select slot"
+                                android:textColor="@color/green"
+                                app:icon="@drawable/ic_calendar" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- Delivery Slot Section -->
+
+                    <!-- Bill Details Section -->
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardBill"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        app:cardCornerRadius="12dp"
+                        app:cardElevation="2dp"
+                        app:layout_constraintTop_toBottomOf="@id/cardDelivery">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:padding="16dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Bill Details"
+                                android:textColor="@color/black"
+                                android:textSize="18sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="12dp"
+                                android:gravity="center_vertical">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/icon_document" />
+
+                                <LinearLayout
+                                    android:layout_width="0dp"
+
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1">
+
+
+                                    <TextView
+                                        style="@style/textview"
+                                        android:layout_width="wrap_content"
+                                        android:layout_marginLeft="@dimen/_8sdp"
+                                        android:text="Bill Details" />
+
+                                    <androidx.cardview.widget.CardView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="@dimen/_8sdp"
+                                        app:cardBackgroundColor="@color/saved_txt_color_bg"
+                                        app:cardCornerRadius="@dimen/_12sdp">
+
+                                        <TextView
+                                            android:id="@+id/txt_saved"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginHorizontal="@dimen/_2sdp"
+                                            android:layout_marginVertical="1dp"
+                                            android:gravity="center"
+                                            android:minEms="3"
+                                            android:paddingHorizontal="@dimen/_5sdp"
+                                            android:text=""
+                                            android:textColor="@color/saved_txt_color"
+                                            android:textSize="@dimen/_8sdp" />
+                                    </androidx.cardview.widget.CardView>
+                                </LinearLayout>
 
 
                                 <TextView
-                                    android:layout_width="wrap_content"
-                                    style="@style/textview"
-                                    android:layout_marginLeft="@dimen/_8sdp"
-                                    android:text="Bill Details"
-                                    />
-                                <androidx.cardview.widget.CardView
+                                    android:id="@+id/tvBillAmount"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="@dimen/_8sdp"
-                                    app:cardCornerRadius="@dimen/_12sdp"
-                                    app:cardBackgroundColor="@color/saved_txt_color_bg"
-                                    >
+                                    android:text=""
+                                    android:textColor="@color/gray"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:textStyle="bold" />
 
-                                    <TextView
-                                        android:id="@+id/txt_saved"
-
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginHorizontal="@dimen/_2sdp"
-                                        android:layout_marginVertical="1dp"
-                                        android:fontFamily="@font/poppins_semibold"
-                                        android:gravity="center"
-                                        android:minEms="3"
-                                        android:paddingHorizontal="@dimen/_5sdp"
-                                        android:text=""
-                                        android:textColor="@color/saved_txt_color"
-                                        android:textSize="@dimen/_8sdp"/>
-                                </androidx.cardview.widget.CardView>
+                                <TextView
+                                    android:id="@+id/tvDiscountedAmount"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="8dp"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:textStyle="bold" />
                             </LinearLayout>
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:visibility="visible">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/icon_delivery_truck" />
+
+                                <TextView
+                                    style="@style/textview"
+                                    android:layout_width="0dp"
+                                    android:layout_marginLeft="@dimen/_8sdp"
+                                    android:layout_weight="1"
+                                    android:text="Delivery Charges" />
+
+                                <TextView
+                                    android:id="@+id/tvDeliveryCharges"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="₹ 0"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
 
                             <TextView
-                                android:id="@+id/tvBillAmount"
-                                style="@style/textview"
-                                android:text=""
-                                android:textSize="@dimen/_12sdp"
-
-                                android:textColor="@color/gray"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tvDiscountedAmount"
-                                style="@style/textview"
-                                android:layout_marginStart="8dp"
-                                android:text=""
-                                android:textSize="@dimen/_12sdp"
-                                android:textColor="@color/black"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:visibility="visible"
-                            android:layout_marginTop="8dp">
-                            <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/icon_delivery_truck"
-                                />
-                            <TextView
-                                android:layout_width="0dp"
-                                style="@style/textview"
-                                android:layout_weight="1"
-                                android:layout_marginLeft="@dimen/_8sdp"
-                                android:text="Delivery Charges"
-                                />
+                                android:layout_marginTop="8dp"
+                                android:text="Shop for ₹80 more to get free delivery"
+                                android:textColor="@color/red"
+                                android:visibility="gone" />
 
-                            <TextView
-                                android:id="@+id/tvDeliveryCharges"
-                                style="@style/textview"
-                                android:text="₹ 0"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:textStyle="bold" />
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_12sdp">
+
+                                <TextView
+                                    style="@style/textview"
+                                    android:layout_weight="1"
+                                    android:fontFamily="@font/poppins_semibold"
+                                    android:text="@string/grand_total"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_14sdp" />
+
+                                <TextView
+                                    android:id="@+id/tvGrandTotal"
+                                    style="@style/textview"
+                                    android:text=""
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_14sdp"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
                         </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
-                        <TextView
-                            style="@style/textview"
-                            android:layout_marginTop="8dp"
-                            android:visibility="gone"
-                            android:text="Shop for ₹80 more to get free delivery"
-                            android:textColor="@color/red" />
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_marginTop="@dimen/_12sdp"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_weight="1"
-                                style="@style/textview"
-                                android:text="@string/grand_total"
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_14sdp"
-                                android:fontFamily="@font/poppins_semibold"
-                                />
-                            <TextView
-                                android:id="@+id/tvGrandTotal"
-                                style="@style/textview"
-                                android:text=""
-                                android:textColor="@color/black"
-                                android:textSize="@dimen/_14sdp"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-                    </LinearLayout>
-                </androidx.cardview.widget.CardView>
-
-            </LinearLayout>
-        </ScrollView>
-    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+
+    <LinearLayout
+        android:id="@+id/txt_no_data"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:src="@drawable/empty_cart"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/cart_is_empty"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_16sdp"/>
+    </LinearLayout>
+
 
     <!-- Payment Button -->
     <com.google.android.material.button.MaterialButton
+        android:visibility="gone"
         android:id="@+id/btnPayment"
         android:layout_width="match_parent"
         android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
         android:layout_margin="16dp"
         android:backgroundTint="@color/gold"
+        android:fontFamily="@font/poppins_semibold"
         android:text="@string/select_payment"
         android:textAllCaps="false"
-        app:cornerRadius="8dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:layout_alignParentBottom="true"
-        />
+        app:cornerRadius="8dp" />
 
 </RelativeLayout>

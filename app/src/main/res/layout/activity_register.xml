@@ -35,9 +35,9 @@
                 android:layout_marginEnd="25sp"
                 android:layout_marginTop="25sp"
                 android:text="@string/otp_verification"
-                android:textColor="@color/otp_header_color"
-                android:textSize="@dimen/_16sdp"
-                android:fontFamily="@font/poppins_semibold" />
+                android:textColor="@color/text"
+                android:textSize="@dimen/_13sdp"
+                android:fontFamily="@font/teachers_medium" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,8 +45,8 @@
                 android:layout_marginEnd="25sp"
                 android:layout_marginTop="5dp"
                 android:text="@string/enter_email_or_phone"
-                android:textColor="@color/otp_header_color"
-                android:textSize="@dimen/_14sdp"
+                android:textColor="@color/text"
+                android:textSize="@dimen/_10sdp"
                 android:fontFamily="@font/poppins" />
             <TextView
                 android:layout_width="250dp"
@@ -55,9 +55,9 @@
                 android:layout_marginStart="25sp"
                 android:layout_marginEnd="25sp"
                 android:text="Phone Number"
-                android:textColor="@color/otp_header_color"
-                android:textSize="@dimen/_16sdp"
-                android:fontFamily="@font/poppins_semibold" />
+                android:textColor="@color/text"
+                android:textSize="@dimen/_13sdp"
+                android:fontFamily="@font/teachers_medium" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -105,13 +105,13 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginStart="15sp"
                 android:layout_marginEnd="15sp"
                 android:layout_marginBottom="25dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true">
+                    android:layout_height="wrap_content">
                     <LinearLayout
                         android:id="@+id/linearLogin"
                         android:layout_width="wrap_content"
@@ -123,16 +123,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/if_you_dont_have_account"
-                            android:textColor="@color/otp_header_color"
-                            android:textSize="@dimen/_8sdp"
-                            android:fontFamily="@font/poppins_semibold"/>
+                            android:textColor="@color/text"
+                            android:textSize="@dimen/_11sdp"
+                            android:fontFamily="@font/teachers_medium"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="3dp"
                             android:text="@string/login"
                             android:textColor="@color/colorPrimary"
-                            android:textSize="@dimen/_11sdp"
+                            android:textSize="@dimen/_10sdp"
                             android:fontFamily="@font/poppins_semibold" />
                     </LinearLayout>
                     <LinearLayout
@@ -149,11 +149,10 @@
                             android:layout_gravity="center_vertical"
                             android:text="@string/verify"
                             android:textColor="@color/white"
-                            android:textSize="17sp"
-                            android:fontFamily="@font/poppins_semibold" />
+                            android:textSize="17sp" />
                         <androidx.appcompat.widget.AppCompatImageView
                             android:layout_width="@dimen/_22sdp"
-                            android:layout_height="wrap_content"
+                            android:layout_height="@dimen/_15sdp"
                             android:src="@drawable/right_arrow"
                             app:tint="@color/white"
                             android:layout_gravity="center_vertical"

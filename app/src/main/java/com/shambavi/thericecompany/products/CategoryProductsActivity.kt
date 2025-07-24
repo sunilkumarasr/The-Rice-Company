@@ -7,6 +7,7 @@ import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +19,7 @@ import com.gadiwalaUser.Models.ProductMainRes
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.SearchActivity
+import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.categories.AllCategoryAdapter
 import com.shambavi.thericecompany.categories.AllProductsAdapter
@@ -39,6 +41,7 @@ class CategoryProductsActivity : AppCompatActivity(),ProductListener {
         super.onCreate(savedInstanceState)
         binding=ActivityCategoryProductsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
 
 
         binding.lnrCart.visibility=View.GONE

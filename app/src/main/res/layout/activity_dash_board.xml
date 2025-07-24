@@ -26,24 +26,29 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/txtTitle"
-            android:layout_above="@+id/navigationView"/>
+            android:layout_above="@+id/linearBottom"/>
 
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/navigationView"
+        <LinearLayout
+            android:id="@+id/linearBottom"
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:background="@color/white"
-            app:itemTextColor="@color/bottom_nav_color_selector"
-            app:itemIconTint="@color/bottom_nav_color_selector"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/bottom_nav_menu"
-            app:itemPaddingTop="5dp"
-
-            app:itemTextAppearanceActive="@style/BottomNavTextAppearance"
-            app:itemTextAppearanceInactive="@style/BottomNavTextAppearance" />
+            android:layout_alignParentBottom="true">
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/navigationView"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_70sdp"
+                android:background="@drawable/bottom_natigation_bg"
+                app:itemTextColor="@color/bottom_nav_color_selector"
+                app:itemIconTint="@color/bottom_nav_color_selector"
+                app:labelVisibilityMode="labeled"
+                android:padding="@dimen/_5sdp"
+                app:menu="@menu/bottom_nav_menu"
+                app:itemTextAppearanceActive="@style/BottomNavTextAppearance"
+                app:itemTextAppearanceInactive="@style/BottomNavTextAppearance" />
+        </LinearLayout>
 
     </RelativeLayout>
 

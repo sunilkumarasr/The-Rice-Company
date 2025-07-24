@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_margin="@dimen/_3sdp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_3sdp">
+
     <LinearLayout
-        android:layout_width="@dimen/_85sdp"
+        android:layout_width="@dimen/_80sdp"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="@dimen/_80sdp"
-            android:layout_height="@dimen/_100sdp"
+            android:layout_height="@dimen/_70sdp"
             android:background="@drawable/round_light_gray"
-            android:gravity="center"
-            android:paddingHorizontal="@dimen/_4sdp">
-
+            android:gravity="center">
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_product"
                 android:layout_width="@dimen/_70sdp"
@@ -23,19 +22,19 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/item1" />
         </LinearLayout>
+
         <TextView
             android:id="@+id/txt_product_name"
-            style="@style/textview"
+            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
-            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:fontFamily="@font/poppins"
             android:gravity="center_horizontal"
-android:fontFamily="@font/poppins"
-            android:text="Basmsati sdasjdhjashdhasjdhjahsd"
-            android:textSize="@dimen/_14sdp"
             android:maxLines="2"
-            android:minLines="2"
-            android:ellipsize="end"
-            />
+            android:textColor="@color/txtdes"
+            android:text="Basmsati"
+            android:textAlignment="center"
+            android:textSize="@dimen/_11sdp" />
     </LinearLayout>
 
 </LinearLayout>

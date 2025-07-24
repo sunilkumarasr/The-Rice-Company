@@ -3,12 +3,15 @@ package com.shambavi.thericecompany.Activitys
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.gadiwalaUser.Models.ContactDetails
+import com.gadiwalaUser.Models.ContactDetailsMain
 import com.gadiwalaUser.Models.PrivacyDataMainRes
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
+import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityContactUsBinding
 import com.shambavi.thericecompany.databinding.ActivityFaqsactivityBinding
@@ -24,6 +27,8 @@ class ContactUsActivity : AppCompatActivity() {
         //enableEdgeToEdge()
         binding= ActivityContactUsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
+
         binding.header.txtTitle.setText("Contact Us")
         binding.header.imgBack.setOnClickListener {
             finish()
@@ -39,42 +44,19 @@ class ContactUsActivity : AppCompatActivity() {
         val dataManager = DataManager.getDataManager()
 
         // Create a callback for handling the API response
-        val otpCallback = object : Callback<PrivacyDataMainRes> {
-            override fun onResponse(call: Call<PrivacyDataMainRes>, response: Response<PrivacyDataMainRes>) {
+        val otpCallback = object : Callback<ContactDetailsMain> {
+            override fun onResponse(call: Call<ContactDetailsMain>, response: Response<ContactDetailsMain>) {
                 dialog.closeDialog()
                 if (response.isSuccessful) {
-                    val model: PrivacyDataMainRes? = response.body()
+                    val model: ContactDetailsMain? = response.body()
 
-                    // Handle the response
-
-                    model?.message?.let { Utils.showMessage(it,applicationContext) }
-                    if(model?.status == true) {
-                        if (model.data.size > 0) {
-                            model.data.get(0).description?.let {
-                                binding.webview.loadData(
-                                    it,
-                                    "text/html",
-                                    "utf-8"
-                                )
-                            }
-                            return
-                        }
+                    if(model?.status == true){
+                        binding.txtAddress.text = model.date.get(0).address
+                        binding.txtPhone1.text = model.date.get(0).phone
+                        binding.txtPhone2.text = model.date.get(0).phone2
+                        binding.txtEmail.text = model.date.get(0).email
                     }
-                    /*if(model?.status == true)
-                    {
-                        if(model.date.size>0) {
 
-                            var text=""
-                           model.date.forEach {
-                               text="Address</br></br>" +it.address+"</br></br></br>Phone Number</br>"+it.phone+"</br>"+it.phone2+"</br></br></br>Email Address</br>"+it.email+""
-                           }
-                            binding.webview.loadData(text,"text/html","utf-8")
-
-                            return
-                        }
-                        finish()
-                    }*/
-                    println("OTP Sent successfully: ${model?.message}")
                 } else {
                     // Handle error
                     println("Failed to send OTP. ${response.message()}")
@@ -82,7 +64,7 @@ class ContactUsActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onFailure(call: Call<PrivacyDataMainRes>, t: Throwable) {
+            override fun onFailure(call: Call<ContactDetailsMain>, t: Throwable) {
                 // Handle failure
                 println("Failed to send OTP. ${t.message}")
                 dialog.closeDialog()
@@ -90,6 +72,6 @@ class ContactUsActivity : AppCompatActivity() {
         }
 
         // Call the sendOtp function in DataManager
-        dataManager.privacyTermsData(otpCallback,"contact-us")
+        dataManager.contactDetails(otpCallback)
     }
 }

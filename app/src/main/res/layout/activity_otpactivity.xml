@@ -36,9 +36,9 @@
                 android:layout_marginEnd="25sp"
                 android:layout_marginTop="25sp"
                 android:text="Verification Code"
-                android:textColor="@color/otp_header_color"
-                android:textSize="@dimen/_16sdp"
-                android:fontFamily="@font/poppins_semibold" />
+                android:textColor="@color/text"
+                android:textSize="@dimen/_13sdp"
+                android:fontFamily="@font/teachers_medium" />
             <TextView
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
@@ -46,8 +46,8 @@
                 android:layout_marginEnd="25sp"
                 android:layout_marginTop="5dp"
                 android:text="We have sent the verification code to your phone number"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/text"
+                android:textSize="@dimen/_10sdp"
                 android:fontFamily="@font/poppins" />
              <TextView
                  android:id="@+id/txt_otp_static"
@@ -74,8 +74,8 @@
                     android:layout_marginStart="25sp"
                     android:layout_marginEnd="15sp"
                     android:text="+91 9441085061"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_13sdp"
+                    android:textColor="@color/text"
+                    android:textSize="@dimen/_12sdp"
                     android:fontFamily="@font/poppins" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -93,18 +93,17 @@
                 android:layout_marginEnd="15sp">
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="@dimen/_45sdp"
-                        android:layout_height="@dimen/_45sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:background="@null"
                         android:id="@+id/pinEdit1"
                         android:fontFamily="@font/poppins"
                         android:ems="1"
                         android:imeOptions="actionNext"
-
                         android:gravity="center"
                         android:inputType="phone"
                         android:maxLength="1"
@@ -119,8 +118,8 @@
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="@dimen/_45sdp"
-                        android:layout_height="@dimen/_45sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:background="@null"
                         android:id="@+id/pinEdit2"
                         android:fontFamily="@font/poppins"
@@ -129,7 +128,6 @@
                         android:inputType="phone"
                         android:maxLength="1"
                         android:imeOptions="actionNext"
-
                         android:hint="0"
                         android:paddingHorizontal="10dp"
                         android:paddingVertical="2dp" />
@@ -144,8 +142,8 @@
 
                     <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/pinEdit3"
-                        android:layout_width="@dimen/_45sdp"
-                        android:layout_height="@dimen/_45sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:background="@null"
                         android:ems="1"
                         android:fontFamily="@font/poppins"
@@ -165,8 +163,8 @@
                     android:orientation="horizontal"
                     android:background="@drawable/round_edit_gray_light_edge">
                     <androidx.appcompat.widget.AppCompatEditText
-                        android:layout_width="@dimen/_45sdp"
-                        android:layout_height="@dimen/_45sdp"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
                         android:background="@null"
                         android:id="@+id/pinEdit4"
                         android:fontFamily="@font/poppins"
@@ -192,18 +190,18 @@
                 android:text="Resend Code"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/_15sdp"
-                android:fontFamily="@font/poppins_semibold" />
+                android:fontFamily="@font/teachers_medium" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_15sdp"
                 android:layout_marginStart="15sp"
                 android:layout_marginEnd="15sp"
                 android:layout_marginBottom="25dp">
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true">
+                    android:layout_height="wrap_content">
                     <LinearLayout
                         android:id="@+id/linearVerify"
                         android:layout_width="wrap_content"
@@ -218,11 +216,10 @@
                             android:layout_gravity="center_vertical"
                             android:text="Continue"
                             android:textColor="@color/white"
-                            android:textSize="@dimen/_14sdp"
-                            android:fontFamily="@font/poppins_semibold" />
+                            android:textSize="@dimen/_14sdp"/>
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:layout_width="@dimen/_22sdp"
-                            android:layout_height="@dimen/_22sdp"
+                            android:layout_width="@dimen/_18sdp"
+                            android:layout_height="@dimen/_18sdp"
                             android:src="@drawable/right_arrow"
                             app:tint="@color/white"
                             android:layout_gravity="center_vertical"

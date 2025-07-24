@@ -22,6 +22,7 @@ import retrofit2.Callback
 import retrofit2.Response
 class LoginActivity : AppCompatActivity() {
     var mobile:String=""
+
     val binding: ActivityLoginBinding by lazy {
         ActivityLoginBinding.inflate(layoutInflater)
     }

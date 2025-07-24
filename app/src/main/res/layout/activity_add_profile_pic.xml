@@ -22,7 +22,7 @@
                 android:layout_marginStart="25sp"
                 android:text="Back"
                 android:textColor="@color/white"
-                android:textSize="17sp"
+                android:textSize="@dimen/_13sdp"
                 android:fontFamily="@font/poppins" />
             <LinearLayout
                 android:id="@+id/lnr_space"
@@ -45,7 +45,7 @@
                 android:layout_alignParentEnd="true"
                 android:text="Skip"
                 android:textColor="@color/white"
-                android:textSize="19sp"
+                android:textSize="@dimen/_13sdp"
                 android:fontFamily="@font/poppins" />
 
         </RelativeLayout>
@@ -59,8 +59,8 @@
             android:layout_marginTop="25sp"
             android:text="Add your profile pic"
             android:textColor="@color/white"
-            android:textSize="17sp"
-            android:fontFamily="@font/teachers_semibold" />
+            android:textSize="@dimen/_15sdp"
+            android:fontFamily="@font/teachers_medium" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,8 +69,8 @@
             android:layout_marginTop="5dp"
             android:text="Select avatar or choose your pic from gallery"
             android:textColor="@color/white"
-            android:textSize="15sp"
-            android:fontFamily="@font/teachers_regular" />
+            android:textSize="@dimen/_11sdp"
+            android:fontFamily="@font/poppins" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -170,11 +170,10 @@
                     android:layout_gravity="center_vertical"
                     android:text="Continue"
                     android:textColor="@color/white"
-                    android:textSize="17sp"
-                    android:fontFamily="@font/poppins" />
+                    android:textSize="17sp"/>
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
                     android:src="@drawable/right_arrow"
                     app:tint="@color/white"
                     android:layout_gravity="center_vertical"

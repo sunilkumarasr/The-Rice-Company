@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
+import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.Logins.AddAddressActivity
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityAddressListBinding
@@ -34,6 +36,7 @@ var addres_id=""
         super.onCreate(savedInstanceState)
         binding = ActivityAddressListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
         user_id=MyPref.getUser(applicationContext)
         addres_id=MyPref.getAddressId(applicationContext)
         setupRecyclerView()

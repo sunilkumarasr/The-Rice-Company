@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.CartMainRes
@@ -14,6 +15,7 @@ import com.gadiwalaUser.Models.ProductMainRes
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.SearchActivity
+import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.cart.CheckOutActivity
 import com.shambavi.thericecompany.categories.AllProductsAdapter
@@ -41,6 +43,9 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         // EdgeToEdge.enable(this);
         binding=ActivityAllProductsBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
+
+
         sid=intent.getStringExtra("sid").toString()
         sales=intent.getStringExtra("sales").toString()
         user_id=MyPref.getUser(applicationContext)

@@ -23,6 +23,7 @@ import com.google.android.flexbox.FlexboxLayout
 import com.google.android.material.chip.Chip
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.PrivacyPolicyActivity
+import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.cart.CheckOutActivity
 import com.shambavi.thericecompany.databinding.ActivityProductDetailsBinding
@@ -32,71 +33,77 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ProductDetailsActivity : AppCompatActivity() {
-    lateinit var binding:ActivityProductDetailsBinding
-    var product_id=""
-    var attribute_id=""
-    var user_id=""
-    var cart_id=""
-    var quantity=0
+    lateinit var binding: ActivityProductDetailsBinding
+    var product_id = ""
+    var attribute_id = ""
+    var user_id = ""
+    var cart_id = ""
+    var quantity = 0
     val imageList = ArrayList<SlideModel>()
-    var  chipList:ArrayList<ChipPrices>? =ArrayList()
-        override fun onCreate(savedInstanceState: Bundle?) {
+    var chipList: ArrayList<ChipPrices>? = ArrayList()
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityProductDetailsBinding.inflate(layoutInflater)
-            user_id=MyPref.getUser(applicationContext)
+        binding = ActivityProductDetailsBinding.inflate(layoutInflater)
+        user_id = MyPref.getUser(applicationContext)
         setContentView(binding.root)
-            product_id=intent.getStringExtra("product_id").toString()
-            Log.e("product_id","product_id $product_id")
-            getProductDetails()
-            binding.txtMrpPrice.paintFlags = binding.txtMrpPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-            binding.txtViewDetails.setOnClickListener {
-                val intent=Intent(applicationContext, PrivacyPolicyActivity::class.java)
-                intent.putExtra("isOtherDetails","isOtherDetails")
+        ViewController.changeStatusBarColor(
+            this,
+            ContextCompat.getColor(this, R.color.colorPrimary),
+            false
+        )
 
-                startActivity(intent)
-            }
+        product_id = intent.getStringExtra("product_id").toString()
+        Log.e("product_id", "product_id $product_id")
+        getProductDetails()
+        binding.txtMrpPrice.paintFlags =
+            binding.txtMrpPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        binding.txtViewDetails.setOnClickListener {
+            val intent = Intent(applicationContext, PrivacyPolicyActivity::class.java)
+            intent.putExtra("isOtherDetails", "isOtherDetails")
+            startActivity(intent)
+        }
 
-            binding.backButton.setOnClickListener {
-                setResult(RESULT_OK)
-                finish()
-            }
+        binding.backButton.setOnClickListener {
+            setResult(RESULT_OK)
+            finish()
+        }
 
-            binding.btnAddToCart.setOnClickListener {
-                if(attribute_id.isEmpty())
-                {
-                    Utils.showMessage("Please select Attribution value",applicationContext)
-                    return@setOnClickListener
-                }
-                addToCart()
-
+        binding.btnAddToCart.setOnClickListener {
+            if (attribute_id.isEmpty()) {
+                Utils.showMessage("Please select Attribution value", applicationContext)
+                return@setOnClickListener
             }
-            binding.btnMinus.setOnClickListener {
-               quantity=quantity-1;
-                if(quantity==0)
-                    deleteCart()
-                    else
-                updateCart()
-            }
-            binding.btnPlus.setOnClickListener {
-               quantity=quantity+1;
-                updateCart()
-            }
-
-            binding.btnViewCart.setOnClickListener {
-                startActivityForResult(Intent(applicationContext,CheckOutActivity::class.java),200)
-            }
+            addToCart()
 
         }
+        binding.btnMinus.setOnClickListener {
+            quantity = quantity - 1;
+            if (quantity == 0)
+                deleteCart()
+            else
+                updateCart()
+        }
+        binding.btnPlus.setOnClickListener {
+            quantity = quantity + 1;
+            updateCart()
+        }
+
+        binding.btnViewCart.setOnClickListener {
+            startActivityForResult(Intent(applicationContext, CheckOutActivity::class.java), 200)
+        }
+
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         getProductDetails()
     }
+
     private fun deleteCart() {
 
-        val dialog= CustomDialog(this@ProductDetailsActivity)
+        val dialog = CustomDialog(this@ProductDetailsActivity)
         // Obtain the DataManager instance
-        dialog.showDialog(this@ProductDetailsActivity,false)
+        dialog.showDialog(this@ProductDetailsActivity, false)
         val dataManager = DataManager.getDataManager()
 
         // Create a callback for handling the API response
@@ -110,9 +117,8 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                     //model?.Message?.let { Utils.showMessage(it,requireActivity()) }
 
-                    binding.btnAddToCart.visibility= View.VISIBLE
-                    binding.lnrViewcart.visibility= View.GONE
-
+                    binding.btnAddToCart.visibility = View.VISIBLE
+                    binding.lnrViewcart.visibility = View.GONE
 
 
                 } else {
@@ -130,29 +136,28 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
 
         // Call the sendOtp function in DataManager
-        dataManager.deleteProduct(otpCallback, user_id,cart_id  )
+        dataManager.deleteProduct(otpCallback, user_id, cart_id)
 
     }
 
-    fun setData()
-    {
-    val lp= FlexboxLayout.LayoutParams(
-        ViewGroup.LayoutParams.WRAP_CONTENT,
-        FlexboxLayout.LayoutParams.WRAP_CONTENT
-    )
-        lp.marginStart=10
-        lp.marginEnd=10
+    fun setData() {
+        val lp = FlexboxLayout.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            FlexboxLayout.LayoutParams.WRAP_CONTENT
+        )
+        lp.marginStart = 10
+        lp.marginEnd = 10
         binding.flexboxLayout.removeAllViews()
 
-        binding.btnAddToCart.visibility=View.GONE
+        binding.btnAddToCart.visibility = View.GONE
         for (chipText in chipList!!) {
             val chip = Chip(this)
             chip.text = chipText.price
-            chip.id=Integer.parseInt(chipText.id)
-            chip.isChecked=chipText.isSelected
-           // chip.layoutParams=lp
+            chip.id = Integer.parseInt(chipText.id)
+            chip.isChecked = chipText.isSelected
+            // chip.layoutParams=lp
 
-            if(!chipText.isSelected) {
+            if (!chipText.isSelected) {
                 chip.chipBackgroundColor = ColorStateList.valueOf(
                     ContextCompat.getColor(
                         applicationContext,
@@ -161,27 +166,34 @@ class ProductDetailsActivity : AppCompatActivity() {
 
 
                 )
-                chip.setTextColor(ColorStateList.valueOf(
-                    ContextCompat.getColor(
-                        applicationContext,
-                        R.color.black
+                chip.setTextColor(
+                    ColorStateList.valueOf(
+                        ContextCompat.getColor(
+                            applicationContext,
+                            R.color.black
+                        )
                     )
+
+
                 )
 
-
-                )
-
-            }
-            else {
-                chip.chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(applicationContext, R.color.green))
-                chip.setTextColor(ColorStateList.valueOf(
+            } else {
+                chip.chipBackgroundColor = ColorStateList.valueOf(
                     ContextCompat.getColor(
                         applicationContext,
-                        R.color.white
+                        R.color.green
                     )
-                ))
-                if(cart_id.isEmpty())
-                binding.btnAddToCart.visibility=View.VISIBLE
+                )
+                chip.setTextColor(
+                    ColorStateList.valueOf(
+                        ContextCompat.getColor(
+                            applicationContext,
+                            R.color.white
+                        )
+                    )
+                )
+                if (cart_id.isEmpty())
+                    binding.btnAddToCart.visibility = View.VISIBLE
             }
 
             chip.setOnClickListener {
@@ -194,75 +206,98 @@ class ProductDetailsActivity : AppCompatActivity() {
 
     private fun updateChips(id: String) {
         chipList!!.forEach {
-            if(it.id==id)
-            {
-                it.isSelected=true
-                attribute_id=it.id
-            }else
-            {
-                it.isSelected=false
+            if (it.id == id) {
+                it.isSelected = true
+                attribute_id = it.id
+            } else {
+                it.isSelected = false
             }
         }
         setData()
 
     }
 
-    data class ChipPrices(val price:String, val id:String, var isSelected:Boolean=false)
+    data class ChipPrices(val price: String, val id: String, var isSelected: Boolean = false)
 
-    fun getProductDetails()
-    {
+    fun getProductDetails() {
 
-        val dialog= CustomDialog(this@ProductDetailsActivity)
+        val dialog = CustomDialog(this@ProductDetailsActivity)
         // Obtain the DataManager instance
-        dialog.showDialog(this@ProductDetailsActivity,false)
+        dialog.showDialog(this@ProductDetailsActivity, false)
         val dataManager = DataManager.getDataManager()
 
         // Create a callback for handling the API response
         val otpCallback = object : Callback<ProductDetailsDataMinRes> {
-            override fun onResponse(call: Call<ProductDetailsDataMinRes>, response: Response<ProductDetailsDataMinRes>) {
+            override fun onResponse(
+                call: Call<ProductDetailsDataMinRes>,
+                response: Response<ProductDetailsDataMinRes>
+            ) {
                 dialog.closeDialog()
                 if (response.isSuccessful) {
                     val model: ProductDetailsDataMinRes? = response.body()
 
                     // Handle the response
 
-                    model?.message?.let { Utils.showMessage(it,applicationContext) }
+                    model?.message?.let { Utils.showMessage(it, applicationContext) }
 
-                    if(model?.status == true)
-                    {
-                       val productDetails= model.data?.productDetails
-                        binding.txtProductName.text="${productDetails!!.title}"
-                        binding.txtMrpPrice.text="${Utils.RUPEE_SYMBOL}${productDetails!!.mrpPrice}"
-                        binding.txtOurPrice.text="${Utils.RUPEE_SYMBOL}${productDetails!!.ourPrice}"
-                        binding.txtMarketPrice.text="${Utils.RUPEE_SYMBOL}${productDetails!!.marketPrice}"
-                        binding.webviewDescription.loadData("${productDetails!!.descriptions}","text/html","utf-8")
-                        binding.txtProductDescription.text="${productDetails!!.descriptions}"
+                    if (model?.status == true) {
+                        val productDetails = model.data?.productDetails
+                        binding.txtProductName.text = "${productDetails!!.title}"
+                        binding.txtMrpPrice.text =
+                            "${Utils.RUPEE_SYMBOL}${productDetails!!.mrpPrice}"
+                        binding.txtOurPrice.text =
+                            "${Utils.RUPEE_SYMBOL}${productDetails!!.ourPrice}"
+                        binding.txtMarketPrice.text =
+                            "${Utils.RUPEE_SYMBOL}${productDetails!!.marketPrice}"
+                        binding.webviewDescription.loadData(
+                            "${productDetails!!.descriptions}",
+                            "text/html",
+                            "utf-8"
+                        )
+                        binding.txtProductDescription.text = "${productDetails!!.descriptions}"
 
-                        if(model.data!!.productDetails!!.user_rating!!.isEmpty()||model.data!!.productDetails!!.user_rating!!.trim().equals("0"))
-                            binding.lnrRating.visibility=View.INVISIBLE
+                        if (model.data!!.productDetails!!.user_rating!!.isEmpty() || model.data!!.productDetails!!.user_rating!!.trim()
+                                .equals("0")
+                        )
+                            binding.lnrRating.visibility = View.INVISIBLE
                         else {
-                            binding.lnrRating.visibility=View.VISIBLE
+                            binding.lnrRating.visibility = View.VISIBLE
                             binding.txtRatingNo.setText("( ${model.data!!.productDetails!!.user_count} )")
 
                             binding.txtRating.setText("${model.data!!.productDetails!!.user_rating}")
                         }
                         model.data!!.productAttribute.forEach {
-                           chipList!!.add(ChipPrices(it.weight.toString(),it.id.toString(),false))
+                            chipList!!.add(
+                                ChipPrices(
+                                    it.weight.toString(),
+                                    it.id.toString(),
+                                    false
+                                )
+                            )
                         }
-                        if(model.data!!.latestAttribute!=null) {
+                        if (model.data!!.latestAttribute != null) {
                             attribute_id = model.data!!.latestAttribute!!.id.toString()
                             updateChips(attribute_id)
                         }
 
                         imageList.clear()
-                        imageList.add(SlideModel(ROOT_URL+""+ productDetails.image, ScaleTypes.FIT) )// for one image
+                        imageList.add(
+                            SlideModel(
+                                ROOT_URL + "" + productDetails.image,
+                                ScaleTypes.CENTER_INSIDE
+                            )
+                        )// for one image
 
                         model.data!!.productImages.forEach {
-                            imageList.add(SlideModel(ROOT_URL+""+ it.additionalImage, ScaleTypes.FIT) )// for one image
+                            imageList.add(
+                                SlideModel(
+                                    ROOT_URL + "" + it.additionalImage,
+                                    ScaleTypes.CENTER_INSIDE
+                                )
+                            )// for one image
 
                         }
-                        model.data!!. cartDetails.let {
-
+                        model.data!!.cartDetails.let {
 
                             if (it!!.cartId!!.isEmpty()) {
 
@@ -271,14 +306,14 @@ class ProductDetailsActivity : AppCompatActivity() {
                             } else {
                                 binding.lnrViewcart.visibility = View.VISIBLE
                                 binding.btnAddToCart.visibility = View.GONE
-                                binding.tvQuantity.text="${it.quantity}"
-                                if(it.quantity!=null)
-                                quantity=Integer.parseInt(it.quantity)
-                                cart_id=it.cartId.toString()
+                                binding.tvQuantity.text = "${it.quantity}"
+                                if (it.quantity != null)
+                                    quantity = Integer.parseInt(it.quantity)
+                                cart_id = it.cartId.toString()
                             }
                         }
 
-                        binding. imageSlider.setImageList(imageList)
+                        binding.imageSlider.setImageList(imageList)
                         setData()
 
                     }
@@ -298,14 +333,14 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
 
         // Call the sendOtp function in DataManager
-        dataManager.productDetails(otpCallback,product_id,user_id)
+        dataManager.productDetails(otpCallback, product_id, user_id)
     }
-    fun addToCart()
-    {
 
-        val dialog= CustomDialog(this@ProductDetailsActivity)
+    fun addToCart() {
+
+        val dialog = CustomDialog(this@ProductDetailsActivity)
         // Obtain the DataManager instance
-        dialog.showDialog(this@ProductDetailsActivity,false)
+        dialog.showDialog(this@ProductDetailsActivity, false)
         val dataManager = DataManager.getDataManager()
 
         // Create a callback for handling the API response
@@ -317,12 +352,11 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                     // Handle the response
 
-                    model?.Message?.let { Utils.showMessage(it,applicationContext) }
+                    model?.Message?.let { Utils.showMessage(it, applicationContext) }
 
-                    if(model!!.Status !!)
-                    {
-                        binding.btnAddToCart.visibility= View.GONE
-                        binding.lnrViewcart.visibility= View.VISIBLE
+                    if (model!!.Status!!) {
+                        binding.btnAddToCart.visibility = View.GONE
+                        binding.lnrViewcart.visibility = View.VISIBLE
                     }
 
                     println("OTP Sent successfully: ${model?.Message}")
@@ -341,16 +375,15 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
 
         // Call the sendOtp function in DataManager
-        dataManager.addCart(otpCallback, user_id  ,product_id,attribute_id)
+        dataManager.addCart(otpCallback, user_id, product_id, attribute_id)
     }
 
 
-    fun updateCart()
-    {
+    fun updateCart() {
 
-        val dialog= CustomDialog(this@ProductDetailsActivity)
+        val dialog = CustomDialog(this@ProductDetailsActivity)
         // Obtain the DataManager instance
-        dialog.showDialog(this@ProductDetailsActivity,false)
+        dialog.showDialog(this@ProductDetailsActivity, false)
         val dataManager = DataManager.getDataManager()
 
         // Create a callback for handling the API response
@@ -362,11 +395,10 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                     // Handle the response
 
-                    model?.Message?.let { Utils.showMessage(it,applicationContext) }
+                    model?.Message?.let { Utils.showMessage(it, applicationContext) }
 
-                    if(model!!.Status !!)
-                    {
-                       binding.tvQuantity.text="$quantity"
+                    if (model!!.Status!!) {
+                        binding.tvQuantity.text = "$quantity"
                     }
 
                     //getProductDetails()
@@ -386,6 +418,6 @@ class ProductDetailsActivity : AppCompatActivity() {
         }
 
         // Call the sendOtp function in DataManager
-        dataManager.updateCart(otpCallback, user_id  , cart_id ,quantity.toString() )
+        dataManager.updateCart(otpCallback, user_id, cart_id, quantity.toString())
     }
 }
