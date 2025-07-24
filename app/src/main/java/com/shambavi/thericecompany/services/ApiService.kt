@@ -301,6 +301,7 @@ interface ApiService {
         @Field("qty") qty: String,
         @Field("slotid") slotid: String,
         @Field("cartid") cartid: String,
+        @Field("gst_charges") gst_charges: String,
 
     ): Call<MainResponse>
 
