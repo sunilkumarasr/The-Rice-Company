@@ -297,7 +297,7 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
                       var saved=  mrpAmount-discountedAmount
                        val intent= Intent(applicationContext,OrderSuccessActivity::class.java)
                        intent.putExtra("saved",saved.toString())
-                       intent.putExtra("OrderID","123456")
+                        intent.putExtra("OrderID",model.order_id)
                         startActivity(intent)
                         finish()
                     }
@@ -318,7 +318,7 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
         }
 
         // Call the sendOtp function in DataManager
-        dataManager.placeOrder(otpCallback, user_id  ,payment_id,addres_id,totalAmount.toString(), product_ids,qnts,slot_id,cart_ids )
+        dataManager.placeOrder(otpCallback, user_id  ,payment_id,addres_id,totalAmount.toString(), product_ids,qnts,slot_id,cart_ids,gst_charges.toString() )
     }
     override fun addProduct(product_id: String, attribution_id: String) {
 
@@ -339,23 +339,29 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
     var totalAmount=0
     var mrpAmount=0
     var discountedAmount=0
+    var gst_charges=0
     fun calculateAmount()
     {
         mrpAmount=0
-         totalAmount=0
+        totalAmount=0
         discountedAmount=0
+        gst_charges=0
         cartAdapter.cartList.forEach {
             mrpAmount=mrpAmount+(Integer.parseInt(it.mrpPrice)*Integer.parseInt(it.quantity))
             discountedAmount=discountedAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
             totalAmount=totalAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
+            if(it.gst!!.isNotEmpty())
+                gst_charges=gst_charges+(Integer.parseInt(it.gst)*Integer.parseInt(it.quantity))
         }
 
-        totalAmount=totalAmount+delivery_charges
-        binding.tvDiscountedAmount.text="${Utils.RUPEE_SYMBOL} $totalAmount"
-        binding.tvBillAmount.text="${Utils.RUPEE_SYMBOL} $mrpAmount"
-        binding.tvGrandTotal.text="${Utils.RUPEE_SYMBOL} $discountedAmount"
-        binding.tvDeliveryCharges.text="${Utils.RUPEE_SYMBOL} $delivery_charges"
-        binding.txtSaved.setText("Saved ${Utils.RUPEE_SYMBOL} ${mrpAmount-discountedAmount}")
+        totalAmount=totalAmount+delivery_charges+gst_charges
+        binding.tvDiscountedAmount.text="${Utils.RUPEE_SYMBOL}$totalAmount"
+        binding.tvBillAmount.text="${Utils.RUPEE_SYMBOL}$mrpAmount"
+        binding.tvGrandTotal.text="${Utils.RUPEE_SYMBOL}$totalAmount"
+        binding.tvDeliveryCharges.text="${Utils.RUPEE_SYMBOL}$delivery_charges"
+        binding.tvGstCharges.text="${Utils.RUPEE_SYMBOL}$gst_charges"
+
+        binding.txtSaved.setText("Saved ${Utils.RUPEE_SYMBOL}${mrpAmount-discountedAmount}")
 
     }
 

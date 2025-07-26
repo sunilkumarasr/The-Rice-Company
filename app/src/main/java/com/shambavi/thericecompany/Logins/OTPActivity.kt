@@ -223,7 +223,8 @@ var otp=""
 
                     if(model?.status == true)
                     {
-
+                        otp=model.otp!!
+                        binding.txtOtpStatic.setText("OTP : $otp")
 
                     }
                     println("OTP Sent successfully: ${model?.message}")

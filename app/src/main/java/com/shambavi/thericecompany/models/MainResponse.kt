@@ -10,13 +10,15 @@ data class ProfileMainResponse(
     // @SerializedName("Response" ) var profileModel : ArrayList<ProfileModel> = arrayListOf(),
     @SerializedName("code") var code: Int? = null
 
+
 )
 
 data class MainResponse(
 
     @SerializedName("status") var Status: Boolean? = null,
     @SerializedName("message") var Message: String? = null,
-    @SerializedName("code") var code: Int? = null
+    @SerializedName("code") var code: Int? = null,
+    @SerializedName("order_id") var order_id: String? = null,
 
 )
 
@@ -403,25 +405,25 @@ data class CartMainRes(
 )
 
 data class CartModel(
-
-    @SerializedName("id") var id: String? = null,
-    @SerializedName("product_id") var productId: String? = null,
-    @SerializedName("category_id") var categoryId: String? = null,
-    @SerializedName("sub_category_id") var subCategoryId: String? = null,
-    @SerializedName("category_id_name") var categoryIdName: String? = null,
-    @SerializedName("sub_category_id_name") var subCategoryIdName: String? = null,
-    @SerializedName("title") var title: String? = null,
-    @SerializedName("image") var image: String? = null,
-    @SerializedName("mrp_price") var mrpPrice: String? = null,
-    @SerializedName("market_price") var marketPrice: String? = null,
-    @SerializedName("our_price") var ourPrice: String? = null,
-    @SerializedName("short_descriptions") var shortDescriptions: String? = null,
-    @SerializedName("descriptions") var descriptions: String? = null,
-    @SerializedName("specifications") var specifications: String? = null,
-    @SerializedName("weight") var weight: String? = null,
-    @SerializedName("attribute_id") var attributeId: String? = null,
-    @SerializedName("quantity") var quantity: String? = null,
-    @SerializedName("cart_id") var cartId: String? = null
+    @SerializedName("id"                   ) var id                : String? = null,
+    @SerializedName("product_id"           ) var productId         : String? = null,
+    @SerializedName("category_id"          ) var categoryId        : String? = null,
+    @SerializedName("sub_category_id"      ) var subCategoryId     : String? = null,
+    @SerializedName("category_id_name"     ) var categoryIdName    : String? = null,
+    @SerializedName("sub_category_id_name" ) var subCategoryIdName : String? = null,
+    @SerializedName("title"                ) var title             : String? = null,
+    @SerializedName("image"                ) var image             : String? = null,
+    @SerializedName("mrp_price"            ) var mrpPrice          : String? = null,
+    @SerializedName("market_price"         ) var marketPrice       : String? = null,
+    @SerializedName("our_price"            ) var ourPrice          : String? = null,
+    @SerializedName("short_descriptions"   ) var shortDescriptions : String? = null,
+    @SerializedName("descriptions"         ) var descriptions      : String? = null,
+    @SerializedName("specifications"       ) var specifications    : String? = null,
+    @SerializedName("weight"               ) var weight            : String? = null,
+    @SerializedName("attribute_id"         ) var attributeId       : String? = null,
+    @SerializedName("quantity"             ) var quantity          : String? = null,
+    @SerializedName("cart_id"             ) var cartId          : String? = null,
+    @SerializedName("gst"             ) var gst          : String? = null
 
 )
 

@@ -26,6 +26,7 @@ import com.royalit.motherchoice.utils.NetWorkConection
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.R
+import com.shambavi.thericecompany.categories.AllProductsAdapter
 import com.shambavi.thericecompany.databinding.ActivityNotificationsBinding
 import com.shambavi.thericecompany.databinding.ActivitySearchBinding
 import com.shambavi.thericecompany.home.ProductsAdapter
@@ -40,14 +41,14 @@ class SearchActivity : AppCompatActivity(), ProductListener {
     val binding: ActivitySearchBinding by lazy {
         ActivitySearchBinding.inflate(layoutInflater)
     }
-    lateinit var productsAdapter: ProductsAdapter
+    lateinit var productsAdapter: AllProductsAdapter
     var user_id=""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
-        productsAdapter=ProductsAdapter()
+        productsAdapter=AllProductsAdapter()
         productsAdapter.setListener(this)
         binding.recyclerProducts.layoutManager=
             GridLayoutManager(applicationContext,2)

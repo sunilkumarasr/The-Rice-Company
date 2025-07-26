@@ -145,20 +145,18 @@
             </LinearLayout>
         </LinearLayout>
 
-        <androidx.cardview.widget.CardView
+        <com.denzcoskun.imageslider.ImageSlider
+            android:id="@+id/image_slider"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_140sdp"
-            app:cardCornerRadius="@dimen/_25sdp"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_10sdp">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/home_banner_ic"
-                android:scaleType="fitXY"/>
-        </androidx.cardview.widget.CardView>
+            android:layout_height="@dimen/_180sdp"
+            android:background="@color/white"
+            app:iss_auto_cycle="true"
+            app:iss_period="1000"
+            app:iss_delay="1000"
+            app:iss_corner_radius="8"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            app:iss_text_align="CENTER"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_all_products"

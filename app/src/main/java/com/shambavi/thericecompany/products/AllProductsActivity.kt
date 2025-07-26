@@ -9,10 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bookiron.itpark.utils.MyPref
+import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.models.SlideModel
+import com.gadiwalaUser.Models.BannersMainRes
 import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.ProductMainRes
 import com.gadiwalaUser.services.DataManager
+import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.SearchActivity
 import com.shambavi.thericecompany.Config.ViewController
@@ -37,6 +41,8 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
     var sid=""
     var sales=""
     var user_id=""
+    val imageList = ArrayList<SlideModel>() // Create image list
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,6 +78,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         }
         productsAdapter.setListener(this)
         getProducts()
+        getBanners()
 
     }
     private val filterLauncher = registerForActivityResult( ActivityResultContracts.StartActivityForResult() ) {
@@ -147,6 +154,53 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
                 dataManager.getTopSellProducts(otpCallback,user_id)
         else
         dataManager.getProductsBySubCat(otpCallback,sid,user_id)
+    }
+    fun getBanners()
+    {
+
+        val dialog= CustomDialog(this@AllProductsActivity)
+        // Obtain the DataManager instance
+        // dialog.showDialog(activity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<BannersMainRes> {
+            override fun onResponse(call: Call<BannersMainRes>, response: Response<BannersMainRes>) {
+                // dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: BannersMainRes? = response.body()
+
+                    // Handle the response
+
+                    //model?.message?.let { Utils.showMessage(it,requireActivity()) }
+
+                    if(model?.status == true)
+                    {
+                        imageList.clear()
+                        model.data.forEach {
+                            imageList.add(SlideModel("$ROOT_URL/${it.image}", ScaleTypes.FIT))
+                            println("Banners successfully: $ROOT_URL/${it.image}")
+                        }
+                        binding.imageSlider.setImageList(imageList)
+
+                    }
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<BannersMainRes>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                //dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.bannerList(otpCallback)
     }
 
     fun getCart()

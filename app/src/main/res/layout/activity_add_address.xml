@@ -214,7 +214,9 @@
                         android:textSize="@dimen/_10sdp"
                         android:fontFamily="@font/teachers_medium"
                         android:drawableTint="@color/text"
-                        android:drawableLeft="@drawable/icon_loc"/>
+                        android:drawableLeft="@drawable/icon_loc"
+                        android:visibility="gone"
+                        />
 
 
 
