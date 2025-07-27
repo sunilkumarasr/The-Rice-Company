@@ -26,7 +26,7 @@ class FAQSActivity : AppCompatActivity() {
         setContentView(binding.root)
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
 
-        binding.header.txtTitle.text="FAQ`s"
+        binding.header.txtTitle.text="Faq`s"
 
         binding.header.imgBack.setOnClickListener {
             finish()

@@ -1,18 +1,27 @@
 package com.shambavi.thericecompany.cart
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Address
+import android.location.Geocoder
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.AddressDataMainRes
 import com.gadiwalaUser.Models.AddressDataSingle
 import com.gadiwalaUser.Models.OTPResponse
 import com.gadiwalaUser.services.DataManager
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.libraries.places.api.model.Place
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.DashBoardActivity
@@ -35,11 +44,15 @@ import com.google.android.libraries.places.widget.Autocomplete
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
+import java.io.IOException
+import java.util.Locale
+
 class UpdateAddressActivity : AppCompatActivity() {
 
     val binding: ActivityUpdateAddressBinding by lazy {
         ActivityUpdateAddressBinding.inflate(layoutInflater)
     }
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
     var user_id=""
     var mobile=""
     var full_name=""
@@ -57,11 +70,30 @@ class UpdateAddressActivity : AppCompatActivity() {
 
     var lattitude=""
     var longitude=""
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestMultiplePermissions()
+        ) { permissions ->
+            var allPermissionsGranted = true
+            permissions.entries.forEach {
+                if (!it.value) {
+                    allPermissionsGranted = false
+                }
+            }
+            if (allPermissionsGranted) {
+                // Permissions Granted
+                getLastKnownLocation()
+            } else {
+                // Permissions Denied
+                Utils.showMessage( "Location permissions are required to fetch the address.", applicationContext)
+            }
+        }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
-
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         val  apiKey=getString(R.string.MAP_KEY)
 
         Places.initialize(applicationContext, apiKey)
@@ -76,8 +108,10 @@ class UpdateAddressActivity : AppCompatActivity() {
 
         address_id=intent.getStringExtra("address_id").toString()
 
-        if(address_id!=null&&address_id.isNotEmpty())
+        if(address_id!=null&&address_id.isNotEmpty()&&!address_id.equals("null"))
             getAddress()
+        else
+            checkPermissionsAndGetLocation()
 
         inits()
         binding.ivBack.setOnClickListener {
@@ -384,5 +418,133 @@ val TAG="UpdateAddressActivity"
 
         // Call the sendOtp function in DataManager
         dataManager.getAddressById(otpCallback, user_id ,address_id )
+    }
+    private fun checkPermissionsAndGetLocation() {
+        when {
+            ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED &&
+                    ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ) == PackageManager.PERMISSION_GRANTED -> {
+                // Permissions are already granted, get the location
+                getLastKnownLocation()
+            }
+            shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION) ||
+                    shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_COARSE_LOCATION) -> {
+                // Explain to the user why you need the permissions
+                // You can show a dialog here before requesting again
+                Toast.makeText(this, "Location permission is needed to get your current address.", Toast.LENGTH_LONG).show()
+                // Then request
+                requestPermissionLauncher.launch(
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    )
+                )
+            }
+            else -> {
+                // Directly request for the permissions
+                requestPermissionLauncher.launch(
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    )
+                )
+            }
+        }
+    }
+
+    private fun getLastKnownLocation() {
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            // This check is technically redundant here due to checkPermissionsAndGetLocation,
+            // but good practice for direct calls to FusedLocationProviderClient methods.
+            return
+        }
+        fusedLocationClient.lastLocation
+            .addOnSuccessListener { location: Location? ->
+                if (location != null) {
+                    // Location found, now get the address
+                    getAddressFromLocation(location)
+                } else {
+                    // You might want to request location updates here if lastLocation is null
+                }
+            }
+            .addOnFailureListener { e ->
+
+            }
+    }
+
+    private fun getAddressFromLocation(location: Location) {
+        val geocoder = Geocoder(this, Locale.getDefault())
+        try {
+            // Using geocoder.getFromLocation() which is synchronous.
+            // For API level 33 and above, you can use the asynchronous version:
+            // geocoder.getFromLocation(location.latitude, location.longitude, 1) { addresses -> ... }
+            // For broader compatibility, the synchronous version is used here.
+            // Consider running it on a background thread if it causes UI freezes on older devices.
+
+            val addresses: List<Address>? = geocoder.getFromLocation(
+                location.latitude,
+                location.longitude,
+                1 // maxResults
+            )
+
+            if (!addresses.isNullOrEmpty()) {
+                val address: Address = addresses[0]
+
+                 city = address.locality ?: "" // City
+                 state = address.adminArea ?: "" // State
+                 zipcode = address.postalCode ?: "" // Pincode/Zipcode
+                 country = address.countryName ?: ""
+                val knownName = address.featureName ?: "" // e.g., Street Name or POI
+                val fullAddress = address.getAddressLine(0) // Usually the full address
+
+                binding.editCity.setText("$city")
+                binding.editState.setText("$state")
+                binding.editZipcode.setText("$zipcode")
+                binding.editCountry.setText("$country")
+
+                lattitude=location.latitude.toString()
+                longitude=location.longitude.toString()
+                val addressText = StringBuilder()
+                addressText.append("Full Address: $fullAddress\n")
+                addressText.append("Street/Feature: $knownName\n")
+                addressText.append("City: $city\n")
+                addressText.append("State: $state\n")
+                addressText.append("Pincode: $zipcode\n")
+                addressText.append("Country: $country\n\n")
+                addressText.append("Lat: ${location.latitude}, Lon: ${location.longitude}")
+
+
+                Log.d("AddressDebug", "City: $city, State: $state, Pincode: $zipcode")
+                Log.d("AddressDebug", "Full Address Object: $address")
+
+
+                // Update your EditText fields if needed:
+                // binding.editCity.setText(city)
+                // binding.editState.setText(state)
+                // binding.editZipcode.setText(postalCode)
+                // binding.editCountry.setText(country)
+                // ... and so on for other address components you need.
+
+            } else {
+                Toast.makeText(this, "No address found.", Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: IOException) {
+            // Network or other I/O issues.
+            Log.e("GeocoderError", "Service not available", e)
+        } catch (e: IllegalArgumentException) {
+            // Invalid latitude or longitude.
+             }
     }
 }

@@ -266,6 +266,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                             binding.txtRating.setText("${model.data!!.productDetails!!.user_rating}")
                         }
+                        chipList!!.clear()
                         model.data!!.productAttribute.forEach {
                             chipList!!.add(
                                 ChipPrices(

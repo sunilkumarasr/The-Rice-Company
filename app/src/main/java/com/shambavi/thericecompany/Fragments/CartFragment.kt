@@ -76,6 +76,7 @@ class CartFragment : Fragment() ,ProductListener{
         addres_id= MyPref.getAddressId(requireActivity())
         addres= MyPref.getAddress(requireActivity())
         binding.tvBillAmount.paintFlags = binding.tvBillAmount.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+        binding.tvDeliveryChargesStrike.paintFlags = binding.tvBillAmount.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
         if(addres.isEmpty())
             binding.tvAddress.text="Please select Delivery Address"
@@ -334,12 +335,12 @@ class CartFragment : Fragment() ,ProductListener{
             discountedAmount=discountedAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
             totalAmount=totalAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
             if(it.gst!!.isNotEmpty())
-            gst_charges=gst_charges+(Integer.parseInt(it.gst)*Integer.parseInt(it.quantity))
+                gst_charges=gst_charges+((Integer.parseInt(it.gst)*(Integer.parseInt(it.quantity)*Integer.parseInt(it.ourPrice)))/100)
         }
 
 
         totalAmount=totalAmount+delivery_charges+gst_charges
-        binding.tvDiscountedAmount.text="${Utils.RUPEE_SYMBOL}$totalAmount"
+        binding.tvDiscountedAmount.text="${Utils.RUPEE_SYMBOL}$discountedAmount"
         binding.tvBillAmount.text="${Utils.RUPEE_SYMBOL}$mrpAmount"
         binding.tvGrandTotal.text="${Utils.RUPEE_SYMBOL}$totalAmount"
         binding.tvDeliveryCharges.text="${Utils.RUPEE_SYMBOL}$delivery_charges"

@@ -4,9 +4,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/_5sdp"
+
     android:layout_marginEnd="@dimen/_5sdp">
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:layout_width="@dimen/_132sdp"
         app:cardCornerRadius="@dimen/_13sdp"
         app:cardElevation="0dp"
         app:cardBackgroundColor="@color/white"

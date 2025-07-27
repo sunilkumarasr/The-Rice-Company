@@ -348,7 +348,8 @@ data class BannersMainRes(
 data class Banners(
 
     @SerializedName("id") var id: String? = null,
-    @SerializedName("image") var image: String? = null
+    @SerializedName("image") var image: String? = null,
+    @SerializedName("additional_image") var additional_image: String? = null
 
 )
 

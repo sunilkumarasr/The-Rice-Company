@@ -245,6 +245,11 @@ class DataManager private constructor() {
         val call = apiService.bannerList(APIKEY)
         call.enqueue(cb)
     }
+    fun bannerListByCat(cb: Callback<BannersMainRes>,cat_id:String) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.bannerListByCat(APIKEY,cat_id)
+        call.enqueue(cb)
+    }
 
     fun privacyTermsData(cb: Callback<PrivacyDataMainRes>,pagename:String) {
         val apiService = retrofit.create(ApiService::class.java)

@@ -23,14 +23,62 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+                <RelativeLayout
+                    android:layout_width="@dimen/_120sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_16sdp"
+                    android:layout_gravity="center_horizontal"
+                    >
+
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/img_profile"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:src="@drawable/user_ic"
-                    android:layout_gravity="center_horizontal"
+                    android:layout_centerInParent="true"
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="20dp"/>
+                    <ImageView
+                        android:id="@+id/img_edit_pic"
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:src="@drawable/edit_ic"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="@dimen/_16sdp"
+                        />
+                   <!-- <LinearLayout
+                        android:id="@+id/lnr_camera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_8sdp"
+                        android:layout_alignParentBottom="true"
+                        >
+                        <ImageView
+                            android:layout_width="@dimen/_16sdp"
+                            android:layout_height="@dimen/_16sdp"
+                            android:src="@drawable/camera_ic"
+                            android:layout_marginBottom="@dimen/_4sdp"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/lnr_gallery"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/_8sdp"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        >
+                        <ImageView
+                            android:layout_width="@dimen/_16sdp"
+                            android:layout_height="@dimen/_16sdp"
+                            android:src="@drawable/ic_gallery_24"
+                            android:layout_marginBottom="@dimen/_4sdp"
+                            />
+                    </LinearLayout>-->
+
+                </RelativeLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

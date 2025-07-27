@@ -310,7 +310,7 @@
                    android:layout_centerVertical="true"
                    android:layout_marginStart="15dp"
                    android:layout_toRightOf="@+id/imgFAQS"
-                   android:text="FAQ's"
+                   android:text="Faq's"
                    android:textColor="@color/black_profile"
                    android:textSize="@dimen/_13sdp"
                    android:fontFamily="@font/poppins" />

@@ -342,10 +342,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="Country"
+                        android:visibility="gone"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_11sdp"
                         android:fontFamily="@font/poppins" />
                     <LinearLayout
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_marginTop="5dp"

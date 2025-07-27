@@ -58,7 +58,7 @@ class AddressAdapter(val activity: AddressListActivity) : ListAdapter<AddressDat
                 }
 
 
-                ivEdit.setOnClickListener {
+                lnrEdit.setOnClickListener {
 
                     var intent= Intent(activity,UpdateAddressActivity::class.java)
                     intent.putExtra("address_id",address.id.toString())

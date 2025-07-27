@@ -71,6 +71,7 @@ class OrderDetailsActivity : AppCompatActivity() {
 
     private fun displayOrderDetails(order: Order) {
         with(binding) {
+
             // Order ID
             orderIdText.text = "Order ID: ${order.orderId}"
 
@@ -125,6 +126,7 @@ class OrderDetailsActivity : AppCompatActivity() {
                 */
                 viewOrderDelivered.visibility = View.GONE
                 viewOrderRetured.visibility = View.GONE
+                imgOrderShiiped.setImageResource(R.drawable.icon_order_check_success)
                 viewOrderConfirmed.setBackgroundColor(resources.getColor(R.color.green))
 
             } else if (order.status == "3") {
@@ -142,6 +144,9 @@ class OrderDetailsActivity : AppCompatActivity() {
                 */
                 viewOrderDelivered.visibility = View.GONE
                 viewOrderRetured.visibility = View.GONE
+                imgOrderShiiped.setImageResource(R.drawable.icon_order_check_success)
+                imgOrderOut.setImageResource(R.drawable.icon_order_check_success)
+
                 viewOrderConfirmed.setBackgroundColor(resources.getColor(R.color.green))
                 viewOrderShipped.setBackgroundColor(resources.getColor(R.color.green))
 
@@ -163,8 +168,43 @@ class OrderDetailsActivity : AppCompatActivity() {
                 viewOrderConfirmed.setBackgroundColor(resources.getColor(R.color.green))
                 viewOrderShipped.setBackgroundColor(resources.getColor(R.color.green))
                 viewOrderConfirmed.setBackgroundColor(resources.getColor(R.color.green))
+                imgOrderShiiped.setImageResource(R.drawable.icon_order_check_success)
+                imgOrderOut.setImageResource(R.drawable.icon_order_check_success)
+                imgOrderDelivered.setImageResource(R.drawable.icon_order_check_success)
 
-            } else {
+            }  else if (order.status == "5") {
+                lnrOrderRefund.visibility = View.GONE
+                lnrOrderReturned.visibility = View.VISIBLE
+                /* lnrOrderDelivered.visibility= View.VISIBLE
+                 lnrOrderConfirmed.visibility= View.VISIBLE
+                 lnrOrderShipped.visibility= View.VISIBLE
+                 lnrOrderOut.visibility= View.VISIBLE
+ */
+                /*viewOrderShipped.visibility=View.VISIBLE
+                viewOrderOutDelivery.visibility=View.VISIBLE
+                viewOrderConfirmed.visibility=View.VISIBLE
+                viewOrderDelivered.visibility=View.GONE
+              */
+                viewOrderDelivered.visibility = View.VISIBLE
+                viewOrderRetured.visibility = View.GONE
+
+            } else if (order.status == "5") {
+                lnrOrderRefund.visibility = View.VISIBLE
+                lnrOrderReturned.visibility = View.VISIBLE
+                /* lnrOrderDelivered.visibility= View.VISIBLE
+                 lnrOrderConfirmed.visibility= View.VISIBLE
+                 lnrOrderShipped.visibility= View.VISIBLE
+                 lnrOrderOut.visibility= View.VISIBLE
+ */
+                /*viewOrderShipped.visibility=View.VISIBLE
+                viewOrderOutDelivery.visibility=View.VISIBLE
+                viewOrderConfirmed.visibility=View.VISIBLE
+                viewOrderDelivered.visibility=View.GONE
+              */
+                viewOrderDelivered.visibility = View.VISIBLE
+                viewOrderRetured.visibility = View.VISIBLE
+
+            }else {
 
             }
             // Shipping Details

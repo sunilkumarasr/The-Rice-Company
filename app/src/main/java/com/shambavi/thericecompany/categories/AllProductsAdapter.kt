@@ -53,7 +53,7 @@ class AllProductsAdapter: RecyclerView.Adapter<AllProductsAdapter.ProductViewHol
             var attribution = obj.attributes.get(0)
             displayPrice="${attribution.weight} ${Utils.RUPEE_SYMBOL}${attribution.prices}"
         }
-        holder.binding.txtProductName.text="${obj.categoryIdName} ($displayPrice)"
+        holder.binding.txtProductName.text="${obj.categoryIdName}"
         holder.binding.txtMrp.text="${Utils.RUPEE_SYMBOL}${obj.mrpPrice}"
         holder.binding.txtOff.text="${obj.price_off}%"
         holder.binding.txtOurPrice.text="${Utils.RUPEE_SYMBOL}${obj.ourPrice}"

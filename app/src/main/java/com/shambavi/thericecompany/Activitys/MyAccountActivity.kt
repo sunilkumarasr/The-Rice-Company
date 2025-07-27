@@ -68,6 +68,12 @@ class MyAccountActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        binding.imgEditPic.setOnClickListener {
+            val intent = Intent(this@MyAccountActivity, AddProfilePicActivity::class.java)
+            intent.putExtra("is_account", true)
+            startActivity(intent)
+            finish()
+        }
         if (!ViewController.noInterNetConnectivity(applicationContext)) {
             ViewController.showToast(applicationContext, "Please check your connection ")
         } else {

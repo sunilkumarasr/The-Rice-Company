@@ -229,6 +229,13 @@ interface ApiService {
     ): Call<BannersMainRes>
 
     @FormUrlEncoded
+    @POST("api/category_banner_list")
+    fun bannerListByCat(
+        @Field("api_key") api_key: String,
+        @Field("category_id") category_id: String,
+    ): Call<BannersMainRes>
+
+    @FormUrlEncoded
     @POST("api/pages_list")
     fun privacyTermsData(
         @Field("api_key") api_key: String,

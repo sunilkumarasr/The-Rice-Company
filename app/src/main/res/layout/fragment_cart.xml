@@ -287,10 +287,10 @@
                                     android:layout_width="0dp"
                                     android:layout_marginLeft="@dimen/_8sdp"
                                     android:layout_weight="1"
-                                    android:text="Delivery Charges" />
+                                    android:text="GST Charges" />
 
                                 <TextView
-                                    android:id="@+id/tvDeliveryCharges"
+                                    android:id="@+id/tvGstCharges"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="₹ 0"
@@ -314,16 +314,24 @@
                                     android:layout_width="0dp"
                                     android:layout_marginLeft="@dimen/_8sdp"
                                     android:layout_weight="1"
-                                    android:text="GST Charges" />
+                                    android:text="Delivery Charges"
+                                    android:textSize="@dimen/_11sdp" />
 
                                 <TextView
-                                    android:id="@+id/tvGstCharges"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
+                                    android:id="@+id/tvDeliveryCharges_strike"
+                                    style="@style/textview"
+                                    android:fontFamily="@font/teachers_medium"
+                                    android:text="₹49"
+                                    android:textColor="@color/gray"
+                                    android:textSize="@dimen/_12sdp" />
+                                <TextView
+                                    android:id="@+id/tvDeliveryCharges"
+                                    style="@style/textview"
+                                    android:fontFamily="@font/teachers_medium"
                                     android:text="₹ 0"
+                                    android:layout_marginStart="@dimen/_8sdp"
                                     android:textColor="@color/black"
-                                    android:textSize="@dimen/_12sdp"
-                                    android:textStyle="bold" />
+                                    android:textSize="@dimen/_12sdp" />
                             </LinearLayout>
 
                             <TextView

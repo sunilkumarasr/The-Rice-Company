@@ -274,34 +274,6 @@
                                     android:textSize="@dimen/_12sdp"
                                     android:textStyle="bold" />
                             </LinearLayout>
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:visibility="visible">
-
-                                <ImageView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:src="@drawable/icon_delivery_truck" />
-
-                                <TextView
-                                    style="@style/textview"
-                                    android:layout_width="0dp"
-                                    android:layout_marginLeft="@dimen/_8sdp"
-                                    android:layout_weight="1"
-                                    android:text="Delivery Charges"
-                                    android:textSize="@dimen/_11sdp" />
-
-                                <TextView
-                                    android:id="@+id/tvDeliveryCharges"
-                                    style="@style/textview"
-                                    android:fontFamily="@font/teachers_medium"
-                                    android:text="₹ 0"
-                                    android:textColor="@color/black"
-                                    android:textSize="@dimen/_12sdp" />
-                            </LinearLayout>
                             <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -329,6 +301,42 @@
                                     android:textSize="@dimen/_12sdp"
                                     android:textStyle="bold" />
                             </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:visibility="visible">
+
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/icon_delivery_truck" />
+
+                                <TextView
+                                    style="@style/textview"
+                                    android:layout_width="0dp"
+                                    android:layout_marginLeft="@dimen/_8sdp"
+                                    android:layout_weight="1"
+                                    android:text="Delivery Charges"
+                                    android:textSize="@dimen/_11sdp" />
+
+                                <TextView
+                                    android:id="@+id/tvDeliveryCharges_strike"
+                                    style="@style/textview"
+                                    android:fontFamily="@font/teachers_medium"
+                                    android:text="₹49"
+                                    android:textColor="@color/gray"
+                                    android:textSize="@dimen/_12sdp" />
+                                <TextView
+                                    android:id="@+id/tvDeliveryCharges"
+                                    style="@style/textview"
+                                    android:fontFamily="@font/teachers_medium"
+                                    android:text="₹ 0"
+                                    android:layout_marginStart="@dimen/_8sdp"
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_12sdp" />
+                            </LinearLayout>
+
                             <TextView
                                 style="@style/textview"
                                 android:layout_marginTop="8dp"

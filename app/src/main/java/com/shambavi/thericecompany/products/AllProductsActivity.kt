@@ -178,8 +178,8 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
                     {
                         imageList.clear()
                         model.data.forEach {
-                            imageList.add(SlideModel("$ROOT_URL/${it.image}", ScaleTypes.FIT))
-                            println("Banners successfully: $ROOT_URL/${it.image}")
+                            imageList.add(SlideModel("$ROOT_URL/${it.additional_image}", ScaleTypes.FIT))
+                            println("Banners successfully: $ROOT_URL/${it.additional_image}")
                         }
                         binding.imageSlider.setImageList(imageList)
 
@@ -200,7 +200,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         }
 
         // Call the sendOtp function in DataManager
-        dataManager.bannerList(otpCallback)
+        dataManager.bannerListByCat(otpCallback, sid )
     }
 
     fun getCart()

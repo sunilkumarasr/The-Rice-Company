@@ -86,8 +86,12 @@ class AddProfilePicActivity : AppCompatActivity() {
             }
             finish()
         }
-        binding.lnrPickPhoto.setOnClickListener {
+        binding.lnrTakePhoto.setOnClickListener {
             checkCameraPermissionAndDispatchIntent()
+
+        }
+        binding.lnrPickPhoto.setOnClickListener {
+            pickIMageIntent()
 
         }
     }
@@ -189,7 +193,25 @@ class AddProfilePicActivity : AppCompatActivity() {
                 //pickIMageIntent()
             }
         }
+    fun pickIMageIntent()
+    {
+        if (Build.VERSION.SDK_INT <= 32&& Build.VERSION.SDK_INT >=23) {
+            if(!hasNotificationPermissionGranted) {
+                notificationPermissionLauncher.launch(android.Manifest.permission.POST_NOTIFICATIONS)
+                return
+            }
+        }
+        else{
 
+        }
+
+
+        val intent = Intent(Intent.ACTION_PICK)
+        intent.type = "image/*"
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+
+        startActivityForResult(Intent.createChooser(intent, "Select Image"), 100)
+    }
     private fun askPermission() {
 
 
@@ -221,37 +243,32 @@ class AddProfilePicActivity : AppCompatActivity() {
         }
     }
 
-    /*override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        val uri: Uri? = data?.getData()
-        // Initialize bitmap
-        // Initialize bitmap
-        try {
+        if(requestCode==100) {
+            val uri: Uri? = data?.getData()
+            // Initialize bitmap
+            // Initialize bitmap
+            try {
 
 
-            val returnCursor: Cursor = contentResolver.query(uri!!, null, null, null, null)!!
-            val nameIndex = returnCursor!!.getColumnIndex(OpenableColumns.DISPLAY_NAME)
-            returnCursor!!.moveToFirst()
-            uploadImage(uri)
-            binding.imgAvathar1.setImageURI(uri)
+                val returnCursor: Cursor = contentResolver.query(uri!!, null, null, null, null)!!
+                val nameIndex = returnCursor!!.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                returnCursor!!.moveToFirst()
+                uploadImage(uri)
+                binding.imgProfile.setImageURI(uri)
 
 
-            returnCursor!!.close()
+                returnCursor!!.close()
+                uploadImage(uri)
 
-            *//* binding.imageView?.let {
-                 Glide.with(applicationContext)
-                     .load(bitmap)
-                     .into(it)
-             };*//*
-
-            uploadImage(uri)
-
-        } catch (e: IOException) {
-            e.printStackTrace()
-            Log.e("Image pick error","image Pick Error ${e.printStackTrace()}")
+            } catch (e: IOException) {
+                e.printStackTrace()
+                Log.e("Image pick error", "image Pick Error ${e.printStackTrace()}")
+            }
         }
-    }*/
+    }
     fun uploadImage(uri: Uri){
         val dialog= CustomDialog(this@AddProfilePicActivity)
         dialog.showDialog(this@AddProfilePicActivity,false)
