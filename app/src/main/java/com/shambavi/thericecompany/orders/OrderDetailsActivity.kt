@@ -75,6 +75,7 @@ class OrderDetailsActivity : AppCompatActivity() {
             // Order ID
             orderIdText.text = "Order ID: ${order.orderId}"
 
+
             /* if(order.products.size>0) {
                  Glide.with(productImage)
                      .load(ROOT_URL + order.products.get(0).productImage)
@@ -218,6 +219,8 @@ class OrderDetailsActivity : AppCompatActivity() {
             // Billing Details
             binding.txtTotalAmount.text = "₹${order.amount}"
             binding.txtGrandTotal.text = "₹${order.amount}"
+            binding.txtGstCharges.text = "₹${order.gst_charges}"
+            binding.txtDeliveryCharges.text = "₹${0}"
 
 
         }

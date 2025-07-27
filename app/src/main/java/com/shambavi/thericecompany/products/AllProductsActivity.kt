@@ -3,6 +3,7 @@ package com.shambavi.thericecompany.products
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -24,14 +25,14 @@ import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.cart.CheckOutActivity
 import com.shambavi.thericecompany.categories.AllProductsAdapter
 import com.shambavi.thericecompany.databinding.ActivityAllProductsBinding
-import com.shambavi.thericecompany.databinding.ActivitySplashBinding
 import com.shambavi.thericecompany.filters.FilterBottomSheetFragment
-import com.shambavi.thericecompany.home.ProductsAdapter
 import com.shambavi.thericecompany.listeners.ProductListener
 import com.shambavi.thericecompany.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.text.append
+import kotlin.text.indices
 
 class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.FilterCallback,ProductListener
 {
@@ -41,6 +42,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
     var sid=""
     var sales=""
     var user_id=""
+    var filter=""
     val imageList = ArrayList<SlideModel>() // Create image list
 
 
@@ -89,13 +91,31 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         FilterBottomSheetFragment.newInstance() .show(supportFragmentManager, FilterBottomSheetFragment.TAG)
     }
             override fun onFiltersApplied(filters: Map<String, Set<String>>) {
+                var s=filters.get("Price")
+                if(s!=null&&s.size>0) {
 
+                    val stringBuilder = StringBuilder()
+                    for (i in s.indices) {
+                        stringBuilder.append(s.elementAt(i))
+                        if (i < s.size - 1) { // Add comma if not the last item
+                            stringBuilder.append(",")
+                        }
+                    }
+                    Log.e("filters.get(Price).toString()", "${stringBuilder}")
+                    filter=stringBuilder.toString();
+                    getProductsByPriceFilter()
+                }
             }
 
 
     fun getProducts()
     {
 
+        if(filter.isNotEmpty())
+        {
+            getProductsByPriceFilter()
+            return
+        }
         val dialog= CustomDialog(this@AllProductsActivity)
         // Obtain the DataManager instance
         dialog.showDialog(this@AllProductsActivity,false)
@@ -155,6 +175,67 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         else
         dataManager.getProductsBySubCat(otpCallback,sid,user_id)
     }
+    fun getProductsByPriceFilter()
+    {
+
+        val dialog= CustomDialog(this@AllProductsActivity)
+        // Obtain the DataManager instance
+        dialog.showDialog(this@AllProductsActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<ProductMainRes> {
+            override fun onResponse(call: Call<ProductMainRes>, response: Response<ProductMainRes>) {
+                dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: ProductMainRes? = response.body()
+
+                    // Handle the response
+
+                    getCart()
+
+                    if(model?.status == true)
+                    {
+                        if(model.products.size>0) {
+                            productsAdapter.productList.clear()
+                            productsAdapter.productList.addAll(model.products)
+                            productsAdapter.setListData(model.products)
+                            productsAdapter.notifyDataSetChanged()
+
+                        }else
+                        {
+                            productsAdapter.productList.clear()
+
+                            productsAdapter.notifyDataSetChanged()
+                            model?.message?.let { Utils.showMessage(it,this@AllProductsActivity) }
+                        }
+
+                    }else
+                    {
+                        model?.message?.let { Utils.showMessage(it,this@AllProductsActivity) }
+                    }
+                    checkData()
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<ProductMainRes>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                dialog.closeDialog()
+
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+
+
+        dataManager.getProductsByPriceFilter(otpCallback, filter )
+    }
     fun getBanners()
     {
 
@@ -190,6 +271,11 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
                     println("Failed to send OTP. ${response.message()}")
 
                 }
+
+                if(imageList.isEmpty())
+                    binding.imageSlider.visibility=View.GONE
+                else
+                    binding.imageSlider.visibility=View.VISIBLE
             }
 
             override fun onFailure(call: Call<BannersMainRes>, t: Throwable) {

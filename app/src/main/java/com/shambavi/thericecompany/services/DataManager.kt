@@ -12,6 +12,7 @@ import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.CategoryMainRes
 import com.gadiwalaUser.Models.ContactDetailsMain
 import com.gadiwalaUser.Models.FAQsMainRes
+import com.gadiwalaUser.Models.FilterMainResp
 import com.gadiwalaUser.Models.LoginResponse
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.NotificationMain
@@ -199,6 +200,17 @@ class DataManager private constructor() {
     fun getProductsBySubCat(cb: Callback<ProductMainRes>, sub_cat_id:String,user_id:String ) {
         val apiService = retrofit.create(ApiService::class.java)
         val call = apiService.getProductsBySubCat(APIKEY,sub_cat_id,user_id)
+        call.enqueue(cb)
+    }
+    fun getProductsByPriceFilter(cb: Callback<ProductMainRes>, range_id:String ) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.getProductsByPriceFilter(APIKEY,range_id)
+        call.enqueue(cb)
+    }
+
+    fun getFilters(cb: Callback<FilterMainResp>, user_id:String ) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.getFilters(APIKEY,user_id)
         call.enqueue(cb)
     }
 

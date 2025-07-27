@@ -2,29 +2,18 @@ package com.shambavi.thericecompany.categories
 
 import android.content.Intent
 import android.graphics.Paint
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.denzcoskun.imageslider.models.SlideModel
-import com.gadiwalaUser.Models.BannersMainRes
-import com.gadiwalaUser.Models.Category
 import com.gadiwalaUser.Models.Product
-import com.gadiwalaUser.services.DataManager
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
-import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.R
-import com.shambavi.thericecompany.databinding.ActivitySplashBinding
-import com.shambavi.thericecompany.databinding.LayoutHomeProductItemBinding
 import com.shambavi.thericecompany.databinding.LayoutProductProductItemBinding
 import com.shambavi.thericecompany.listeners.ProductListener
 import com.shambavi.thericecompany.products.ProductDetailsActivity
 import com.shambavi.thericecompany.utils.Utils
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class AllProductsAdapter: RecyclerView.Adapter<AllProductsAdapter.ProductViewHolder>() {
 
@@ -116,6 +105,13 @@ class AllProductsAdapter: RecyclerView.Adapter<AllProductsAdapter.ProductViewHol
 
     fun setListener(lister: ProductListener) {
             productListner=lister
+    }
+
+    fun setListData(products: ArrayList<Product>)
+    {
+        productList.clear()
+        productList.addAll(products)
+        notifyDataSetChanged()
     }
 
 

@@ -10,6 +10,7 @@ import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.CategoryMainRes
 import com.gadiwalaUser.Models.ContactDetailsMain
 import com.gadiwalaUser.Models.FAQsMainRes
+import com.gadiwalaUser.Models.FilterMainResp
 import com.gadiwalaUser.Models.LoginResponse
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.NotificationMain
@@ -158,6 +159,13 @@ interface ApiService {
     fun getProductsBySubCat(
         @Field("api_key") api_key: String,
         @Field("sub_category_id") sub_cat_id: String, @Field("user_id") id: String,
+    ): Call<ProductMainRes>
+
+    @FormUrlEncoded
+    @POST("api/get_products_by_price_range")
+    fun getProductsByPriceFilter(
+        @Field("api_key") api_key: String,
+        @Field("price_range_id")  id: String,
     ): Call<ProductMainRes>
 
 
@@ -376,5 +384,14 @@ interface ApiService {
         @Field("user_id") user_id: String,
 
         ): Call<NotificationMain>
+
+    @FormUrlEncoded
+    @POST("api/get_price_ranges")
+    fun getFilters(
+        @Field("api_key") api_key: String,
+        @Field("user_id") user_id: String,
+
+        ): Call<FilterMainResp>
+
 
 }

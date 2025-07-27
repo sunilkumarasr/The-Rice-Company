@@ -301,10 +301,24 @@
                   <entry key="vectorAssetStep">
                     <value>
                       <PersistentState>
+                        <option name="children">
+                          <map>
+                            <entry key="clipartAsset">
+                              <value>
+                                <PersistentState>
+                                  <option name="values">
+                                    <map>
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk2/icons/material/materialsymbolsoutlined/gallery_thumbnail/outline_gallery_thumbnail_24.xml" />
+                                    </map>
+                                  </option>
+                                </PersistentState>
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
                         <option name="values">
                           <map>
-                            <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_cart" />
+                            <entry key="outputName" value="ic_gallery_24" />
                             <entry key="sourceFile" value="$PROJECT_DIR$/../images/drive-download-20250623T124407Z-1-001/shopping cart.svg" />
                           </map>
                         </option>

@@ -24,6 +24,10 @@ class FilterAdapter : ListAdapter<FilterSection, FilterAdapter.FilterViewHolder>
     }
 
     fun getSelectedFilters(): Map<String, Set<String>> = selectedFilters.toMap()
+    fun clearFilters(){
+        selectedFilters.clear()
+        notifyDataSetChanged()
+    }
 
     inner class FilterViewHolder(private val binding: ItemFilterSectionBinding) :
         RecyclerView.ViewHolder(binding.root) {

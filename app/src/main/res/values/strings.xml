@@ -59,6 +59,8 @@
     <string name="MAP_KEY">AIzaSyBdf1LlSGswAxUo9S0UNptfSRcDtJRdsDU</string>
     <string name="choose_address">Choose Address</string>
     <string name="rate_this_product">Rate This Product</string>
+    <string name="view_reports">Reports</string>
+    <string name="place_order">Place Order</string>
 
 
 </resources>

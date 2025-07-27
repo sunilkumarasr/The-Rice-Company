@@ -1,8 +1,10 @@
 package com.shambavi.thericecompany.products
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Paint
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -57,7 +59,15 @@ class ProductDetailsActivity : AppCompatActivity() {
         getProductDetails()
         binding.txtMrpPrice.paintFlags =
             binding.txtMrpPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+
+        binding.txtViewReports.paintFlags =
+            binding.txtViewReports.paintFlags or Paint.UNDERLINE_TEXT_FLAG
         binding.txtViewDetails.setOnClickListener {
+            val intent = Intent(applicationContext, PrivacyPolicyActivity::class.java)
+            intent.putExtra("isOtherDetails", "isOtherDetails")
+            startActivity(intent)
+        }
+        binding.txtViewReports.setOnClickListener {
             val intent = Intent(applicationContext, PrivacyPolicyActivity::class.java)
             intent.putExtra("isOtherDetails", "isOtherDetails")
             startActivity(intent)
@@ -250,12 +260,57 @@ class ProductDetailsActivity : AppCompatActivity() {
                         binding.txtMarketPrice.text =
                             "${Utils.RUPEE_SYMBOL}${productDetails!!.marketPrice}"
                         binding.webviewDescription.loadData(
-                            "${productDetails!!.descriptions}",
+                            "${productDetails!!.descriptions}"+
+                            "Specification: \n${productDetails!!.specifications}",
                             "text/html",
                             "utf-8"
                         )
                         binding.txtProductDescription.text = "${productDetails!!.descriptions}"
 
+                        if(productDetails.broucher!!.isEmpty())
+                            binding.txtViewReports.visibility=View.GONE
+                        else
+                            binding.txtViewReports.visibility=View.VISIBLE
+                            binding.txtViewReports.setOnClickListener {
+
+                                val pdfUrl = productDetails.broucher // Assuming this is the full URL to the PDF
+                                if (pdfUrl!!.startsWith("http://") || pdfUrl.startsWith("https://")) {
+                                    try {
+                                        val intent = Intent(Intent.ACTION_VIEW)
+                                        intent.setDataAndType(Uri.parse(pdfUrl), "application/pdf")
+                                        // Add FLAG_ACTIVITY_NO_HISTORY so when the user presses back,
+                                        // they return to your app, not the browser's history stack for this PDF.
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                                        // Optional: Grant read URI permission if needed by some viewers,
+                                        // though typically not required for public http/https URLs.
+                                        // intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+                                        // Verify that an app exists to receive the intent
+                                        if (intent.resolveActivity(packageManager) != null) {
+                                            startActivity(intent)
+                                        } else {
+                                            // No app found to view PDF
+                                            Utils.showMessage("No application found to view PDF files.",
+                                                this@ProductDetailsActivity,)
+                                            // Optionally, you could try opening it in a browser directly
+                                            // val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(pdfUrl))
+                                            // startActivity(browserIntent)
+                                        }
+                                    } catch (e: ActivityNotFoundException) {
+                                        // Should be caught by resolveActivity check, but good for safety
+                                        Utils.showMessage(
+
+                                            "Error opening PDF: Viewer not found.",
+                                            this@ProductDetailsActivity,)
+                                        Log.e("PDFViewError", "ActivityNotFoundException: ${e.message}")
+                                    } catch (e: Exception) {
+
+                                        Log.e("PDFViewError", "Exception: ${e.message}")
+                                    }
+                                } else {
+
+                                }
+                            }
                         if (model.data!!.productDetails!!.user_rating!!.isEmpty() || model.data!!.productDetails!!.user_rating!!.trim()
                                 .equals("0")
                         )
@@ -355,6 +410,7 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                     model?.Message?.let { Utils.showMessage(it, applicationContext) }
 
+                    getProductDetails()
                     if (model!!.Status!!) {
                         binding.btnAddToCart.visibility = View.GONE
                         binding.lnrViewcart.visibility = View.VISIBLE

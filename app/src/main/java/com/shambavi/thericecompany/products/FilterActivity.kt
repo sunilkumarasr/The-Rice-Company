@@ -44,32 +44,6 @@ class FilterActivity : AppCompatActivity() {private lateinit var binding: Activi
     }
 
     private fun loadFilterData() {
-        val filterSections = listOf(
-            FilterSection("Price", listOf(
-                "Below ₹99",
-                "₹1000 - ₹1500",
-                "₹1500 - ₹3000",
-                "Above 3000"
-            )),
-            FilterSection("Brand", listOf(
-                "India Gate",
-                "Fortune",
-                "Daawat",
-                "Royal"
-            )),
-            FilterSection("Type", listOf(
-                "Basmati",
-                "Brown",
-                "White",
-                "Jasmine"
-            )),
-            FilterSection("Kgs", listOf(
-                "1 Kg",
-                "5 Kg",
-                "10 Kg",
-                "25 Kg"
-            ))
-        )
-        filterAdapter.submitList(filterSections)
+       // filterAdapter.submitList(filterSections)
     }
 }

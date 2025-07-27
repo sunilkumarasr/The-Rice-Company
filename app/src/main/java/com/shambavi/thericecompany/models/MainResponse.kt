@@ -252,6 +252,7 @@ data class ProductDetails(
     @SerializedName("quantity") var quantity: String = "",
     @SerializedName("status") var status: String? = null,
     @SerializedName("user_count") var user_count: String? = null,
+    @SerializedName("broucher") var broucher: String? = null,
     @SerializedName("average_rating") var user_rating: String = ""
 
 )
@@ -476,5 +477,19 @@ data class Notification(
     @SerializedName("updated_at") var updatedAt: String? = null,
     @SerializedName("updated_by") var updatedBy: String? = null,
     @SerializedName("status") var status: String? = null
+
+)
+
+data class FilterMainResp (
+
+    @SerializedName("status"  ) var status  : Boolean?        = null,
+    @SerializedName("message" ) var message : String?         = null,
+    @SerializedName("data"    ) var data    : ArrayList<PriceRange> = arrayListOf()
+
+)
+data class PriceRange (
+
+    @SerializedName("id"    ) var id    : String? = null,
+    @SerializedName("price" ) var price : String? = null
 
 )

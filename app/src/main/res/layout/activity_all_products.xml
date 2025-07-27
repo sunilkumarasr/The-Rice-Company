@@ -145,27 +145,39 @@
             </LinearLayout>
         </LinearLayout>
 
-        <com.denzcoskun.imageslider.ImageSlider
-            android:id="@+id/image_slider"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_180sdp"
-            android:background="@color/white"
-            app:iss_auto_cycle="true"
-            app:iss_period="1000"
-            app:iss_delay="1000"
-            app:iss_corner_radius="8"
-            android:layout_marginTop="@dimen/_12sdp"
-            android:layout_marginHorizontal="@dimen/_8sdp"
-            app:iss_text_align="CENTER"/>
+            android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycler_all_products"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_2sdp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
-            tools:listitem="@layout/layout_product_product_item" />
+            android:orientation="vertical"
+            >
+            <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/image_slider"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_180sdp"
+                android:background="@color/white"
+                app:iss_auto_cycle="true"
+                app:iss_period="1000"
+                app:iss_delay="1000"
+                app:iss_corner_radius="8"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                app:iss_text_align="CENTER"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_all_products"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_2sdp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:spanCount="2"
+                tools:listitem="@layout/layout_product_product_item" />
+        </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
         <TextView
             android:id="@+id/txt_no_data"

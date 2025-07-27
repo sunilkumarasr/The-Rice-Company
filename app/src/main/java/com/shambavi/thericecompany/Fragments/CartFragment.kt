@@ -370,7 +370,7 @@ class CartFragment : Fragment() ,ProductListener{
             binding.scrollview.visibility= View.VISIBLE
 
             binding.lnrCart.visibility=View.VISIBLE
-            binding.btnPayment.visibility=View.VISIBLE
+            binding.lnrBottom.visibility=View.VISIBLE
             binding.txtCount.setText("${cartAdapter.itemCount} Item(s)")
         }else
         {
@@ -378,7 +378,7 @@ class CartFragment : Fragment() ,ProductListener{
             binding.recyclerCart.visibility= View.GONE
             binding.lnrCart.visibility=View.GONE
             binding.scrollview.visibility=View.GONE
-            binding.btnPayment.visibility=View.GONE
+            binding.lnrBottom.visibility=View.GONE
 
         }
     }

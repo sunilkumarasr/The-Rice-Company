@@ -513,6 +513,11 @@ val TAG="UpdateAddressActivity"
                 binding.editState.setText("$state")
                 binding.editZipcode.setText("$zipcode")
                 binding.editCountry.setText("$country")
+                binding.editArea.setText("$fullAddress")
+                binding.editFlatNo.setText("$knownName")
+
+                area=fullAddress
+                flat=knownName
 
                 lattitude=location.latitude.toString()
                 longitude=location.longitude.toString()

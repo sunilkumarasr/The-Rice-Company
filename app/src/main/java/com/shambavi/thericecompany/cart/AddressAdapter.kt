@@ -71,6 +71,10 @@ class AddressAdapter(val activity: AddressListActivity) : ListAdapter<AddressDat
                     // Handle delete
                     listner.deleteProduct(address.id.toString())
                 }
+                lnrDelete.setOnClickListener {
+                    // Handle delete
+                    listner.deleteProduct(address.id.toString())
+                }
             }
         }
     }
