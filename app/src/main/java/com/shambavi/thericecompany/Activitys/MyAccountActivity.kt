@@ -1,5 +1,6 @@
 package com.shambavi.thericecompany.Activitys
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -37,6 +38,7 @@ class MyAccountActivity : AppCompatActivity() {
     }
     var user_id = ""
     var user_pic = ""
+    var code = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +56,18 @@ class MyAccountActivity : AppCompatActivity() {
         binding.lnrDelete.setOnClickListener {
             deleteProfile()
         }
+        binding.shareButton.setOnClickListener {
+            shareReferralCode()
+        }
+    }
+    fun shareReferralCode() {
+        val shareIntent = Intent(Intent.ACTION_SEND).apply {
+            type = "text/plain" // MIME type for plain text
+            putExtra(Intent.EXTRA_SUBJECT, "My Referral Code") // Optional: Subject for email sharing
+            putExtra(Intent.EXTRA_TEXT, "Use my referral code '$code' to sign up!\n\n[Optional: Add your app link here]") // The text to be shared
+        }
+        // Use createChooser to allow the user to select which app to use for sharing
+        startActivity(Intent.createChooser(shareIntent, "Share referral code via"))
     }
 
     private fun inits() {

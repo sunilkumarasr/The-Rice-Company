@@ -203,7 +203,8 @@ data class ProductDetailsData(
     @SerializedName("product_attribute") var productAttribute: ArrayList<ProductAttribute> = arrayListOf(),
     @SerializedName("product_images") var productImages: ArrayList<ProductImages> = arrayListOf(),
     @SerializedName("latest_attribute") var latestAttribute: LatestAttribute? = LatestAttribute(),
-    @SerializedName("cart_details") var cartDetails: CartDetails? = CartDetails()
+    @SerializedName("cart_details") var cartDetails: CartDetails? = CartDetails(),
+    @SerializedName("broucher") var broucher: String=""
 )
 
 data class CartDetails(
@@ -491,5 +492,27 @@ data class PriceRange (
 
     @SerializedName("id"    ) var id    : String? = null,
     @SerializedName("price" ) var price : String? = null
+
+)
+
+
+data class PincodeMainRes (
+
+    @SerializedName("status"  ) var status  : Boolean?        = null,
+    @SerializedName("message" ) var message : String?         = null,
+    @SerializedName("data"    ) var data    : ArrayList<Pincodes> = arrayListOf()
+
+)
+
+data class Pincodes (
+
+    @SerializedName("id"         ) var id        : String? = null,
+    @SerializedName("pincode"    ) var pincode   : String? = null,
+    @SerializedName("module_id"  ) var moduleId  : String? = null,
+    @SerializedName("created_at" ) var createdAt : String? = null,
+    @SerializedName("created_by" ) var createdBy : String? = null,
+    @SerializedName("updated_at" ) var updatedAt : String? = null,
+    @SerializedName("updated_by" ) var updatedBy : String? = null,
+    @SerializedName("status"     ) var status    : String? = null
 
 )

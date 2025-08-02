@@ -1,5 +1,6 @@
 package com.shambavi.thericecompany.orders
 
+import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -42,6 +43,8 @@ class OrderDetailsActivity : AppCompatActivity() {
             ContextCompat.getColor(this, R.color.colorPrimary),
             false
         )
+        binding.txtDeliveryStatic.paintFlags =
+            binding.txtDeliveryStatic.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
 
         orderId = intent.getStringExtra(EXTRA_ORDER_ID)
         user_id = MyPref.getUser(applicationContext)

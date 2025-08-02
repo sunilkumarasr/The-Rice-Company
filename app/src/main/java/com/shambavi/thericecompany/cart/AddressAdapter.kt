@@ -41,6 +41,7 @@ class AddressAdapter(val activity: AddressListActivity) : ListAdapter<AddressDat
                 tvName.text = address.fullName
                 tvAddress.text = formAddress(address)
                 tvPhone.text = address.mobile
+
                 rbAddress.isChecked = address.isSelected
 
                 root.setOnClickListener {
@@ -52,7 +53,7 @@ class AddressAdapter(val activity: AddressListActivity) : ListAdapter<AddressDat
                     }
                     address.id?.let { it1 ->
                         MyPref.setAddress(binding.tvName.context,
-                            it1,tvAddress.text.toString(),address.type.toString())
+                            it1,tvAddress.text.toString(),address.type.toString(),address.zipCode.toString())
                     }
                     listner.addProduct("","")
                 }

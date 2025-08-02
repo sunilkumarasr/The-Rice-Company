@@ -4,6 +4,7 @@ import android.app.ComponentCaller
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -13,6 +14,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.MainResponse
+import com.gadiwalaUser.Models.PincodeMainRes
+import com.gadiwalaUser.Models.Pincodes
 import com.gadiwalaUser.services.DataManager
 import com.royalit.motherchoice.utils.NetWorkConection
 import com.royalpark.gaadiwala_admin.views.CustomDialog
@@ -31,6 +34,7 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
     lateinit var cartAdapter: CartAdapter
     var user_id=""
     var addres_id=""
+    var pincode=""
     var addres=""
     var slot_id=""
     var slot_time=""
@@ -38,6 +42,8 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
     var product_ids=""
     var cart_ids=""
     var qnts=""
+    var couponcode=""
+    var couponName=""
     var delivery_charges=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,6 +52,7 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
         user_id= MyPref.getUser(applicationContext)
         addres_id=MyPref.getAddressId(applicationContext)
+        pincode=MyPref.getPincodeId(applicationContext)
         addres=MyPref.getAddress(applicationContext)
         binding.tvBillAmount.paintFlags = binding.tvBillAmount.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         binding.tvDeliveryChargesStrike.paintFlags = binding.tvBillAmount.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
@@ -73,6 +80,7 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
                 .show()
         }
         getCart()
+        getPincodeList()
         binding.btnBack.setOnClickListener {
             finish()
         }
@@ -96,6 +104,12 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
                 Utils.showMessage("Select Delivery Address",applicationContext)
                 return@setOnClickListener
             }
+            if(!isPincodeAvaiable())
+            {
+                Utils.showMessage("Select Delivery Address",applicationContext)
+                return@setOnClickListener
+            }
+
             if(slot_id.isEmpty())
             {
                 Utils.showMessage("Select Delivery slot",applicationContext)
@@ -121,12 +135,26 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
             addressLauncher.launch(Intent(applicationContext,AddressListActivity::class.java))
         }
 
+        binding.applyCouponButton.setOnClickListener {
+            couponcode=binding.couponEditText.text.toString().trim()
+            if(couponcode.isEmpty())
+            {
+                Utils.showMessage("Enter Coupon code",applicationContext)
+                return@setOnClickListener
+            }
+            applyCoupon()
+        }
+        binding.lnrRemove.setOnClickListener {
+            binding.tableCoupon.visibility=View.VISIBLE
+            binding.tableApplied.visibility=View.GONE
+        }
     }
 
     private val addressLauncher = registerForActivityResult( ActivityResultContracts.StartActivityForResult() ) {
             result -> if (result.resultCode == RESULT_OK) {
         addres_id=MyPref.getAddressId(applicationContext)
         addres=MyPref.getAddress(applicationContext)
+        pincode=MyPref.getPincodeId(applicationContext)
        binding.tvAddress.text=addres
         var type=MyPref.getAddressType(applicationContext)
         if(type.isEmpty())
@@ -404,5 +432,98 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
             binding.btnPayment.visibility=View.GONE
 
         }
+    }
+    private fun isPincodeAvaiable(): Boolean {
+
+        pincodeList.forEach {
+            Log.e("Pincode","Pincode  $pincode - ${it.pincode} ${it.pincode.equals(pincode)}")
+            if(it.pincode.equals(pincode)){
+                return true
+            }
+        }
+        return false
+    }
+    var pincodeList=ArrayList<Pincodes>()
+    fun getPincodeList()
+    {
+
+        //val dialog= CustomDialog(this@CheckOutActivity)
+        // Obtain the DataManager instance
+       // dialog.showDialog(this@CheckOutActivity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<PincodeMainRes> {
+            override fun onResponse(call: Call<PincodeMainRes>, response: Response<PincodeMainRes>) {
+               // dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: PincodeMainRes? = response.body()
+
+                    pincodeList.clear()
+                    pincodeList=model!!.data
+                    // Handle the response
+
+                    // model?.message?.let { Utils.showMessage(it,requireActivity()) }
+
+
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<PincodeMainRes>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+               // dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.getPincodeList(otpCallback, user_id  )
+    }
+
+    fun applyCoupon()
+    {
+
+        //  val dialog= CustomDialog(requireActivity())
+        // Obtain the DataManager instance
+        // dialog.showDialog(requireActivity(),false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<PincodeMainRes> {
+            override fun onResponse(call: Call<PincodeMainRes>, response: Response<PincodeMainRes>) {
+                //       dialog.closeDialog()
+                if (response.isSuccessful) {
+                    val model: PincodeMainRes? = response.body()
+
+                    if(model!!.status == true) {
+                        binding.tableCoupon.visibility = View.GONE
+                        binding.tableApplied.visibility = View.VISIBLE
+                    }else
+                    {
+                        binding.tableCoupon.visibility=View.VISIBLE
+                        binding.tableApplied.visibility=View.GONE
+                    }
+                    println("OTP Sent successfully: ${model?.message}")
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<PincodeMainRes>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                //    dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.getCouponDetails(otpCallback, user_id,couponcode,totalAmount.toString()  )
     }
 }

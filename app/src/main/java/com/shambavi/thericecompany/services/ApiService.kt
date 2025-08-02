@@ -16,6 +16,7 @@ import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.NotificationMain
 import com.gadiwalaUser.Models.OTPResponse
 import com.gadiwalaUser.Models.OrderMainResponse
+import com.gadiwalaUser.Models.PincodeMainRes
 import com.gadiwalaUser.Models.PrivacyDataMainRes
 import com.gadiwalaUser.Models.ProductDetailsDataMinRes
 import com.gadiwalaUser.Models.ProductImages
@@ -392,6 +393,23 @@ interface ApiService {
         @Field("user_id") user_id: String,
 
         ): Call<FilterMainResp>
+    @FormUrlEncoded
+    @POST("api/pincode_list")
+    fun getPincodeList(
+        @Field("api_key") api_key: String,
+        @Field("user_id") user_id: String,
+
+        ): Call<PincodeMainRes>
+
+    @FormUrlEncoded
+    @POST("api/get_coupon_details")
+    fun getCouponDetails(
+        @Field("api_key") api_key: String,
+        @Field("user_id") user_id: String,
+        @Field("coupon_code") coupon_code: String,
+        @Field("total") totalAmount: String,
+
+        ): Call<PincodeMainRes>
 
 
 }

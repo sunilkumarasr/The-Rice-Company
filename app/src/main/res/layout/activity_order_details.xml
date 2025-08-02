@@ -390,12 +390,19 @@
                             android:text="Delivery Charges"
                             android:textColor="@color/gray"
                             android:textSize="@dimen/_11sdp" />
-
+                        <TextView
+                            android:id="@+id/txt_delivery_static"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="₹ 49"
+android:textColor="@color/gray"
+                            android:textSize="@dimen/_11sdp" />
                         <TextView
                             android:id="@+id/txt_delivery_charges"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="₹0"
+                            android:text="₹ 0"
+                            android:layout_marginStart="@dimen/_5sdp"
 
                             android:textSize="@dimen/_11sdp" />
                     </LinearLayout>

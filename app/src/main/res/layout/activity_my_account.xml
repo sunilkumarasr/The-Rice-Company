@@ -158,6 +158,90 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center_horizontal">
+
+                    <!-- Title -->
+                    <TextView
+                        android:id="@+id/referTitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Refer Your Friends"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/gold"
+                        tools:textColor="@color/black"/>
+
+                    <!-- Description -->
+                    <TextView
+                        android:id="@+id/referDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="Share your unique code with friends and earn rewards!"
+                        android:textSize="14sp"
+                        android:textColor="@color/gold"
+                       />
+
+                    <!-- Referral Code Display -->
+                    <LinearLayout
+                        android:id="@+id/codeContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:background="@drawable/code_background"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/referralCode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="123"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            />
+
+                        <!-- Copy Button -->
+                        <ImageButton
+                            android:id="@+id/copyCodeButton"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_marginStart="8dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="Copy code" />
+                        <!-- ic_copy should be a drawable resource for a copy icon -->
+
+                    </LinearLayout>
+
+                    <!-- Share Button -->
+                    <Button
+                        android:id="@+id/shareButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="Share Code"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+
+                        app:cornerRadius="8dp"
+                        app:icon="@drawable/ic_share_24"
+                        app:iconGravity="textStart"
+                        app:iconTint="@color/white"
+                        android:background="@drawable/round_button"
+                       />
+                    <!-- ic_share should be a drawable resource for a share icon -->
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/lnr_delete"
                     android:layout_width="match_parent"
                     android:layout_height="50dp"

@@ -308,7 +308,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk2/icons/material/materialsymbolsoutlined/gallery_thumbnail/outline_gallery_thumbnail_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk2/icons/material/materialsymbolsoutlined/close/outline_close_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -318,7 +318,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="ic_gallery_24" />
+                            <entry key="color" value="e20606" />
+                            <entry key="outputName" value="ic_close_24" />
                             <entry key="sourceFile" value="$PROJECT_DIR$/../images/drive-download-20250623T124407Z-1-001/shopping cart.svg" />
                           </map>
                         </option>

@@ -61,6 +61,7 @@
     <string name="rate_this_product">Rate This Product</string>
     <string name="view_reports">Reports</string>
     <string name="place_order">Place Order</string>
+    <string name="coupon_applied">Coupon Applied</string>
 
 
 </resources>

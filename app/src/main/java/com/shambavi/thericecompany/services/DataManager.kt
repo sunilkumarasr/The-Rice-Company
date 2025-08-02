@@ -18,6 +18,7 @@ import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.NotificationMain
 import com.gadiwalaUser.Models.OTPResponse
 import com.gadiwalaUser.Models.OrderMainResponse
+import com.gadiwalaUser.Models.PincodeMainRes
 import com.gadiwalaUser.Models.PrivacyDataMainRes
 import com.gadiwalaUser.Models.ProductDetailsDataMinRes
 import com.gadiwalaUser.Models.ProductImages
@@ -211,6 +212,16 @@ class DataManager private constructor() {
     fun getFilters(cb: Callback<FilterMainResp>, user_id:String ) {
         val apiService = retrofit.create(ApiService::class.java)
         val call = apiService.getFilters(APIKEY,user_id)
+        call.enqueue(cb)
+    }
+    fun getPincodeList(cb: Callback<PincodeMainRes>, user_id:String ) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.getPincodeList(APIKEY,user_id)
+        call.enqueue(cb)
+    }
+    fun getCouponDetails(cb: Callback<PincodeMainRes>, user_id:String, coupon_code:String, totalAmount:String ) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.getCouponDetails(APIKEY,user_id,coupon_code,totalAmount)
         call.enqueue(cb)
     }
 
