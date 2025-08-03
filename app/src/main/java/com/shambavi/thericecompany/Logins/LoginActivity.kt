@@ -2,14 +2,9 @@ package com.shambavi.thericecompany.Logins
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ProgressBar
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.gadiwalaUser.Models.LoginResponse
-import com.gadiwalaUser.Models.OTPResponse
 import com.gadiwalaUser.services.DataManager
 import com.royalit.motherchoice.utils.NetWorkConection
 import com.royalpark.gaadiwala_admin.views.CustomDialog
@@ -77,7 +72,9 @@ class LoginActivity : AppCompatActivity() {
 
                             if(model?.status == true)
                             {
-                                model.otp?.let { ChangeView(it) }
+                                model.otp?.let {
+                                    ChangeView(it,model.newUser)
+                                }
                             }
                     println("OTP Sent successfully: ${model?.message}")
                 } else {
@@ -96,10 +93,11 @@ class LoginActivity : AppCompatActivity() {
         // Call the sendOtp function in DataManager
         dataManager.login(otpCallback,mobile)
     }
-    fun ChangeView(otp: String){
+    fun ChangeView(otp: String, newUser: Boolean){
         val intent = Intent(this, OTPActivity::class.java)
         intent.putExtra("mobileNumber",mobile)
         intent.putExtra("otp",otp)
+        intent.putExtra("newUser",newUser)
         intent.putExtra("type","Login")
         startActivity(intent)
         finish()

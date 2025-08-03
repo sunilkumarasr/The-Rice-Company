@@ -406,6 +406,29 @@ android:textColor="@color/gray"
 
                             android:textSize="@dimen/_11sdp" />
                     </LinearLayout>
+                    <TableRow
+                        android:visibility="gone"
+                        android:id="@+id/table_applied"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical">
+                        <ImageView
+                            android:layout_width="@dimen/_18sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="@dimen/_8sdp"
+                            android:src="@drawable/ic_coupon" />
+                        <TextView
+                            android:id="@+id/txt_amount_coupon"
+                            android:layout_width="match_parent"
+                            android:layout_weight="1"
+
+                            android:layout_height="wrap_content"
+                            android:text="@string/coupon_applied"
+                            android:textColor="@color/green"
+                            android:textStyle="bold" />
+
+                    </TableRow>
 
                     <!-- Free Delivery Note -->
                     <TextView

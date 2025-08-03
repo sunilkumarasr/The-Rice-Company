@@ -64,7 +64,7 @@ class MyAccountActivity : AppCompatActivity() {
         val shareIntent = Intent(Intent.ACTION_SEND).apply {
             type = "text/plain" // MIME type for plain text
             putExtra(Intent.EXTRA_SUBJECT, "My Referral Code") // Optional: Subject for email sharing
-            putExtra(Intent.EXTRA_TEXT, "Use my referral code '$code' to sign up!\n\n[Optional: Add your app link here]") // The text to be shared
+            putExtra(Intent.EXTRA_TEXT, "Use my referral code '$code' to sign up!\n\nhttps://play.google.com/store/apps/details?id=com.shambavi.thericecompany") // The text to be shared
         }
         // Use createChooser to allow the user to select which app to use for sharing
         startActivity(Intent.createChooser(shareIntent, "Share referral code via"))
@@ -157,6 +157,8 @@ class MyAccountActivity : AppCompatActivity() {
                         binding.txtEmail.text = "${it.email}"
                         MyPref.setEmail(applicationContext, it.email.toString())
                         MyPref.setName(applicationContext, it.fullName.toString())
+                        code=it.users_id.toString()
+                        binding.referralCode.setText("${it.users_id}")
                     }
 
 

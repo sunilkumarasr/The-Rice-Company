@@ -29,6 +29,8 @@ data class Order(
     @SerializedName("longitude"            ) var longitude           : String?           = null,
     @SerializedName("latitude"            ) var latitude           : String?           = null,
     @SerializedName("gst_charges"            ) var gst_charges           : String?           = null,
+    @SerializedName("coupons_name"            ) var coupons_name           : String?           = null,
+    @SerializedName("coupon_code"            ) var coupon_code           : String?           = null,
     @SerializedName("products"            ) var products          : ArrayList<OrderProduct> = arrayListOf()
 )
 

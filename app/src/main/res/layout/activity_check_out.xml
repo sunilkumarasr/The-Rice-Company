@@ -253,6 +253,7 @@
                                     android:layout_marginRight="@dimen/_8sdp"
                                     android:src="@drawable/ic_coupon" />
                                 <TextView
+                                    android:id="@+id/txt_amount_coupon"
                                     android:layout_width="match_parent"
                                     android:layout_weight="1"
 

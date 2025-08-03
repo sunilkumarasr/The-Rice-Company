@@ -220,10 +220,21 @@ class OrderDetailsActivity : AppCompatActivity() {
 
 
             // Billing Details
-            binding.txtTotalAmount.text = "₹${order.amount}"
+          var amount=order.amount;
+            var deliveryCharger=0
+            var couponApplied=0
+
+            if(order.coupons_name!!.isNotEmpty())
+            {
+                couponApplied=Integer.parseInt(order.coupons_name!!)
+                binding.tableApplied.visibility=View.VISIBLE
+                binding.txtAmountCoupon.setText("Coupon Applied (${Utils.RUPEE_SYMBOL}${order.coupons_name})")
+            }
+            var actualpricePaid=Integer.parseInt(amount)-((Integer.parseInt(order.gst_charges)+(deliveryCharger+couponApplied)))
+            binding.txtTotalAmount.text = "₹${actualpricePaid}"
             binding.txtGrandTotal.text = "₹${order.amount}"
             binding.txtGstCharges.text = "₹${order.gst_charges}"
-            binding.txtDeliveryCharges.text = "₹${0}"
+            binding.txtDeliveryCharges.text = "₹${deliveryCharger}"
 
 
         }

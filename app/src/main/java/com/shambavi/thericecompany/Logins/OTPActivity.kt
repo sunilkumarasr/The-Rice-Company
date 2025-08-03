@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatEditText
@@ -30,6 +31,8 @@ class OTPActivity : AppCompatActivity() {
         ActivityOtpactivityBinding.inflate(layoutInflater)
     }
 var mobileNumber=""
+var referral_code=""
+    var newUser=false
 var otp=""
     fun AppCompatEditText.showKeyboard() {
         val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -45,7 +48,12 @@ var otp=""
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
 
         type = intent.getStringExtra("type").toString()
+        newUser=intent.getBooleanExtra("newUser",false)
         mobileNumber=intent.getStringExtra("mobileNumber").toString()
+        if(newUser)
+        {
+            binding.lnrReferral.visibility= View.VISIBLE
+        }
         otp=intent.getStringExtra("otp").toString()
         binding.txtOtpStatic.setText("OTP : $otp")
         binding.txtMobileNumber.setText("$mobileNumber")
@@ -144,6 +152,7 @@ var otp=""
                 Utils.showMessage("Please enter OTP",applicationContext)
                 return@setOnClickListener
             }
+            referral_code=binding.editReferral.text.toString()
             submitOPT(otp)
 
 
@@ -202,7 +211,7 @@ var otp=""
         }
 
         // Call the sendOtp function in DataManager
-        dataManager.verifyOtp(otpCallback,mobileNumber,otp)
+        dataManager.verifyOtp(otpCallback,mobileNumber,otp,referral_code)
     }
     fun resend() {
         val dialog= CustomDialog(applicationContext)

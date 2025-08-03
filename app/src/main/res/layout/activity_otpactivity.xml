@@ -191,6 +191,40 @@
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/_15sdp"
                 android:fontFamily="@font/teachers_medium" />
+            <LinearLayout
+                android:id="@+id/lnr_referral"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_28sdp"
+                android:layout_marginHorizontal="25dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:text="Do You have Referral Code?"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/_15sdp"
+                    android:fontFamily="@font/teachers_medium" />
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edit_referral"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="Enter your Referral Code"
+                    android:textSize="15sp"
+                    android:paddingStart="@dimen/_12sdp"
+                    android:singleLine="true"
+                    android:inputType="text"
+                    android:imeOptions="actionDone"
+                    android:background="@drawable/round_edit_gray_light_edge"
+                    android:textColorHint="@color/hintcolor"/>
+            </LinearLayout>
+
 
             <RelativeLayout
                 android:layout_width="match_parent"

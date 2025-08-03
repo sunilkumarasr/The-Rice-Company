@@ -39,6 +39,7 @@ class RegisterActivity : AppCompatActivity() {
 
         binding.linearLogin.setOnClickListener {
             startActivity(Intent(this@RegisterActivity, LoginActivity::class.java))
+            finish()
         }
         binding.linearVerify.setOnClickListener {
             mobile=binding.editMobile.text.toString().trim()
@@ -75,6 +76,7 @@ class RegisterActivity : AppCompatActivity() {
                             val intent = Intent(this@RegisterActivity, OTPActivity::class.java)
                             intent.putExtra("mobileNumber",mobile)
                             intent.putExtra("otp",it)
+                            intent.putExtra("newUser",model.newUser)
                             startActivity(intent)
                             finish()
                            /* startActivity(Intent(this@RegisterActivity, OTPActivity::class.java))

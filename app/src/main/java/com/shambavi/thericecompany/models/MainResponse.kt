@@ -26,7 +26,8 @@ data class LoginResponse(
 
     @SerializedName("status") var status: Boolean = false,
     @SerializedName("message") var message: String = "",
-    @SerializedName("otp") var otp: String? = null
+    @SerializedName("otp") var otp: String? = null,
+    @SerializedName("is_new_user") var newUser: Boolean = false,
 
 )
 
@@ -334,7 +335,8 @@ data class UserDetails(
 
     @SerializedName("full_name") var fullName: String? = null,
     @SerializedName("phone") var phone: String? = null,
-    @SerializedName("email") var email: String? = null
+    @SerializedName("email") var email: String? = null,
+    @SerializedName("users_id") var users_id: String? = null
 
 )
 
@@ -514,5 +516,37 @@ data class Pincodes (
     @SerializedName("updated_at" ) var updatedAt : String? = null,
     @SerializedName("updated_by" ) var updatedBy : String? = null,
     @SerializedName("status"     ) var status    : String? = null
+
+)
+
+
+
+data class CouponsMainRes (
+
+    @SerializedName("status"  ) var status  : Boolean?        = null,
+    @SerializedName("message" ) var message : String?         = null,
+    @SerializedName("data"    ) var data    : Coupon?    = null
+
+)
+data class Coupon (
+
+
+@SerializedName("id"                 ) var id              : String? = null,
+@SerializedName("coupons_name"       ) var couponsName     : String? = null,
+@SerializedName("coupons_code"       ) var couponsCode     : String? = null,
+@SerializedName("start_date"         ) var startDate       : String? = null,
+@SerializedName("date_end"           ) var dateEnd         : String? = null,
+@SerializedName("type"               ) var type            : String? = null,
+@SerializedName("discount"           ) var discount        : String? = null,
+@SerializedName("total_amount"       ) var totalAmount     : String? = null,
+@SerializedName("max_no_of_uses"     ) var maxNoOfUses     : String? = null,
+@SerializedName("max_no_of_customer" ) var maxNoOfCustomer : String? = null,
+@SerializedName("created_at"         ) var createdAt       : String? = null,
+@SerializedName("created_by"         ) var createdBy       : String? = null,
+@SerializedName("updated_by"         ) var updatedBy       : String? = null,
+@SerializedName("updated_at"         ) var updatedAt       : String? = null,
+@SerializedName("status"             ) var status          : String? = null
+
+
 
 )

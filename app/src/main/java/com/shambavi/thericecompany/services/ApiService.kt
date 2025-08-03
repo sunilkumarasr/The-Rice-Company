@@ -9,6 +9,7 @@ import com.gadiwalaUser.Models.CartCount
 import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.CategoryMainRes
 import com.gadiwalaUser.Models.ContactDetailsMain
+import com.gadiwalaUser.Models.CouponsMainRes
 import com.gadiwalaUser.Models.FAQsMainRes
 import com.gadiwalaUser.Models.FilterMainResp
 import com.gadiwalaUser.Models.LoginResponse
@@ -47,7 +48,11 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("api/otp_verify")
-    fun verifyOtp(@Field("api_key") api_key: String,@Field("phone") mobile_number: String,@Field("otp") otp: String): Call<OTPResponse>
+    fun verifyOtp(@Field("api_key") api_key: String,
+                  @Field("phone") mobile_number: String,
+                  @Field("otp") otp: String,
+                  @Field("referral_code") referral_code: String,
+                  ): Call<OTPResponse>
 
 
     @FormUrlEncoded
@@ -319,6 +324,9 @@ interface ApiService {
         @Field("cartid") cartid: String,
         @Field("gst_charges") gst_charges: String,
 
+        @Field("coupon_code") coupon_code: String,
+        @Field("coupon_name") coupon_name: String
+
     ): Call<MainResponse>
 
     @FormUrlEncoded
@@ -407,9 +415,9 @@ interface ApiService {
         @Field("api_key") api_key: String,
         @Field("user_id") user_id: String,
         @Field("coupon_code") coupon_code: String,
-        @Field("total") totalAmount: String,
+        @Field("cart_amount") totalAmount: String,
 
-        ): Call<PincodeMainRes>
+        ): Call<CouponsMainRes>
 
 
 }

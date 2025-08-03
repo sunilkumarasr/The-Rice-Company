@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity.RESULT_OK
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.CartMainRes
+import com.gadiwalaUser.Models.CouponsMainRes
 import com.gadiwalaUser.Models.FilterMainResp
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.PincodeMainRes
@@ -51,7 +52,7 @@ class CartFragment : Fragment() ,ProductListener{
     var cart_ids=""
     var qnts=""
     var couponcode=""
-    var couponName=""
+    var couponAmount=""
     var delivery_charges=0
     private lateinit var binding: FragmentCartBinding
 
@@ -179,6 +180,10 @@ class CartFragment : Fragment() ,ProductListener{
           applyCoupon()
         }
         binding.lnrRemove.setOnClickListener {
+            couponAmount=""
+            couponcode=""
+            binding.couponEditText.setText("")
+            calculateAmount()
             binding.tableCoupon.visibility=View.VISIBLE
             binding.tableApplied.visibility=View.GONE
         }
@@ -312,20 +317,29 @@ return false
         val dataManager = DataManager.getDataManager()
 
         // Create a callback for handling the API response
-        val otpCallback = object : Callback<PincodeMainRes> {
-            override fun onResponse(call: Call<PincodeMainRes>, response: Response<PincodeMainRes>) {
+        val otpCallback = object : Callback<CouponsMainRes> {
+            override fun onResponse(call: Call<CouponsMainRes>, response: Response<CouponsMainRes>) {
                 //       dialog.closeDialog()
                 if (response.isSuccessful) {
-                    val model: PincodeMainRes? = response.body()
+                    val model: CouponsMainRes? = response.body()
 
                     if(model!!.status == true) {
                         binding.tableCoupon.visibility = View.GONE
                         binding.tableApplied.visibility = View.VISIBLE
+                      //  binding.applyCouponButton
+                        couponAmount=(model!!.data!!.discount!!)
+                        binding.txtAmountCoupon.setText("Coupon Applied (${Utils.RUPEE_SYMBOL}${couponAmount})")
+
                     }else
                     {
                         binding.tableCoupon.visibility=View.VISIBLE
                         binding.tableApplied.visibility=View.GONE
+                        binding.txtAmountCoupon.setText("Coupon Applied")
+
+                        couponAmount=""
+                        Utils.showMessage(model!!.message!!,requireContext())
                     }
+                    calculateAmount()
                     println("OTP Sent successfully: ${model?.message}")
                 } else {
                     // Handle error
@@ -334,7 +348,7 @@ return false
                 }
             }
 
-            override fun onFailure(call: Call<PincodeMainRes>, t: Throwable) {
+            override fun onFailure(call: Call<CouponsMainRes>, t: Throwable) {
                 // Handle failure
                 println("Failed to send OTP. ${t.message}")
                 //    dialog.closeDialog()
@@ -346,7 +360,7 @@ return false
     }
     fun deleteCart(cart_id: String)
     {
-
+        updateCoupondata()
         val dialog= CustomDialog(requireActivity())
         // Obtain the DataManager instance
         dialog.showDialog(requireActivity(),false)
@@ -388,7 +402,7 @@ return false
 
     fun updateCart(cart_id:String,quantity:String)
     {
-
+        updateCoupondata()
         val dialog= CustomDialog(requireActivity())
         // Obtain the DataManager instance
         dialog.showDialog(requireActivity(),false)
@@ -449,6 +463,10 @@ return false
     var mrpAmount=0
     var discountedAmount=0
     var gst_charges=0
+    fun updateCoupondata()
+    {
+        binding.lnrRemove.performClick()
+    }
     fun calculateAmount()
     {
         mrpAmount=0
@@ -463,8 +481,16 @@ return false
                 gst_charges=gst_charges+((Integer.parseInt(it.gst)*(Integer.parseInt(it.quantity)*Integer.parseInt(it.ourPrice)))/100)
         }
 
+        if(couponAmount.isNotEmpty()) {
+            totalAmount = totalAmount + delivery_charges + gst_charges-Integer.parseInt(couponAmount)
+            binding.txtSaved.setText("Saved ${Utils.RUPEE_SYMBOL}${mrpAmount+Integer.parseInt(couponAmount)-(discountedAmount)}")
 
-        totalAmount=totalAmount+delivery_charges+gst_charges
+        }
+                else{
+            totalAmount = totalAmount + delivery_charges + gst_charges
+            binding.txtSaved.setText("Saved ${Utils.RUPEE_SYMBOL}${mrpAmount-(discountedAmount)}")
+
+        }
         binding.tvDiscountedAmount.text="${Utils.RUPEE_SYMBOL}$discountedAmount"
         binding.tvBillAmount.text="${Utils.RUPEE_SYMBOL}$mrpAmount"
         binding.tvGrandTotal.text="${Utils.RUPEE_SYMBOL}$totalAmount"
@@ -472,7 +498,6 @@ return false
         binding.tvGstCharges.text="${Utils.RUPEE_SYMBOL}$gst_charges"
 
 
-        binding.txtSaved.setText("Saved ${Utils.RUPEE_SYMBOL}${mrpAmount-discountedAmount}")
 
     }
 
@@ -527,7 +552,7 @@ return false
 
                     if(model!!.Status !!)
                     {
-                        var saved=  mrpAmount-discountedAmount
+                        var saved=  mrpAmount+Integer.parseInt(couponAmount)-discountedAmount
                         val intent= Intent(requireActivity(),OrderSuccessActivity::class.java)
                         intent.putExtra("saved",saved.toString())
                         intent.putExtra("OrderID",model.order_id)
@@ -550,6 +575,6 @@ return false
         }
 
         // Call the sendOtp function in DataManager
-        dataManager.placeOrder(otpCallback, user_id  ,payment_id,addres_id,totalAmount.toString(), product_ids,qnts,slot_id,cart_ids,gst_charges.toString() )
+        dataManager.placeOrder(otpCallback, user_id  ,payment_id,addres_id,totalAmount.toString(), product_ids,qnts,slot_id,cart_ids,gst_charges.toString(),couponcode, couponAmount )
     }
 }

@@ -11,6 +11,7 @@ import com.gadiwalaUser.Models.CartCount
 import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.CategoryMainRes
 import com.gadiwalaUser.Models.ContactDetailsMain
+import com.gadiwalaUser.Models.CouponsMainRes
 import com.gadiwalaUser.Models.FAQsMainRes
 import com.gadiwalaUser.Models.FilterMainResp
 import com.gadiwalaUser.Models.LoginResponse
@@ -98,9 +99,9 @@ class DataManager private constructor() {
         val call = apiService.resendOTP(APIKEY,mobile)
         call.enqueue(cb)
     }
-    fun verifyOtp(cb: Callback<OTPResponse>, mobile: String, otp: String) {
+    fun verifyOtp(cb: Callback<OTPResponse>, mobile: String, otp: String,referral_code:String) {
         val apiService = retrofit.create(ApiService::class.java)
-        val call = apiService.verifyOtp(APIKEY,mobile,otp)
+        val call = apiService.verifyOtp(APIKEY,mobile,otp,referral_code)
         call.enqueue(cb)
     }
     fun addAddress(cb: Callback<OTPResponse>, mobile: String,
@@ -219,7 +220,7 @@ class DataManager private constructor() {
         val call = apiService.getPincodeList(APIKEY,user_id)
         call.enqueue(cb)
     }
-    fun getCouponDetails(cb: Callback<PincodeMainRes>, user_id:String, coupon_code:String, totalAmount:String ) {
+    fun getCouponDetails(cb: Callback<CouponsMainRes>, user_id:String, coupon_code:String, totalAmount:String ) {
         val apiService = retrofit.create(ApiService::class.java)
         val call = apiService.getCouponDetails(APIKEY,user_id,coupon_code,totalAmount)
         call.enqueue(cb)
@@ -321,9 +322,9 @@ class DataManager private constructor() {
         val call = apiService.getOrderDetails(APIKEY,order_id,user_id)
         call.enqueue(cb)
     }
-    fun placeOrder(cb: Callback<MainResponse>, userId: String,payment_id:String,address_id:String,amount:String,productId:String,qty:String,slotid:String,cartid:String,gst:String) {
+    fun placeOrder(cb: Callback<MainResponse>, userId: String,payment_id:String,address_id:String,amount:String,productId:String,qty:String,slotid:String,cartid:String,gst:String,coupon_code:String,coupon_name:String) {
         val apiService = retrofit.create(ApiService::class.java)
-        val call = apiService.placeOrder(APIKEY,userId,payment_id,address_id,amount,productId,qty,slotid,cartid,gst)
+        val call = apiService.placeOrder(APIKEY,userId,payment_id,address_id,amount,productId,qty,slotid,cartid,gst,coupon_code,coupon_name)
         call.enqueue(cb)
     }
     fun searchProduct(cb: Callback<ProductMainRes>, userId: String,search:String) {
