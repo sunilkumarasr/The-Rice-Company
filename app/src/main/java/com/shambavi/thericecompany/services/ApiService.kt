@@ -325,7 +325,7 @@ interface ApiService {
         @Field("gst_charges") gst_charges: String,
 
         @Field("coupon_code") coupon_code: String,
-        @Field("coupon_name") coupon_name: String
+        @Field("coupons_name") coupon_name: String
 
     ): Call<MainResponse>
 
