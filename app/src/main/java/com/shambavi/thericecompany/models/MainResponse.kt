@@ -17,7 +17,7 @@ data class MainResponse(
 
     @SerializedName("status") var Status: Boolean? = null,
     @SerializedName("message") var Message: String? = null,
-    @SerializedName("code") var code: Int? = null,
+    //@SerializedName("code") var code: Int? = null,
     @SerializedName("order_id") var order_id: String? = null,
 
 )

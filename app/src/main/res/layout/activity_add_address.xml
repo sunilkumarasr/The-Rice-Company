@@ -466,7 +466,7 @@
                                     android:textSize="@dimen/_12sdp"
                                     android:singleLine="true"
                                     android:inputType="number"
-                                    android:maxLength="5"
+                                    android:maxLength="6"
                                     android:fontFamily="@font/poppins"
                                     android:textColorHint="@color/hintcolor"/>
                             </LinearLayout>

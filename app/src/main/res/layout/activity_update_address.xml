@@ -439,7 +439,7 @@
                                     android:hint="Enter zip code"
                                     android:textSize="@dimen/_13sdp"
                                     android:singleLine="true"
-                                    android:maxLength="5"
+                                    android:maxLength="6"
                                     android:inputType="number"
                                     android:fontFamily="@font/poppins"
                                     android:textColorHint="@color/hintcolor"/>

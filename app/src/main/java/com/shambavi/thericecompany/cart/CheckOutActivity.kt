@@ -107,7 +107,7 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
             }
             if(!isPincodeAvaiable())
             {
-                Utils.showMessage("Select Delivery Address",applicationContext)
+                Utils.showMessage("This service not available in this pincode",applicationContext)
                 return@setOnClickListener
             }
 
@@ -327,7 +327,8 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
                     if(model!!.Status !!)
                     {
                       //  getCart()
-
+if(couponAmount.isEmpty())
+    couponAmount="0"
                         var saved=  mrpAmount+Integer.parseInt(couponAmount)-discountedAmount
                        val intent= Intent(applicationContext,OrderSuccessActivity::class.java)
                        intent.putExtra("saved",saved.toString())

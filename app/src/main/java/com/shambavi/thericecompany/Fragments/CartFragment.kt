@@ -140,7 +140,7 @@ class CartFragment : Fragment() ,ProductListener{
             }
             if(!isPincodeAvaiable())
             {
-                Utils.showMessage("Select Delivery Address",requireActivity())
+                Utils.showMessage("This service not available in this pincode",requireActivity())
                 return@setOnClickListener
             }
 
@@ -552,6 +552,8 @@ return false
 
                     if(model!!.Status !!)
                     {
+                        if(couponAmount.isEmpty())
+                            couponAmount="0";
                         var saved=  mrpAmount+Integer.parseInt(couponAmount)-discountedAmount
                         val intent= Intent(requireActivity(),OrderSuccessActivity::class.java)
                         intent.putExtra("saved",saved.toString())
