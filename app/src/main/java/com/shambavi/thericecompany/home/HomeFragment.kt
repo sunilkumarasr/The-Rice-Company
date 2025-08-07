@@ -1,12 +1,16 @@
 package com.shambavi.thericecompany.home
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +37,7 @@ import com.shambavi.thericecompany.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.net.URLEncoder
 
 class HomeFragment : Fragment(), ProductListener {
 
@@ -74,6 +79,34 @@ var user_id=""
 
     }
 
+    fun openWhatsAppChat( toNumber: String, message: String) {
+        val url = "https://api.whatsapp.com/send?phone=$toNumber&text=$message"
+        try {
+            requireContext().packageManager.getPackageInfo("com.whatsapp", PackageManager.GET_ACTIVITIES)
+            requireContext().startActivity(Intent(Intent.ACTION_VIEW).apply { data = Uri.parse(url) })
+        } catch (e: PackageManager.NameNotFoundException) {
+            requireContext().startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)))
+        }
+
+
+    }/*
+    fun makeWhatsAppCall(context: Context, phoneNumberWithCountryCode: String) {
+        val uri = Uri.parse("whatsapp://call?number=$phoneNumberWithCountryCode") // Or sometimes "tel:" might try to use WhatsApp if it's the default dialer for such links.
+        val intent = Intent(Intent.ACTION_VIEW, uri) // Or Intent.ACTION_DIAL for a more generic approach
+
+        // Check if WhatsApp is installed
+        val packageManager: PackageManager = context.packageManager
+        if (intent.resolveActivity(packageManager) != null) {
+            try {
+                context.startActivity(intent)
+            } catch (e: Exception) {
+                Toast.makeText(context, "Could not initiate WhatsApp call.", Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            Toast.makeText(context, "WhatsApp is not installed.", Toast.LENGTH_SHORT).show()
+        }
+    }*/
+
     private fun init() {
 
         user_id=MyPref.getUser(requireActivity().applicationContext)
@@ -84,6 +117,11 @@ var user_id=""
         binding.txtName.setText("${MyPref.getName(requireActivity().applicationContext)}")
         productsAdapter.setListener(this)
         topSellingAdapter.setListener(this)
+
+        binding.imgWhatsapp.setOnClickListener {
+
+            openWhatsAppChat("919966484556","@Rice Bazaar")
+        }
         if(!NetWorkConection.isNEtworkConnected(requireActivity()))
         {
             AlertDialog.Builder(requireActivity())

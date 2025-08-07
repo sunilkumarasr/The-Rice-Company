@@ -127,7 +127,9 @@ class CartFragment : Fragment() ,ProductListener{
                     .show()
                 return@setOnClickListener
             }
-            startActivityForResult(Intent(requireActivity(), SlotsActivity::class.java),1)
+            slotlistener.launch(Intent(requireContext(),SlotsActivity::class.java))
+
+            // startActivityForResult(Intent(requireActivity(), SlotsActivity::class.java),1)
         }
 
 
@@ -199,7 +201,15 @@ class CartFragment : Fragment() ,ProductListener{
         }
 return false
     }
+    private val slotlistener = registerForActivityResult( ActivityResultContracts.StartActivityForResult() ) {
+            result -> if (result.resultCode == RESULT_OK) {
+        var data=result.data
+        slot_id=data!!.getStringExtra("slot_id").toString()
+        slot_time=data!!.getStringExtra("slot_time").toString()
 
+        binding.tvDeliverySlot.text="$slot_time"
+
+    } }
     private val addressLauncher = registerForActivityResult( ActivityResultContracts.StartActivityForResult() ) {
             result -> if (result.resultCode == RESULT_OK) {
         addres_id=MyPref.getAddressId(requireActivity())
@@ -501,7 +511,7 @@ return false
 
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+   /* override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode==200)
         {
@@ -510,7 +520,7 @@ return false
 
             binding.tvDeliverySlot.text="$slot_time"
         }
-    }
+    }*/
     private fun checkData() {
 
         if(cartAdapter.itemCount>0)

@@ -37,7 +37,26 @@
                 android:gravity="bottom"
                 android:orientation="vertical">
 
+                <TextView
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_22sdp"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="Welcom to \nThe Rice Bazaar!"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_semibold"
+                    />
+                <TextView
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    android:lineSpacingExtra="@dimen/_5sdp"
+                    android:text="Your fresh rice, delivered with ease."
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins"
+                    />
                 <ImageView
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/login_title"

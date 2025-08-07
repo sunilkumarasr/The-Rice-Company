@@ -42,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:text="Product of The Rice Company Pvt. Ltd."
+            android:text="Product of The Rice Bazaar Pvt. Ltd."
             android:textSize="@dimen/_12sdp" />
 
         <TextView

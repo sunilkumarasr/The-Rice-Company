@@ -66,8 +66,16 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_centerVertical="true"
-                        android:layout_alignParentEnd="true"
+                        android:layout_marginRight="@dimen/_16sdp"
+                        android:layout_toLeftOf="@+id/img_whatsapp"
                         android:src="@drawable/notification_ic"/>
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/img_whatsapp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/whatsapp"/>
                 </RelativeLayout>
 
                 <LinearLayout

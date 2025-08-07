@@ -29,7 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_16sdp"
                 android:textSize="@dimen/_16sdp"
-                android:text="The Rice Company"
+                android:text="The Rice Bazaar"
                 android:fontFamily="@font/teachers_semibold"
                 android:textColor="@color/black"/>
         </LinearLayout>

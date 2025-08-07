@@ -79,7 +79,8 @@ adapter.setListener(this)
         val intent=Intent()
         intent.putExtra("slot_id",slot_id)
         intent.putExtra("slot_time",slot_time)
-        setResult(200,intent)
+        setResult(RESULT_OK,intent)
+
         finish()
     }
 

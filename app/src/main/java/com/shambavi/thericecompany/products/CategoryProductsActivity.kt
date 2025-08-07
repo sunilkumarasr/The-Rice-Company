@@ -37,6 +37,7 @@ class CategoryProductsActivity : AppCompatActivity(),ProductListener {
     lateinit var recycler_all_products: RecyclerView
     var user_id=""
     var cat_id=""
+    var cat_name=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityCategoryProductsBinding.inflate(layoutInflater)
@@ -46,10 +47,12 @@ class CategoryProductsActivity : AppCompatActivity(),ProductListener {
 
         binding.lnrCart.visibility=View.GONE
         cat_id=intent.getStringExtra("cat_id").toString()
+        cat_name=intent.getStringExtra("cat_name").toString()
         user_id= MyPref.getUser(applicationContext)
         binding.backButton.setOnClickListener {
             finish()
         }
+        binding.txtHeader.setText("$cat_name")
         binding.linearSearch.setOnClickListener {
             startActivityForResult(Intent(this@CategoryProductsActivity, SearchActivity::class.java),100)
         }

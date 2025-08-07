@@ -34,7 +34,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:textSize="18sp"
-                android:text="The Rice Company"
+                android:text="The Rice Bazaar"
                 android:fontFamily="@font/teachers_semibold"
                 android:textColor="@color/black"/>
         </LinearLayout>

@@ -42,6 +42,7 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(
             val ctx=holder.binding.txtProductName.context
             val intent=Intent(ctx, CategoryProductsActivity::class.java)
             intent.putExtra("cat_id",categoryList.get(position).id)
+            intent.putExtra("cat_name",categoryList.get(position).category)
             ctx.startActivity(intent)
         }
 

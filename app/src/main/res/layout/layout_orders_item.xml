@@ -60,6 +60,14 @@
                 android:text="Rate this product now"
                 android:textSize="@dimen/_10sdp"
                 />
+            <TextView
+                android:id="@+id/txt_status"
+                style="@style/textview"
+                android:layout_marginTop="4dp"
+                android:text="sdsd"
+                android:textColor="@color/green"
+                android:textSize="@dimen/_10sdp"
+                />
         </LinearLayout>
 
         <ImageView

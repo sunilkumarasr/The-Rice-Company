@@ -94,8 +94,12 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
                     .show()
                 return@setOnClickListener
             }
-            startActivityForResult(Intent(applicationContext, SlotsActivity::class.java),1)
+
+            slotlistener.launch(Intent(applicationContext,SlotsActivity::class.java))
+
+
         }
+
 
 
 
@@ -154,6 +158,15 @@ class CheckOutActivity : AppCompatActivity(), ProductListener {
             binding.tableApplied.visibility=View.GONE
         }
     }
+    private val slotlistener = registerForActivityResult( ActivityResultContracts.StartActivityForResult() ) {
+            result -> if (result.resultCode == RESULT_OK) {
+                var data=result.data
+        slot_id=data!!.getStringExtra("slot_id").toString()
+        slot_time=data!!.getStringExtra("slot_time").toString()
+
+        binding.tvDeliverySlot.text="$slot_time"
+
+    } }
 
     private val addressLauncher = registerForActivityResult( ActivityResultContracts.StartActivityForResult() ) {
             result -> if (result.resultCode == RESULT_OK) {
@@ -415,7 +428,7 @@ if(couponAmount.isEmpty())
 
     }
 
-    override fun onActivityResult(
+   /* override fun onActivityResult(
         requestCode: Int,
         resultCode: Int,
         data: Intent?,
@@ -429,7 +442,7 @@ if(couponAmount.isEmpty())
 
             binding.tvDeliverySlot.text="$slot_time"
         }
-    }
+    }*/
 
     private fun checkData() {
 

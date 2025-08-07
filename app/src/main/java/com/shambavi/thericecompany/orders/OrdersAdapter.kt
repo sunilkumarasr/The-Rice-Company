@@ -46,8 +46,27 @@ var orders=ArrayList<Order>()
                     OrderStatusEnum.REFUNDED.name -> "Refund on ${order.createdAt}"
                     else -> {""}
                 }
-
+val ctx=txtStatus.context
                 orderId.text = "# ${order.orderId}"
+                if(order.status=="1") {
+                    txtStatus.text = "Order Confirmed"
+
+                }
+                else if(order.status=="2")
+                    txtStatus.text = "Order Shipped"
+                else if(order.status=="3")
+                    txtStatus.text = "Order Out for Delivery"
+                else if(order.status=="4")
+                    txtStatus.text = "Delivered"
+                else if(order.status=="5") {
+                    txtStatus.text = "Returned"
+                    txtStatus.setTextColor(ctx.resources.getColor(R.color.red))
+                }
+
+                else if(order.status=="6") {
+                    txtStatus.setTextColor(ctx.resources.getColor(R.color.gold))
+                    txtStatus.text = "Refunded"
+                }
 
                 // Handle rating visibility
                 if (order.status == OrderStatusEnum.DELIVERED.name) {

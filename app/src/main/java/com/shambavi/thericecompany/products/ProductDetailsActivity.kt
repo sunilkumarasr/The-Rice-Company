@@ -67,7 +67,7 @@ class ProductDetailsActivity : AppCompatActivity() {
             intent.putExtra("isOtherDetails", "isOtherDetails")
             startActivity(intent)
         }
-        binding.txtViewReports.setOnClickListener {
+        binding.lnrReports.setOnClickListener {
             val intent = Intent(applicationContext, PrivacyPolicyActivity::class.java)
             intent.putExtra("isOtherDetails", "isOtherDetails")
             startActivity(intent)
@@ -268,12 +268,12 @@ class ProductDetailsActivity : AppCompatActivity() {
                         binding.txtProductDescription.text = "${productDetails!!.descriptions}"
 
                         if(productDetails.broucher!!.isEmpty())
-                            binding.txtViewReports.visibility=View.GONE
+                            binding.lnrReports.visibility=View.GONE
                         else
-                            binding.txtViewReports.visibility=View.VISIBLE
-                            binding.txtViewReports.setOnClickListener {
+                            binding.lnrReports.visibility=View.VISIBLE
+                            binding.lnrReports.setOnClickListener {
 
-                                val pdfUrl = productDetails.broucher // Assuming this is the full URL to the PDF
+                                val pdfUrl = ROOT_URL+productDetails.broucher // Assuming this is the full URL to the PDF
                                 if (pdfUrl!!.startsWith("http://") || pdfUrl.startsWith("https://")) {
                                     try {
                                         val intent = Intent(Intent.ACTION_VIEW)
@@ -286,16 +286,16 @@ class ProductDetailsActivity : AppCompatActivity() {
                                         // intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
 
                                         // Verify that an app exists to receive the intent
-                                        if (intent.resolveActivity(packageManager) != null) {
+                                       // if (intent.resolveActivity(packageManager) != null) {
                                             startActivity(intent)
-                                        } else {
+                                        /*} else {
                                             // No app found to view PDF
                                             Utils.showMessage("No application found to view PDF files.",
                                                 this@ProductDetailsActivity,)
                                             // Optionally, you could try opening it in a browser directly
                                             // val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(pdfUrl))
                                             // startActivity(browserIntent)
-                                        }
+                                        }*/
                                     } catch (e: ActivityNotFoundException) {
                                         // Should be caught by resolveActivity check, but good for safety
                                         Utils.showMessage(
