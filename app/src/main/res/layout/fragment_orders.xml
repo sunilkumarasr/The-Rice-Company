@@ -22,7 +22,7 @@
             android:background="@drawable/search_background"
             android:drawableStart="@drawable/ic_search"
             android:drawablePadding="8dp"
-            android:hint="Search here"
+            android:hint="Search Product"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:textSize="@dimen/_12sdp"/>

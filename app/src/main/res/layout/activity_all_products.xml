@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15sp"
                     android:fontFamily="@font/poppins"
-                    android:text="Search here"
+                    android:text="Search Product"
                     android:textColor="@color/search_hint_color"
                     android:textSize="18dp" />
             </LinearLayout>
@@ -163,6 +163,7 @@
                 app:iss_auto_cycle="true"
                 app:iss_period="1000"
                 app:iss_delay="1000"
+                android:layout_marginBottom="@dimen/_16sdp"
                 app:iss_corner_radius="8"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:layout_marginHorizontal="@dimen/_8sdp"
