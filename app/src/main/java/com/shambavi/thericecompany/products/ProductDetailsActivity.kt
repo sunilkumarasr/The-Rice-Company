@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.marginStart
 import com.bookiron.itpark.utils.MyPref
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
@@ -22,6 +23,7 @@ import com.gadiwalaUser.Models.ProductDetailsDataMinRes
 import com.gadiwalaUser.services.DataManager
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
 import com.google.android.flexbox.FlexboxLayout
+import com.google.android.flexbox.JustifyContent
 import com.google.android.material.chip.Chip
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.PrivacyPolicyActivity
@@ -155,16 +157,18 @@ class ProductDetailsActivity : AppCompatActivity() {
             ViewGroup.LayoutParams.WRAP_CONTENT,
             FlexboxLayout.LayoutParams.WRAP_CONTENT
         )
-        lp.marginStart = 10
+        lp.marginStart = 20
         lp.marginEnd = 10
         binding.flexboxLayout.removeAllViews()
 
         binding.btnAddToCart.visibility = View.GONE
         for (chipText in chipList!!) {
             val chip = Chip(this)
+            chip.layoutParams=lp
             chip.text = chipText.price
             chip.id = Integer.parseInt(chipText.id)
             chip.isChecked = chipText.isSelected
+            //chip.chipStartPadding= 12F
             // chip.layoutParams=lp
 
             if (!chipText.isSelected) {
@@ -223,6 +227,10 @@ class ProductDetailsActivity : AppCompatActivity() {
                 it.isSelected = false
             }
         }
+        /*if(chipList!!.size==0)
+            binding.flexboxLayout.justifyContent= JustifyContent.FLEX_START
+        else
+            binding.flexboxLayout.justifyContent= JustifyContent.SPACE_AROUND*/
         setData()
 
     }

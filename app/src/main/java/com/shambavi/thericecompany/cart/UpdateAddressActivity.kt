@@ -313,6 +313,8 @@ val TAG="UpdateAddressActivity"
                             addressBuffer.append(country)
                         }
                     }
+
+
                     city=city2;
                     if(city.isNotEmpty())
                     binding.editCity.setText("$city")
@@ -334,6 +336,9 @@ val TAG="UpdateAddressActivity"
                      lattitude= place.latLng?.latitude.toString()
                      longitude= place.latLng?.longitude.toString()
                    // binding.editPickLocation.setText(addressBuffer.toString())
+                    if(zipCode.isNotEmpty())
+                        binding.editZipcode.isEnabled=false
+                    else binding.editZipcode.isEnabled=true
 
                     place!!.addressComponents.asList().forEach {
                         if(isCityFound)
@@ -395,6 +400,12 @@ val TAG="UpdateAddressActivity"
                         }
                         else if(addressData.type=="Shop")   binding.radioShop.isChecked=true
                         else if(addressData.type=="Other")   binding.radioOther.isChecked=true
+
+                        zipcode= addressData.zipCode.toString()
+                        if(zipcode.isNotEmpty())
+                            binding.editZipcode.isEnabled=false
+                        else binding.editZipcode.isEnabled=true
+
                     }
                     // Handle the response
 
@@ -529,6 +540,10 @@ val TAG="UpdateAddressActivity"
                 addressText.append("Pincode: $zipcode\n")
                 addressText.append("Country: $country\n\n")
                 addressText.append("Lat: ${location.latitude}, Lon: ${location.longitude}")
+
+                if(zipcode.isNotEmpty())
+                    binding.editZipcode.isEnabled=false
+                else binding.editZipcode.isEnabled=true
 
 
                 Log.d("AddressDebug", "City: $city, State: $state, Pincode: $zipcode")

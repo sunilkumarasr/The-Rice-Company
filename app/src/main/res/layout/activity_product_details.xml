@@ -196,7 +196,7 @@
                     android:layout_height="wrap_content"
                     app:flexDirection="row"
                     app:flexWrap="wrap"
-                    app:justifyContent="space_around"></com.google.android.flexbox.FlexboxLayout>
+                    ></com.google.android.flexbox.FlexboxLayout>
 
             </LinearLayout>
 

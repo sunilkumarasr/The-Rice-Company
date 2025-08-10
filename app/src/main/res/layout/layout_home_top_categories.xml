@@ -17,8 +17,8 @@
             android:gravity="center">
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_product"
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_60sdp"
+                android:layout_width="@dimen/_72sdp"
+                android:layout_height="@dimen/_62sdp"
                 android:scaleType="centerInside"
                 android:src="@drawable/item1" />
         </LinearLayout>

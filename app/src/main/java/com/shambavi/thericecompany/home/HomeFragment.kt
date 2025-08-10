@@ -114,7 +114,7 @@ var user_id=""
         productsAdapter=AllProductsAdapter()
         topSellingAdapter=AllProductsAdapter()
 
-        binding.txtName.setText("${MyPref.getName(requireActivity().applicationContext)}")
+        binding.txtName.setText("  ${MyPref.getName(requireActivity().applicationContext)}  ")
         productsAdapter.setListener(this)
         topSellingAdapter.setListener(this)
 

@@ -82,7 +82,7 @@ class SearchActivity : AppCompatActivity(), ProductListener {
     var search_key="key"
     private fun inits() {
 
-        binding.header.imgBack.setOnClickListener { finish() }
+        binding.imgBack.setOnClickListener { finish() }
 
         binding.editSearch.addTextChangedListener(object:TextWatcher,
             TextView.OnEditorActionListener {

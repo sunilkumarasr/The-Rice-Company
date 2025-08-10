@@ -241,9 +241,23 @@ class OrderDetailsActivity : AppCompatActivity() {
     }
 
     fun formAddress(data: Order): String {
-        var adrs =
-            "${data.houseNo},${data.floor},${data.landmark}\n${data.cityTown},${data.state},${data.country},${data.zipCode}"
-        adrs = adrs.replace(",,", ",")
+
+        var adrs="${data.houseNo},${data.floor},${data.landmark}\n${data.cityTown}"
+        if(!adrs.contains(data.state.toString()))
+        {
+            adrs=adrs+",${data.state}"
+        }
+        if(!adrs.contains(data.country.toString()))
+        {
+            adrs=adrs+",${data.country}"
+        }
+
+        if(!adrs.contains(data.zipCode.toString()))
+        {
+            adrs=adrs+",${data.zipCode}"
+        }
+
+        adrs=adrs.replace(",,",",")
         return adrs
     }
 

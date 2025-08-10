@@ -110,6 +110,7 @@ class AddProfilePicActivity : AppCompatActivity() {
                 // You can now process the image from this URI (e.g., upload, further manipulation)
             }
         } else {
+            Log.e("Error","Error while capture the image")
             // Image capture failed or was cancelled
 
         }
@@ -174,6 +175,7 @@ class AddProfilePicActivity : AppCompatActivity() {
             Toast.makeText(this, "Error creating image file: ${ex.message}", Toast.LENGTH_LONG).show()
         }
     }
+
     var hasNotificationPermissionGranted=false
     private val notificationPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
@@ -261,7 +263,34 @@ class AddProfilePicActivity : AppCompatActivity() {
 
 
                 returnCursor!!.close()
+                //uploadImage(uri)
+
+            } catch (e: IOException) {
+                e.printStackTrace()
+                Log.e("Image pick error", "image Pick Error ${e.printStackTrace()}")
+            }
+        }else
+        {
+            if(data==null)
+                return
+
+            val uri: Uri? = data?.getData()
+            if(uri==null)
+                return
+            // Initialize bitmap
+            // Initialize bitmap
+            try {
+
+
+                val returnCursor: Cursor = contentResolver.query(uri!!, null, null, null, null)!!
+                val nameIndex = returnCursor!!.getColumnIndex(OpenableColumns.DISPLAY_NAME)
+                returnCursor!!.moveToFirst()
                 uploadImage(uri)
+                binding.imgProfile.setImageURI(uri)
+
+
+                returnCursor!!.close()
+                //uploadImage(uri)
 
             } catch (e: IOException) {
                 e.printStackTrace()
