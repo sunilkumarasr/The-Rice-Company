@@ -42,8 +42,9 @@
                     <TextView
                         android:id="@+id/tvProductType"
                         style="@style/textview"
-                        android:fontFamily="@font/poppins"
+                        android:fontFamily="@font/poppins_semibold"
                         android:text=""
+
                         android:textColor="@color/product_name_color"
                         android:textSize="@dimen/_12sdp" />
 

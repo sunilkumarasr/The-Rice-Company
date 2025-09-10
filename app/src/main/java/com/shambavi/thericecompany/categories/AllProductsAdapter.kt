@@ -46,7 +46,21 @@ class AllProductsAdapter: RecyclerView.Adapter<AllProductsAdapter.ProductViewHol
         holder.binding.txtMrp.text="${Utils.RUPEE_SYMBOL}${obj.mrpPrice}"
         holder.binding.txtOff.text="${obj.price_off}%"
         holder.binding.txtOurPrice.text="${Utils.RUPEE_SYMBOL}${obj.ourPrice}"
-        holder.binding.txtMarketPrice.text="${Utils.RUPEE_SYMBOL}${obj.marketPrice}"
+        if(obj.marketPrice!=null&& obj.marketPrice!!.isNotEmpty())
+        {
+            if(!obj.marketPrice!!.equals("0"))
+            {
+                holder.binding.txtMarketPrice.text="${Utils.RUPEE_SYMBOL}${obj.marketPrice}"
+            }else
+            {
+                holder.binding.lnrMarketPrice.visibility=View.GONE
+            }
+
+        }else
+        {
+            holder.binding.lnrMarketPrice.visibility=View.GONE
+        }
+
         holder.binding.txtProductCategory.text="${obj.title}"
         holder.binding.tvQuantity.setText("${obj.quantity}")
         if(obj.user_rating.isEmpty()||obj.user_rating.trim().equals("0"))

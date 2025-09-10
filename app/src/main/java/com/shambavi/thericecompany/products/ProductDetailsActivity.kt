@@ -265,8 +265,24 @@ class ProductDetailsActivity : AppCompatActivity() {
                             "${Utils.RUPEE_SYMBOL}${productDetails!!.mrpPrice}"
                         binding.txtOurPrice.text =
                             "${Utils.RUPEE_SYMBOL}${productDetails!!.ourPrice}"
+
                         binding.txtMarketPrice.text =
                             "${Utils.RUPEE_SYMBOL}${productDetails!!.marketPrice}"
+                        if(productDetails.marketPrice!=null&& productDetails.marketPrice!!.isNotEmpty())
+                        {
+                            if(!productDetails.marketPrice!!.equals("0"))
+                            {
+                                binding.txtMarketPrice.text="${Utils.RUPEE_SYMBOL}${productDetails.marketPrice}"
+                            }else
+                            {
+                                binding.txtMarketPrice.visibility=View.GONE
+                            }
+
+                        }else
+                        {
+                            binding.txtMarketPrice.visibility=View.GONE
+                        }
+
                         binding.webviewDescription.loadData(
                             "${productDetails!!.descriptions}"+
                             "Specification: \n${productDetails!!.specifications}",
