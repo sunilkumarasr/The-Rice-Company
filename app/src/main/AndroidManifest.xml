@@ -21,6 +21,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TheRiceCompany"
         tools:targetApi="31">
+        <activity android:name=".utils.ZoomedImageActivity"
+            android:theme="@style/Theme.App.Dialog.Transparent" />
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"

@@ -12,8 +12,11 @@ import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.LayoutProductProductItemBinding
 import com.shambavi.thericecompany.listeners.ProductListener
+// Import your ZoomedImageActivity here, e.g.:
+// import com.shambavi.thericecompany.utils.ZoomedImageActivity
 import com.shambavi.thericecompany.products.ProductDetailsActivity
 import com.shambavi.thericecompany.utils.Utils
+import com.shambavi.thericecompany.utils.ZoomedImageActivity
 
 class AllProductsAdapter: RecyclerView.Adapter<AllProductsAdapter.ProductViewHolder>() {
 
@@ -71,6 +74,15 @@ class AllProductsAdapter: RecyclerView.Adapter<AllProductsAdapter.ProductViewHol
             holder.binding.txtRating.setText("${obj.user_rating}")
         }
         Glide.with(holder.binding.img.context).load(ROOT_URL+obj.image).placeholder(R.drawable.item1).into(holder.binding.img)
+
+        holder.binding.img.setOnClickListener {
+            val context = holder.binding.img.context
+            // Intent intent = new Intent(context, ZoomedImageActivity.class); // Assuming ZoomedImageActivity is in Java
+            // Replace ZoomedImageActivity::class.java with your actual Activity
+            val intent = Intent(context, ZoomedImageActivity::class.java) // Placeholder, replace with your ZoomedImageActivity
+            intent.putExtra("image_url", ROOT_URL + obj.image)
+            context.startActivity(intent)
+        }
 
         holder.binding.txtProductName.setOnClickListener {
             val ctx=holder.binding.txtProductName.context

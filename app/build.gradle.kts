@@ -81,4 +81,5 @@ dependencies {
 
 
     implementation ("com.google.android.libraries.places:places:4.0.0")
+    implementation("com.github.chrisbanes:PhotoView:2.3.0")
 }

@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -17,6 +18,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.marginStart
 import com.bookiron.itpark.utils.MyPref
 import com.denzcoskun.imageslider.constants.ScaleTypes
+import com.denzcoskun.imageslider.interfaces.ItemClickListener
 import com.denzcoskun.imageslider.models.SlideModel
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.ProductDetailsDataMinRes
@@ -32,6 +34,7 @@ import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.cart.CheckOutActivity
 import com.shambavi.thericecompany.databinding.ActivityProductDetailsBinding
 import com.shambavi.thericecompany.utils.Utils
+import com.shambavi.thericecompany.utils.ZoomedImageActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -394,6 +397,30 @@ class ProductDetailsActivity : AppCompatActivity() {
                         }
 
                         binding.imageSlider.setImageList(imageList)
+
+                        binding.imageSlider.setItemClickListener(object: AdapterView.OnItemClickListener,
+                            ItemClickListener {
+                            override fun onItemClick(
+                                p0: AdapterView<*>?,
+                                p1: View?,
+                                p2: Int,
+                                p3: Long
+                            ) {   }
+
+                            override fun doubleClick(position: Int) {
+                        Log.e("df","df")
+                            }
+
+                            override fun onItemSelected(p2: Int) {
+
+                                val intent = Intent(applicationContext, ZoomedImageActivity::class.java) // Placeholder, replace with your ZoomedImageActivity
+                                intent.putExtra("image_url",  imageList.get(p2).imageUrl)
+                                startActivity(intent)
+
+
+                            }
+
+                        })
                         setData()
 
                     }

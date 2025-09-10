@@ -78,4 +78,14 @@
         <item name="android:fontFamily">@font/poppins_semibold</item> <!-- Reference your bold font file -->
        <!-- <item name="android:textStyle">bold</item>-->
     </style>
+    <!-- in res/values/styles.xml or themes.xml -->
+    <style name="Theme.App.Dialog.Transparent" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:backgroundDimEnabled">true
+        </item> <!-- Or false if you don't want dimming -->
+    </style>
 </resources>
