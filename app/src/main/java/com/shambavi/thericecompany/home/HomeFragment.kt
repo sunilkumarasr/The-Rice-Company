@@ -169,6 +169,7 @@ var user_id=""
         getProducts()
         getTopSellProducts()
         getBanners()
+        getNotificationCount()
     }
 
     fun getBanners()
@@ -217,6 +218,49 @@ var user_id=""
 
         // Call the sendOtp function in DataManager
         dataManager.bannerList(otpCallback)
+    }
+    fun getNotificationCount()
+    {
+
+        val dialog= CustomDialog(requireActivity())
+        // Obtain the DataManager instance
+       // dialog.showDialog(activity,false)
+        val dataManager = DataManager.getDataManager()
+
+        // Create a callback for handling the API response
+        val otpCallback = object : Callback<BannersMainRes> {
+            override fun onResponse(call: Call<BannersMainRes>, response: Response<BannersMainRes>) {
+               // dialog.closeDialog()
+                binding.tvNotificationBadge.setText("")
+                binding.tvNotificationBadge.visibility=View.GONE
+                if (response.isSuccessful) {
+                    if(response.body()?.status==true)
+                    {
+                        if(response.body()!!.count.isNotEmpty())
+                        {
+                            binding.tvNotificationBadge.setText("${response.body()!!.count}")
+                            binding.tvNotificationBadge.visibility=View.VISIBLE
+                        }
+                    }
+
+
+
+                } else {
+                    // Handle error
+                    println("Failed to send OTP. ${response.message()}")
+
+                }
+            }
+
+            override fun onFailure(call: Call<BannersMainRes>, t: Throwable) {
+                // Handle failure
+                println("Failed to send OTP. ${t.message}")
+                //dialog.closeDialog()
+            }
+        }
+
+        // Call the sendOtp function in DataManager
+        dataManager.getNotificationCount(otpCallback)
     }
     fun getCategories()
     {

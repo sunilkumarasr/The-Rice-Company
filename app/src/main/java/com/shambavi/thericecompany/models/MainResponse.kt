@@ -345,6 +345,7 @@ data class BannersMainRes(
 
     @SerializedName("status") var status: Boolean? = null,
     @SerializedName("message") var message: String? = null,
+    @SerializedName("count") var count: String="",
     @SerializedName("data") var data: ArrayList<Banners> = arrayListOf()
 
 )

@@ -243,6 +243,12 @@ interface ApiService {
     ): Call<BannersMainRes>
 
     @FormUrlEncoded
+    @POST("api/notification_count")
+    fun getNotificationCount(
+        @Field("api_key") api_key: String,
+    ): Call<BannersMainRes>
+
+    @FormUrlEncoded
     @POST("api/category_banner_list")
     fun bannerListByCat(
         @Field("api_key") api_key: String,

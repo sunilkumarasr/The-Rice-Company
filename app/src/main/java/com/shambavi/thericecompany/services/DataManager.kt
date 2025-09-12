@@ -264,6 +264,11 @@ class DataManager private constructor() {
         val call = apiService.updateProfileImage(APIKEY,user_id,profile_image)
         call.enqueue(cb)
     }
+    fun getNotificationCount(cb: Callback<BannersMainRes>) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.getNotificationCount(APIKEY)
+        call.enqueue(cb)
+    }
     fun bannerList(cb: Callback<BannersMainRes>) {
         val apiService = retrofit.create(ApiService::class.java)
         val call = apiService.bannerList(APIKEY)

@@ -40,7 +40,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_toRightOf="@+id/imgLogo"
-                        android:layout_toLeftOf="@+id/imgNotification"
+                        android:layout_toLeftOf="@+id/imgNotificationContainer"
                         android:gravity="center"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginEnd="@dimen/_8sdp"
@@ -64,14 +64,38 @@
                             android:fontFamily="@font/teachers_medium"/>
                     </LinearLayout>
 
-                    <androidx.appcompat.widget.AppCompatImageView
-                        android:id="@+id/imgNotification"
-                        android:layout_width="35dp"
-                        android:layout_height="35dp"
+                    <!-- Container for Notification Icon and Badge -->
+                    <RelativeLayout
+                        android:id="@+id/imgNotificationContainer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="@dimen/_16sdp"
-                        android:layout_toLeftOf="@+id/img_whatsapp"
-                        android:src="@drawable/notification_ic"/>
+                        android:layout_toLeftOf="@+id/img_whatsapp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/imgNotification"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:src="@drawable/notification_ic"/>
+
+                        <TextView
+                            android:id="@+id/tvNotificationBadge"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignTop="@id/imgNotification"
+                            android:layout_alignEnd="@id/imgNotification"
+                            android:background="@drawable/notification_badge_background"
+                            android:gravity="center"
+
+                            android:text="0" 
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:visibility="gone"
+                            tools:text="99+"/>
+                    </RelativeLayout>
+
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/img_whatsapp"
                         android:layout_width="35dp"
