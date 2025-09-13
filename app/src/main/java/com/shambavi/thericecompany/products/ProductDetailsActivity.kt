@@ -286,11 +286,14 @@ class ProductDetailsActivity : AppCompatActivity() {
                             binding.txtMarketPrice.visibility=View.GONE
                         }
 
+                        productDetails!!.descriptions =productDetails!!.descriptions!!.replace("&#39;","'")
+
+                       // productDetails!!.descriptions=productDetails!!.descriptions.replaceA
                         binding.webviewDescription.loadData(
                             "${productDetails!!.descriptions}"+
                             "Specification: \n${productDetails!!.specifications}",
-                            "text/html",
-                            "utf-8"
+                            "text/html; charset=utf-8",
+                            null
                         )
                         binding.txtProductDescription.text = "${productDetails!!.descriptions}"
 
