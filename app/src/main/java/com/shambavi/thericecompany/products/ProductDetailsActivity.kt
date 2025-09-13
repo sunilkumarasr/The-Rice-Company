@@ -296,6 +296,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                             null
                         )
                         binding.txtProductDescription.text = "${productDetails!!.descriptions}"
+                        binding.txtProductDescription.text = "${productDetails!!.descriptions}"
+                        binding.txtProductDescription.text = "${productDetails!!.descriptions}"
 
                         if(productDetails.broucher!!.isEmpty())
                             binding.lnrReports.visibility=View.GONE
