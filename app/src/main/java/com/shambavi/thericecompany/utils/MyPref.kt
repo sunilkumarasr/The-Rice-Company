@@ -187,5 +187,20 @@ class MyPref() {
             editor.putString("pincode","")
             editor.commit()
         }
+
+
+        fun setNotifcationReadStatus(ctx:Context,isRead_not:Int)
+        {
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
+            var editor = sharedPreference.edit()
+            editor.putInt("isRead_not",isRead_not)
+            editor.commit()
+        }
+
+        fun getNotificationReadStatus(ctx:Context): Int
+        {
+            val sharedPreference =  ctx.getSharedPreferences("RC", Context.MODE_PRIVATE)
+            return sharedPreference.getInt("isRead_not",0)
+        }
     }
 }

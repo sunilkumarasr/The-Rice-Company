@@ -71,6 +71,7 @@ class NotificationsActivity : AppCompatActivity() {
                     if(model?.status == true)
                     {
 
+                        //MyPref.setNotifcationReadStatus(applicationContext,1)
                         notificationAdapter.setLists(model.data)
 
                     }else

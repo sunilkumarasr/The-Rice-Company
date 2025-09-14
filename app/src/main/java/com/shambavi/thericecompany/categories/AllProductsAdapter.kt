@@ -56,12 +56,12 @@ class AllProductsAdapter: RecyclerView.Adapter<AllProductsAdapter.ProductViewHol
                 holder.binding.txtMarketPrice.text="${Utils.RUPEE_SYMBOL}${obj.marketPrice}"
             }else
             {
-                holder.binding.lnrMarketPrice.visibility=View.GONE
+                holder.binding.lnrMarketPrice.visibility=View.INVISIBLE
             }
 
         }else
         {
-            holder.binding.lnrMarketPrice.visibility=View.GONE
+            holder.binding.lnrMarketPrice.visibility=View.INVISIBLE
         }
 
         holder.binding.txtProductCategory.text="${obj.title}"

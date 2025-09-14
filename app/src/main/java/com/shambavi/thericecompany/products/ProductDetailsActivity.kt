@@ -278,15 +278,22 @@ class ProductDetailsActivity : AppCompatActivity() {
                                 binding.txtMarketPrice.text="${Utils.RUPEE_SYMBOL}${productDetails.marketPrice}"
                             }else
                             {
-                                binding.txtMarketPrice.visibility=View.GONE
+                                binding.lnrMarketPrice.visibility=View.GONE
                             }
 
                         }else
                         {
-                            binding.txtMarketPrice.visibility=View.GONE
+                            binding.lnrMarketPrice.visibility=View.GONE
                         }
 
                         productDetails!!.descriptions =productDetails!!.descriptions!!.replace("&#39;","'")
+                        productDetails!!.descriptions =productDetails!!.descriptions!!.replace("&#39;","'")
+                        productDetails!!.descriptions =productDetails!!.descriptions!!.replace("&#39;","'")
+
+                        productDetails!!.specifications =productDetails!!.specifications!!.replace("&#39;","'")
+                        productDetails!!.specifications =productDetails!!.specifications!!.replace("&#39;","'")
+                        productDetails!!.specifications =productDetails!!.specifications!!.replace("&#39;","'")
+
 
                        // productDetails!!.descriptions=productDetails!!.descriptions.replaceA
                         binding.webviewDescription.loadData(
@@ -295,8 +302,6 @@ class ProductDetailsActivity : AppCompatActivity() {
                             "text/html; charset=utf-8",
                             null
                         )
-                        binding.txtProductDescription.text = "${productDetails!!.descriptions}"
-                        binding.txtProductDescription.text = "${productDetails!!.descriptions}"
                         binding.txtProductDescription.text = "${productDetails!!.descriptions}"
 
                         if(productDetails.broucher!!.isEmpty())

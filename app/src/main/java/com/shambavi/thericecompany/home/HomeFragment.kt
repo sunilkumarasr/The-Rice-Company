@@ -239,7 +239,10 @@ var user_id=""
                         if(response.body()!!.count.isNotEmpty())
                         {
                             binding.tvNotificationBadge.setText("${response.body()!!.count}")
+                            if(MyPref.getNotificationReadStatus(requireContext())==0)
                             binding.tvNotificationBadge.visibility=View.VISIBLE
+                            else
+                            binding.tvNotificationBadge.visibility=View.GONE
                         }
                     }
 

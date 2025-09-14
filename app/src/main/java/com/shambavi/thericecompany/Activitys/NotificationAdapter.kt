@@ -1,5 +1,9 @@
 package com.shambavi.thericecompany.Activitys
 
+import android.os.Build
+import android.text.Html
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,7 +31,9 @@ class NotificationAdapter : RecyclerView.Adapter<NotificationAdapter.Notificatio
     override fun onBindViewHolder(holder: NotificationHolder, position: Int) {
 
         holder.txt_title.setText(list[position].title)
-        holder.txt_descrption.setText(list[position].body)
+        holder.txt_descrption.movementMethod = LinkMovementMethod.getInstance()
+
+        holder.txt_descrption.setText(fromHtml(list[position].body))
     }
 
     override fun getItemCount(): Int {
@@ -37,5 +43,13 @@ class NotificationAdapter : RecyclerView.Adapter<NotificationAdapter.Notificatio
     class NotificationHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var txt_title: TextView = itemView.findViewById<TextView>(R.id.txt_title)
         var txt_descrption: TextView = itemView.findViewById<TextView>(R.id.txt_descrption)
+    }
+}
+
+fun fromHtml(source: String?): Spanned? {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+        return Html.fromHtml(source, Html.FROM_HTML_MODE_COMPACT)
+    } else {
+        return Html.fromHtml(source)
     }
 }
