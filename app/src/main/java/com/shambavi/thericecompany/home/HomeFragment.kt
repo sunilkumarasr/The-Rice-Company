@@ -120,7 +120,7 @@ var user_id=""
 
         binding.imgWhatsapp.setOnClickListener {
 
-            openWhatsAppChat("919985070808","@Rice Bazaar")
+            openWhatsAppChat("9985070808","@Rice Bazaar")
         }
         if(!NetWorkConection.isNEtworkConnected(requireActivity()))
         {
@@ -169,7 +169,7 @@ var user_id=""
         getProducts()
         getTopSellProducts()
         getBanners()
-        getNotificationCount()
+        //getNotificationCount()
     }
 
     fun getBanners()
