@@ -75,14 +75,14 @@ class AllProductsAdapter: RecyclerView.Adapter<AllProductsAdapter.ProductViewHol
         }
         Glide.with(holder.binding.img.context).load(ROOT_URL+obj.image).placeholder(R.drawable.item1).into(holder.binding.img)
 
-        holder.binding.img.setOnClickListener {
+      /*  holder.binding.img.setOnClickListener {
             val context = holder.binding.img.context
             // Intent intent = new Intent(context, ZoomedImageActivity.class); // Assuming ZoomedImageActivity is in Java
             // Replace ZoomedImageActivity::class.java with your actual Activity
             val intent = Intent(context, ZoomedImageActivity::class.java) // Placeholder, replace with your ZoomedImageActivity
             intent.putExtra("image_url", ROOT_URL + obj.image)
-            context.startActivity(intent)
-        }
+            //context.startActivity(intent)
+        }*/
 
         holder.binding.txtProductName.setOnClickListener {
             val ctx=holder.binding.txtProductName.context

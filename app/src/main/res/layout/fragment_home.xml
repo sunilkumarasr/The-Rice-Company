@@ -34,7 +34,7 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:scaleType="centerCrop"
-                        android:src="@mipmap/ic_launcher"/>
+                        android:src="@drawable/logo_top"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -52,14 +52,14 @@
                             android:text="Hi"
                             android:textSize="@dimen/_16sdp"
                             android:fontFamily="@font/teachers_medium"
-                            android:textColor="@color/white"/>
+                            android:textColor="@color/otp_header_color"/>
                         <TextView
                             android:id="@+id/txt_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text=""
                             android:singleLine="true"
-                            android:textColor="@color/white"
+                            android:textColor="@color/otp_header_color"
                             android:textSize="@dimen/_12sdp"
                             android:fontFamily="@font/teachers_medium"/>
                     </LinearLayout>
@@ -77,6 +77,7 @@
                             android:id="@+id/imgNotification"
                             android:layout_width="35dp"
                             android:layout_height="35dp"
+                            android:tint="@color/otp_header_color"
                             android:src="@drawable/notification_ic"/>
 
                         <TextView

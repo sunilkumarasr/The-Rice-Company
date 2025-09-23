@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Your fresh rice, delivered with ease."
+            android:text="Your Rice Your Choice"
             android:textColor="@color/black"
             android:layout_marginTop="@dimen/_10sdp"
             android:textSize="15sp"
