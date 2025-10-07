@@ -12,6 +12,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
+
             android:background="@drawable/home_bg_gradent"/>
 
         <ScrollView
@@ -27,7 +28,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="@dimen/_16sdp"
                     android:layout_marginBottom="10dp">
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/imgLogo"
@@ -136,8 +137,8 @@
                     android:layout_height="@dimen/_180sdp"
                     android:background="@color/white"
                     app:iss_auto_cycle="true"
-                    app:iss_period="1000"
-                    app:iss_delay="1000"
+                    app:iss_period="2000"
+                    app:iss_delay="2000"
                     app:iss_corner_radius="8"
                     android:layout_marginTop="@dimen/_12sdp"
                     android:layout_marginHorizontal="@dimen/_8sdp"

@@ -1,22 +1,16 @@
 package com.shambavi.thericecompany.Activitys
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.bookiron.itpark.utils.MyPref
 import com.bumptech.glide.Glide
 import com.gadiwalaUser.Models.MainResponse
-import com.gadiwalaUser.Models.ProductMainRes
-import com.gadiwalaUser.Models.ProfileImgResp
 import com.gadiwalaUser.Models.UserDetailsMainRes
 import com.gadiwalaUser.services.DataManager
 import com.google.android.material.bottomsheet.BottomSheetDialog

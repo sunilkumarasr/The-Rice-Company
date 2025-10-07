@@ -1,18 +1,17 @@
 package com.shambavi.thericecompany.cart
 
-import android.app.ComponentCaller
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.AddressDataMainRes
-import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.services.DataManager
 import com.royalpark.gaadiwala_admin.views.CustomDialog
@@ -37,6 +36,30 @@ var addres_id=""
         binding = ActivityAddressListBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.VANILLA_ICE_CREAM)
+        {
+            WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
+
+            // 2. Handle Window Insets to prevent content overlap
+            ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, windowInsets ->
+                val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+                // Apply insets as padding to the root view.
+                // This will push all content within binding.root away from the system bars.
+                view.setPadding(insets.left, insets.top, insets.right, insets.bottom)
+
+                // If specific views still overlap or need different behavior (e.g., a Toolbar
+                // intended to sit behind a transparent status bar), you'll need to apply
+                // padding or margins more selectively to those specific views or their containers.
+                // For instance, to only pad the top of your contentFrame and bottom of navigationView:
+                // binding.contentFrame.setPadding(insets.left, insets.top, insets.right, binding.contentFrame.paddingBottom)
+                // binding.navigationView.setPadding(binding.navigationView.paddingLeft, binding.navigationView.paddingTop, binding.navigationView.paddingRight, insets.bottom)
+
+
+                WindowInsetsCompat.CONSUMED
+            }
+
+        }
         user_id=MyPref.getUser(applicationContext)
         addres_id=MyPref.getAddressId(applicationContext)
         setupRecyclerView()

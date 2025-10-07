@@ -31,8 +31,6 @@ import com.shambavi.thericecompany.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.text.append
-import kotlin.text.indices
 
 class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.FilterCallback,ProductListener
 {
@@ -212,6 +210,9 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
 
                     }else
                     {
+                        productsAdapter.productList.clear()
+
+                        productsAdapter.notifyDataSetChanged()
                         model?.message?.let { Utils.showMessage(it,this@AllProductsActivity) }
                     }
                     checkData()

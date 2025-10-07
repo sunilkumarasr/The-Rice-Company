@@ -4,16 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.CartMainRes
-import com.gadiwalaUser.Models.CategoryMainRes
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.ProductMainRes
 import com.gadiwalaUser.services.DataManager
@@ -21,10 +17,8 @@ import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.SearchActivity
 import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.R
-import com.shambavi.thericecompany.categories.AllCategoryAdapter
 import com.shambavi.thericecompany.categories.AllProductsAdapter
 import com.shambavi.thericecompany.databinding.ActivityCategoryProductsBinding
-import com.shambavi.thericecompany.home.ProductsAdapter
 import com.shambavi.thericecompany.listeners.ProductListener
 import com.shambavi.thericecompany.utils.Utils
 import retrofit2.Call

@@ -1,6 +1,5 @@
 package com.shambavi.thericecompany.Fragments
 
-import android.app.ComponentCaller
 import android.content.Intent
 import android.graphics.Paint
 import android.os.Bundle
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.CartMainRes
 import com.gadiwalaUser.Models.CouponsMainRes
-import com.gadiwalaUser.Models.FilterMainResp
 import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.PincodeMainRes
 import com.gadiwalaUser.Models.Pincodes
@@ -25,13 +23,10 @@ import com.royalit.motherchoice.utils.NetWorkConection
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.DashBoardActivity
 import com.shambavi.thericecompany.Activitys.SlotsActivity
-import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.cart.AddressListActivity
 import com.shambavi.thericecompany.cart.CartAdapter
 import com.shambavi.thericecompany.cart.OrderSuccessActivity
-import com.shambavi.thericecompany.databinding.ActivityCheckOutBinding
 import com.shambavi.thericecompany.databinding.FragmentCartBinding
-import com.shambavi.thericecompany.databinding.FragmentHomeBinding
 import com.shambavi.thericecompany.listeners.ProductListener
 import com.shambavi.thericecompany.utils.Utils
 import retrofit2.Call

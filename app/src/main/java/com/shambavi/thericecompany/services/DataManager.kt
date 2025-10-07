@@ -386,4 +386,17 @@ class DataManager private constructor() {
         // 'this.name' is the actual filename that will be sent
         return MultipartBody.Part.createFormData(partName, this.name, requestFile)
     }
+    fun getUserStatus(
+        cb: Callback<MainResponse>,
+        id: String,
+
+
+        ) {
+        val apiService = retrofit.create(ApiService::class.java)
+        val call = apiService.getUserStatus(
+            APIKEY,
+            id
+        )
+        call.enqueue(cb)
+    }
 }

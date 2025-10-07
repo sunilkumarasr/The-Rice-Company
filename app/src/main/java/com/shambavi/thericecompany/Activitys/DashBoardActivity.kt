@@ -2,19 +2,24 @@ package com.shambavi.thericecompany.Activitys
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.CartCount
+import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.services.DataManager
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Config.Preferences
-import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.home.HomeFragment
 import com.shambavi.thericecompany.Fragments.CartFragment
 import com.shambavi.thericecompany.orders.OrdersFragment
@@ -23,6 +28,7 @@ import com.shambavi.thericecompany.Logins.LoginActivity
 import com.shambavi.thericecompany.categories.CategoriesFragment
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityDashBoardBinding
+import com.shambavi.thericecompany.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -41,8 +47,26 @@ class DashBoardActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         setContentView(binding.root)
-        ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
+
+        // Set the status bar color directly.
+        window.statusBarColor = ContextCompat.getColor(this, R.color.status_bar)
+
+        // This controls whether the status bar icons are light or dark.
+        // Set to 'false' for dark status bars (to get light icons).
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
+
+        // Handle Window Insets to prevent content overlap
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+            // Apply insets as padding to the root view.
+            // This will push all content within binding.root away from the system bars.
+            view.setPadding(insets.left, insets.top, insets.right, insets.bottom)
+
+            WindowInsetsCompat.CONSUMED
+        }
 
         //login
         Preferences.saveStringValue(applicationContext, Preferences.LOGINCHECK, "Login")
@@ -91,10 +115,51 @@ class DashBoardActivity : AppCompatActivity() {
             }
         }
 
-
+        getUserStatus()
 
     }
 
+    fun getUserStatus(){
+        var user_id=  MyPref.getUser(applicationContext)
+
+        // Obtain the DataManager instance
+        //  dialog.showDialog(requireActivity(),false)
+
+        val dataManager = DataManager.getDataManager()
+        user_id?.let {
+            dataManager.getUserStatus(object: Callback<MainResponse> {
+
+                override fun onResponse(
+                    call: Call<MainResponse>,
+                    response: Response<MainResponse>
+                ) {
+                    //  dialog.closeDialog()
+                    Log.e("response.body()","response.body() ${response.body()}")
+                    if(response.body()?.Status ==true) {
+
+                    }else
+                    {
+                        MyPref.clear(applicationContext)
+                        Preferences.deleteSharedPreferences(applicationContext)
+                        val intent = Intent(applicationContext, LoginActivity::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                        startActivity(intent)
+                        finish()
+                        Utils.showMessage(response.body()?.Message,applicationContext)
+
+                    }
+                    Log.e("response.body()","response.body() ")
+
+                }
+
+                override fun onFailure(call: Call<MainResponse>, t: Throwable) {
+                    // dialog.closeDialog()
+
+                }
+
+            }, it)
+        }
+    }
     fun setNotification(cartCount: Int)
     {
 
@@ -145,7 +210,7 @@ badge!!.isVisible=isVisible
     fun finishAll()
     {
         val intent= Intent(applicationContext, LoginActivity::class.java)
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
     }

@@ -30,7 +30,15 @@ class SlotsActivity : AppCompatActivity(), ProductListener {
         binding=ActivitySlotsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
 
+            // Apply insets as padding to the root view.
+            // This will push all content within binding.root away from the system bars.
+            view.setPadding(insets.left, insets.top, insets.right, insets.bottom)
+
+            WindowInsetsCompat.CONSUMED
+        }
         adapter=SlotsAdapter()
         binding.rvSlots.layoutManager=LinearLayoutManager(applicationContext)
         binding.rvSlots.adapter=adapter

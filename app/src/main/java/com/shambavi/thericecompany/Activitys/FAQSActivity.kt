@@ -1,11 +1,8 @@
 package com.shambavi.thericecompany.Activitys
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gadiwalaUser.Models.FAQsMainRes
 import com.gadiwalaUser.services.DataManager

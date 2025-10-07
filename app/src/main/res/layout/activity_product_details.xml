@@ -8,6 +8,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="@dimen/_16sdp"
         android:layout_above="@+id/lnr_bottom">
 
         <LinearLayout
@@ -48,8 +49,8 @@
                 android:layout_marginBottom="@dimen/_16sdp"
                 android:layout_gravity="center"
                 app:iss_auto_cycle="true"
-                app:iss_delay="1000"
-                app:iss_period="1000"
+                app:iss_delay="2000"
+                app:iss_period="2000"
                 app:iss_selected_dot="@color/red"
                 app:iss_text_align="CENTER" />
 

@@ -2,11 +2,11 @@ package com.shambavi.thericecompany.cart
 
 import android.Manifest
 import android.app.Activity
-import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -15,8 +15,10 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.bookiron.itpark.utils.MyPref
-import com.gadiwalaUser.Models.AddressDataMainRes
 import com.gadiwalaUser.Models.AddressDataSingle
 import com.gadiwalaUser.Models.OTPResponse
 import com.gadiwalaUser.services.DataManager
@@ -24,7 +26,6 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.libraries.places.api.model.Place
 import com.royalpark.gaadiwala_admin.views.CustomDialog
-import com.shambavi.thericecompany.Activitys.DashBoardActivity
 import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityUpdateAddressBinding
@@ -34,15 +35,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 import com.google.android.libraries.places.api.Places
-import com.google.android.libraries.places.api.model.CircularBounds
-import com.google.android.libraries.places.api.model.LocationRestriction
-import com.google.android.libraries.places.api.model.PlaceTypes
-import com.google.android.libraries.places.api.model.RectangularBounds
-import com.google.android.libraries.places.api.net.FindCurrentPlaceRequest
-import com.google.android.libraries.places.api.net.PlacesClient
 import com.google.android.libraries.places.widget.Autocomplete
-import com.google.android.libraries.places.widget.AutocompleteSupportFragment
-import com.google.android.libraries.places.widget.listener.PlaceSelectionListener
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 import java.io.IOException
 import java.util.Locale
@@ -93,6 +86,30 @@ class UpdateAddressActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.VANILLA_ICE_CREAM)
+        {
+            WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
+
+            // 2. Handle Window Insets to prevent content overlap
+            ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, windowInsets ->
+                val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+                // Apply insets as padding to the root view.
+                // This will push all content within binding.root away from the system bars.
+                view.setPadding(insets.left, insets.top, insets.right, insets.bottom)
+
+                // If specific views still overlap or need different behavior (e.g., a Toolbar
+                // intended to sit behind a transparent status bar), you'll need to apply
+                // padding or margins more selectively to those specific views or their containers.
+                // For instance, to only pad the top of your contentFrame and bottom of navigationView:
+                // binding.contentFrame.setPadding(insets.left, insets.top, insets.right, binding.contentFrame.paddingBottom)
+                // binding.navigationView.setPadding(binding.navigationView.paddingLeft, binding.navigationView.paddingTop, binding.navigationView.paddingRight, insets.bottom)
+
+
+                WindowInsetsCompat.CONSUMED
+            }
+
+        }
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
         val  apiKey=getString(R.string.MAP_KEY)
 
@@ -158,7 +175,7 @@ class UpdateAddressActivity : AppCompatActivity() {
 
                 return@setOnClickListener
             }
-            if(full_name.isEmpty()||email.isEmpty()||flat.isEmpty()||area.isEmpty()||city.isEmpty()||state.isEmpty()||country.isEmpty()||zipcode.isEmpty()||type.isEmpty())
+            if(full_name.isEmpty()/*||email.isEmpty()*/||flat.isEmpty()||area.isEmpty()||city.isEmpty()||state.isEmpty()||country.isEmpty()||zipcode.isEmpty()||type.isEmpty())
             {
                 Utils.showMessage("Please fill all details",applicationContext)
                 return@setOnClickListener

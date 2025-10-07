@@ -16,7 +16,7 @@ class Utils {
     companion object{
 
         val RUPEE_SYMBOL="₹"
-        fun showMessage(msg:String,ctx:Context)
+        fun showMessage(msg: String?, ctx: Context)
         {
             Toast.makeText(ctx,msg,Toast.LENGTH_SHORT).show()
         }

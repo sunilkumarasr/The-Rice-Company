@@ -5,17 +5,17 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Paint
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.core.view.marginStart
+import androidx.core.view.WindowInsetsControllerCompat
 import com.bookiron.itpark.utils.MyPref
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.interfaces.ItemClickListener
@@ -25,7 +25,6 @@ import com.gadiwalaUser.Models.ProductDetailsDataMinRes
 import com.gadiwalaUser.services.DataManager
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
 import com.google.android.flexbox.FlexboxLayout
-import com.google.android.flexbox.JustifyContent
 import com.google.android.material.chip.Chip
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.PrivacyPolicyActivity
@@ -58,7 +57,30 @@ class ProductDetailsActivity : AppCompatActivity() {
             ContextCompat.getColor(this, R.color.colorPrimary),
             false
         )
+        if(Build.VERSION.SDK_INT>= Build.VERSION_CODES.VANILLA_ICE_CREAM)
+        {
+            WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
 
+            // 2. Handle Window Insets to prevent content overlap
+            ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, windowInsets ->
+                val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
+
+                // Apply insets as padding to the root view.
+                // This will push all content within binding.root away from the system bars.
+                view.setPadding(insets.left, 0, insets.right, insets.bottom)
+
+                // If specific views still overlap or need different behavior (e.g., a Toolbar
+                // intended to sit behind a transparent status bar), you'll need to apply
+                // padding or margins more selectively to those specific views or their containers.
+                // For instance, to only pad the top of your contentFrame and bottom of navigationView:
+                // binding.contentFrame.setPadding(insets.left, insets.top, insets.right, binding.contentFrame.paddingBottom)
+                // binding.navigationView.setPadding(binding.navigationView.paddingLeft, binding.navigationView.paddingTop, binding.navigationView.paddingRight, insets.bottom)
+
+
+                WindowInsetsCompat.CONSUMED
+            }
+
+        }
         product_id = intent.getStringExtra("product_id").toString()
         Log.e("product_id", "product_id $product_id")
         getProductDetails()

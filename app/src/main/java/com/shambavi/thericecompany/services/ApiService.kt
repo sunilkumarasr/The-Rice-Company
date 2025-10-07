@@ -425,5 +425,14 @@ interface ApiService {
 
         ): Call<CouponsMainRes>
 
+    @FormUrlEncoded
+    @POST("api/customer_checkStatus")
+    fun getUserStatus(
+        @Field("api_key") apiKey: String,
+        @Field("user_id") id: String,
+
+
+        ): Call<MainResponse>
+
 
 }

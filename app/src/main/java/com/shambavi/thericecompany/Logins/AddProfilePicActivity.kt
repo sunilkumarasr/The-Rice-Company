@@ -4,6 +4,9 @@ import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -16,6 +19,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.exifinterface.media.ExifInterface
 import com.bookiron.itpark.utils.MyPref
 import com.bumptech.glide.Glide
 import com.gadiwalaUser.Models.OTPResponse
@@ -28,6 +34,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.DashBoardActivity
 import com.shambavi.thericecompany.Activitys.MyAccountActivity
+import com.shambavi.thericecompany.Config.Preferences
 import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityAddProfilePicBinding
@@ -35,6 +42,7 @@ import com.shambavi.thericecompany.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -56,7 +64,15 @@ class AddProfilePicActivity : AppCompatActivity() {
         user_id= MyPref.getUser(applicationContext).toString()
         is_account=intent.getBooleanExtra("is_account",false)
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { view, windowInsets ->
+            val insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars())
 
+            // Apply insets as padding to the root view.
+            // This will push all content within binding.root away from the system bars.
+            view.setPadding(insets.left, insets.top, insets.right, insets.bottom)
+
+            WindowInsetsCompat.CONSUMED
+        }
         inits()
     }
 
@@ -96,6 +112,8 @@ class AddProfilePicActivity : AppCompatActivity() {
         }
     }
 
+
+
     private var latestTmpUri: Uri? = null // To store the URI of the image taken
 
     // Activity Result Launcher for Camera
@@ -106,13 +124,126 @@ class AddProfilePicActivity : AppCompatActivity() {
                 // imageView.setImageURI(uri) // Display the image
 
                 binding.imgProfile.setImageURI(uri)
-                uploadImage(uri)
+                val file= getCompressedImageFile(uri)
+                if (file != null) {
+                    uploadImage(file,uri)
+                }
+
                 // You can now process the image from this URI (e.g., upload, further manipulation)
             }
         } else {
             Log.e("Error","Error while capture the image")
             // Image capture failed or was cancelled
 
+        }
+    }
+
+    private fun getCompressedImageFile(uri: Uri, quality: Int = 80, maxWidth: Int = 512, maxHeight: Int = 512): File? {
+        return try {
+            val inputStream = contentResolver.openInputStream(uri) ?: return null
+
+            // 1. Decode bitmap with inJustDecodeBounds=true to check dimensions
+            val options = BitmapFactory.Options().apply {
+                inJustDecodeBounds = true
+            }
+            BitmapFactory.decodeStream(inputStream, null, options)
+            inputStream.close() // Close and reopen to reset the stream
+
+            // 2. Calculate inSampleSize
+            options.inSampleSize = calculateInSampleSize(options, maxWidth, maxHeight)
+
+            // 3. Decode bitmap with inSampleSize set
+            options.inJustDecodeBounds = false
+            var bitmap = contentResolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, options) } ?: return null
+
+            // 4. Handle EXIF Orientation (Important for camera photos)
+            contentResolver.openInputStream(uri)?.use { exifStream ->
+                val exif = ExifInterface(exifStream)
+                val orientation = exif.getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION,
+                    ExifInterface.ORIENTATION_NORMAL)
+                val matrix = Matrix()
+                when (orientation) {
+                    ExifInterface.ORIENTATION_ROTATE_90 -> matrix.postRotate(90f)
+                    ExifInterface.ORIENTATION_ROTATE_180 -> matrix.postRotate(180f)
+                    ExifInterface.ORIENTATION_ROTATE_270 -> matrix.postRotate(270f)
+                    // Add other cases like flip horizontal/vertical if needed
+                }
+                bitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+            }
+
+
+            // 5. Create a byte array output stream for compression
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, byteArrayOutputStream)
+
+            // 6. Create a temporary file and write the compressed data
+            val tempFile = File(cacheDir, "compressed_image_${System.currentTimeMillis()}.jpg")
+            tempFile.createNewFile()
+            val fileOutputStream = FileOutputStream(tempFile)
+            fileOutputStream.write(byteArrayOutputStream.toByteArray())
+            fileOutputStream.close()
+            byteArrayOutputStream.close()
+
+            bitmap.recycle() // Recycle bitmap to free memory
+
+            tempFile
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e("ImageCompression", "Error compressing image: ${e.message}")
+            null // Fallback to original method if compression fails, or handle error
+        }
+    }
+
+    private fun calculateInSampleSize(options: BitmapFactory.Options, reqWidth: Int, reqHeight: Int): Int {
+        // Raw height and width of image
+        val (height: Int, width: Int) = options.run { outHeight to outWidth }
+        var inSampleSize = 1
+
+        if (height > reqHeight || width > reqWidth) {
+            val halfHeight: Int = height / 2
+            val halfWidth: Int = width / 2
+
+            // Calculate the largest inSampleSize value that is a power of 2 and keeps both
+            // height and width larger than the requested height and width.
+            while (halfHeight / inSampleSize >= reqHeight && halfWidth / inSampleSize >= reqWidth) {
+                inSampleSize *= 2
+            }
+        }
+        return inSampleSize
+    }
+
+    fun uploadImage(file:File,uri:Uri){
+
+
+        val dialog= CustomDialog(this@AddProfilePicActivity)
+        dialog.showDialog(this@AddProfilePicActivity,false)
+        val dataManager = DataManager.getDataManager()
+        file?.let {
+            dataManager.fileUpload(it,object: Callback<ProfileImgResp> {
+                override fun onResponse(
+                    call: Call<ProfileImgResp>,
+                    response: Response<ProfileImgResp>
+                ) {
+                    dialog.closeDialog()
+                    Log.e("response.body()","response.body() ${response.body()}")
+                    if(response.body()?.status ==true)
+                    {
+                        val model: ProfileImgResp? = response.body()
+
+
+
+                    }
+                    Log.e("response.body()","response.body() ")
+
+                }
+
+                override fun onFailure(call: Call<ProfileImgResp>, t: Throwable) {
+                    dialog.closeDialog()
+                    Log.e("response.body()","response.body() ${t.printStackTrace()}")
+                }
+
+            }, user_id =user_id!! )
         }
     }
     @Throws(IOException::class)

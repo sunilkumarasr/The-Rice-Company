@@ -10,14 +10,11 @@ import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.bookiron.itpark.utils.MyPref
 import com.gadiwalaUser.Models.OTPResponse
 import com.gadiwalaUser.services.DataManager
@@ -32,7 +29,6 @@ import com.shambavi.thericecompany.Activitys.DashBoardActivity
 import com.shambavi.thericecompany.Config.ViewController
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityAddAddressBinding
-import com.shambavi.thericecompany.databinding.ActivityLoginBinding
 import com.shambavi.thericecompany.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback

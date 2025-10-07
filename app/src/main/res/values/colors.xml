@@ -41,4 +41,5 @@
     <color name="your_filled_star_color">#FFC107</color> <!-- Example: Amber -->
     <color name="your_empty_star_color">#CCCCCC</color>  <!-- Example: Light Gray -->
     <color name="your_secondary_star_color">#FF9800</color>
+    <color name="status_bar">#D3E4FF</color>
 </resources>
