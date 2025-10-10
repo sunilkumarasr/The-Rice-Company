@@ -336,7 +336,8 @@ data class UserDetails(
     @SerializedName("full_name") var fullName: String? = null,
     @SerializedName("phone") var phone: String? = null,
     @SerializedName("email") var email: String? = null,
-    @SerializedName("users_id") var users_id: String? = null
+    @SerializedName("users_id") var users_id: String? = null,
+    @SerializedName("profile_image") var profile_image: String? = null
 
 )
 

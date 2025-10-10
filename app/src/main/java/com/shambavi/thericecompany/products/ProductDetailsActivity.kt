@@ -186,7 +186,8 @@ class ProductDetailsActivity : AppCompatActivity() {
         lp.marginEnd = 10
         binding.flexboxLayout.removeAllViews()
 
-        binding.btnAddToCart.visibility = View.GONE
+       // if(chipList!!.size>0)
+       // binding.btnAddToCart.visibility = View.GONE
         for (chipText in chipList!!) {
             val chip = Chip(this)
             chip.layoutParams=lp
@@ -493,11 +494,12 @@ class ProductDetailsActivity : AppCompatActivity() {
 
                     model?.Message?.let { Utils.showMessage(it, applicationContext) }
 
-                    getProductDetails()
+
                     if (model!!.Status!!) {
                         binding.btnAddToCart.visibility = View.GONE
                         binding.lnrViewcart.visibility = View.VISIBLE
                     }
+                    getProductDetails()
 
                     println("OTP Sent successfully: ${model?.Message}")
                 } else {

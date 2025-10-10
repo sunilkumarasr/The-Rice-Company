@@ -383,6 +383,8 @@ class AddProfilePicActivity : AppCompatActivity() {
             val uri: Uri? = data?.getData()
             // Initialize bitmap
             // Initialize bitmap
+            if(uri==null)
+                return
             try {
 
 

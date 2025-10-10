@@ -72,8 +72,9 @@ class PrivacyPolicyActivity : AppCompatActivity() {
                     {
                         if(model.data.size>0) {
                             model.data.get(0).description?.let {
+                                val fixedDescription = it.replace("#", "%23") // Encode the '#'
                                 binding.webview.loadData(
-                                    it,
+                                    fixedDescription,
                                     "text/html",
                                     "utf-8"
                                 )

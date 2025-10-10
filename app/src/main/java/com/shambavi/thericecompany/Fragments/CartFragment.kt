@@ -464,10 +464,10 @@ return false
     }
 
 
-    var totalAmount=0
+    var totalAmount =0.0f
     var mrpAmount=0
     var discountedAmount=0
-    var gst_charges=0
+    var gst_charges=0.0f
     fun updateCoupondata()
     {
         binding.lnrRemove.performClick()
@@ -475,15 +475,16 @@ return false
     fun calculateAmount()
     {
         mrpAmount=0
-        totalAmount=0
+        totalAmount=0.0f
         discountedAmount=0
-        gst_charges=0
+        gst_charges=0.0f
         cartAdapter.cartList.forEach {
             mrpAmount=mrpAmount+(Integer.parseInt(it.mrpPrice)*Integer.parseInt(it.quantity))
             discountedAmount=discountedAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
             totalAmount=totalAmount+(Integer.parseInt(it.ourPrice)*Integer.parseInt(it.quantity))
-            if(it.gst!!.isNotEmpty())
-                gst_charges=gst_charges+((Integer.parseInt(it.gst)*(Integer.parseInt(it.quantity)*Integer.parseInt(it.ourPrice)))/100)
+
+            if(it.gst!=null&&it.gst!!.isNotEmpty())
+                gst_charges=gst_charges+(((it.gst!!.toFloat())*(Integer.parseInt(it.quantity)*Integer.parseInt(it.ourPrice)))/100)
         }
 
         if(couponAmount.isNotEmpty()) {

@@ -63,7 +63,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         }
         binding.lnrCart.visibility=View.GONE
         binding.lnrCart.setOnClickListener {
-            startActivity(Intent(applicationContext, CheckOutActivity::class.java))
+            startActivityForResult(Intent(applicationContext, CheckOutActivity::class.java),100)
 
         }
         binding.linearSearch.setOnClickListener {

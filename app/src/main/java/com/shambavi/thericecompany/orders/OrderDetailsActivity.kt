@@ -256,7 +256,7 @@ class OrderDetailsActivity : AppCompatActivity() {
                 binding.tableApplied.visibility=View.VISIBLE
                 binding.txtAmountCoupon.setText("Coupon Applied (${Utils.RUPEE_SYMBOL}${order.coupons_name})")
             }
-            var actualpricePaid=Integer.parseInt(amount)-((Integer.parseInt(order.gst_charges)+(deliveryCharger+couponApplied)))
+            var actualpricePaid=(amount!!.toFloat())-(((order.gst_charges!!.toFloat())+(deliveryCharger+couponApplied)))
             binding.txtTotalAmount.text = "₹${actualpricePaid}"
             binding.txtGrandTotal.text = "₹${order.amount}"
             binding.txtGstCharges.text = "₹${order.gst_charges}"
