@@ -12,8 +12,21 @@
 
     <include android:id="@+id/header"
         layout="@layout/top_layout_help"/>
+    <WebView
+        android:id="@+id/webview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:layout_marginVertical="@dimen/_22sdp"
+        android:layout_marginHorizontal="@dimen/_16sdp"
 
-    <TextView
+        android:layout_gravity="center"
+        android:fontFamily="@font/teachers_regular"
+        android:textColor="@color/text"
+        android:textSize="15sp"
+        android:layout_centerVertical="true"/>
+
+   <!-- <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
@@ -131,6 +144,6 @@
             android:layout_gravity="center_vertical"
             android:textColor="@color/txtdes"
             android:text="Email"/>
-    </LinearLayout>
+    </LinearLayout>-->
 
 </LinearLayout>

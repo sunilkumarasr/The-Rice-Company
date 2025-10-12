@@ -44,7 +44,7 @@ class SubCategoryAdapter: RecyclerView.Adapter<SubCategoryAdapter.CategoryViewHo
         Glide.with(holder.binding.imgProduct.context).load(ROOT_URL+categoryList.get(position).subCategoryImage).into(holder.binding.imgProduct)
         holder.binding.txtProductName.setOnClickListener {
             val intent=Intent(ctx, AllProductsActivity::class.java)
-            intent.putExtra("sid",categoryList.get(position).id)
+            intent.putExtra("sid",categoryList.get(position).category_id)
             intent.putExtra("sales","")
 
             ctx.startActivity(intent)

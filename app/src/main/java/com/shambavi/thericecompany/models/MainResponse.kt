@@ -185,6 +185,7 @@ data class SubCategory(
 
     @SerializedName("id") var id: String? = null,
     @SerializedName("sub_category") var subCategory: String? = null,
+    @SerializedName("category_id") var category_id: String? = null,
     @SerializedName("sub_category_image") var subCategoryImage: String? = null
 
 )
