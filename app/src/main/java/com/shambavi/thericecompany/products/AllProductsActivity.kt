@@ -38,6 +38,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
     lateinit var productsAdapter: AllProductsAdapter
     lateinit var recycler_all_products:RecyclerView
     var sid=""
+    var category_id=""
     var sales=""
     var user_id=""
     var filter=""
@@ -52,6 +53,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         ViewController.changeStatusBarColor(this, ContextCompat.getColor(this, R.color.colorPrimary), false)
 
 
+        category_id=intent.getStringExtra("category_id").toString()
         sid=intent.getStringExtra("sid").toString()
         sales=intent.getStringExtra("sales").toString()
         user_id=MyPref.getUser(applicationContext)
@@ -287,7 +289,7 @@ class AllProductsActivity : AppCompatActivity(),FilterBottomSheetFragment.Filter
         }
 
         // Call the sendOtp function in DataManager
-        dataManager.bannerListByCat(otpCallback, sid )
+        dataManager.bannerListByCat(otpCallback, category_id )
     }
 
     fun getCart()

@@ -39,6 +39,7 @@ class AddressAdapter(val activity: AddressListActivity) : ListAdapter<AddressDat
         fun bind(address: AddressData) {
             binding.apply {
                 tvName.text = address.fullName
+                tvType.text = address.type
                 tvAddress.text = formAddress(address)
                 tvPhone.text = address.mobile
 

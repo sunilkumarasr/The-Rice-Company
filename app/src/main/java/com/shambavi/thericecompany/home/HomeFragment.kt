@@ -146,6 +146,7 @@ var user_id=""
             val intent=Intent(context,AllProductsActivity::class.java)
             intent.putExtra("pid","")
             intent.putExtra("sid","")
+            intent.putExtra("category_id","")
             intent.putExtra("sales","")
 
             startActivity(intent)
@@ -154,6 +155,7 @@ var user_id=""
             val intent=Intent(context,AllProductsActivity::class.java)
             intent.putExtra("pid","")
             intent.putExtra("sid","")
+            intent.putExtra("category_id","")
             intent.putExtra("sales","sales")
             startActivity(intent)
         }

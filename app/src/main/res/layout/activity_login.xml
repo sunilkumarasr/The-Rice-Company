@@ -41,7 +41,7 @@
                     android:textColor="@color/white"
                     android:textSize="@dimen/_22sdp"
                     android:lineSpacingExtra="@dimen/_5sdp"
-                    android:text="Welcom to \ Rice Bazaar!"
+                    android:text="Welcome to \n Rice Bazaar!"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_semibold"
