@@ -1,5 +1,6 @@
 package com.shambavi.thericecompany.orders
 
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -61,7 +62,8 @@ class OrderProductAdapter : RecyclerView.Adapter<OrderProductAdapter.OrderProduc
 
         holder.binding.tvProductName.setText("${cart.productTitle}")
         holder.binding.tvProductType.setText("${cart.productId}")
-
+        holder.binding.tvOriginalPrice.paintFlags =
+            holder.binding.tvOriginalPrice.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
         holder.binding.tvOriginalPrice.setText("${RUPEE_SYMBOL}${cart.mrpPrice}")
         holder.binding.tvPrice.setText("${RUPEE_SYMBOL}${cart.ourPrice}")
 

@@ -111,7 +111,7 @@
                         <TextView
                             style="@style/textview"
                             android:layout_marginStart="@dimen/_16sdp"
-                            android:text="Order Shipped"
+                            android:text="Assigned Order"
                             android:textSize="@dimen/_13sdp" />
                     </LinearLayout>
 

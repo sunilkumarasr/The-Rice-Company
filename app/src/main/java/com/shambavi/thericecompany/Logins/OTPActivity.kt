@@ -55,7 +55,8 @@ var otp=""
             binding.lnrReferral.visibility= View.VISIBLE
         }
         otp=intent.getStringExtra("otp").toString()
-        binding.txtOtpStatic.setText("OTP : $otp")
+        binding.txtOtpStatic.setText("")
+        //binding.txtOtpStatic.setText("OTP : $otp")
         binding.txtMobileNumber.setText("$mobileNumber")
         binding.txtEdit.setOnClickListener {
             val intent = Intent(this@OTPActivity, LoginActivity::class.java)

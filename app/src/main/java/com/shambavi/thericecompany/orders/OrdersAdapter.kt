@@ -53,7 +53,7 @@ val ctx=txtStatus.context
 
                 }
                 else if(order.status=="2")
-                    txtStatus.text = "Order Shipped"
+                    txtStatus.text = "Assigned Order"
                 else if(order.status=="3")
                     txtStatus.text = "Order Out for Delivery"
                 else if(order.status=="4")

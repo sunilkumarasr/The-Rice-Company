@@ -25,8 +25,18 @@
             android:id="@+id/tvOrderSuccess"
             style="@style/textview"
             android:layout_marginTop="@dimen/_20sdp"
-            android:text="Order Placed Successful"
+            android:text="Thank you for your order!\n\nYour order has been placed successfully"
             android:textColor="#2D2D2D"
+            android:gravity="center"
+            android:textSize="@dimen/_15sdp"
+
+            android:fontFamily="@font/teachers_medium"/>
+        <TextView
+            style="@style/textview"
+            android:text="Please visit again"
+            android:textColor="#2D2D2D"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/_8sdp"
             android:textSize="@dimen/_16sdp"
             android:fontFamily="@font/teachers_medium"/>
         <TextView
