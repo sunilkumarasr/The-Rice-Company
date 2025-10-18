@@ -6,6 +6,7 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.shambavi.thericecompany.databinding.ActivityZoomedImageBinding
+import com.shambavi.thericecompany.utils.Utils.Companion.options
 
 class ZoomedImageActivity : AppCompatActivity() {
 
@@ -26,6 +27,7 @@ class ZoomedImageActivity : AppCompatActivity() {
         if (imageUrl != null) {
             Glide.with(this)
                 .load(imageUrl)
+                .apply(options)
                 .into(binding.zoomedImageView)
         }
 

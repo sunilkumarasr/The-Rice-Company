@@ -9,6 +9,7 @@ import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.LayoutOrderProductItemBinding
 import com.shambavi.thericecompany.utils.Utils.Companion.RUPEE_SYMBOL
+import com.shambavi.thericecompany.utils.Utils.Companion.options
 
 class OrderProductAdapter : RecyclerView.Adapter<OrderProductAdapter.OrderProductViewHolder>() {
 
@@ -68,7 +69,7 @@ class OrderProductAdapter : RecyclerView.Adapter<OrderProductAdapter.OrderProduc
         holder.binding.tvPrice.setText("${RUPEE_SYMBOL}${cart.ourPrice}")
 
         Glide.with(holder.binding.imgProduct.context)
-            .load(ROOT_URL + cartList.get(position).productImage).placeholder(R.drawable.item1)
+            .load(ROOT_URL + cartList.get(position).productImage).apply(options)
             .into(holder.binding.imgProduct)
 
     }

@@ -247,11 +247,14 @@ return false
                        delivery_charges=Integer.parseInt(model.delivery_charges)
                    }
                     product_ids=""
+                    cart_ids=""
+                    qnts=""
                     cartAdapter.cartList.forEach {
                         product_ids=product_ids+it.productId+","
                         cart_ids=cart_ids+it.cartId+","
                         qnts=qnts+it.quantity+","
                     }
+                    Log.e("Cart Idds","Cart Ids "+qnts)
                     calculateAmount()
                     checkData()
                     println("OTP Sent successfully: ${model?.message}")

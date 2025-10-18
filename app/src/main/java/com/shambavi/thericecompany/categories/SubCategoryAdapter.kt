@@ -15,6 +15,7 @@ import com.shambavi.thericecompany.databinding.LayoutCategoryListItemWithHeaderB
 import com.shambavi.thericecompany.databinding.LayoutHomeTopCategoriesBinding
 import com.shambavi.thericecompany.products.AllProductsActivity
 import com.shambavi.thericecompany.products.CategoryProductsActivity
+import com.shambavi.thericecompany.utils.Utils.Companion.options
 
 class SubCategoryAdapter: RecyclerView.Adapter<SubCategoryAdapter.CategoryViewHolder>() {
 
@@ -41,7 +42,7 @@ class SubCategoryAdapter: RecyclerView.Adapter<SubCategoryAdapter.CategoryViewHo
             holder.binding.txtProductName.performClick()
         }
         holder.binding.txtProductName.setText("${categoryList.get(position).subCategory}")
-        Glide.with(holder.binding.imgProduct.context).load(ROOT_URL+categoryList.get(position).subCategoryImage).into(holder.binding.imgProduct)
+        Glide.with(holder.binding.imgProduct.context).load(ROOT_URL+categoryList.get(position).subCategoryImage).apply(options).into(holder.binding.imgProduct)
         holder.binding.txtProductName.setOnClickListener {
             val intent=Intent(ctx, AllProductsActivity::class.java)
             intent.putExtra("sid",categoryList.get(position).id)

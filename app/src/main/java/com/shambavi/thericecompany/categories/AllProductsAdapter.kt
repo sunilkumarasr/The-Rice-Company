@@ -16,6 +16,7 @@ import com.shambavi.thericecompany.listeners.ProductListener
 // import com.shambavi.thericecompany.utils.ZoomedImageActivity
 import com.shambavi.thericecompany.products.ProductDetailsActivity
 import com.shambavi.thericecompany.utils.Utils
+import com.shambavi.thericecompany.utils.Utils.Companion.options
 import com.shambavi.thericecompany.utils.ZoomedImageActivity
 
 class AllProductsAdapter: RecyclerView.Adapter<AllProductsAdapter.ProductViewHolder>() {
@@ -73,7 +74,7 @@ class AllProductsAdapter: RecyclerView.Adapter<AllProductsAdapter.ProductViewHol
 
             holder.binding.txtRating.setText("${obj.user_rating}")
         }
-        Glide.with(holder.binding.img.context).load(ROOT_URL+obj.image).placeholder(R.drawable.item1).into(holder.binding.img)
+        Glide.with(holder.binding.img.context).load(ROOT_URL+obj.image).apply(options).into(holder.binding.img)
 
       /*  holder.binding.img.setOnClickListener {
             val context = holder.binding.img.context

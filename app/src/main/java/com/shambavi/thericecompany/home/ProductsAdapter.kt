@@ -21,6 +21,7 @@ import com.shambavi.thericecompany.databinding.LayoutHomeProductItemBinding
 import com.shambavi.thericecompany.listeners.ProductListener
 import com.shambavi.thericecompany.products.ProductDetailsActivity
 import com.shambavi.thericecompany.utils.Utils
+import com.shambavi.thericecompany.utils.Utils.Companion.options
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -80,7 +81,7 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>()
 
             holder.binding.txtRating.setText("${obj.user_rating}")
         }
-        Glide.with(holder.binding.img.context).load(ROOT_URL+obj.image).placeholder(R.drawable.item1).into(holder.binding.img)
+        Glide.with(holder.binding.img.context).load(ROOT_URL+obj.image).apply(options).into(holder.binding.img)
 
         holder.binding.txtProductName.setOnClickListener {
             val ctx=holder.binding.txtProductName.context

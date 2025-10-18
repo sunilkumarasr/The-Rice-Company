@@ -5,6 +5,9 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import android.widget.Toast
+import com.bumptech.glide.request.BaseRequestOptions
+import com.bumptech.glide.request.RequestOptions
+import com.shambavi.thericecompany.R
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -14,6 +17,9 @@ class Utils {
 
 
     companion object{
+
+        val options: BaseRequestOptions<*> = RequestOptions()
+            .placeholder(R.drawable.loader_animation)
 
         val RUPEE_SYMBOL="₹"
         fun showMessage(msg: String?, ctx: Context)

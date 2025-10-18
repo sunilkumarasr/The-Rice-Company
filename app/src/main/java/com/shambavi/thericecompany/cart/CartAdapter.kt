@@ -11,6 +11,7 @@ import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.LayoutCartItemBinding
 import com.shambavi.thericecompany.listeners.ProductListener
 import com.shambavi.thericecompany.utils.Utils.Companion.RUPEE_SYMBOL
+import com.shambavi.thericecompany.utils.Utils.Companion.options
 
 class CartAdapter: RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
@@ -65,7 +66,7 @@ var cart=cartList.get(position)
             cart.cartId?.let { it1 -> productListener.updateProduct(it1,qnty+1) }
         }
 
-        Glide.with(holder.binding.imgProduct.context).load(ROOT_URL+cartList.get(position).image).placeholder(R.drawable.item1).into(holder.binding.imgProduct)
+        Glide.with(holder.binding.imgProduct.context).load(ROOT_URL+cartList.get(position).image).apply(options).into(holder.binding.imgProduct)
 
 
     }

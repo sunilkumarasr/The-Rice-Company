@@ -183,7 +183,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:fontFamily="@font/teachers_medium"
-                android:text="Select Pack Size"
+                android:text="Pack Size"
                 android:textColor="@color/text"
                 android:textSize="@dimen/_16sdp" />
 
