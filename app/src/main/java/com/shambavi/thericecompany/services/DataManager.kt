@@ -51,7 +51,9 @@ class DataManager private constructor() {
 
 
     companion object {
-        val ROOT_URL = "https://ricebazaar.co.in/admin/"
+        //val ROOT_URL = "https://ricebazaar.co.in/admin/"
+        val ROOT_URL = "https://aavyafarms.com"
+
         val APIKEY = "the_rice_company_7s736V2J2iB549214s40i3Lz77I0297L"
 
         private var dataManager: DataManager? = null

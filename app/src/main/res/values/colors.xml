@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#31705a</color>
-    <color name="colorPrimary_light">#BA31705A</color>
-    <color name="darkcolorPrimary">#31705a</color>
+    <color name="colorPrimary">#599969</color>
+    <color name="colorPrimary_light">#BA599969</color>
+    <color name="darkcolorPrimary">#599969</color>
     <color name="black">#000000</color>
     <color name="black_profile">#101828</color>
     <color name="unselect">#6e7684</color>
-    <color name="txtHeader">#707070</color>
+    <color name="txtHeader">#090909</color>
     <color name="text">#333333</color>
     <color name="txtdes">#707070</color>
     <color name="black3">#888888</color>
@@ -30,11 +30,11 @@
     <color name="red">#C32445</color>
     <color name="bottom_selector">#d6e2de</color>
     <color name="loginBg">#1d272f</color>
-    <color name="buttonBg">#d89f5d</color>
+    <color name="buttonBg">#E11F26</color>
     <color name="otp_header_color">#344054</color>
     <color name="product_name_color">#878787</color>
     <color name="search_hint_color">#98A2B3</color>
-    <color name="gold">#D89F5D</color>
+    <color name="gold">#E11F26</color>
     <color name="text_color_unselect">#101828</color>
     <color name="bg_color_unselect">#91D0D5DD</color>
     <color name="home_text_bg_color">#F1F2F6</color>

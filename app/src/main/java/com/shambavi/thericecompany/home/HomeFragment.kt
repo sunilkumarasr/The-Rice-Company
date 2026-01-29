@@ -120,7 +120,7 @@ var user_id=""
 
         binding.imgWhatsapp.setOnClickListener {
 
-            openWhatsAppChat("9985070808","@Rice Bazaar")
+            openWhatsAppChat("9985070808","@Aavya Farms")
         }
         if(!NetWorkConection.isNEtworkConnected(requireActivity()))
         {
