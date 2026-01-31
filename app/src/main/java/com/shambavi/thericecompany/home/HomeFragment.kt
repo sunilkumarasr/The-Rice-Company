@@ -23,6 +23,7 @@ import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.ProductMainRes
 import com.gadiwalaUser.services.DataManager
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
+import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL_IMAGE
 import com.royalit.motherchoice.utils.NetWorkConection
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Activitys.DashBoardActivity
@@ -197,7 +198,7 @@ var user_id=""
                     {
                         imageList.clear()
                         model.data.forEach {
-                            imageList.add(SlideModel("${ROOT_URL}/${it.image}", ScaleTypes.FIT))
+                            imageList.add(SlideModel("${ROOT_URL_IMAGE}/${it.image}", ScaleTypes.FIT))
                             println("Banners successfully: ${ROOT_URL}/${it.image}")
                         }
                         binding.imageSlider.setImageList(imageList)

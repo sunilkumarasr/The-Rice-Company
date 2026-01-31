@@ -14,6 +14,7 @@ import com.gadiwalaUser.Models.MainResponse
 import com.gadiwalaUser.Models.UserDetailsMainRes
 import com.gadiwalaUser.services.DataManager
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
+import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL_IMAGE
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.Config.ViewController
@@ -68,7 +69,7 @@ class MyAccountActivity : AppCompatActivity() {
     private fun inits() {
         binding.root.findViewById<TextView>(R.id.txtTitle).text = "My Account"
         binding.root.findViewById<ImageView>(R.id.imgBack).setOnClickListener { finish() }
-        Glide.with(binding.imgProfile.context).load(ROOT_URL+user_pic).placeholder(R.drawable.user_ic)
+        Glide.with(binding.imgProfile.context).load(ROOT_URL_IMAGE+user_pic).placeholder(R.drawable.user_ic)
             .into(binding.imgProfile)
 
         binding.imgProfile.setOnClickListener {
@@ -154,7 +155,7 @@ class MyAccountActivity : AppCompatActivity() {
                         MyPref.setName(applicationContext, it.fullName.toString())
                         MyPref.setUserPic(applicationContext,it!!.profile_image!!)
                         user_pic=it!!.profile_image!!
-                        Glide.with(binding.imgProfile.context).load(ROOT_URL+user_pic).placeholder(R.drawable.user_ic)
+                        Glide.with(binding.imgProfile.context).load(ROOT_URL_IMAGE+user_pic).placeholder(R.drawable.user_ic)
                             .into(binding.imgProfile)
 
                         code=it.users_id.toString()

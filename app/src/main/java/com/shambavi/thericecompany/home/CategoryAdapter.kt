@@ -9,6 +9,7 @@ import com.bumptech.glide.request.BaseRequestOptions
 import com.bumptech.glide.request.RequestOptions
 import com.gadiwalaUser.Models.Category
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
+import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL_IMAGE
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.LayoutHomeTopCategoriesBinding
 import com.shambavi.thericecompany.products.CategoryProductsActivity
@@ -40,7 +41,7 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>(
         holder.binding.txtProductName.setText("${categoryList.get(position).category}")
 
 
-        Glide.with(holder.binding.imgProduct.context).load(ROOT_URL+categoryList.get(position).categoryImage).apply(options).into(holder.binding.imgProduct)
+        Glide.with(holder.binding.imgProduct.context).load(ROOT_URL_IMAGE+categoryList.get(position).categoryImage).apply(options).into(holder.binding.imgProduct)
         holder.binding.txtProductName.setOnClickListener {
             val ctx=holder.binding.txtProductName.context
             val intent=Intent(ctx, CategoryProductsActivity::class.java)

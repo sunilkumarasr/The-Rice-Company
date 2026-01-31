@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gadiwalaUser.Models.CartModel
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
+import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL_IMAGE
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.LayoutCartItemBinding
 import com.shambavi.thericecompany.listeners.ProductListener
@@ -66,7 +67,7 @@ var cart=cartList.get(position)
             cart.cartId?.let { it1 -> productListener.updateProduct(it1,qnty+1) }
         }
 
-        Glide.with(holder.binding.imgProduct.context).load(ROOT_URL+cartList.get(position).image).apply(options).into(holder.binding.imgProduct)
+        Glide.with(holder.binding.imgProduct.context).load(ROOT_URL_IMAGE+cartList.get(position).image).apply(options).into(holder.binding.imgProduct)
 
 
     }

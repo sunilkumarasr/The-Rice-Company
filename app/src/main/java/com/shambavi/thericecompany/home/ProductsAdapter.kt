@@ -14,6 +14,7 @@ import com.gadiwalaUser.Models.Category
 import com.gadiwalaUser.Models.Product
 import com.gadiwalaUser.services.DataManager
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
+import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL_IMAGE
 import com.royalpark.gaadiwala_admin.views.CustomDialog
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivitySplashBinding
@@ -81,7 +82,7 @@ class ProductsAdapter: RecyclerView.Adapter<ProductsAdapter.ProductViewHolder>()
 
             holder.binding.txtRating.setText("${obj.user_rating}")
         }
-        Glide.with(holder.binding.img.context).load(ROOT_URL+obj.image).apply(options).into(holder.binding.img)
+        Glide.with(holder.binding.img.context).load(ROOT_URL_IMAGE+obj.image).apply(options).into(holder.binding.img)
 
         holder.binding.txtProductName.setOnClickListener {
             val ctx=holder.binding.txtProductName.context

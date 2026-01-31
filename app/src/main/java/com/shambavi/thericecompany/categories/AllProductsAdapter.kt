@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.gadiwalaUser.Models.Product
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
+import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL_IMAGE
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.LayoutProductProductItemBinding
 import com.shambavi.thericecompany.listeners.ProductListener
@@ -74,7 +75,7 @@ class AllProductsAdapter: RecyclerView.Adapter<AllProductsAdapter.ProductViewHol
 
             holder.binding.txtRating.setText("${obj.user_rating}")
         }
-        Glide.with(holder.binding.img.context).load(ROOT_URL+obj.image).apply(options).into(holder.binding.img)
+        Glide.with(holder.binding.img.context).load(ROOT_URL_IMAGE+obj.image).apply(options).into(holder.binding.img)
 
       /*  holder.binding.img.setOnClickListener {
             val context = holder.binding.img.context

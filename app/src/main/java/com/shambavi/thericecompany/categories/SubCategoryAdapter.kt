@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.gadiwalaUser.Models.Category
 import com.gadiwalaUser.Models.SubCategory
 import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL
+import com.gadiwalaUser.services.DataManager.Companion.ROOT_URL_IMAGE
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivitySplashBinding
 import com.shambavi.thericecompany.databinding.LayoutCategoryListItemWithHeaderBinding
@@ -42,7 +43,7 @@ class SubCategoryAdapter: RecyclerView.Adapter<SubCategoryAdapter.CategoryViewHo
             holder.binding.txtProductName.performClick()
         }
         holder.binding.txtProductName.setText("${categoryList.get(position).subCategory}")
-        Glide.with(holder.binding.imgProduct.context).load(ROOT_URL+categoryList.get(position).subCategoryImage).apply(options).into(holder.binding.imgProduct)
+        Glide.with(holder.binding.imgProduct.context).load(ROOT_URL_IMAGE+categoryList.get(position).subCategoryImage).apply(options).into(holder.binding.imgProduct)
         holder.binding.txtProductName.setOnClickListener {
             val intent=Intent(ctx, AllProductsActivity::class.java)
             intent.putExtra("sid",categoryList.get(position).id)
