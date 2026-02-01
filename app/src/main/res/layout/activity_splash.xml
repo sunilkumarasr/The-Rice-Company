@@ -25,6 +25,7 @@
             android:textColor="@color/black"
             android:layout_marginTop="@dimen/_10sdp"
             android:textSize="15sp"
+            android:visibility="invisible"
             android:fontFamily="@font/poppins"
             android:textAlignment="center"
             android:layout_below="@+id/imgLogo"/>

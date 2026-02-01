@@ -50,10 +50,10 @@ var otp=""
         type = intent.getStringExtra("type").toString()
         newUser=intent.getBooleanExtra("newUser",false)
         mobileNumber=intent.getStringExtra("mobileNumber").toString()
-        if(newUser)
+       /* if(newUser)
         {
             binding.lnrReferral.visibility= View.VISIBLE
-        }
+        }*/
         otp=intent.getStringExtra("otp").toString()
         binding.txtOtpStatic.setText("")
         //binding.txtOtpStatic.setText("OTP : $otp")

@@ -28,6 +28,7 @@ import com.shambavi.thericecompany.Logins.LoginActivity
 import com.shambavi.thericecompany.categories.CategoriesFragment
 import com.shambavi.thericecompany.R
 import com.shambavi.thericecompany.databinding.ActivityDashBoardBinding
+import com.shambavi.thericecompany.products.AllProductsActivity
 import com.shambavi.thericecompany.utils.Utils
 import retrofit2.Call
 import retrofit2.Callback
@@ -88,9 +89,16 @@ class DashBoardActivity : AppCompatActivity() {
                     true
                 }
                 R.id. navigationProducts-> {
-                    binding.txtTitle.visibility = View.VISIBLE
+                    val intent=Intent(applicationContext,AllProductsActivity::class.java)
+                    intent.putExtra("pid","")
+                    intent.putExtra("sid","")
+                    intent.putExtra("category_id","")
+                    intent.putExtra("sales","")
+
+                    startActivity(intent)
+                   /* binding.txtTitle.visibility = View.VISIBLE
                     binding.txtTitle.setText("All Categories")
-                    loadFragment(CategoriesFragment())
+                    loadFragment(CategoriesFragment())*/
                     true
                 }
                 R.id. navigationOrders-> {

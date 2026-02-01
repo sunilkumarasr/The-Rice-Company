@@ -207,6 +207,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:layout_marginStart="20dp"
+                    android:visibility="gone"
                     android:layout_marginEnd="20dp">
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -241,7 +242,9 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginEnd="20dp"
                     android:layout_marginTop="10dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone"
+                    >
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler_products_top_selling"
                         android:layout_width="match_parent"
